@@ -30,9 +30,20 @@ int main(int argc, char* argv[]) {
 	unsigned int matrixSize = discrHeigth*discrWidth;
 
 	//return 0;
+	myMatrix bb(matrixSize,matrixSize);
+	loadValues(bb, discrWidth);
+	cout << "NORMAL:" << endl << bb.toString() << endl;
+
 	myMatrix aa(matrixSize,2*discrWidth+1);
 	loadValuesBand(aa, discrWidth);
-	
+	cout << "BANDA:" << endl << aa.toString() << endl;
+
+
+	aa.gaussianEliminationBand(discrWidth);
+	bb.gaussianElimination();
+
+	cout << "NORMAL GAUSS:" << endl << bb.toString() << endl;
+	cout << "BANDA GAUSS:" << endl << aa.toString() << endl;
 	//myMatrix aa(matrixSize,matrixSize);
 	//loadValues(aa, discrWidth);
 	//aa.gaussianElimination();
@@ -40,8 +51,8 @@ int main(int argc, char* argv[]) {
 	//aa.swapRows(0,9);
 	//aa.swapRows(9,5);
 	//cout << aa[0][9] << endl;
-	cout << aa.getNRows() << " X " << aa.getNCols() << endl;
-	cout << aa.toString();
+	//cout << aa.getNRows() << " X " << aa.getNCols() << endl;
+	//cout << aa.toString();
 }
 
 

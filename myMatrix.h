@@ -24,6 +24,10 @@ class myMatrix {
 		//E.G: if fromColumn = 5 then the first 6 columns of secondRow will be unchanged (fromColumn = 0 => normal operation)
 		void substractRow(double coefficient, unsigned int firstRow, unsigned int secondRow, unsigned int fromColumn);
 
+		//Version similar para uso en nuestra matriz banda; la informacion de la columna esta implicita en la posicion de las filas
+		//Solo funciona sin intercambio de filas, en caso contrario hay que agregar nuevamente el fromColumn
+		void substractRowBand(double coefficient, unsigned int firstRow, unsigned int secondRow);
+
 		//Use in conjunction with gaussianElimination and substractRow:
 		//After a row substraction we KNOW we have zeroes up to X column
 		//So, instead of substracting and possibly having 0.000000000000001 we assign the zeroes manually
@@ -31,6 +35,9 @@ class myMatrix {
 
 		//Gaussian elimination for normal matrixes
 		void gaussianElimination();
+
+		//Eliminacion gaussiana para matriz banda (sin intercambio de filas)
+		void gaussianEliminationBand(unsigned int panelWidth);
 
 		//Lets the user access the internal matrix structure with the standart operator
 		//E.G: myMatrix[i][j]

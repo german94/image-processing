@@ -47,6 +47,13 @@ void myMatrix::substractRow(double coefficient, unsigned int firstRow, unsigned 
 	}
 }
 
+void myMatrix::substractRowBand(double coefficient, unsigned int firstRow, unsigned int secondRow){
+	unsigned int padding = secondRow-firstRow;
+	for (unsigned int i = 0; i+padding < this->nCols; i++){
+		this->internalGrid[secondRow][i] = this->internalGrid[secondRow][i] - (coefficient*this->internalGrid[firstRow][i+padding]);
+	}
+}
+
 void myMatrix::zeroesLeft(unsigned int aRow, unsigned int toColumn){
 	for(unsigned int i = 0; i < toColumn; i++){
 		this->internalGrid[aRow][i] = 0;
@@ -54,19 +61,34 @@ void myMatrix::zeroesLeft(unsigned int aRow, unsigned int toColumn){
 }
 
 void myMatrix::gaussianElimination(){
-	cout << "START" << endl;
+	//cout << "START" << endl;
 	for(unsigned int j = 0; j < this->nCols; j++){
 		for (unsigned int i = j+1; i < this->nRows; i++)
 		{
 			double coefficient = (internalGrid[i][j]/internalGrid[j][j]);
-			//cout << this->toString() << endl;
-			cout << "F" << i << "=" << "F" << i << "-" << coefficient << "*F" << j << endl;
+			//cout << "F" << i << "=" << "F" << i << "-" << coefficient << "*F" << j << endl;
 			this->substractRow(coefficient, j, i, j+1);
-			cout << this->toString() << endl;
+			//cout << this->toString() << endl;
 		}
 		this->zeroesLeft(j,j);
 
 
+	}
+}
+
+void myMatrix::gaussianEliminationBand(unsigned int panelWidth){
+	//Ya no puedo confiar en nCols porque ahora el valor es menor
+	//Como la matriz verdadera siempre es cuadrada me es indiferente usar nRows en vez de nCols
+	for(unsigned int j = 0; j < this->nRows; j++){
+		for(unsigned int i = j+1; i < this->nRows && i < j+panelWidth+1; i++){	//Ahi aprovecho la ventaja de que si i >= j+panelWidth+1 entonces el coeficiente da (teoricamente) 0
+			double mainDiagonalValue = internalGrid[j][panelWidth];	//panelWidth == la columna del medio de nuestra matriz == la diagonal principal
+			//panelWidth == medio; (i-j) == 1,2,3..etc => medio-1, medio-2... medio-etc
+			//Es decir que a medida que bajo en la matriz (incrementa i), el valor que tengo que utilizar se encuentra 1 a la izquierda del anterior
+			//Por eso hago la resta
+			double coefficient = internalGrid[i][panelWidth-(i-j)] / mainDiagonalValue;;
+			this->substractRowBand(coefficient, j, i);
+		}
+		this->zeroesLeft(j, panelWidth);
 	}
 }
 
