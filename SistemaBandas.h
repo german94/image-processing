@@ -14,6 +14,7 @@ public:
 	void RestarFila(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna);
 	void EliminacionGaussiana();
 	void CerosAIzquierda(unsigned int fila, unsigned int hastaColumna);
+	vector<double> BackWardSubstitution();
 
 private:
 	vector<vector<double> > matriz;

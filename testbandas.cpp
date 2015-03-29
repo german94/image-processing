@@ -27,6 +27,8 @@ int main()
 	}
 
 	sistema.Mostrar();
+	
+	sistema.BackWardSubstitution();
 
 	for(int i = 0; i < f; i++)
 	{
