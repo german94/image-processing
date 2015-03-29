@@ -45,7 +45,7 @@ pair<int, int> SistemaBandas::indexar(unsigned int fila, unsigned int columna) c
 		ret.first = fila;
 		ret.second = m;
 	}
-	else if(columna == filas)
+	else if(columna == filas)//estoy en las pos axb es decir al indexar desde cero en la columna de los B
 	{
 		ret.first = fila;
 		ret.second = columnas - 1;
@@ -75,8 +75,8 @@ pair<int, int> SistemaBandas::indexar(unsigned int fila, unsigned int columna) c
 
 void SistemaBandas::RestarFila(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
 {
-	for(unsigned int i = desdeColumna; i <= columnas; i++)
-	{
+	for(unsigned int i = desdeColumna; i <= filas; i++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
+	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
 		Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
 	}
 }
@@ -89,8 +89,8 @@ void SistemaBandas::CerosAIzquierda(unsigned int fila, unsigned int hastaColumna
 
 void SistemaBandas::EliminacionGaussiana()
 {
-	for(unsigned int j = 0; j < columnas -1; j++)
-	{
+	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
+	{// solo deben triangularse a*b columnas
 		for (unsigned int i = j+1; i < filas; i++)
 		{
 			if(Obtener(i,j) !=0) //para no hacer restas de mas
@@ -102,3 +102,6 @@ void SistemaBandas::EliminacionGaussiana()
 		CerosAIzquierda(j,j);
 	}
 }
+
+
+

@@ -32,7 +32,7 @@ int main()
 	{
 		for(int j = 0; j < f + 1; j++)
 			cout<<"("<<i<<", "<<j<<") = "<<sistema.Obtener(i, j)<<endl;
-		cout<"________________"<<endl;
+		cout<<"________________"<<endl;
 	}
 
 	return 0;
