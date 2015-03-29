@@ -28,14 +28,21 @@ int main()
 
 	sistema.Mostrar();
 	
-	sistema.BackWardSubstitution();
+sistema.EliminacionGaussiana();
 
+	vector <double> res = sistema.BackWardSubstitution();
+
+for (int i = 0; i < f; i++)
+{
+	cout << res[i] << " " << endl;
+
+}/*
 	for(int i = 0; i < f; i++)
 	{
 		for(int j = 0; j < f + 1; j++)
 			cout<<"("<<i<<", "<<j<<") = "<<sistema.Obtener(i, j)<<endl;
 		cout<<"________________"<<endl;
 	}
-
+*/
 	return 0;
 }

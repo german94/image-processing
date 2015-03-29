@@ -103,30 +103,17 @@ void SistemaBandas::EliminacionGaussiana()
 	}
 }
 
-vector<double> SistemaBandas::BackWardSubstitution(){
-	
+vector<double> SistemaBandas::BackWardSubstitution()
+{
 	vector<double> result = vector<double>(filas);
-	for (int i = filas-1; i >= 0; i--){
-
-		result[i] = Obtener(i,ancho-1);
-	
-		for (int j = ancho; j >i; j--){
-					
-			result[i] = result[i] - (Obtener(i,j)*result[j]);
-		}
-
-		result[i] = result[i]/Obtener(i,i); 
-	}
-
-	// probando
-	/*for (int i = 0; i < result.size(); ++i){
-
-		cout<<result[i]<<endl;
-	}*/
-	
-	return result;
-
+    for (int i = filas -1; i>=0; i--)
+    {
+        result[i] = Obtener(i,filas);
+        for (int k=i+1; k< filas -1 ; k++)
+        {
+            result[i] = result[i] - Obtener(i,k)*result[k];
+        }
+        result[i] = result[i]/Obtener(i,i);
+    }
+    return result;
 }
-
-
-
