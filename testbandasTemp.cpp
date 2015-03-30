@@ -101,3 +101,53 @@ void puntosSanguijuela(unsigned int filas, unsigned int columnas, unsigned int p
 	}
 	return;
 }
+
+
+double dameTempPtoCritico(vector<double> solucion, unsigned int alto, unsigned int ancho){
+	//ancho y alto son a/h -1 y b/h - 1
+	
+	double res = 0;
+
+	if(ancho % 2 == 0 && alto % 2 == 0){
+
+		pair<unsigned int, unsigned int> x1(alto/2, ancho/2);
+		pair<unsigned int, unsigned int> x2(alto/2, (ancho/2)-1);
+		pair<unsigned int, unsigned int> x3((alto/2)-1, ancho/2);
+		pair<unsigned int, unsigned int> x4((alto/2)-1, (ancho/2)-1); 
+
+		double temp1 = solucion[ancho*x1.first + x1.second];
+		double temp2 = solucion[ancho*x2.first + x2.second];
+		double temp3 = solucion[ancho*x3.first + x3.second];
+		double temp4 = solucion[ancho*x4.first + x4.second];
+
+		res = (temp1 + temp2 + temp3 + temp4) / 4;
+	}
+	else if(ancho % 2 == 1 && alto % 2 == 1)
+	{
+		pair<unsigned int, unsigned int> xp(floor(alto/2), floor(ancho/2));
+
+		res = solucion[ancho*xp.first + xp.second];
+	}
+	else if(ancho % 2 == 1 && alto % 2 == 0)
+	{
+		pair<unsigned int, unsigned int> x1(alto/2 - 1, floor(ancho/2));
+		pair<unsigned int, unsigned int> x2(alto/2, floor(ancho / 2));
+
+		double temp1 = solucion[ancho*x1.first + x1.second];
+		double temp2 = solucion[ancho*x2.first + x2.second];
+
+		res = (temp1 + temp2) / 2;
+	}
+	else
+	{
+		pair<unsigned int, unsigned int> x1(floor(alto/2), ancho/2 - 1);
+		pair<unsigned int, unsigned int> x2(floor(alto/2), ancho / 2);
+
+		double temp1 = solucion[ancho*x1.first + x1.second];
+		double temp2 = solucion[ancho*x2.first + x2.second];
+
+		res = (temp1 + temp2) / 2;
+	}
+
+	return res;
+}
