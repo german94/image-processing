@@ -109,7 +109,7 @@ vector<double> SistemaBandas::BackWardSubstitution()
     for (int i = filas -1; i>=0; i--)
     {
         result[i] = Obtener(i,filas);
-        for (int k=i+1; k< filas -1 ; k++)
+        for (int k=i+1; k< filas ; k++)
         {
             result[i] = result[i] - Obtener(i,k)*result[k];
         }
