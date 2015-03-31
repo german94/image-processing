@@ -73,7 +73,7 @@ pair<int, int> SistemaBandas::indexar(unsigned int fila, unsigned int columna) c
 	return ret;
 }
 
-void SistemaBandas::RestarFila(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
+void SistemaBandas::RestarFila0(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
 {
 	for(unsigned int i = desdeColumna; i <= filas; i++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
 	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
@@ -87,7 +87,7 @@ void SistemaBandas::CerosAIzquierda(unsigned int fila, unsigned int hastaColumna
 		Modificar(fila,i, 0);
 }
 
-void SistemaBandas::EliminacionGaussiana()
+void SistemaBandas::EliminacionGaussiana0()
 {
 	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
 	{// solo deben triangularse a*b columnas
@@ -96,12 +96,46 @@ void SistemaBandas::EliminacionGaussiana()
 			if(Obtener(i,j) !=0) //para no hacer restas de mas
 			{	
 				double coeficiente = (Obtener(i,j)/Obtener(j,j));
-				RestarFila(coeficiente, j, i, j+1);
+				RestarFila0(coeficiente, j, i, j+1);
 			}
 		}
 		CerosAIzquierda(j,j);
 	}
 }
+
+
+
+void SistemaBandas::RestarFila1(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
+{
+
+	int maxRestasPos = 2*ancho + 1; // filas es de tamaño a*b pero no hay que hacer todas las restas a los sumo 2 por el ancho + 1;
+	for(unsigned int i = desdeColumna, j = 0 ; i <= filas && j <= maxRestasPos; i++, j++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
+	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
+		Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
+	}
+}
+
+void SistemaBandas::EliminacionGaussiana1()
+{
+	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
+	{// solo deben triangularse a*b columnas
+		for (unsigned int i = j+1; (i <= j + ancho) && (i < filas); i++) //hasta fila + ancho puede que haya algun numero != de cero. luego no. ya va a estar  
+		{//triangulada esa parte de la columna
+			if(Obtener(i,j) !=0) //para no hacer restas de mas
+			{	
+				double coeficiente = (Obtener(i,j)/Obtener(j,j));
+				RestarFila1(coeficiente, j, i, j+1);
+			}
+		}
+		CerosAIzquierda(j,j);
+	}
+}
+
+
+
+
+
+
 
 vector<double> SistemaBandas::BackWardSubstitution()
 {

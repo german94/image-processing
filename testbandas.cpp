@@ -28,7 +28,7 @@ int main()
 
 	sistema.Mostrar();
 	
-sistema.EliminacionGaussiana();
+sistema.EliminacionGaussiana0();
 
 	vector <double> res = sistema.BackWardSubstitution();
 
