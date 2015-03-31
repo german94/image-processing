@@ -4,9 +4,10 @@
 #include <math.h>
 
 void cargarValores(SistemaBandas& unSistema,unsigned int alturaSistema, unsigned int ancho);
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeigth, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput);
-bool enCirculo(unsigned int posX, unsigned int posY, double discr, unsigned int circlX, unsigned int circlY, double radio);
-void puntosSanguijuela(unsigned int filas, unsigned int columnas, unsigned int punX, unsigned int punY, double discr, unsigned int sangX, unsigned int sangY, double radio, vector<pair<unsigned int, unsigned int> >& resultado);
+void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes);
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput);
+bool enCirculo(unsigned int posX, unsigned int posY, double discr, double circlX, double circlY, double radio);
+void puntosSanguijuela(unsigned int filas, unsigned int columnas, unsigned int punX, unsigned int punY, double discr, double sangX, double sangY, double radio, vector<pair<unsigned int, unsigned int> >& resultado);
 
 int main()
 {
@@ -21,51 +22,72 @@ int main()
 	double discrInterval = params[2];
 	unsigned int nLeeches = params[3];
 
-	unsigned int discrHeigth = (unsigned int)heigth/discrInterval;
+	unsigned int discrHeight = (unsigned int)heigth/discrInterval;
 	unsigned int discrWidth = (unsigned int)width/discrInterval;
-	unsigned int matrixSize = discrHeigth*discrWidth;
+	unsigned int matrixSize = (discrHeight - 1)*(discrWidth - 1);		//no hay que contar los bordes, si ponemos discrHeight*discWidth estamos contando un borde de cada dimension
 
-
-
-
-	SistemaBandas sistema(matrixSize, discrWidth);
+	SistemaBandas sistema(matrixSize, discrWidth - 1);
 
 	vector<double> sanguijuelas = myFile.readLeeches(nLeeches);
 
-	cargarSanguijuelas(sistema, matrixSize, discrHeigth, discrWidth, discrInterval, sanguijuelas);
-	cargarValores(sistema, matrixSize, discrWidth);
+	cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
+	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
 
+	// for(int x =0 ; x < matrixSize; x++)
+	// {
+	// 	for(int y =0; y < matrixSize + 1; y++)
+	// 		cout<<sistema.Obtener(x, y)<<" ";
 
-	sistema.Mostrar();
+	// 	cout<<endl;
+	// }
 
 	sistema.EliminacionGaussiana();
-	cout << endl;
-	//sistema.Mostrar();
 
 	vector <double> res = sistema.BackWardSubstitution();
-	for(int i = 0; i < res.size(); i++){
-	//	cout << res[i] << endl;
+	for(unsigned int i = 0; i < discrWidth + 1; i++)
+	{
+		for(unsigned int j = 0; j < discrHeight + 1; j++)
+		{
+			double showValue = 0;
+			if(i == 0 || j == 0 || i == discrWidth || j == discrWidth)
+				showValue = -100;
+			else
+				showValue = res[(i - 1) * (discrWidth - 1) + j];	// (i - 1) porque discrWidth va de 0 a matrixSize - 1 y matrixSize no cuenta bordes
+
+			cout << i<<"\t"<<j<<"\t"<<showValue << endl;
+		}
 	}
+
 	return 0;
 }
 
 
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeigth, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput){
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput){
 	for(unsigned int i = 0; i < sanguijuelasInput.size(); i=i+4){
 
-		unsigned int sanguijuelaX = (unsigned int)sanguijuelasInput[i]/discrInterval;
-		unsigned int sanguijuelaY = (unsigned int)sanguijuelasInput[i+1]/discrInterval;
+		//Las sanguijuelas pueden no caer en la discretizacion (es decir, que sanguijuelaX y sanguijuelaY no sean enteros). 
+		//Si no caen en la discretizacion no hay que "hacer que caigan" porque estariamos moviendo la sanguijuela de lugar y podrian cambiar los puntos de la discretizacion afectados.
+		double sanguijuelaX = sanguijuelasInput[i]/discrInterval;
+		double sanguijuelaY = sanguijuelasInput[i+1]/discrInterval;
+
 		double sanguijuelaR = sanguijuelasInput[i+2];
-		int sanguijuelaT = sanguijuelasInput[i+3];
+		double sanguijuelaT = sanguijuelasInput[i+3];
 
 		vector<pair<unsigned int, unsigned int> > punSang;
 
-		puntosSanguijuela(discrHeigth, discrWidth, sanguijuelaX, sanguijuelaY, discrInterval, sanguijuelaX, sanguijuelaY, sanguijuelaR, punSang);
+		//Si la sanguijuela esta situada justo en un punto de la discretizacion entonces todo bien, pero si no, el primer punto sobre el cual va a actuar
+		//(el primero en la recursion de puntosSanguijuela) va a ser el punto dado por la parte entera de ambas coordenadas y despues se ira moviendo a partir
+		//de ese punto.
+		puntosSanguijuela(discrHeight - 1, discrWidth - 1, floor(sanguijuelaX), floor(sanguijuelaY), discrInterval, sanguijuelaX, sanguijuelaY, sanguijuelaR, punSang);
 
 		for(unsigned int j = 0; j < punSang.size(); j++){
 
-			unsigned int posicionEnMatriz = punSang[j].first + punSang[j].second*discrWidth;
+			unsigned int posicionEnMatriz = punSang[j].first + punSang[j].second*(discrWidth - 1); //modificar
 
+
+			for(int i = 0; i < alturaSistema; i++)
+				unSistema.Modificar(posicionEnMatriz, i, 0);
+			
 			unSistema.Modificar(posicionEnMatriz, posicionEnMatriz, 1);
 			unSistema.Modificar(posicionEnMatriz, alturaSistema, sanguijuelaT);
 		}
@@ -92,11 +114,52 @@ void cargarValores(SistemaBandas& unSistema, unsigned int alturaSistema, unsigne
 	}
 }
 
-bool enCirculo(unsigned int posX, unsigned int posY, double discr, unsigned int circlX, unsigned int circlY, double radio){
+//La de arriba carga la matriz con los bordes, dijimos que ibamos a cargar la matriz sin los bordes
+void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes)
+{
+	for(unsigned int fila = 0; fila < alturaSistema; fila++)
+	{
+		double resultado = 0;
+
+		unSistema.Modificar(fila, fila, 4);
+
+		pair<unsigned int, unsigned int> abajo(fila, fila + anchoDiscrSinBordes);
+		pair<unsigned int, int> arriba(fila, fila - anchoDiscrSinBordes);
+		pair<unsigned int, unsigned int> derecha(fila, fila + 1);
+		pair<unsigned int, int> izquierda(fila, fila - 1);
+
+		if(abajo.second >= alturaSistema)
+			resultado = -100;
+		else
+			unSistema.Modificar(abajo.first, abajo.second, -1);
+
+		if(arriba.second < 0)
+			resultado -= 100;
+		else
+			unSistema.Modificar(arriba.first, arriba.second, -1);
+
+		if((fila + 1) % anchoDiscrSinBordes == 0)
+			resultado -= 100;
+		else
+			unSistema.Modificar(derecha.first, derecha.second, -1);
+
+		if(fila % anchoDiscrSinBordes == 0)
+			resultado -= 100;
+		else
+			unSistema.Modificar(izquierda.first, izquierda.second, -1);
+
+		
+		unSistema.Modificar(fila, alturaSistema, resultado);
+	}
+}
+
+//circlX y circlY representan la posicion de la sanguijuela, deben ser double por si no cae dentro de la discretizacion
+bool enCirculo(unsigned int posX, unsigned int posY, double discr, double circlX, double circlY, double radio){
 	return ( pow((posX*discr - circlX*discr),2) + pow((posY*discr - circlY*discr),2) <= pow(radio,2) );
 }
 
-void puntosSanguijuela(unsigned int filas, unsigned int columnas, unsigned int punX, unsigned int punY, double discr, unsigned int sangX, unsigned int sangY, double radio, vector<pair<unsigned int, unsigned int> >& resultado){
+//lo mismo, sangX y sangY pueden no caer en la discretizacion, no deben ser int
+void puntosSanguijuela(unsigned int filas, unsigned int columnas, unsigned int punX, unsigned int punY, double discr, double sangX, double sangY, double radio, vector<pair<unsigned int, unsigned int> >& resultado){
 
 	if(enCirculo(punX, punY, discr, sangX, sangY, radio) && punX < columnas -1 && punY < filas -1 && punX > 1 && punY > 1 ){
 		for(unsigned int i=0; i < resultado.size(); i++){
