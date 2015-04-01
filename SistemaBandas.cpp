@@ -104,16 +104,17 @@ void SistemaBandas::EliminacionGaussiana0()
 }
 
 
-
 void SistemaBandas::RestarFila1(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
 {
 
 	int maxRestasPos = 2*ancho + 1; // filas es de tamaño a*b pero no hay que hacer todas las restas a los sumo 2 por el ancho + 1;
-	for(unsigned int i = desdeColumna, j = 0 ; i <= filas && j <= maxRestasPos; i++, j++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
+	for(unsigned int i = desdeColumna, j = 0 ; i < filas && j <= maxRestasPos; i++, j++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
 	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
 		Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
 	}
+	Modificar(segunda, filas, Obtener(segunda,filas) - (coeficiente*Obtener(primera,filas)));
 }
+
 
 void SistemaBandas::EliminacionGaussiana1()
 {
