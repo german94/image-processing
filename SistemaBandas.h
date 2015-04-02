@@ -17,6 +17,11 @@ public:
 	void EliminacionGaussiana1(); //restarfila1 y eg1 aprovecha que es bandas, por lo que no resta toda una fila, ni para triangular debe descender hasta la última fila
 	void CerosAIzquierda(unsigned int fila, unsigned int hastaColumna);
 	vector<double> BackWardSubstitution();
+	void LU();
+	vector<vector<double> > ObtenerL();
+	vector<vector<double> > ObtenerU();
+
+
 
 private:
 	vector<vector<double> > matriz;
