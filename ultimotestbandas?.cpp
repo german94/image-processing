@@ -6,16 +6,18 @@
 #include "stdlib.h"
 #include <iomanip>
 
-vector<double> obtenerTemperaturas(SistemaBandas& sistema, vector<vector<double> > &sanguijuelas, unsigned int matrixSize, unsigned int discWidth, unsigned int discrHeight, double discrInterval);
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discWidth, unsigned int discrHeight, double discrInterval, vector<double> sanguijuelas, vector<vector<double> >& sanguijuelasInfo, char metodo);
 void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes);
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput);
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput, vector<vector<double> >& sanguijuelasInfo);
 bool enCirculo(unsigned int posX, unsigned int posY, double discr, double circlX, double circlY, double radio);
 void puntosSanguijuela(unsigned int filas, unsigned int columnas, double discr, double sangX, double sangY/*SIN DISC*/, double radio, vector<pair<unsigned int, unsigned int> >& resultado);
 
-int main()
+int main(int argc, char** argv)
 {
+	FileHandler myFile(argv[1]);
 
-	FileHandler myFile("./test1.in");
+	ofstream outputFile;
+	outputFile.open(argv[2], ios::app);
 	vector<double> params;
 	params.resize(4);
 	myFile.readParameters(params);
@@ -31,11 +33,12 @@ int main()
 
 	SistemaBandas sistema(matrixSize, discrWidth - 1);
 
-	vector<vector<double> > sanguijuelas = myFile.readLeeches(nLeeches);
+	vector<double> sanguijuelas = myFile.readLeeches(nLeeches);
+	vector<vector<double> > sanguijuelasInfo(sanguijuelas.size()); 
 
-	vector<double> res = obtenerTemperaturas(sistema, sanguijuelas, matrixSize, discrWidth, discrHeight, discrInterval);
+	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelas, sanguijuelasInfo, argv[3][0]);
 
-	std::cout << std::fixed << std::setprecision(5);
+	outputFile << std::fixed << std::setprecision(5);
 	
 	for(int i = 0; i <= discrHeight; i++) //fila 
 	{
@@ -43,29 +46,32 @@ int main()
 		{
 			if(i == 0 || j==0 || i == discrHeight || j == discrWidth)
 			{
-				cout << i << "\t" << j << "\t" <<fixed<< (double)-100 << endl; 
+				outputFile << i << "\t" << j << "\t" <<fixed<< (double)-100 << endl; 
 			}
 			else
 			{
-				cout << i << "\t" << j << "\t" <<fixed<< (double)res[(i - 1)*(discrWidth - 1) + j-1] << endl; 
+				outputFile << i << "\t" << j << "\t" <<fixed<< (double)res[(i - 1)*(discrWidth - 1) + j-1] << endl; 
 			}
 		}
 	}
 
+	outputFile.close();
+
 	return 0;
 }
 
-vector<double> obtenerTemperaturas(SistemaBandas& sistema, vector<vector<double> > &sanguijuelas, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
-	{
-		cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
-		cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval, vector<double> sanguijuelas, vector<vector<double> >& sanguijuelasInfo, char metodo)
+{
+	cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
+	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
+	if(metodo == '0')	
 		sistema.EliminacionGaussiana1();
-		vector <double> res = sistema.BackWardSubstitution();
-		return res;
-	}
+	vector <double> res = sistema.BackWardSubstitution();
+	return res;
+}
 
 	//cargarSanguijuelas(sistema, matrixSize, discrHeight /*alto como viene*/, discrWidth/*ancho como vienen*/, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<vector<double> > sanguijuelasInput){
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput, vector<vector<double> >& sanguijuelasInfo){
 	for(unsigned int i = 0; i < sanguijuelasInput.size(); i=i+4){
 
 		//Las sanguijuelas pueden no caer en la discretizacion (es decir, que sanguijuelaX y sanguijuelaY no sean enteros). 
@@ -80,6 +86,14 @@ void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, un
 							//ALTO		//ANCHO
 		puntosSanguijuela(discrHeight, discrWidth, discrInterval, sanguijuelaX, sanguijuelaY/*SIN DISC*/, sanguijuelaR, punSang);
 
+		sanguijuelasInfo[i].push_back(sanguijuelaX);
+		sanguijuelasInfo[i].push_back(sanguijuelaY);
+		sanguijuelasInfo[i].push_back(sanguijuelaT);
+		sanguijuelasInfo[i].push_back(sanguijuelaR);
+
+		if(punSang.size() == 0)
+			sanguijuelasInfo[i].push_back(-1);
+
 		unsigned int camb_col, camb_fil; //VALORES DENTRO DE LA MATRIZ A MODIFICAR
 		for(unsigned int j = 0; j < punSang.size(); j++)
 		{ //punSANG TIENE TODOS LOS PUNTOS SOBRE LOS QUE ACTUA
@@ -87,6 +101,11 @@ void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, un
 			camb_col = punSang[j].first;
 			camb_fil = punSang[j].second;
 			unsigned int filaEnMatriz = (discrWidth-1)*(camb_fil -1) + camb_col -1; //ya me lo da indexado en cero
+
+			if(punSang.size() == 1)
+				sanguijuelasInfo[i].push_back(filaEnMatriz);
+			else
+				sanguijuelasInfo[i].push_back(-2);
 
 			/*if((filaEnMatriz + 1) % (discrWidth -1) != 0) {unSistema.Modificar(filaEnMatriz, filaEnMatriz -1, 0);} //al X_i,i-1 lo dejo en 0 IZQUIERDA
 			if(filaEnMatriz != alturaSistema -1) {unSistema.Modificar(filaEnMatriz, filaEnMatriz -1, 0);} //al X_i,i-1 lo dejo en 0  DERECHA
