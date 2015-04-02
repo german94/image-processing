@@ -4,6 +4,9 @@
 #include <math.h>
 #include "stdio.h"
 #include "stdlib.h"
+#include <iomanip>
+
+
 
 void cargarValores(SistemaBandas& unSistema,unsigned int alturaSistema, unsigned int ancho);
 void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes);
@@ -51,6 +54,7 @@ int main()
 
 
 	vector <double> res = sistema.BackWardSubstitution();
+	std::cout << std::fixed << std::setprecision(5);
 	
 	for(int i = 0; i <= discrHeight; i++) //fila 
 	{
@@ -58,11 +62,11 @@ int main()
 		{
 			if(i == 0 || j==0 || i == discrHeight || j == discrWidth)
 			{
-				cout << i << "\t" << j << "\t" << -100 << endl; 
+				cout << i << "\t" << j << "\t" <<fixed<< (double)-100 << endl; 
 			}
 			else
 			{
-				cout << i << "\t" << j << "\t" <<  res[(i - 1)*(discrWidth - 1) + j-1] << endl; 
+				cout << i << "\t" << j << "\t" <<fixed<< (double)res[(i - 1)*(discrWidth - 1) + j-1] << endl; 
 			}
 		}
 	}
