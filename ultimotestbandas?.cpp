@@ -6,9 +6,7 @@
 #include "stdlib.h"
 #include <iomanip>
 
-
-
-void cargarValores(SistemaBandas& unSistema,unsigned int alturaSistema, unsigned int ancho);
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, vector<vector<double> > &sanguijuelas, unsigned int matrixSize, unsigned int discWidth, unsigned int discrHeight, double discrInterval);
 void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes);
 void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput);
 bool enCirculo(unsigned int posX, unsigned int posY, double discr, double circlX, double circlY, double radio);
@@ -33,27 +31,10 @@ int main()
 
 	SistemaBandas sistema(matrixSize, discrWidth - 1);
 
-	vector<double> sanguijuelas = myFile.readLeeches(nLeeches);
+	vector<vector<double> > sanguijuelas = myFile.readLeeches(nLeeches);
 
-	/*for(int i = 0; i < sanguijuelas.size(); i= i+4)
-	{
-		cout << sanguijuelas[i] << " " << sanguijuelas[i+1] << " " << sanguijuelas[i+2] << " " << sanguijuelas[i+3] << endl;
-	}*/ 
+	vector<double> res = obtenerTemperaturas(sistema, sanguijuelas, matrixSize, discrWidth, discrHeight, discrInterval);
 
-	cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
-	//sistema.Mostrar();
-
-
-	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
-//	sistema.Mostrar();
-
-
-	sistema.EliminacionGaussiana1();
-
-//		sistema.Mostrar();
-
-
-	vector <double> res = sistema.BackWardSubstitution();
 	std::cout << std::fixed << std::setprecision(5);
 	
 	for(int i = 0; i <= discrHeight; i++) //fila 
@@ -74,8 +55,17 @@ int main()
 	return 0;
 }
 
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, vector<vector<double> > &sanguijuelas, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
+	{
+		cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
+		cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
+		sistema.EliminacionGaussiana1();
+		vector <double> res = sistema.BackWardSubstitution();
+		return res;
+	}
+
 	//cargarSanguijuelas(sistema, matrixSize, discrHeight /*alto como viene*/, discrWidth/*ancho como vienen*/, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput){
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<vector<double> > sanguijuelasInput){
 	for(unsigned int i = 0; i < sanguijuelasInput.size(); i=i+4){
 
 		//Las sanguijuelas pueden no caer en la discretizacion (es decir, que sanguijuelaX y sanguijuelaY no sean enteros). 
