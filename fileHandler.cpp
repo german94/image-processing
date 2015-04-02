@@ -22,9 +22,8 @@ void FileHandler::readParameters(vector<double>& paramList){
 }
 
 //NOT TESTED
-vector<double> FileHandler::readLeeches(int leechCount){
-	vector<double> retVector;
-	retVector.resize(leechCount*4);
+vector<vector<double> > FileHandler::readLeeches(int leechCount){
+	vector<vector<double> > retVector;
 
 	ifstream myFile(fileName.c_str());
 	if (myFile.is_open()){
@@ -32,13 +31,14 @@ vector<double> FileHandler::readLeeches(int leechCount){
 		string dummyLine;
 		getline(myFile, dummyLine);	//Ignores first line
 
-
 		//Read values
 		double readValue;
-		for (int i = 0; i < leechCount*4; i++)
+		for (int i = 0 ; i < leechCount*4; i= i+4)
 		{
-			myFile >> readValue;
-			retVector[i] = readValue;
+			vector<double> nuevo;
+			nuevo.resize(5);
+			for(int k = 0; k < 4; k++) {myFile >> readValue; nuevo[k] = readValue;}
+			retVector.push_back(nuevo);
 		}
 	myFile.close();
 	}

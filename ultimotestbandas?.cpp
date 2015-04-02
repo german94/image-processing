@@ -6,13 +6,13 @@
 #include "stdlib.h"
 #include <iomanip>
 
-vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discWidth, unsigned int discrHeight, double discrInterval, vector<double> sanguijuelas, vector<vector<double> >& sanguijuelasInfo, char metodo);
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discWidth, unsigned int discrHeight, double discrInterval, vector<vector<double> >& sanguijuelasInfo, char metodo);
 void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int anchoDiscrSinBordes, unsigned int altoDiscrSinBordes);
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput, vector<vector<double> >& sanguijuelasInfo);
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<vector<double> >& sanguijuelasInfo);
 bool enCirculo(unsigned int posX, unsigned int posY, double discr, double circlX, double circlY, double radio);
 void puntosSanguijuela(unsigned int filas, unsigned int columnas, double discr, double sangX, double sangY/*SIN DISC*/, double radio, vector<pair<unsigned int, unsigned int> >& resultado);
-int eliminarSanguijuelaModo2(SistemaBandas& unSistema, vector<double> sanguijuelas, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval);
-int eliminarSanguijuelaModo3(SistemaBandas& unSistema, vector<double> sanguijuelas, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval);
+int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval);
+int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval);
 vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth);
 vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, int f_v, unsigned int discrWidth);
 vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U);
@@ -42,10 +42,9 @@ int main(int argc, char** argv)
 
 	SistemaBandas sistema(matrixSize, discrWidth - 1);
 
-	vector<double> sanguijuelas = myFile.readLeeches(nLeeches);
-	vector<vector<double> > sanguijuelasInfo(sanguijuelas.size()); 
+	vector<vector<double> > sanguijuelasInfo = myFile.readLeeches(nLeeches);
 
-	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelas, sanguijuelasInfo, argv[3][0]);
+	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, argv[3][0]);
 
 	outputFile << std::fixed << std::setprecision(5);
 	
@@ -69,10 +68,10 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval, vector<double> sanguijuelas, vector<vector<double> >& sanguijuelasInfo, char metodo)
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval,/* vector<double> sanguijuelas,*/ vector<vector<double> >& sanguijuelasInfo, char metodo)
 {
 	cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
-	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelas, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
+	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
 	if(metodo == '0')	
 		sistema.EliminacionGaussiana1();
 	vector <double> res = sistema.BackWardSubstitution();
@@ -80,28 +79,23 @@ vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSi
 }
 
 	//cargarSanguijuelas(sistema, matrixSize, discrHeight /*alto como viene*/, discrWidth/*ancho como vienen*/, discrInterval, sanguijuelas);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<double> sanguijuelasInput, vector<vector<double> >& sanguijuelasInfo){
-	for(unsigned int i = 0; i < sanguijuelasInput.size(); i=i+4){
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, /*vector<double> sanguijuelasInput,*/ vector<vector<double> >& sanguijuelasInfo){
+	for(unsigned int i = 0; i < sanguijuelasInfo.size(); i++){
 
 		//Las sanguijuelas pueden no caer en la discretizacion (es decir, que sanguijuelaX y sanguijuelaY no sean enteros). 
 		//Si no caen en la discretizacion no hay que "hacer que caigan" porque estariamos moviendo la sanguijuela de lugar y podrian cambiar los puntos de la discretizacion afectados.
-		double sanguijuelaX = sanguijuelasInput[i];
-		double sanguijuelaY = sanguijuelasInput[i+1];
+		double sanguijuelaX = sanguijuelasInfo[i][0];
+		double sanguijuelaY = sanguijuelasInfo[i][1];
 
-		double sanguijuelaR = sanguijuelasInput[i+2];
-		double sanguijuelaT = sanguijuelasInput[i+3];
+		double sanguijuelaR = sanguijuelasInfo[i][2];
+		double sanguijuelaT = sanguijuelasInfo[i][3];
 
 		vector<pair<unsigned int, unsigned int> > punSang; //LOS PUNTOS SOBRE LOS CUALES ACTUA LA SANG
 							//ALTO		//ANCHO
 		puntosSanguijuela(discrHeight, discrWidth, discrInterval, sanguijuelaX, sanguijuelaY/*SIN DISC*/, sanguijuelaR, punSang);
 
-		sanguijuelasInfo[i].push_back(sanguijuelaX);
-		sanguijuelasInfo[i].push_back(sanguijuelaY);
-		sanguijuelasInfo[i].push_back(sanguijuelaT);
-		sanguijuelasInfo[i].push_back(sanguijuelaR);
-
 		if(punSang.size() == 0)
-			sanguijuelasInfo[i].push_back(-1);
+			sanguijuelasInfo[i][4] = -1;
 
 		unsigned int camb_col, camb_fil; //VALORES DENTRO DE LA MATRIZ A MODIFICAR
 		for(unsigned int j = 0; j < punSang.size(); j++)
@@ -112,17 +106,9 @@ void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, un
 			unsigned int filaEnMatriz = (discrWidth-1)*(camb_fil -1) + camb_col -1; //ya me lo da indexado en cero
 
 			if(punSang.size() == 1)
-				sanguijuelasInfo[i].push_back(filaEnMatriz);
+				sanguijuelasInfo[i][4] = filaEnMatriz;
 			else
-				sanguijuelasInfo[i].push_back(-2);
-
-			/*if((filaEnMatriz + 1) % (discrWidth -1) != 0) {unSistema.Modificar(filaEnMatriz, filaEnMatriz -1, 0);} //al X_i,i-1 lo dejo en 0 IZQUIERDA
-			if(filaEnMatriz != alturaSistema -1) {unSistema.Modificar(filaEnMatriz, filaEnMatriz -1, 0);} //al X_i,i-1 lo dejo en 0  DERECHA
-
-			if((alturaSistema -1) - filaEnMatriz >= discrWidth) {unSistema.Modificar(filaEnMatriz, filaEnMatriz - (discrWidth -1=), 0);} //al X_i-ancho,i lo dejo en 0  ARRIBA
-			if(filaEnMatriz >= discrWidth - 1) {unSistema.Modificar(filaEnMatriz, filaEnMatriz + (discrWidth - 1), 0);} //al X_i+ancho,ilo dejo en 0  ABAJO
-*/
-			//CREERIA QUE SI QUIERO ACCEDER A ALGO QUE ESTA FUERA DE RANGO NO HACE NADA , PREGUNTAR
+				sanguijuelasInfo[i][4] = -2;
 
 			if(unSistema.Obtener(filaEnMatriz, alturaSistema) <= sanguijuelaT) //quizas ya hay otra sang actuando en ese punto entonces dejo la mayor
 			{
@@ -136,7 +122,6 @@ void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, un
 		}
 	}
 }
-
 
 //circlX y circlY representan la posicion de la sanguijuela, deben ser double por si no cae dentro de la discretizacion
 
@@ -263,7 +248,7 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 	}
 }
 
-int eliminarSanguijuelaModo3(SistemaBandas& unSistema, vector<double> sanguijuelas, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
+int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
 	int cual = -1;
 	double mejorTemp;
@@ -282,7 +267,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, vector<double> sanguijuel
 			{
 				vector<vector<double> > nuevasSang = filtrar(sanguijuelasInfo, i);
 				SistemaBandas nuevo_sistema(matrixSize, discrWidth - 1);
-				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelas, sanguijuelasInfo, metodo);
+				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
 			}
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
 				if (nuevatemp < 235 && (nuevatemp < mejorTemp || cual == -1)) {mejorTemp = nuevatemp; cual = i;}
@@ -291,7 +276,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, vector<double> sanguijuel
 	return cual;
 }
 
-	int eliminarSanguijuelaModo2(SistemaBandas& unSistema, vector<double> sanguijuelas, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
+	int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 	{	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
 		int cual = -1;
 		double mejorTemp;
@@ -305,7 +290,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, vector<double> sanguijuel
 				
 				SistemaBandas nuevo_sistema(matrixSize, discrWidth - 1);
 
-				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelas, sanguijuelasInfo, metodo);
+				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
 				
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
 
