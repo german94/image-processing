@@ -66,7 +66,10 @@ int main(int argc, char** argv)
 		}
 	}
 
-int mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+//int mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+
+int mejor = eliminarSanguijuelaModo3(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+
 	if(mejor == -1)
 	{
 		cout << "no es posible salvar el parabrisas" << endl;
@@ -196,6 +199,7 @@ void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema
 
 		
 		unSistema.Modificar(fila, alturaSistema, resultado);
+
 	}
 }
 
@@ -271,9 +275,11 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 
 int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
+	
+	//vector<double> temp;
+
 	int cual = -1;
-	double mejorTemp;
-	double nuevatemp;
+	double mejorTemp, nuevatemp;
 	vector<double> solucion;
 	for(int i = 0; i < sanguijuelasInfo.size(); i++)
 	{
@@ -281,19 +287,23 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 		{
 			if (sanguijuelasInfo[i][4] >= 0)
 			{
+				cout << sanguijuelasInfo[i][4] << endl;
 				solucion = eliminar1sang(unSistema, sanguijuelasInfo[i][4], matrixSize, discrWidth);
-			
 			}
 			else 
 			{
 				vector<vector<double> > nuevasSang = filtrar(sanguijuelasInfo, i);
 				SistemaBandas nuevo_sistema(matrixSize, discrWidth - 1);
-				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
+				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, nuevasSang, metodo);
 			}
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
+				//temp.push_back(nuevatemp);
 				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 		}
 	}
+		/*cout << " las temps3 son:" << endl;
+		for(int i = 0; i < temp.size(); i++){ cout << temp[i] << " ";}*/
+
 	return cual;
 }
 
@@ -303,6 +313,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 		int cual = -1;
 		double mejorTemp, nuevatemp;
 		vector<double> solucion;
+
 		for(int i = 0; i < sanguijuelasInfo.size(); i++)
 		{
 			if (sanguijuelasInfo[i][4] != -1)
@@ -322,23 +333,57 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 	}
 
 
-vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth)
+vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth) //tal como viene
 {
 	vector<vector<double> > L = unSistema.ObtenerL();
 	vector<vector<double> > U = unSistema.ObtenerU();
-	
+	/*
+	for(int i = 0; i < L.size(); i++) 
+	{
+		for (int j = 0; j < L[i].size(); j++)
+		{
+
+			cout << L[i][j] << " " ;
+		}
+		cout << endl;
+	}
+
+
+	for(int i = 0; i < U.size(); i++) 
+	{
+		for (int j = 0; j < U[i].size(); j++)
+		{
+
+			cout << U[i][j] << " " ;
+		}
+		cout << endl;
+	}
+*/
 	vector<double> u;
 	u.resize(matrixSize);// inicializar en cero
 	u[f_v] = 1;
 
+/*
+	for(int i = 0; i < u.size(); i++) 
+	{
+		cout << u[i] << " ";
+	}
+	cout << endl;
+*/
+
 	vector<double> vt;
 	vt.resize(5);// por cada fila hay a lo sumo 5 numeros distintos de cero, si estoy con la incognita x_i me interesa el valor de  x_i-1,  x_i+1.  x_i-ancho,  x_i+ancho
 	double b_fv = 0;
-	if(f_v - discrWidth >= 0) {vt[0] = -1; } else {vt[0] = 0; b_fv-= 100;}
+
+	if((int)(f_v - (discrWidth -1)) >= 0) {vt[0] = -1; } else {vt[0] = 0; b_fv-= 100;}
+
 	if(f_v - 1 >= 0) {vt[1] = -1; } else {vt[1] = 0; b_fv-= 100;} //REVISAR BIEN ESTO
+
 	vt[2] = 3;
+
 	if(f_v +1  < matrixSize) {vt[3] = -1; } else {vt[3] = 0; b_fv-= 100;}
-	if(f_v + discrWidth < matrixSize ) {vt[4] = -1; } else {vt[4] = 0; b_fv-= 100;}	
+
+	if((int)(f_v + (discrWidth -1)) < matrixSize ) {vt[4] = -1; } else {vt[4] = 0; b_fv-= 100;}	
 	//de esta forma me queda [-1,-1,3,-1,-1]
 
 	vector<double> nuevoB;
@@ -346,7 +391,6 @@ vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int mat
 	{
 		if(i == f_v) { nuevoB.push_back(b_fv);} else {nuevoB.push_back(unSistema.Obtener(i,matrixSize));}
 	}
-
 	vector<double>  res = Sherman_Morrison( nuevoB, L, U, vt, u, f_v, discrWidth);
 	return res;
 }
@@ -356,7 +400,10 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 	//obtner A(-1)*nuevoB ES DECIR A*x = nuevoB , LU*x= nuevoB -> paso 1) Ly = nuevoB y paso 2) U*x = y 
 	vector<double> y = ForWardSubstitution(nuevoB, L); //paso 1
 
-	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2
+	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2 falla acá
+
+	for(int i = 0; i < invAxB.size(); i++) {cout << invAxB[i] << " ";}
+		cout << endl;
 
 	//obtner A(-1)*u ES DECIR A*x = u , LU*x= u -> paso 1) Lz = u y paso 2) U*x = z 
 
@@ -367,20 +414,20 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 	//resolver A(-1)*u*vt*A(-1).nuevoB; vt es de largo ancho*largo, no vale la pena un vector del tal tamaño Ya que lo sumo tiene tres -1s y un 3. 
 	// k = vt*A(-1)
 	double k = 0;
-	if (vt[0]!=0) {k += invAxB[f_v - (discrWidth -1)]*vt[0];} 
+	if (vt[0]!=0) {k += invAxB[(int)(f_v - (discrWidth -1))]*vt[0];} 
 	if(vt[1]!=0) {k += invAxB[f_v - 1]*vt[1];}
 	k += invAxB[f_v]*vt[2];
 	if(vt[3]!=0) {k += invAxB[f_v +1 ]*vt[3];} 
-	if(vt[4]!=0) {k += invAxB[f_v + discrWidth -1]*vt[4];}; // devido 
+	if(vt[4]!=0) {k += invAxB[(int)(f_v + discrWidth -1)]*vt[4];}; // devido 
 //a que los vectores no son del mismo tamaño solo multiplico las coordenadas correspondientes
 	
 	// resolver l = 1 + vt*A(-1)poru; 
 	double l = 0;
-	if (vt[0]!=0) {l += invAxu[f_v - (discrWidth -1)]*vt[0];} 
+	if (vt[0]!=0) {l += invAxu[(int)(f_v - (discrWidth -1))]*vt[0];} 
 	if(vt[1]!=0) {l +=invAxu[f_v - 1]*vt[1];}
 	l += invAxu[f_v]*vt[2]; 
 	if(vt[3]!=0) {l += invAxu[f_v +1 ]*vt[3];} 
-	if(vt[4]!=0) {l += invAxu[f_v + discrWidth -1]*vt[4];};
+	if(vt[4]!=0) {l += invAxu[(int)(f_v + discrWidth -1)]*vt[4];};
 
 	// resolver ahora (invAxu*k)/l ; segundo termindo de Morrinson
 
@@ -398,6 +445,7 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 
 vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U)
 {
+	cout << "VER APARTIR DE ACA:" << endl;
 	vector<double> result = vector<double>(U.size());
     for (int i = U.size() -1; i>=0; i--)
     {
@@ -410,6 +458,7 @@ vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U
     }
     return result;
 }
+
 
 vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
 {
@@ -426,3 +475,16 @@ vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
     }
     return result;
 }
+
+//-200 -200 -250 -200 -130 -263.892 -269.755 -316.151 -486.837 = y
+/*
+   1.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000  100.000
+   0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000    0.000    0.000
+   0.000    0.000    3.750    0.000   -0.250   -1.000    0.000    0.000    0.000 -200.000
+   0.000    0.000    0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000
+   0.000    0.000    0.000    0.000    3.483   -1.067   -0.250   -1.000    0.000  -13.333
+   0.000    0.000    0.000    0.000    0.000    3.407   -0.077   -0.306   -1.000 -157.416
+   0.000    0.000    0.000    0.000    0.000    0.000    3.730   -1.079   -0.022 -204.494
+   0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.373   -1.096 -177.108
+   0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.350 -305.000
+*/
