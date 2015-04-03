@@ -287,7 +287,6 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 		{
 			if (sanguijuelasInfo[i][4] >= 0)
 			{
-				cout << sanguijuelasInfo[i][4] << endl;
 				solucion = eliminar1sang(unSistema, sanguijuelasInfo[i][4], matrixSize, discrWidth);
 			}
 			else 
@@ -337,39 +336,10 @@ vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int mat
 {
 	vector<vector<double> > L = unSistema.ObtenerL();
 	vector<vector<double> > U = unSistema.ObtenerU();
-	/*
-	for(int i = 0; i < L.size(); i++) 
-	{
-		for (int j = 0; j < L[i].size(); j++)
-		{
-
-			cout << L[i][j] << " " ;
-		}
-		cout << endl;
-	}
-
-
-	for(int i = 0; i < U.size(); i++) 
-	{
-		for (int j = 0; j < U[i].size(); j++)
-		{
-
-			cout << U[i][j] << " " ;
-		}
-		cout << endl;
-	}
-*/
+	
 	vector<double> u;
 	u.resize(matrixSize);// inicializar en cero
 	u[f_v] = 1;
-
-/*
-	for(int i = 0; i < u.size(); i++) 
-	{
-		cout << u[i] << " ";
-	}
-	cout << endl;
-*/
 
 	vector<double> vt;
 	vt.resize(5);// por cada fila hay a lo sumo 5 numeros distintos de cero, si estoy con la incognita x_i me interesa el valor de  x_i-1,  x_i+1.  x_i-ancho,  x_i+ancho
@@ -401,10 +371,7 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 	vector<double> y = ForWardSubstitution(nuevoB, L); //paso 1
 
 	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2 falla acá
-
-	for(int i = 0; i < invAxB.size(); i++) {cout << invAxB[i] << " ";}
-		cout << endl;
-
+	
 	//obtner A(-1)*u ES DECIR A*x = u , LU*x= u -> paso 1) Lz = u y paso 2) U*x = z 
 
 	vector<double> z = ForWardSubstitution(u, L); //paso 1
@@ -445,16 +412,15 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 
 vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U)
 {
-	cout << "VER APARTIR DE ACA:" << endl;
 	vector<double> result = vector<double>(U.size());
     for (int i = U.size() -1; i>=0; i--)
     {
         result[i] = y[i];
-        for (int k=i+1; k< U.size() ; k++)
+        for (int k=1, t = i+1; k< U[i].size() ; k++, t++)
         {
-            result[i] = result[i] - U[i][k]*result[k];
+            result[i] = result[i] - U[i][k]*result[t];
         }
-        result[i] = result[i]/U[i][i];
+        result[i] = result[i]/U[i][0];
     }
     return result;
 }
@@ -487,4 +453,22 @@ vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
    0.000    0.000    0.000    0.000    0.000    0.000    3.730   -1.079   -0.022 -204.494
    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.373   -1.096 -177.108
    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.350 -305.000
+
+   1.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000  
+   0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000    0.000   
+   0.000    0.000    3.750    0.000   -0.250   -1.000    0.000    0.000    0.000 
+   0.000    0.000    0.000    0.000    3.483   -1.067   -0.250   -1.000    0.000  
+   0.000    0.000    0.000    0.000    0.000    3.407   -0.077   -0.306   -1.000 
+   0.000    0.000    0.000    0.000    0.000    0.000    3.730   -1.079   -0.022 
+   0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.373   -1.096 
+   0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.350 
+
+   -200.000
+-200.001
+-249.999
+-129.913
+-263.913
+-269.736
+-316.139
+-486.835
 */
