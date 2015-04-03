@@ -88,8 +88,8 @@ vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSi
 
 	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
 
-	if(metodo == '0')	
-		sistema.EliminacionGaussiana1();
+	if(metodo == '0'){sistema.EliminacionGaussiana1();}
+	if(metodo == '1'){sistema.LU();}
 	vector <double> res = sistema.BackWardSubstitution();
 	return res;
 }
@@ -288,10 +288,10 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 			{
 				vector<vector<double> > nuevasSang = filtrar(sanguijuelasInfo, i);
 				SistemaBandas nuevo_sistema(matrixSize, discrWidth - 1);
-				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
+				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
 			}
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
-				if (nuevatemp < 235 && (nuevatemp < mejorTemp || cual == -1)) {mejorTemp = nuevatemp; cual = i;}
+				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 		}
 	}
 	return cual;
