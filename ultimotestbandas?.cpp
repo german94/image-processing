@@ -65,10 +65,11 @@ int main(int argc, char** argv)
 			}
 		}
 	}
+int mejor;
 
-//int mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+if (metodo == '0' ){ mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
 
-int mejor = eliminarSanguijuelaModo3(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+if(metodo == '1') { mejor = eliminarSanguijuelaModo3(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
 
 	if(mejor == -1)
 	{
@@ -275,8 +276,6 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 
 int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
-	
-	//vector<double> temp;
 
 	int cual = -1;
 	double mejorTemp, nuevatemp;
@@ -296,13 +295,10 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, nuevasSang, metodo);
 			}
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
-				//temp.push_back(nuevatemp);
 				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 		}
 	}
-		/*cout << " las temps3 son:" << endl;
-		for(int i = 0; i < temp.size(); i++){ cout << temp[i] << " ";}*/
-
+	
 	return cual;
 }
 
@@ -347,14 +343,21 @@ vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int mat
 
 	if((int)(f_v - (discrWidth -1)) >= 0) {vt[0] = -1; } else {vt[0] = 0; b_fv-= 100;}
 
-	if(f_v - 1 >= 0) {vt[1] = -1; } else {vt[1] = 0; b_fv-= 100;} //REVISAR BIEN ESTO
+	//if(f_v - 1 >= 0) {vt[1] = -1; } else {vt[1] = 0; b_fv-= 100;} //REVISAR BIEN ESTO
+
+	if(f_v % (discrWidth -1) != 0) {vt[1] = -1; } else {vt[1] = 0; b_fv-= 100;}
+
 
 	vt[2] = 3;
 
-	if(f_v +1  < matrixSize) {vt[3] = -1; } else {vt[3] = 0; b_fv-= 100;}
+	//if(f_v +1  < matrixSize) {vt[3] = -1; } else {vt[3] = 0; b_fv-= 100;}
+
+	if((f_v + 1) % (discrWidth -1) != 0) {vt[3] = -1; } else {vt[3] = 0; b_fv-= 100;}
 
 	if((int)(f_v + (discrWidth -1)) < matrixSize ) {vt[4] = -1; } else {vt[4] = 0; b_fv-= 100;}	
 	//de esta forma me queda [-1,-1,3,-1,-1]
+
+
 
 	vector<double> nuevoB;
 	for(int i = 0; i < matrixSize; i++)
@@ -371,25 +374,24 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 	vector<double> y = ForWardSubstitution(nuevoB, L); //paso 1
 
 	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2 falla acá
-	
 	//obtner A(-1)*u ES DECIR A*x = u , LU*x= u -> paso 1) Lz = u y paso 2) U*x = z 
 
 	vector<double> z = ForWardSubstitution(u, L); //paso 1
 
 	vector<double> invAxu = BackWardSubstitution2(z, U); // paso 2
-
 	//resolver A(-1)*u*vt*A(-1).nuevoB; vt es de largo ancho*largo, no vale la pena un vector del tal tamaño Ya que lo sumo tiene tres -1s y un 3. 
 	// k = vt*A(-1)
 	double k = 0;
+
 	if (vt[0]!=0) {k += invAxB[(int)(f_v - (discrWidth -1))]*vt[0];} 
 	if(vt[1]!=0) {k += invAxB[f_v - 1]*vt[1];}
 	k += invAxB[f_v]*vt[2];
 	if(vt[3]!=0) {k += invAxB[f_v +1 ]*vt[3];} 
 	if(vt[4]!=0) {k += invAxB[(int)(f_v + discrWidth -1)]*vt[4];}; // devido 
 //a que los vectores no son del mismo tamaño solo multiplico las coordenadas correspondientes
-	
+
 	// resolver l = 1 + vt*A(-1)poru; 
-	double l = 0;
+	double l = 1;
 	if (vt[0]!=0) {l += invAxu[(int)(f_v - (discrWidth -1))]*vt[0];} 
 	if(vt[1]!=0) {l +=invAxu[f_v - 1]*vt[1];}
 	l += invAxu[f_v]*vt[2]; 
@@ -400,7 +402,7 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 
 	for(int i = 0; i < invAxu.size(); i++)
 	{
-		invAxu[i] = invAxu[i]*(k/l);
+		invAxu[i] = (k/l)*invAxu[i];
 	}
 	//resta final
 	for(int i = 0; i < invAxu.size(); i++)
@@ -441,34 +443,3 @@ vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
     }
     return result;
 }
-
-//-200 -200 -250 -200 -130 -263.892 -269.755 -316.151 -486.837 = y
-/*
-   1.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000  100.000
-   0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000    0.000    0.000
-   0.000    0.000    3.750    0.000   -0.250   -1.000    0.000    0.000    0.000 -200.000
-   0.000    0.000    0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000
-   0.000    0.000    0.000    0.000    3.483   -1.067   -0.250   -1.000    0.000  -13.333
-   0.000    0.000    0.000    0.000    0.000    3.407   -0.077   -0.306   -1.000 -157.416
-   0.000    0.000    0.000    0.000    0.000    0.000    3.730   -1.079   -0.022 -204.494
-   0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.373   -1.096 -177.108
-   0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.350 -305.000
-
-   1.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000  
-   0.000    4.000   -1.000    0.000   -1.000    0.000    0.000    0.000    0.000   
-   0.000    0.000    3.750    0.000   -0.250   -1.000    0.000    0.000    0.000 
-   0.000    0.000    0.000    0.000    3.483   -1.067   -0.250   -1.000    0.000  
-   0.000    0.000    0.000    0.000    0.000    3.407   -0.077   -0.306   -1.000 
-   0.000    0.000    0.000    0.000    0.000    0.000    3.730   -1.079   -0.022 
-   0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.373   -1.096 
-   0.000    0.000    0.000    0.000    0.000    0.000    0.000    0.000    3.350 
-
-   -200.000
--200.001
--249.999
--129.913
--263.913
--269.736
--316.139
--486.835
-*/
