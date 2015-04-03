@@ -69,16 +69,7 @@ pair<int, int> SistemaBandas::indexar(unsigned int fila, unsigned int columna) c
 			}
 		}
 	}
-
 	return ret;
-}
-
-void SistemaBandas::RestarFila0(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
-{
-	for(unsigned int i = desdeColumna; i <= filas; i++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
-	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
-		Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
-	}
 }
 
 void SistemaBandas::CerosAIzquierda(unsigned int fila, unsigned int hastaColumna)
@@ -87,24 +78,7 @@ void SistemaBandas::CerosAIzquierda(unsigned int fila, unsigned int hastaColumna
 		Modificar(fila,i, 0);
 }
 
-void SistemaBandas::EliminacionGaussiana0()
-{
-	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
-	{// solo deben triangularse a*b columnas
-		for (unsigned int i = j+1; i < filas; i++)
-		{
-			if(Obtener(i,j) !=0) //para no hacer restas de mas
-			{	
-				double coeficiente = (Obtener(i,j)/Obtener(j,j));
-				RestarFila0(coeficiente, j, i, j+1);
-			}
-		}
-		CerosAIzquierda(j,j);
-	}
-}
-
-
-void SistemaBandas::RestarFila1(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
+void SistemaBandas::RestarFila0(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
 {
 
 	int maxRestasPos = 2*ancho + 1; // filas es de tamaño a*b pero no hay que hacer todas las restas a los sumo 2 por el ancho + 1;
@@ -116,7 +90,7 @@ void SistemaBandas::RestarFila1(double coeficiente, unsigned int primera, unsign
 }
 
 
-void SistemaBandas::EliminacionGaussiana1()
+void SistemaBandas::EliminacionGaussiana0()
 {
 	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
 	{// solo deben triangularse a*b columnas
@@ -125,7 +99,7 @@ void SistemaBandas::EliminacionGaussiana1()
 			if(Obtener(i,j) !=0) //para no hacer restas de mas
 			{	
 				double coeficiente = (Obtener(i,j)/Obtener(j,j));
-				RestarFila1(coeficiente, j, i, j+1);
+				RestarFila0(coeficiente, j, i, j+1);
 			}
 		}
 		CerosAIzquierda(j,j);
@@ -147,7 +121,32 @@ vector<double> SistemaBandas::BackWardSubstitution()
     return result;
 }
 
-void SistemaBandas::LU()
+
+vector<double> SistemaBandas::ForWardSubstitution()
+{
+	vector<double> result = vector<double>(filas);
+    for (int i= 0; i < filas; i++)
+    {
+        result[i] = Obtener(i,filas);
+        for (int k=0; k< i; k++)
+        {
+            result[i] = result[i] - Obtener(i,k)*result[k];
+        }
+    }
+    return result;
+}
+
+
+
+void SistemaBandas::RestarFila1(double coeficiente, unsigned int primera, unsigned int segunda, unsigned int desdeColumna)
+{
+	for(unsigned int i = desdeColumna; i < filas; i++) //filas es la cantidad de filas de la matriz banda, la misma es de tamaño (a*b)(a*b + 1(vector B))
+	{//como se indexa desde cero debe restar hasta la columna a*b +1 - 1 = filas 
+		Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
+	}
+}
+
+void SistemaBandas::LU1()
 {
 	for(unsigned int j = 0; j < filas; j++) //por ser bandas una matriz cuadrada +1 una columna con los b's de B (Ax = B)
 	{// solo deben triangularse a*b columnas
@@ -158,7 +157,7 @@ void SistemaBandas::LU()
 			Modificar(i, j, coeficiente);
 			if(Obtener(i,j) !=0) //para no hacer restas de mas
 			{	
-				RestarFila0(coeficiente, j, i, j+1);
+				RestarFila1(coeficiente, j, i, j+1);
 			}
 		}
 	//	CerosAIzquierda(j,j);
@@ -198,6 +197,23 @@ vector<vector<double> > SistemaBandas::ObtenerU()
 		{
 			res[i].push_back(Obtener(i,j));
 		}
+	}
+	return res;
+}
+
+vector<double> SistemaBandas::ObtenerTempModo1()
+{
+	vector<double> y = ForWardSubstitution();
+	vector<double> b;
+	for(int i = 0; i < filas; i++)
+	{
+		b.push_back(Obtener(i,filas));
+		Modificar(i, filas, y[i]);
+	}
+	vector<double> res = BackWardSubstitution();
+	for(int i = 0; i < filas; i++)
+	{
+		Modificar(i, filas, b[i]);
 	}
 	return res;
 }

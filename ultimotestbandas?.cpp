@@ -16,7 +16,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth);
 vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, int f_v, unsigned int discrWidth);
 vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U);
-vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L);
+vector<double> ForWardSubstitution2(vector<double> b, vector<vector<double> > L);
 vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i);
 double dameTempPtoCritico(vector<double> solucion, unsigned int alto, unsigned int ancho);
 
@@ -48,7 +48,6 @@ int main(int argc, char** argv)
 
 	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
 
-
 	outputFile << std::fixed << std::setprecision(5);
 	
 	for(int i = 0; i <= discrHeight; i++) //fila 
@@ -65,21 +64,23 @@ int main(int argc, char** argv)
 			}
 		}
 	}
-int mejor;
-
-if (metodo == '0' ){ mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
-
-if(metodo == '1') { mejor = eliminarSanguijuelaModo3(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
-
-	if(mejor == -1)
+	if(metodo == '2' || metodo == '3')
 	{
-		cout << "no es posible salvar el parabrisas" << endl;
-	}
-	else
-	{
-		cout << "es posible salvar el parabrisas eliminando la sanguijuela n° " << mejor << endl; 
-	}
+		int mejor;
 
+		if (metodo == '2' ){ mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
+
+		if(metodo == '3') { mejor = eliminarSanguijuelaModo3(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);}
+
+			if(mejor == -1)
+			{
+				cout << "no es posible salvar el parabrisas" << endl;
+			}
+			else
+			{
+				cout << "es posible salvar el parabrisas eliminando la sanguijuela n° " << mejor << endl; 
+			}
+	}	
 
 	outputFile.close();
 
@@ -92,9 +93,9 @@ vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSi
 
 	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
 
-	if(metodo == '0'){sistema.EliminacionGaussiana1();}
-	if(metodo == '1'){sistema.LU();}
-	vector <double> res = sistema.BackWardSubstitution();
+	vector<double> res;
+	if(metodo == '0' || metodo == '2'){sistema.EliminacionGaussiana0(); res = sistema.BackWardSubstitution();}
+	if(metodo == '1' || metodo == '3'){sistema.LU1(); res = sistema.ObtenerTempModo1();}
 	return res;
 }
 
@@ -276,7 +277,7 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 
 int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
-
+	vector<double> temp;
 	int cual = -1;
 	double mejorTemp, nuevatemp;
 	vector<double> solucion;
@@ -295,10 +296,15 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, nuevasSang, metodo);
 			}
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
+				temp.push_back(nuevatemp);
 				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 		}
 	}
-	
+	for(int i = 0; i < temp.size(); i++) 
+	{
+		cout << temp[i] << " ";
+	}
+	cout << endl;
 	return cual;
 }
 
@@ -308,6 +314,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 		int cual = -1;
 		double mejorTemp, nuevatemp;
 		vector<double> solucion;
+	vector<double> temp;
 
 		for(int i = 0; i < sanguijuelasInfo.size(); i++)
 		{
@@ -320,10 +327,17 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, nuevasSang, metodo);
 
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
+				temp.push_back(nuevatemp);
 
 				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 			}
 		}
+
+		for(int i = 0; i < temp.size(); i++) 
+	{
+		cout << temp[i] << " ";
+	}
+	cout << endl;
 		return cual;
 	}
 
@@ -371,12 +385,12 @@ vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int mat
 vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, int f_v, unsigned int discrWidth)
 {//pese a que u solo es un vector con un solo 1 por como esta implementado forward necesita de un vector, a menos que cree otra variante de forward
 	//obtner A(-1)*nuevoB ES DECIR A*x = nuevoB , LU*x= nuevoB -> paso 1) Ly = nuevoB y paso 2) U*x = y 
-	vector<double> y = ForWardSubstitution(nuevoB, L); //paso 1
+	vector<double> y = ForWardSubstitution2(nuevoB, L); //paso 1
 
 	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2 falla acá
 	//obtner A(-1)*u ES DECIR A*x = u , LU*x= u -> paso 1) Lz = u y paso 2) U*x = z 
 
-	vector<double> z = ForWardSubstitution(u, L); //paso 1
+	vector<double> z = ForWardSubstitution2(u, L); //paso 1
 
 	vector<double> invAxu = BackWardSubstitution2(z, U); // paso 2
 	//resolver A(-1)*u*vt*A(-1).nuevoB; vt es de largo ancho*largo, no vale la pena un vector del tal tamaño Ya que lo sumo tiene tres -1s y un 3. 
@@ -428,7 +442,7 @@ vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U
 }
 
 
-vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
+vector<double> ForWardSubstitution2(vector<double> b, vector<vector<double> > L)
 {
 	vector<double> result = vector<double>(L.size());
     for (int i= 0; i < L.size(); i++)
