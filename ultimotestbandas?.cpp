@@ -18,7 +18,7 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U);
 vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L);
 vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i);
-
+double dameTempPtoCritico(vector<double> solucion, unsigned int alto, unsigned int ancho);
 
 
 int main(int argc, char** argv)
@@ -44,7 +44,10 @@ int main(int argc, char** argv)
 
 	vector<vector<double> > sanguijuelasInfo = myFile.readLeeches(nLeeches);
 
-	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, argv[3][0]);
+	char metodo = argv[3][0];
+
+	vector<double> res = obtenerTemperaturas(sistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
+
 
 	outputFile << std::fixed << std::setprecision(5);
 	
@@ -63,15 +66,28 @@ int main(int argc, char** argv)
 		}
 	}
 
+int mejor = eliminarSanguijuelaModo2(sistema, metodo, sanguijuelasInfo, matrixSize, discrWidth, discrHeight, discrInterval);
+	if(mejor == -1)
+	{
+		cout << "no es posible salvar el parabrisas" << endl;
+	}
+	else
+	{
+		cout << "es posible salvar el parabrisas eliminando la sanguijuela n° " << mejor << endl; 
+	}
+
+
 	outputFile.close();
 
 	return 0;
 }
 
-vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval,/* vector<double> sanguijuelas,*/ vector<vector<double> >& sanguijuelasInfo, char metodo)
+vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval, vector<vector<double> > &sanguijuelasInfo, char metodo)
 {
 	cargarValoresSinBordes(sistema, matrixSize, discrWidth - 1, discrHeight - 1);		//primero armo el sistema como si no tuviera ninguna sanguijuela
+
 	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
+
 	if(metodo == '0')	
 		sistema.EliminacionGaussiana1();
 	vector <double> res = sistema.BackWardSubstitution();
@@ -241,11 +257,16 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 	for(int j = 0; j < sanguijuelasInfo.size(); j++)
 	{
 		if(i!=j)
-		{
-			vector<double> nuevo = sanguijuelasInfo[j];
+		{	
+			vector<double> nuevo;
+			for(int i = 0; i < 5; i++)
+			{
+				nuevo.push_back(sanguijuelasInfo[j][i]);
+			}
 			res.push_back(nuevo);
 		}
 	}
+	return res;
 }
 
 int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
@@ -276,25 +297,25 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 	return cual;
 }
 
+
 	int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 	{	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
 		int cual = -1;
-		double mejorTemp;
-		double nuevatemp;
+		double mejorTemp, nuevatemp;
 		vector<double> solucion;
 		for(int i = 0; i < sanguijuelasInfo.size(); i++)
 		{
 			if (sanguijuelasInfo[i][4] != -1)
 			{
 				vector<vector<double> > nuevasSang = filtrar(sanguijuelasInfo, i);
-				
+
 				SistemaBandas nuevo_sistema(matrixSize, discrWidth - 1);
 
-				solucion = obtenerTemperaturas(unSistema, matrixSize, discrWidth, discrHeight, discrInterval, sanguijuelasInfo, metodo);
-				
+				solucion = obtenerTemperaturas(nuevo_sistema, matrixSize, discrWidth, discrHeight, discrInterval, nuevasSang, metodo);
+
 				nuevatemp = dameTempPtoCritico(solucion, discrHeight-1, discrWidth-1);
 
-				if (nuevatemp < 235 && (nuevatemp < mejorTemp || cual == -1)) {mejorTemp = nuevatemp; cual = i;}
+				if (nuevatemp < 235 && (cual == -1 || nuevatemp < mejorTemp)) {mejorTemp = nuevatemp; cual = i;}
 			}
 		}
 		return cual;
