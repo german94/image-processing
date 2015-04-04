@@ -6,6 +6,12 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <iomanip>
+#include "time.h"
+
+
+	double tiempo= 0;
+
+
 
 int main(int argc, char** argv)
 {
@@ -16,6 +22,7 @@ int main(int argc, char** argv)
 	vector<double> params;
 	params.resize(4);
 	myFile.readParameters(params);
+
 
 	double width = params[0];
 	double heigth = params[1];
@@ -86,7 +93,16 @@ vector<double> obtenerTemperaturas(SistemaBandas& sistema, unsigned int matrixSi
 	cargarSanguijuelas(sistema, matrixSize, discrHeight, discrWidth, discrInterval, sanguijuelasInfo);		//despues piso las filas necesarias con los datos cuando cargo las sanguijuelas
 
 	vector<double> res;
-	if(metodo == '0'){sistema.EliminacionGaussiana0(metodo); res = sistema.BackWardSubstitution();}
+	if(metodo == '0'){
+		ofstream outputFileTime;
+		outputFileTime.open("MedicionesMetodo0.txt", ios::app);
+		init_time();
+		sistema.EliminacionGaussiana0(metodo);
+		res = sistema.BackWardSubstitution();
+		tiempo = get_time();
+		outputFileTime<<tiempo<<endl;
+		outputFileTime.close();
+	}
 	if(metodo == '1'){sistema.LU1(metodo); res = sistema.ObtenerTempModo1();}
 	return res;
 }
