@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\section{Introducción}
+
+El parabrisas la nave del capitán Guybrush Threepwood está siendo atacado por sanguijuelas mutantes. Dicho ataque consiste en aplicar altas temperaturas constantes sobre la superficie del mismo, con el objetivo de lograr romperlo, para poder lograr un ataque más mortifero. La superficie del parabrisas donde se aplica el calor es circular (la sopapa de ataque es circular).
+
+Para defenderse de estos ataques Guybrush cuenta solamente con un sistema de refrigeracion que aplica temperaturas de -100ºC a los bordes del parabrisas. El parabrisas se romperá si alcanza una temperatura mayor o igual a los 235ºC en el punto central (llamaremos a este punto, \textit{punto crítico}).
+
+Si el sistema de refrigeración no es suficiente para salvar el parabrisas, se puede utilizar un arma para destruir algunas sanguijuelas, pero se desea que sea la menor cantidad posible, siempre y cuando el parabrisas siga en pie, pues dicha arma consume energía que es de vital importancia.
+
+
+
+
+
+
+
+\subsection{Temperatura del Parabrisas}
+
+Para calcular las temperaturas en el parabrisas se aplicará el siguiente criterio: 
+
+En los bordes, como se explicó anteriormente, la temperatura será de -100ºC, es decir sean $x$ e $y$ las coordenadas del parabrisas, y $T(x,y)$ la función que devuelve la temperatura en un determinado punto, sea $b$ el ancho y $a$ el alto:
+
+\begin{equation}
+T(x,y)=-100ºC 	\quad	\quad	 \quad si \quad x=0 \quad \vee \quad x=b \quad \vee \quad y=0 \quad \vee \quad y=a
+\end{equation}\\
+
+
+
+La temperatura de los puntos que se encuentren dentro del perímetro de la sopapa circular de una sanguijuela será igual a la temperatura aplicada por dicha sanguijuela ($T_s$).\\
+
+\begin{equation}
+T(x,y)=T_s	\quad	\quad	\quad si \quad (x,y)\in PuntosSanguijuela
+\end{equation}\\
+
+
+
+
+La temperatura en el resto de los puntos en el estado estacionario satisface la siguiente ecuación.\\
+
+\begin{equation}
+\frac{\delta ^2 T(x,y)}{\delta x^2}+\frac{\delta ^2 T(x,y)}{\delta y^2}=0 
+\end{equation}\\
+
+
+
+
+
+\subsection{Problemas}
+
+En el siguiente trabajo veremos como la aritmética finita de las computadoras puede generar distintos problemas.
+
+En principio deberemos representar al parabrisas, el cual está compuesto por infinitos puntos. Sabemos que no es posible representar en una computadora los infinitos puntos del mismo, por lo que se utilizará cierta discretización, la cual haremos variar con el motivo de estudiar el comportamiento de nuestro sistema.
+
+Otro problema que deberemos afrontar es que al trabajar en la búsqueda de soluciones de problemas que conllevan a la utilización de gran cantidad de operaciones matemáticas de punto flotante, en cada operación se puede perder cierta presición, y la acumulación de estos errores puede escalar hasta llegar a una solución no satisfactoria. Esta pérdida de precisión se debe nuevamente a la limitación de las computadoras para representar numeros infinitos.
+
+
+\subsection{Planteo del Problema}
+Como dijimos anteriormente en nuestro problema teniamos un parabrisas con infinitos puntos, por ser una superficie continua, una forma de pensar el problema es discretizar estos puntos, y trabajar sobre ello. Una vez hecha esta operación, podemos modelar los puntos resultantes con una matriz, donde cada posición de esta matriz represente un punto en el parabrisas.
+
+Al discretizar los puntos, la ecuación (3) para obtener temperaturas en cada punto del parabrisas continuo, se transforma en la siguiente ecuación por diferencias finitas.
+\begin{equation}
+t_{ij} = \frac{t_{i-1,j} + t_{i+1,j} + t_{i,j-1} + t_{i,j+1}}{4}
+\end{equation}\\
+Es decir que en el parabrisas discretizado, la temperatura en cada punto se calcula como el promedio de la temperatura de los puntos vecinos (los puntos que estan arriba, abajo, izquierda y derecha).
+
+
+En nuestro problema nos interesa conocer el punto crítico (el centro del parabrisas), esto además significa conocer la temperatura de sus vecinos, y a su vez los vecinos necesitaran conocer la temperatura de sus otros vecinos.
+Es decir que en un principio es necesario calcular la temperatura de todos los puntos del parabrisas discretizado.
+Este problema es modelado mediante un sistema de ecuaciones, en el cual cada ecuación se corresponde con un solo punto del parabrisas. Dicho sistema de ecuaciones lo representamos en una matriz cuyo tamaño es $\#puntos$ x $\#puntos$. Finalmente podemos calcular la temperatura en cada punto aplicando \textit{eliminación gaussiana} sobre la matriz.
+
+Una vez que sabemos qué temperatura hay en el punto crítico, podremos decidir que criterio utilizar para matar sanguijuelas, mediante distintas experimentaciones.
+
+
+\end{document}
