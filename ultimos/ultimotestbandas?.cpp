@@ -131,7 +131,7 @@ void cargarValoresSinBordes(SistemaBandas& unSistema, unsigned int alturaSistema
 	}
 }
 
-void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, /*vector<double> sanguijuelasInput,*/ vector<vector<double> >& sanguijuelasInfo){
+void cargarSanguijuelas(SistemaBandas& unSistema, unsigned int alturaSistema, unsigned int discrHeight, unsigned int discrWidth, double discrInterval, vector<vector<double> >& sanguijuelasInfo){
 	for(unsigned int i = 0; i < sanguijuelasInfo.size(); i++){
 
 		double sanguijuelaX = sanguijuelasInfo[i][0];
@@ -190,7 +190,7 @@ bool enCirculo(unsigned int posX , unsigned int posY, double discr, double circl
 	return ( pow((posX*discr - circlX),2) + pow((posY*discr - circlY),2) <= pow(radio,2) );
 }
 
-double dameTempPtoCritico(vector<double> solucion, unsigned int alto, unsigned int ancho){
+double dameTempPtoCritico(vector<double> &solucion, unsigned int alto, unsigned int ancho){
 	//ancho y alto son a/h -1 y b/h - 1
 	double res = 0;
 
@@ -238,7 +238,7 @@ double dameTempPtoCritico(vector<double> solucion, unsigned int alto, unsigned i
 	return res;
 }
 
-vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
+vector<vector<double> > filtrar(vector<vector<double> > &sanguijuelasInfo, int i)
 {
 	vector<vector<double> >	res;
 	for(int j = 0; j < sanguijuelasInfo.size(); j++)
@@ -256,13 +256,12 @@ vector<vector<double> > filtrar(vector<vector<double> >sanguijuelasInfo, int i)
 	return res;
 }
 
-int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
+int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vector<double> > &sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
 	int cual = -1;
 	double mejorTemp, nuevatemp;
 	vector<double> solucion;
 	vector<double> temp;
-	cout << "entre" << endl;
 	for(int i = 0; i < sanguijuelasInfo.size(); i++)
 	{
 		if (sanguijuelasInfo[i][4] != -1)
@@ -288,7 +287,7 @@ int eliminarSanguijuelaModo2(SistemaBandas& unSistema, char metodo, vector<vecto
 	return cual;
 }
 
-int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
+int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vector<double> > &sanguijuelasInfo, unsigned int matrixSize, unsigned int discrWidth, unsigned int discrHeight, double discrInterval)
 {	//AQUELLAS sanguijuelasInfo QUE NO ACTUAN EN NINGUN PUNTO LAS DENOTO COMO -1, LAS QUE ACTUAN EN MAS DE 1 PUNTO COMO -2, Y LAS QUE SOLO EN UN PUNTO, LAS DENOTO CON LAS POS SOBRE LA QUE ACTUA QUE ES >=0
 	
 	unSistema.LU1(metodo);
@@ -327,7 +326,7 @@ int eliminarSanguijuelaModo3(SistemaBandas& unSistema, char metodo, vector<vecto
 }
 
 
-vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth, vector<vector<double> > L, vector<vector<double> > U) //tal como viene
+vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int matrixSize, unsigned int discrWidth, vector<vector<double> > &L, vector<vector<double> > &U) //tal como viene
 {
 
 	
@@ -366,15 +365,15 @@ vector<double> eliminar1sang(SistemaBandas& unSistema, int f_v, unsigned int mat
 	return res;
 }
 
-vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, int f_v, unsigned int discrWidth)
+vector<double>  Sherman_Morrison(vector<double> &nuevoB, vector<vector<double> > &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, int f_v, unsigned int discrWidth)
 {//pese a que u solo es un vector con un solo 1 por como esta implementado forward necesita de un vector, a menos que cree otra variante de forward
 	//obtner A(-1)*nuevoB ES DECIR A*x = nuevoB , LU*x= nuevoB -> paso 1) Ly = nuevoB y paso 2) U*x = y 
-	vector<double> y = ForWardSubstitution(nuevoB, L); //paso 1
+	vector<double> y = ForWardSubstitution(nuevoB, L, discrWidth -1); //paso 1
 
 	vector<double> invAxB = BackWardSubstitution2(y, U); // paso 2 falla acá
 	//obtner A(-1)*u ES DECIR A*x = u , LU*x= u -> paso 1) Lz = u y paso 2) U*x = z 
 
-	vector<double> z = ForWardSubstitution(u, L); //paso 1
+	vector<double> z = ForWardSubstitution(u, L, discrWidth -1); //paso 1
 
 	vector<double> invAxu = BackWardSubstitution2(z, U); // paso 2
 	//resolver A(-1)*u*vt*A(-1).nuevoB; vt es de largo ancho*largo, no vale la pena un vector del tal tamaño Ya que lo sumo tiene tres -1s y un 3. 
@@ -410,13 +409,13 @@ vector<double>  Sherman_Morrison(vector<double> nuevoB, vector<vector<double> > 
 	return invAxB;
 }
 
-vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U)
+vector<double> BackWardSubstitution2(vector<double> &y, vector<vector<double> > &U)
 {
 	vector<double> result = vector<double>(U.size());
     for (int i = U.size() -1; i>=0; i--)
     {
         result[i] = y[i];
-        for (int k=1, t = i+1; k< U[i].size() ; k++, t++)
+        for (int k=1, t = i+1; k< U[i].size(); k++, t++)
         {
             result[i] = result[i] - U[i][k]*result[t];
         }
@@ -426,18 +425,18 @@ vector<double> BackWardSubstitution2(vector<double> y, vector<vector<double> > U
 }
 
 
-vector<double> ForWardSubstitution(vector<double> b, vector<vector<double> > L)
+vector<double> ForWardSubstitution(vector<double> &b, vector<vector<double> > &L, unsigned int discrWidth)
 {
 	vector<double> result = vector<double>(L.size());
     for (int i= 0; i < L.size(); i++)
     {
         result[i] = b[i];
-        for (int k=0; k< i; k++)
+        for (int k = max(0, (int)(i - discrWidth)), t = 0; k< i; k++, t++ )
         {
-            result[i] = result[i] - L[i][k]*result[k];
+            result[i] = result[i] - L[i][t]*result[k];
         }
-        result[i] = result[i]/L[i][i];
-
+        //result[i] = result[i]/L[i][i]; la diagonal tiene 1s
     }
     return result;
 }
+

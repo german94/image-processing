@@ -1,5 +1,8 @@
 #include "SistemaBandas.h"
 #include "eliminarSan.h"
+#include <algorithm> 
+
+
 
 SistemaBandas::SistemaBandas(unsigned int _filas, unsigned int _ancho) : filas(_filas), columnas((2 * _ancho) + 2), ancho(_ancho)
 {
@@ -127,7 +130,7 @@ vector<double> SistemaBandas::BackWardSubstitution()
     for (int i = filas -1; i>=0; i--)
     {
         result[i] = Obtener(i,filas);
-        for (int k=i+1; k< filas ; k++)
+        for (int k=i+1; k< filas && (k <= ( i + ancho)); k++)
         {
             result[i] = result[i] - Obtener(i,k)*result[k];
         }
@@ -138,12 +141,13 @@ vector<double> SistemaBandas::BackWardSubstitution()
 
 vector<vector<double> > SistemaBandas::ObtenerL()
 {
+
 	vector<vector<double> > res;
 	for(int i = 0; i < filas; i++)
 	{
 		vector<double> a;
 		res.push_back(a);
-		for(int j = 0; j <= i; j++)
+		for(int j = max(0, (int)(i- ancho)); j <= i; j++)
 		{
 			if(i ==j)
 			{
@@ -156,6 +160,7 @@ vector<vector<double> > SistemaBandas::ObtenerL()
 			}
 		}
 	}
+
 	return res;
 }
 
@@ -166,11 +171,12 @@ vector<vector<double> > SistemaBandas::ObtenerU()
 	{
 		vector<double> a;
 		res.push_back(a);
-		for(int j = i; j < filas; j++)
+		for(int j = i; j < filas && j <= (ancho + i); j++)
 		{
 			res[i].push_back(Obtener(i,j));
 		}
 	}
+
 	return res;
 }
 
@@ -181,7 +187,7 @@ vector<double> SistemaBandas::ObtenerTempModo1()
 	vector<double> b;
 	for(int i = 0; i < filas; i++) {b.push_back(Obtener(i, filas));}
 
-	vector<double> y = ForWardSubstitution(b, L);
+	vector<double> y = ForWardSubstitution(b, L, ancho);
 	vector<double> res = BackWardSubstitution2(y, U);
 
 	return res;
