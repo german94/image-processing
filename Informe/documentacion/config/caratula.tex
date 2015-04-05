@@ -1,0 +1,55 @@
+
+\begin{figure}[ptb]
+\includegraphics[scale=0.30]{logo.jpg}\hspace{6cm}
+\includegraphics[scale=0.90]{logo_dc.jpg}
+\end{figure}
+
+\newcommand{\autores}{Bartalotta, Danós, Gasperi Jabalera, Sarriés}
+
+%Datos de la caratula
+\materia{M\'etodos Num\'ericos}
+\titulo{Trabajo Pr\'actico 1}
+\subtitulo{No creo que a él le gustará eso}
+\hspace{6cm}
+\integrante{Armagno, Julián}{377/12}{julian.armagno@gmail.com}
+\integrante{Balbachan, Alexis}{}{}
+\integrante{More, Ángel}{}{}
+\integrante{Pinzón, Germán}{}{}
+\resumen{En este trabajo estudiaremos algoritmos para resolver sistemas de ecuaciones para problemas
+reales mediante una discretización. Se expondrán técnicas para obtener la temperatura en un punto crítico de un parabrisa usando eliminación Gaussiana y Factorización LU, aprovechando las matrices Banda, y la formula Sherman-Morrison  Al final
+del trabajo, se llegarán a conclusiones sobre lo descubierto.}
+\palabrasClave{Eliminación Gaussiana. Factorización LU. Punto Crítico. Matrices Banda. Sistemas de
+  ecuaciones. Sherman-Morrison.}
+\hypersetup{%
+ % Para que el PDF se abra a página completa.
+ pdfstartview= {FitH \hypercalcbp{\paperheight-\topmargin-1in-\headheight}},
+ pdfauthor={\autores},
+ pdfsubject={TP1}
+}
+
+\parskip=5pt % 10pt es el tamaño de fuente
+
+% Pongo en 0 la distancia extra entre ítemes.
+\let\olditemize\itemize
+\def\itemize{\olditemize\itemsep=0pt}
+
+% Acomodo fancyhdr <- Creo que es el encabezado de pagina
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\addtolength{\headheight}{1pt}
+\lhead{M\'etodos Num\'ericos - 1$^{er}$ Cuatr. 2015}
+\rhead{TP1 - \autores}
+\cfoot{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+%Pagina de titulo e indice
+\thispagestyle{empty}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
