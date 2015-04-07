@@ -4,7 +4,8 @@
 %cada resultado. No se incluirán aquí corridas de máquina. Algo fundamental en su
 %aprendizaje en la materia es la presentación de resultados de forma clara y concisa para
 %el lector.
-Las siguientes tres tablas representan los datos tomados de tres instancias del problema. Lo único que vamos a variar en dichas instancias son los radios de las sanguijuelas. Para las tres instancias $a = 20$, $b = 20$, la cantidad de sanguijuelas es 9 y las ubicaciones y temperaturas de cada sanguijuela son las mismas (variando en un rango de 50 a 730) (pueden encontrarse en los archivos de Experimentos/Experimento2/instancias20x20).
+\subsection{Experimento relación tiempo-calidad de cómputo}
+Las siguientes tres tablas representan los datos tomados de tres instancias del problema. Lo único que vamos a variar en dichas instancias son los radios de las sanguijuelas. Para las tres instancias $a = 20$, $b = 20$, la cantidad de sanguijuelas es 8 y las ubicaciones y temperaturas (variando en un rango de 50 a 730) de cada sanguijuela son las mismas (pueden encontrarse en los archivos de Experimentos/Experimento2/instancias20x20).
 \newline
 \begin{figure}[H]
 \centering
@@ -19,4 +20,14 @@ Las siguientes tres tablas representan los datos tomados de tres instancias del 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{../../Experimentos/Experimento2/instancia20x20_3.jpg}\caption{Una vez más, volvemos a achicar los radios de las sanguijuelas. Vemos que el tiempo se sigue comportando de manera similar y con las primeras tres instancias del problema ocurre lo mismo que con el experimento anterior. Sin embargo, ahora si está sucediendo algo que contradice una de las hipótesis (la tercera) planteada en el desarrollo ya que vemos que ahora, no pareciera que nos estemos acercando a un valor (el valor de la solución real). Esto se ve en las entradas 6 y 7 de la tabla, cuyas granularidades son 0.8 y 0.4, donde a pesar de que son más chicas que 1 (y por lo tanto las discretizaciones poseen tamaños más grandes), se está obteniendo -100 como temperatura del punto crítico, lo cuál no parece estar bien.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{../../Experimentos/Experimento2/instancias40x40.jpg}\caption{En este experimento se trabajó con dos instancias, esta vez ambas de 40x40 y con distintas sanguijuelas asociadas a una y a otra. Más específicamente y como indica la tabla, en una instancia hay 100 sanguijuelas y en la otra solo 1. Los radios de las 100 sanguijuelas se generaron con distribución uniforme en el rango [25, 35] mientras que radio de la única sanguijuela de la segunda instancia es de 0.002.  Vemos como estos resultados entran en conflicto con la hipótesis 2 ya que los tiempos medidos de la instancia con 1 sanguijuela son mucho más largos que con la instancia de 100 sanguijuelas. También podemos observar algo interesante acerca de la instancia con 100 sanguijuelas y esto es que, la temperatura en el punto crítico siempre fue la misma. }
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{../../Experimentos/Experimento2/instancias40x40_2.jpg}\caption{Para hacer esta última medición, decidimos dejar intacta la instancia con 100 sanguijuelas y modificar la instancia que tiene solo una sanguijuela. La modificación que efectuamos fue aumentar considerablemente el radio de la sanguijuela a un valor de 40, siendo antes 0.002. Podemos observar que los tiempos son significativamente menores, parecidos a los que tomamos al trabajar con la instancia de 100 sanguijuelas e incluso en algunos casos menores. Es importante observar también, que la temperatura en el punto crítico ahora es siempre la misma (350) y antes (cuando el radio era 0.002) variaba y a veces la sanguijuela era descartada (para las granularidades 4, 2, 0.8 y 0.4 de la tabla anterior).}
 \end{figure}
