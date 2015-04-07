@@ -1,0 +1,53 @@
+\usepackage{algorithmic}
+%\usepackage{savesym}
+%\savesymbol{IF, algorithmic}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[paper=a4paper, left=1.4cm, right=1.4cm, bottom=1.4cm, top=1.4cm]{geometry}
+\usepackage{aed2-symb}
+\usepackage{textcomp}
+\usepackage[section, ruled]{algorithm}
+\usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{epsfig}
+
+\floatname{algorithm}{Algoritmo} % para que diga ``Algoritmo'' y no ``Algorithm''
+
+\renewcommand{\algorithmiccomment}[1]{\ \ \ \textbf{//#1}} %para agregar comntarios en los algoritmos poner
+% \COMMENT{ALAN ES GAY}
+% \usepackage{algpseudocode}
+% \usepackage{lineno}
+\newenvironment{parr}
+{\begin{list}{}%
+         {\setlength{\leftmargin}{2em}}%
+         \item[]%
+}
+{\end{list}}
+\newcommand{\tab}{\hspace*{2em}}
+
+\newcommand{\oper}[3]{\samepage\textsc{#1}(#2) $\rightarrow$ \textit{res} $\colon$ #3\\*}
+\newcommand{\operL}[3]{\samepage\textsc{#1}(#2) $\rightarrow$ \textit{res} $\colon$ #3}
+\newcommand{\operM}[2]{\samepage\textsc{#1}(#2)\\} %�sta es la operaci�n que no devuelve nada
+\newcommand{\operMA}[2]{\samepage\textsc{#1}(#2)} %�sta es la operaci�n que no devuelve nada y para usar en el
+%``caption'' del ``algorithm''
+\newcommand{\vin}[2]{\textbf{in} \textit{#1}$\colon$#2}
+\newcommand{\vinout}[2]{\textbf{in/out} \textit{#1}$\colon$#2}
+\newcommand{\pre}[1]{\textbf{Pre} $\equiv$ \{#1\}\\*}
+\newcommand{\post}[1]{\textbf{Post} $\equiv$ \{#1\}\\*}
+\newcommand{\complej}[1]{\textbf{Complejidad:} #1\\*}
+\newcommand{\desc}[1]{\textbf{Descripci\'on:} #1\\}
+\newcommand{\alias}[1]{\textbf{Aliasing:} #1\\}
+
+% \oper{nombre}{recibe}{devuelve}
+% \vin{var}{tipo}
+% \vinout{var}{tipo}
+% \pre{}
+% \post{}
+% \complej{O()}
+% \desc{txt}
+% \alias{txt}
+
+\newcommand{\eqobs}{$=_{obs}$}
+\newcommand{\bigo}[1]{O$\big($#1$\big)$}
+\newcommand{\NULL}{\textsc{Null} }
+\newcommand{\aux}[3]{\samepage #1$\colon$ #2 $\rightarrow$ #3\\*}

@@ -1,0 +1,14 @@
+\section{Discusión}
+%Se incluirá aquí un análisis de los resultados obtenidos en la sección anterior (se analizará
+%su validez, coherencia, etc.). Deben analizarse como míınimo los ítems pedidos en el
+%enunciado. No es aceptable decir que “los resultados fueron los esperados”, sin hacer
+%clara referencia a la teoría la cual se ajustan. Además, se deben mencionar los resul-
+%tados interesantes y los casos “patológicos” encontrados.
+
+
+\subsection{Eliminar sanguijuela}
+Mediante la experimentación realizada, se logro verificar la hipótesis (1). Realmente, el tiempo de computo disminuye notablemente al usar el algoritmo modificado con Sherman-Morrison en casos donde haya sanguijuelas unitarias. Los resultados mostraron que cuanto más sanguijuelas unitaria haya, menor va a ser el tiempo de computo del mismo, comparado con el algoritmo original.\\
+Esto significó un acercamiento práctico a lo expuesto teóricamanete en la sección del desarrollo, es decir, que se pudo constatar la justificación teórica por la cual es mejor aplicar Sherman-Morrison.\\
+Un caso para resaltar, es cuando no hay ninguna sanguijuela unitaria, los 2 algoritmos tienen un tiempo de computo similar, hasta en algunos caso el algoritmo modificado con Sherman-Morrison tarda unos segundos más que el original, debido a que tiene más saltos condicionales y evalua más expresiones.\\
+\\
+En cuanto a la hipótesis (2), aunque asumimos predicados muy fuertes para que la experimentación sea representativa y no librada al azar (como que las sanguijuelas estén ubicadas en puntos múltiplos de la granularidad por ejemplo), se logro verificar lo que intuitivamente pensamos. Al disminuir la granularidad, la distancia entre 2 puntos cualesquiera se achica y la cantidad de puntos de la discretización aumenta. Esto implica que la probabilidad de encontrar sanguijuelas unitarias también disminuye, ya que es más probable, que al haber más puntos, cada sanguijuelas toque más de un punto del parabrisa.
