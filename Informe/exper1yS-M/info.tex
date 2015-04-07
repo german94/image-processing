@@ -189,7 +189,7 @@ Hipótesis4: Como ya hicimos referencia anteriormente los cambios de temperatura
 \section{Desarrollo:}
 
 
-Uno de los objetivos del presente trabajo es determinar si se puede salvar el parabrisas eliminando una sola sanguijuela. Y de ser posible que eliminemos la mejor. Para esto se plantean dos posibles formas de determinar si esto es posible. La segunda forma es utilizar la formula Sherman–Morrison* (CITAR FUENTE CON LA EXPLICACION) la misma plantea que:
+Uno de los objetivos del presente trabajo es determinar si se puede salvar el parabrisas eliminando una sola sanguijuela. Y de ser posible que eliminemos la mejor. Para esto se plantean dos posibles formas. La segunda es utilizar la fórmula Sherman–Morrison* (CITAR FUENTE CON LA EXPLICACION) la misma plantea que:
 
 \begin{equation}
 	(A+ uv^t)^{-1} \ =\ A^{-1} - \frac{ A^{-1} u v^t A^{-1} }{1+v^t A^{-1}u}.\label{eq:sm}
@@ -197,7 +197,7 @@ Uno de los objetivos del presente trabajo es determinar si se puede salvar el pa
 \textit{Siendo A una matriz inversible, y u, $v^t$ dos vectores.}
 
 
-determinando cuando es posible utilizarla. Para esto analicemos el caso de un sistema que posee al menos una sanguijuela unitaria, luego de discretizar y platear el sistema de ecuaciones para el problema obtendremos una matriz como la siguiente
+Aplicandola siempre que sea posible su uso. Para esto analicemos el caso de un sistema que posee al menos una sanguijuela unitaria, luego de discretizar y platear el sistema de ecuaciones para el problema obtendremos una matriz como la siguiente:
 
 $$
 A_{n,n} =
@@ -213,11 +213,10 @@ A_{n,n} =
    0_{n,1} & \cdots & \cdots & \cdots & \cdots & -1_{n,n-t} & \cdots & -1_{n,n-1} &  4_{n,n} | & -200 \\
  \end{pmatrix}
 $$
-\textit{la fila i, representa a la sanguijuela unitaria}\newline
+\textit{la fila i, representa a la sanguijuela unitaria $sang_i$, con $T_{sang_i}$ su correspondiente temperatura y con las coordenadas (x,y) en la discretizacion.}\newline
 
-Y resolver el sistema Ax = b.\newline
-Pero, al eliminar la sanguijuela ese punto dejara de tener el valor $T_{Sang_i}$. Para pasar a ser el promedio de los puntos lalaalal. De esta forma obtendriamos el siguiente sistema: A'x = b'.\newline Con la matriz asociada:
-
+Con el sistema a resolver Ax = b.\newline
+Pero, al eliminar $sang_i$ ese punto dejara de tener el valor $T_{Sang_i}$. Para pasar a ser el promedio de los puntos (x+1,y), (x-1,y), (x,y+ancho), (x, y-ancho)(con ancho referenciamos al ancho del parabrisas discretizado y sin contar los bordes). De esta forma obtenemos el siguiente sistema: A'x = b'.\newline Con la matriz asociada:
 
 $$
 A'_{n,n} =
@@ -289,13 +288,13 @@ Entonces a partir de (2) podemos concluir que $\forall$ j, j $\neq$ i, $B_j = 0$
 
 Mientras que:\newline
 $B_i$ $=$ $A'_i$ - $A_i$\newline  
-$B_i$ =  $(0,..,-1_{i,i-t},..,-1,4_{i,i},-1,..,-1_{i,i+t}..,0)$ - $(0,...0,1_{i,i},0,...,0)$\newline
-$B_i$ = $(0,..,-1_{i,i-t},..,-1,3_{i,i},-1,..,-1_{i,i+t}..,0)$\newline
+$B_i$ =  $(0,..,-1_{i,i-a},..,-1,4_{i,i},-1,..,-1_{i,i+a}..,0)$ - $(0,...0,1_{i,i},0,...,0)$\newline
+$B_i$ = $(0,..,-1_{i,i-a},..,-1,3_{i,i},-1,..,-1_{i,i+a}..,0)$. (Siendo a el ancho del parabrisas discretizado)\newline
 
-De esta manera ya conocemos nuestra matriz B. dado que B $\in$ $\Re^{nxn}$. Podemos pensar a B como el producto de dos vectores u y $v^t$, con u,v B $\in$ $\Re^{n}$
+De esta manera ya conocemos nuestra matriz B. dado que B $\in$ $\Re^{nxn}$. Podemos pensar a B como el producto de dos vectores u y $v^t$, con u,v $\in$ $\Re^{n}$
   
 
-1) Primero empezemos por analizar el producto en general de estos dos vectores si: 
+1) Primero empezemos por analizar el producto en general de estos dos vectores: 
 $$
 u=
 \begin{pmatrix} 
@@ -314,7 +313,7 @@ u_n
 v_1,...,v_2,...v_n
 \end{pmatrix}
 \quad
-;u.v^t=
+;u*v^t=
 \begin{pmatrix} 
 u_1*v_1 \cdots u_1*v_k \cdots u_1*v_n\\
 u_2*v_1 \cdots u_2*v_k  \cdots u_2*v_n\\
@@ -365,7 +364,7 @@ u_n*v^t
 \end{pmatrix}
 $$
 
-Por lo que si pensamos a u como el vector canónico $e_i$ y a $v^t$ como la fila que queremos sumar, es decir $B_i$ tenemos que:
+Por lo que si pensamos a u como el vector canónico $e_i$ y a $v^t$ como la fila que queremos sumar, es decir como $B_i$ tenemos que:
 
 
 $$
@@ -395,20 +394,68 @@ B_i\\
 $$
 
 El objetivo es resolver:\newline
-A'*x = b'\newline 
-(A + B)*x = b' por(1) \newline
-(A + u*$v^t$)*x  = b'\newline
+A'x = b'\newline 
+(A + B)x = b' por (1) \newline
+(A + u$v^t$)x  = b'\newline
 Como A' es inversible
-$(A + u*v^t)^{-1}*b'$ = x\newline
-Pero ahora podemos aplicar la formula de Sherman–Morrison de esta manera tenemos que: 
+$(A + u*v^t)^{-1}b'$ = x\newline
+Pero ahora podemos aplicar la formula de Sherman–Morrison, de esta manera tenemos que: 
 
 \begin{equation}
 x =\ A^{-1}*b' - \frac{ A^{-1} u v^t A^{-1}*b'}{1+v^t A^{-1}u}.\label{eq:sm}(3)
 \end{equation} 
 
-De esta forma todo es dato menos: $A^{-1}$*u (4) y $A^{-1}*b'$ (5).\newline
-Pero podemos reescribir a (4) y a (5) como:\newline
- A*z = u y A*y = b'. De esta forma ambos sistemas se pueden resolver
+De esta fórmula lo único que resta calcular es: $A^{-1}$*u (4) y $A^{-1}*b'$ (5).\newline
+Pero, podemos reescribir a (4) y a (5) como:\newline
+ A*z = u y A*y = b'. Y resolver ambos sistemas. Pudiendo concluir que la fórmula es aplicable cada vez que queremos eliminar una sanguijuela unitaria. \newline
  
-Aún más, si se tiene las factorizacion LU de A, (4) y (5) se pueden resolver en 2*O($n^2$). Y lo que restaria calcular en (3) es $v^t$*(5) y $v^t$*(4). Ambos son multiplicaciones entre vectores 2*O(n) y por último efectuar la división O(n) . En total   
+ 
+\textbf{Análisis de la complejidad y algoritmo:} \newline
+
+A continuación se presenta un pseudo-código del algoritmo implementado para la fórmula Sherman–Morrison:
+
+ \begin{algorithm}[H]
+\caption{Sherman–Morrison(matriz L, matriz U, vector u, coordenadas (x,y))}
+\begin{algorithmic}[1]
+
+\State $ z' \gets ForWardSubstitution(u, L)$ O($n^2$)
+\State $ A^{-1}*u \gets BackWardSubstitution(z', U)$ O($n^2$)
+\State $ y \gets ForWardSubstitution(b', L)$ O($n^2$)
+\State $ A^{-1}*b' \gets BackWardSubstitution(y, U)$ O($n^2$)
+\State $ v^t \gets$ $vector$ $de$ $longitud$ $5$ (*1) O(1)
+	\If {(\textit{x no esta en el borde superior})}
+        		\State $ v^t[1] \gets -1  $	O(1)	
+	\EndIf
+	\If {(\textit{x no esta en el borde derecho})}
+        		\State $ v^t[2] \gets -1  $ 	O(1)	
+	\EndIf
+			\State $ v^t[3] \gets 3  $ O(1)
+	\If {(\textit{x no esta en el borde izquierdo})}
+        		\State $ v^t[4] \gets -1  $ 	O(1)	
+	\EndIf
+	\If {(\textit{x no esta en el borde inferior})}
+        		\State $ v^t[5] \gets -1  $ 	O(1)	
+	\EndIf
+	(En los casos contrarios completar la posición de $v^t$ con cero) O(1)
+	 \State $ k \gets 0  $ 	O(1)
+	 \State $ l \gets 1  $   O(1)
+\For{i = 1 to 5 }	
+	\If {(\textit{$v^t[i]$ != 0})}
+        		\State k $\gets$ \textit{(producto de $v^t[i]$ con $ A^{-1}*b'$ segun la fila a la cual hace referencia)} + k;	(*2)	 O(1)*5
+        		\State l $\gets$ \textit{(producto de $v^t[i]$ con $A^{-1}*u$ segun la fila a la cual hace referencia)} + l; O(1)*5
+	\EndIf
+\EndFor
+\State  Return \textit{devolver un vector con las restas entre  $(A^{-1}*b)[i]$ y  $((k/l)A^{-1}*u)[i]$}    O(n)
+
+\end{algorithmic}
+\end{algorithm}
+\textit{Siendo L y U las correspondientes matrices de la factorizaci\'on LU de A; u es el vector can\'onico $e_i$, con i la fila que representa en la matriz la sanguijuela a eliminar; y las coordenadas (x,y) del parabrisas discretizado (recordemos que en el parabrisas discretizado no contamos los bordes del parabrisas original. Por lo que al referirnos a bordes en el pseudo-c\'odigo hacemos referencia a la nueva representaci\'on)}\newline\newline
+ \textbf{Explicación:}\newline  
+Empezando por las operaciones A*z = u y A*y = b': \newline
+Si ya contamos con la factorización LU de A, reescribimos:\newline
+LU*z = u; \newline
+llamamos z' = U*z (6) y L*z' = u (7);\newline
+Resolvemos (7) mediante la técnica Forward Substitution. Y realizado esto, podemos calcular (6) aplicando Backward Substitución. De esta forma la complejidad de ambas técnicas cuestan O($n^2$). Siguiendo la misma idea resolvemos 
+A*y = b' en O($n^2$). Luego, procedemos a efectuar los productos $v^t A^{-1}*b'$ (8)y $v^t A^{-1}u$ (9). En (*1) se crea el vector $v^t$ pero con un tamaño igual a 5, ya que como se explico en la PAG el mismo  se utiliza como la nueva fila que hay que sumarle a A para llegar a A'. Por lo que su tamaño debería ser igual al largo de la fila de ambas matrices. Sin embargo, como a lo sumo solo va a poseer 5 valores distintos de cero, optamos por acotar su tamaño. Siguiendo con el producto (8), en (*2) efectuamos esta operación. Teniendo en cuenta la idea del vector $v^t$, $v^t$[1] se corresponde con la posición f - ancho del vector solución de $A^{-1}*b'$ (f fila en la que se representan las coordenadas(x,y) en la matriz asociada al parabrisas discretizado. La misma fue calculada como f = ancho*y + x); $v^t$[2] con f-1 de dicho vector, etc. De esta manera obtenemos el escalar solución en O(1). Con la misma logica obtenemos el escalar $1+v^t A^{-1}u$ en O(1). Lo que resta hacer es la diferencia entre ambos vectores soluciones (linea 27), costo O(n). Por lo que el costo temporal total, para eliminar k sanguijuelas unitarias, es k.O($n^2$) + O($n^3$) (costo de obtener LU).
+
 \end{document}
