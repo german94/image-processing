@@ -8,6 +8,39 @@
 %una breve explicación de los motivos de estas fallas (en caso de ser conocidas).
 
 \subsection{Matrices Banda}
+
+\subsubsection{Por que queda una matriz Banda}
+La obtención de la matriz Banda esta ligada directamente con nuestro sistema de ecuaciones, con la ecuación de calor discretizada y con el orden de numeración de las variables. \\
+Por ejemplo, la siguiente figura  muestra un ejemplo de instancia de un parabrisa:
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{graphs/mapa.jpg}\caption{Cada X$_i$ representa un punto de la discretizacin de este parabrisa}
+      \end{figure}
+      
+      
+      
+Empezemos a despejar las variables y armar nuestro sistema de ecuaciones:\\
+    \begin{itemize}
+    \item  X$_1$ = (X$_2$ + X$_{a+1}$ - 100 - 100)/4\\
+            4*X$_1$ - X$_2$ - X$_{a+1}$ = -200 
+            
+    \item X$_2$ = (X$_1$ + X$_{a+2}$ + X$_3$ - 100)/4\\
+            4*X$_2$ - X$_1$ - X$_{a+2}$ - X$_3$ = -100 
+    
+    \end{itemize}
+    
+    Así, sucesivamente hasta despejar todas las incógnitas y completar el sistema. Como consecuencia del uso de la ecuación de calor, cada incógnita va a depender de una incógnita que este a la izquierda, derecha, arriba, y abajo de la misma. Esto se interpreta como que cada una de las variables, se relaciona con a lo sumo dos variable pegadas y con dos variable que están a A de distancia de la variable en estudio (Decimos a lo sumo, para especificar el caso de las variables que estás pegadas a los bordes, o sanguijuelas). Esto, y que empezamos despejando desde el extremo inferior izquierdo del parabrisa, son las causas de que la matriz quede establecida como una matriz banda.\\
+    Armando la matriz asociada al sistema de ecuaciones, nos da como resultado la siguiente figura, que muestra la relación de las variables con la distancia A.
+    
+        \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{graphs/matriz.jpg}}
+      \end{figure}
+    
+    
+
+
 \subsubsection{Eliminacion Gaussiana}
 Algorítmicamente, la idea es similar a la Eliminacion Gaussiana clásica. En este caso, como consecuencia de nuestro sistema de ecuaciones, la matriz resultante del sistema asociado se compone por una diagonal integrada:
 \begin{itemize}
