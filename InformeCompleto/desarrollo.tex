@@ -33,7 +33,7 @@ Empezemos a despejar las variables y armar nuestro sistema de ecuaciones:\\
     
         \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{graphs/matriz.jpg}}
+    \includegraphics[scale=0.7]{graphs/matriz.jpg}
       \end{figure}
     
     
@@ -83,20 +83,19 @@ Además, en el momento de ir consiguiendo los número 0 de la triangulación, se
 \caption{EliminacionGaussiana0()}
 \begin{algorithmic}[1]
 
-\For{$j = 0; j < filas; j++$}
-    
-    \For{$(i = j+1; (i <= j + ancho) && (i < filas); i++)}$}
-    
-        \State coeficiente = (Obtener(i,j)/Obtener(j,j));
-		\State RestarFila0(coeficiente, j, i, j+1);
-		
+\For{$j = 0; filas; j++$}
+    \For{$(i = j+1; (i <= j + ancho) \&\&  (i < filas); i++)$}
+        \State coeficiente  = (Obtener(i,j)/Obtener(j,j));
+		\State  RestarFila0(coeficiente, j, i, j+1);
 	\EndFor 
-    \State cerosAIzquierda(j,j);
-	
-	\EndFor
-	
+    		\State cerosAIzquierda(j,j);
+\EndFor
+
 \end{algorithmic}
 \end{algorithm}
+
+
+
 
 
 \textit{Siendo ancho, el ancho del parabrisa, es decir el ancho de la banda, filas la cantidad de filas de la matriz y restarFila0 es la función para restar filas con la particularidad de lo expresado anteriormente}
@@ -193,38 +192,37 @@ Uno de los objetivos del presente trabajo es determinar si se puede salvar el pa
 
 
 Aplicandola siempre que sea posible su uso. Para esto analicemos el caso de un sistema que posee al menos una sanguijuela unitaria, luego de discretizar y platear el sistema de ecuaciones para el problema obtendremos una matriz como la siguiente:
-
+A $\in \Re ^{nxn}$; A =
 $$
-A_{n,n} =
  \begin{pmatrix}
-  4_{1,1} & -1_{1,2} & \cdots & -1_{1,1+t} & \cdots & \cdots & \cdots & \cdots  & 0_{1,n} | & -200 \\
-   -1_{2,1} & 4_{2,2} & -1_{2,3} & \cdots -1_{1,2+t} & \cdots & \cdots & \cdots & \cdots & 0_{2,n} | & -100 \\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots & \vdots  & \vdots & \vdots & \vdots\\
-  \vdots  & \vdots & \vdots & \vdots  & \ddots & \vdots  & \vdots & \vdots & \vdots\\
-   0_{i,1} & 0_{i,i-t} & \cdots & 0_{i,i-1} & 1_{i,i} &  0_{i,i+1} & \cdots & 0_{i,i+t} & \cdots | & T_{sang_i} \\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots  & \vdots  & \vdots & \vdots & \vdots\\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots  & \vdots  & \vdots & \vdots & \vdots\\
-   0_{n-1,1} & \cdots & \cdots & \cdots & -1_{n-1,n-1-t} & \cdots & -1_{n-1,n-2} & 4_{n-1,n-1} &  -1_{n-1,n} | & -100 \\
-   0_{n,1} & \cdots & \cdots & \cdots & \cdots & -1_{n,n-t} & \cdots & -1_{n,n-1} &  4_{n,n} | & -200 \\
+  4_{1,1} & -1_{1,2} & \cdots & -1_{1,1+d} & \cdots & \cdots & \cdots & 0_{1,n} | & -200 \\
+   -1_{2,1} & 4_{2,2} & -1_{2,3} & \cdots & -1_{1,2+d} & \cdots & \cdots  & 0_{2,n} | & -100 \\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots & \vdots  & \vdots & \vdots \\
+  \vdots  & \vdots & \vdots & \vdots  & \vdots & \vdots  & \vdots & \vdots \\
+   0_{i,1} & \cdots & 0_{i,i-1} & 1_{i,i} &  0_{i,i+1} & \cdots & \cdots & 0 | & T_{sang_i} \\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots  & \vdots  & \vdots & \vdots & \vdots\\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots  & \vdots  & \vdots & \vdots & \vdots\\
+   0_{n-1,1} & \cdots & \cdots & -1_{n-1,n-1-d} & \cdots & -1_{n-1,n-2} & 4_{n-1,n-1} &  -1_{n-1,n} | & -100 \\
+   0_{n,1} & \cdots & \cdots & \cdots & -1_{n,n-d} & \cdots & -1_{n,n-1} &  4_{n,n} | & -200 \\
  \end{pmatrix}
 $$
-\textit{la fila i, representa a la sanguijuela unitaria $sang_i$, con $T_{sang_i}$ su correspondiente temperatura y con las coordenadas (x,y) en la discretizacion.}\newline
+\textit{la fila i, representa a la sanguijuela unitaria $sang_i$, con $T_{sang_i}$ su correspondiente temperatura y d el ancho del parabrisas discretizado.}\newline
 
 Con el sistema a resolver Ax = b.\newline
-Pero, al eliminar $sang_i$ ese punto dejara de tener el valor $T_{Sang_i}$. Para pasar a ser el promedio de los puntos (x+1,y), (x-1,y), (x,y+ancho), (x, y-ancho)(con ancho referenciamos al ancho del parabrisas discretizado y sin contar los bordes). De esta forma obtenemos el siguiente sistema: A'x = b'.\newline Con la matriz asociada:
+Pero, al eliminar $sang_i$ ese punto dejara de tener el valor $T_{Sang_i}$. Para pasar a ser el promedio de los puntos (x+1,y), (x-1,y), (x,y+ancho), (x, y-ancho)(con ancho referenciamos al ancho del parabrisas discretizado y sin contar los bordes,  y (x,y) coordenadas en la discretizaci\'on de la $Sang_i$). De esta forma obtenemos el siguiente sistema: A'x = b'.\newline Con la matriz asociada:
 
+A' $\in \Re ^{nxn}$; A' =
 $$
-A'_{n,n} =
  \begin{pmatrix}
-  4_{1,1} & -1_{1,2} & \cdots & -1_{1,1+t} & \cdots & \cdots & \cdots & \cdots  & 0_{1,n} | & -200 \\
-   -1_{2,1} & 4_{2,2} & -1_{2,3} & \cdots -1_{1,2+t} & \cdots & \cdots & \cdots & \cdots & 0_{2,n} | & -100 \\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots & \vdots  & \vdots & \vdots & \vdots\\
-  \vdots  & \vdots & \vdots & \vdots  & \ddots & \vdots  & \vdots & \vdots & \vdots\\
-   0_{i,1} & -1_{i,i-t} & \cdots & -1_{i,i-1} & 4_{i,i} &  -1_{i,i+1} & \cdots & -1_{i,i+t} & \cdots | & 0 \\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots  & \vdots  & \vdots & \vdots & \vdots\\
-  \vdots  & \vdots  & \vdots & \vdots  & \ddots  & \vdots  & \vdots & \vdots & \vdots\\
-   0_{n-1,1} & \cdots & \cdots & \cdots & -1_{n-1,n-1-t} & \cdots & -1_{n-1,n-2} & 4_{n-1,n-1} &  -1_{n-1,n} | & -100 \\
-   0_{n,1} & \cdots & \cdots & \cdots & \cdots & -1_{n,n-t} & \cdots & -1_{n,n-1} &  4_{n,n} | & -200 \\
+  4_{1,1} & -1_{1,2} & \cdots & -1_{1,1+d} & \cdots & \cdots & \cdots & 0_{1,n} | & -200 \\
+   -1_{2,1} & 4_{2,2} & -1_{2,3} & \cdots & -1_{1,2+d} & \cdots & \cdots  & 0_{2,n} | & -100 \\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots & \vdots  & \vdots & \vdots \\
+  \vdots  & \vdots & \vdots & \vdots  & \vdots & \vdots  & \vdots & \vdots \\
+  -1_{i,i-d} &  \cdots & -1_{i,i-1} & 4_{i,i} &  -1_{i,i+1} & \cdots & -1_{i,d+i} & 0 | & 0 \\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots  & \vdots  & \vdots & \vdots & \vdots\\
+  \vdots  & \vdots  & \vdots & \vdots  & \vdots  & \vdots  & \vdots & \vdots & \vdots\\
+   0_{n-1,1} & \cdots & \cdots & -1_{n-1,n-1-d} & \cdots & -1_{n-1,n-2} & 4_{n-1,n-1} &  -1_{n-1,n} | & -100 \\
+   0_{n,1} & \cdots & \cdots & \cdots & -1_{n,n-d} & \cdots & -1_{n,n-1} &  4_{n,n} | & -200 \\
  \end{pmatrix}
 $$
 
@@ -283,8 +281,8 @@ Entonces a partir de (2) podemos concluir que $\forall$ j, j $\neq$ i, $B_j = 0$
 
 Mientras que:\newline
 $B_i$ $=$ $A'_i$ - $A_i$\newline  
-$B_i$ =  $(0,..,-1_{i,i-a},..,-1,4_{i,i},-1,..,-1_{i,i+a}..,0)$ - $(0,...0,1_{i,i},0,...,0)$\newline
-$B_i$ = $(0,..,-1_{i,i-a},..,-1,3_{i,i},-1,..,-1_{i,i+a}..,0)$. (Siendo a el ancho del parabrisas discretizado)\newline
+$B_i$ =  $(0,..,-1_{i,i-d},..,-1,4_{i,i},-1,..,-1_{i,i+d}..,0)$ - $(0,...0,1_{i,i},0,...,0)$\newline
+$B_i$ = $(0,..,-1_{i,i-d},..,-1,3_{i,i},-1,..,-1_{i,i+d}..,0)$. (Siendo d el ancho del parabrisas discretizado)\newline
 
 De esta manera ya conocemos nuestra matriz B. dado que B $\in$ $\Re^{nxn}$. Podemos pensar a B como el producto de dos vectores u y $v^t$, con u,v $\in$ $\Re^{n}$
   
