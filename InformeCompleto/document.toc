@@ -1,39 +1,35 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n Te\IeC {\'o}rica}{4}{section.1}
-\contentsline {section}{\numberline {2}Introducci\IeC {\'o}n:}{4}{section.2}
-\contentsline {section}{\numberline {3}Desarrollo}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Planteo del Problema}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Nuestro sistema de ecuaciones.}{5}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}\IeC {\textquestiondown }Por qu\IeC {\'e} una matriz Banda?}{6}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Estructura de la matriz bandas}{7}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Eliminacion Gaussiana para matriz Banda}{8}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}BackWard Substitution para matriz Banda}{9}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Matriz LU para matriz Banda}{9}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}C\IeC {\'a}lculo de la temperatura en el punto cr\IeC {\'\i }tico}{10}{subsection.3.8}
-\contentsline {subsection}{\numberline {3.9}Experimento 1}{11}{subsection.3.9}
-\contentsline {subsubsection}{\numberline {3.9.1}Hip\IeC {\'o}tesis}{11}{subsubsection.3.9.1}
-\contentsline {subsection}{\numberline {3.10}Experimento 2}{11}{subsection.3.10}
-\contentsline {subsubsection}{\numberline {3.10.1}Eliminaci\IeC {\'o}n Gaussiana vs Factorizaci\IeC {\'o}n LU}{11}{subsubsection.3.10.1}
-\contentsline {subsubsection}{\numberline {3.10.2}Experimento: calidad/tiempo de c\IeC {\'o}mputo}{12}{subsubsection.3.10.2}
-\contentsline {subsection}{\numberline {3.11}Experimento 3}{13}{subsection.3.11}
-\contentsline {subsubsection}{\numberline {3.11.1}Eliminar sanguijuela}{17}{subsubsection.3.11.1}
-\contentsline {section}{\numberline {4}Resultados}{18}{section.4}
-\contentsline {subsection}{\numberline {4.1}Experimento 1}{18}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Primer caso}{18}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Segundo caso}{19}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Tercer caso}{21}{subsubsection.4.1.3}
-\contentsline {subsubsection}{\numberline {4.1.4}Cuarto caso}{23}{subsubsection.4.1.4}
-\contentsline {subsection}{\numberline {4.2}Experimento 2}{24}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Experimento relaci\IeC {\'o}n tiempo-calidad de c\IeC {\'o}mputo}{24}{subsubsection.4.2.1}
-\contentsline {subsection}{\numberline {4.3}Experimento 3}{28}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Experimento para Hip\IeC {\'o}tesis 1}{28}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Experimento para Hip\IeC {\'o}tesis 2}{30}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Discusi\IeC {\'o}n}{32}{section.5}
-\contentsline {subsection}{\numberline {5.1}Experimento 1}{32}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Experimento 2}{33}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}Hip\IeC {\'o}tesis planteadas sobre calidad/tiempo de c\IeC {\'o}mputo}{33}{subsubsection.5.2.1}
-\contentsline {subsection}{\numberline {5.3}Experimento 3}{34}{subsection.5.3}
-\contentsline {section}{\numberline {6}Conclusiones}{35}{section.6}
-\contentsline {section}{\numberline {7}Ap\IeC {\'e}ndices}{36}{section.7}
-\contentsline {subsection}{\numberline {7.1}A}{36}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}B}{39}{subsection.7.2}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n Te\IeC {\'o}rica}{3}{section.1}
+\contentsline {section}{\numberline {2}Desarrollo}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Planteo del Problema}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Nuestro sistema de ecuaciones.}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}\IeC {\textquestiondown }Por qu\IeC {\'e} una matriz Banda?}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Estructura de la matriz bandas}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Eliminacion Gaussiana para matriz Banda}{7}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}BackWard Substitution para matriz Banda}{8}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Matriz LU para matriz Banda}{8}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}C\IeC {\'a}lculo de la temperatura en el punto cr\IeC {\'\i }tico}{9}{subsection.2.8}
+\contentsline {subsection}{\numberline {2.9}Eliminaci\IeC {\'o}n Gaussiana vs Factorizaci\IeC {\'o}n LU}{10}{subsection.2.9}
+\contentsline {subsection}{\numberline {2.10}Sherman\IeC {\textendash }Morrison:}{11}{subsection.2.10}
+\contentsline {subsection}{\numberline {2.11}Experimento 1}{15}{subsection.2.11}
+\contentsline {subsubsection}{\numberline {2.11.1}Hip\IeC {\'o}tesis}{15}{subsubsection.2.11.1}
+\contentsline {subsection}{\numberline {2.12}Experimento 2}{15}{subsection.2.12}
+\contentsline {subsubsection}{\numberline {2.12.1}Eliminar sanguijuela}{16}{subsubsection.2.12.1}
+\contentsline {section}{\numberline {3}Resultados}{17}{section.3}
+\contentsline {subsection}{\numberline {3.1}Experimento 1}{17}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Primer caso}{17}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Segundo caso}{18}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Tercer caso}{20}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Cuarto caso}{22}{subsubsection.3.1.4}
+\contentsline {subsection}{\numberline {3.2}Experimento 2}{23}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Experimento 3}{27}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Experimento para Hip\IeC {\'o}tesis 1}{27}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Experimento para Hip\IeC {\'o}tesis 2}{29}{subsubsection.3.3.2}
+\contentsline {section}{\numberline {4}Discusi\IeC {\'o}n}{31}{section.4}
+\contentsline {subsection}{\numberline {4.1}Experimento 1}{31}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Experimento 2}{32}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Experimento 3}{33}{subsection.4.3}
+\contentsline {section}{\numberline {5}Conclusiones}{34}{section.5}
+\contentsline {section}{\numberline {6}Ap\IeC {\'e}ndices}{35}{section.6}
+\contentsline {subsection}{\numberline {6.1}A}{35}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}B}{38}{subsection.6.2}

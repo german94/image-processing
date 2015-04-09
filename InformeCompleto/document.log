@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  9 APR 2015 00:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  9 APR 2015 03:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -940,6 +940,9 @@ LaTeX Warning: Label `eq:sm' multiply defined.
 
 LaTeX Warning: Label `eq:sm' multiply defined.
 
+
+LaTeX Warning: Label `eq:sm' multiply defined.
+
 )
 \openout1 = `document.aux'.
 
@@ -1050,13 +1053,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros (./config/caratula.tex
-<logo.jpg, id=151, 371.3875pt x 241.90375pt>
+<logo.jpg, id=143, 371.3875pt x 241.90375pt>
 File: logo.jpg Graphic file (type jpg)
  <use logo.jpg>
 Package pdftex.def Info: logo.jpg used on input line 3.
 (pdftex.def)             Requested size: 111.4171pt x 72.57167pt.
 
-<logo_dc.jpg, id=152, 215.6055pt x 83.5923pt>
+<logo_dc.jpg, id=144, 215.6055pt x 83.5923pt>
 File: logo_dc.jpg Graphic file (type jpg)
  <use logo_dc.jpg>
 Package pdftex.def Info: logo_dc.jpg used on input line 4.
@@ -1099,17 +1102,17 @@ LaTeX Info: Redefining \% on input line 1.
 \openout5 = `document.toc'.
 
 
-[2] [3]) (./intro.tex
-Underfull \hbox (badness 10000) in paragraph at lines 12--17
+[2]) (./intro.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--15
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-) [4] (./desarrollo.tex
+) [3] (./desarrollo.tex
 Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
@@ -1134,7 +1137,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-[5] <graphs/mapa.jpg, id=233, 537.50812pt x 371.88937pt>
+[4] <graphs/mapa.jpg, id=219, 537.50812pt x 371.88937pt>
 File: graphs/mapa.jpg Graphic file (type jpg)
  <use graphs/mapa.jpg>
 Package pdftex.def Info: graphs/mapa.jpg used on input line 75.
@@ -1144,14 +1147,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.87 
       <./graphs/mapa.jpg>]
-<graphs/matriz.jpg, id=240, 640.64343pt x 386.19281pt>
+<graphs/matriz.jpg, id=226, 640.64343pt x 386.19281pt>
 File: graphs/matriz.jpg Graphic file (type jpg)
  <use graphs/matriz.jpg>
 Package pdftex.def Info: graphs/matriz.jpg used on input line 95.
@@ -1161,7 +1164,7 @@ Overfull \hbox (21.01581pt too wide) in paragraph at lines 95--96
  [][] 
  []
 
-[7 <./graphs/matriz.jpg>]
+[6 <./graphs/matriz.jpg>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 111.
 
 
@@ -1170,14 +1173,14 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
- [8]
+ [7]
 Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 142.
-[9]
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 186--189
 
  []
@@ -1197,92 +1200,92 @@ Underfull \hbox (badness 10000) in paragraph at lines 191--192
 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 216--220
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 241--243
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--269
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--319
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 239--241
+Underfull \hbox (badness 10000) in paragraph at lines 434--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--270
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 292--296
+Underfull \hbox (badness 10000) in paragraph at lines 478--486
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--298
+Underfull \hbox (badness 10000) in paragraph at lines 478--486
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--341
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--346
+Underfull \hbox (badness 10000) in paragraph at lines 478--486
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 461--464
+Underfull \hbox (badness 10000) in paragraph at lines 494--498
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 466--467
+Underfull \hbox (badness 10000) in paragraph at lines 502--503
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 505--513
+Underfull \hbox (badness 10000) in paragraph at lines 508--510
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--513
+Underfull \hbox (badness 10000) in paragraph at lines 519--520
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--513
+Underfull \hbox (badness 10000) in paragraph at lines 523--524
 
  []
 
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 520--521
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 524--525
-
- []
-
-) [17] (./resultados.tex
+) [16] (./resultados.tex
 Underfull \hbox (badness 10000) in paragraph at lines 10--16
 
  []
 
-<140x140h2.jpg, id=302, 366.61969pt x 238.64156pt>
+<140x140h2.jpg, id=286, 366.61969pt x 238.64156pt>
 File: 140x140h2.jpg Graphic file (type jpg)
  <use 140x140h2.jpg>
 Package pdftex.def Info: 140x140h2.jpg used on input line 26.
@@ -1292,7 +1295,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
-<140x140h5.jpg, id=303, 366.61969pt x 238.64156pt>
+<140x140h5.jpg, id=287, 366.61969pt x 238.64156pt>
 File: 140x140h5.jpg Graphic file (type jpg)
  <use 140x140h5.jpg>
 Package pdftex.def Info: 140x140h5.jpg used on input line 32.
@@ -1302,7 +1305,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
  []
 
-[18 <./140x140h2.jpg>] <140x140h10.jpg, id=309, 366.61969pt x 238.64156pt>
+[17 <./140x140h2.jpg>] <140x140h10.jpg, id=292, 366.61969pt x 238.64156pt>
 File: 140x140h10.jpg Graphic file (type jpg)
 
 <use 140x140h10.jpg>
@@ -1318,8 +1321,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--53
 
  []
 
-[19 <./140x140h5.jpg> <./140x140h10.jpg>]
-<45x45h0,5.jpg, id=315, 488.82625pt x 318.18875pt>
+[18 <./140x140h5.jpg> <./140x140h10.jpg>]
+<45x45h0,5.jpg, id=297, 488.82625pt x 318.18875pt>
 File: 45x45h0,5.jpg Graphic file (type jpg)
  <use 45x45h0,5.jpg>
 Package pdftex.def Info: 45x45h0,5.jpg used on input line 56.
@@ -1329,7 +1332,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
 
-<45x45h1.jpg, id=316, 366.61969pt x 238.64156pt>
+<45x45h1.jpg, id=298, 366.61969pt x 238.64156pt>
 File: 45x45h1.jpg Graphic file (type jpg)
  <use 45x45h1.jpg>
 Package pdftex.def Info: 45x45h1.jpg used on input line 62.
@@ -1339,7 +1342,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
-<45x45h3.jpg, id=317, 366.61969pt x 238.64156pt>
+<45x45h3.jpg, id=299, 366.61969pt x 238.64156pt>
 File: 45x45h3.jpg Graphic file (type jpg)
  <use 45x45h3.jpg>
 Package pdftex.def Info: 45x45h3.jpg used on input line 68.
@@ -1349,8 +1352,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
-[20 <./45x45h0,5.jpg> <./45x45h1.jpg>]
-<45x45h5.jpg, id=322, 366.61969pt x 238.64156pt>
+[19 <./45x45h0,5.jpg> <./45x45h1.jpg>]
+<45x45h5.jpg, id=305, 366.61969pt x 238.64156pt>
 File: 45x45h5.jpg Graphic file (type jpg)
  <use 45x45h5.jpg>
 Package pdftex.def Info: 45x45h5.jpg used on input line 74.
@@ -1365,7 +1368,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
-<r7h1.jpg, id=323, 366.61969pt x 238.64156pt>
+<r7h1.jpg, id=306, 366.61969pt x 238.64156pt> [20 <./45x45h3.jpg> <./45x45h5.jp
+g>]
 File: r7h1.jpg Graphic file (type jpg)
  <use r7h1.jpg>
 Package pdftex.def Info: r7h1.jpg used on input line 87.
@@ -1375,8 +1379,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
  []
 
-[21 <./45x45h3.jpg> <./45x45h5.jpg>]
-<r7h3.jpg, id=328, 366.61969pt x 238.64156pt>
+<r7h3.jpg, id=312, 366.61969pt x 238.64156pt>
 File: r7h3.jpg Graphic file (type jpg)
  <use r7h3.jpg>
 Package pdftex.def Info: r7h3.jpg used on input line 93.
@@ -1386,7 +1389,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-<r7h5.jpg, id=329, 366.61969pt x 238.64156pt>
+<r7h5.jpg, id=313, 366.61969pt x 238.64156pt>
 File: r7h5.jpg Graphic file (type jpg)
  <use r7h5.jpg>
 Package pdftex.def Info: r7h5.jpg used on input line 99.
@@ -1396,8 +1399,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 99--100
 
  []
 
-[22 <./r7h1.jpg> <./r7h3.jpg>]
-<82x71h1.jpg, id=334, 488.82625pt x 318.18875pt>
+[21 <./r7h1.jpg> <./r7h3.jpg>]
+<82x71h1.jpg, id=318, 488.82625pt x 318.18875pt>
 File: 82x71h1.jpg Graphic file (type jpg)
  <use 82x71h1.jpg>
 Package pdftex.def Info: 82x71h1.jpg used on input line 112.
@@ -1407,7 +1410,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
-<82x71h3.jpg, id=335, 488.82625pt x 318.18875pt>
+[22 <./r7h5.jpg> <./82x71h1.jpg>]
+<82x71h3.jpg, id=323, 488.82625pt x 318.18875pt>
 File: 82x71h3.jpg Graphic file (type jpg)
  <use 82x71h3.jpg>
 Package pdftex.def Info: 82x71h3.jpg used on input line 118.
@@ -1417,8 +1421,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 118--119
 
  []
 
-[23 <./r7h5.jpg> <./82x71h1.jpg>]
-<82x71h9.jpg, id=340, 488.82625pt x 318.18875pt>
+<82x71h9.jpg, id=324, 488.82625pt x 318.18875pt>
 File: 82x71h9.jpg Graphic file (type jpg)
  <use 82x71h9.jpg>
 Package pdftex.def Info: 82x71h9.jpg used on input line 124.
@@ -1428,132 +1431,138 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
-<instancia20x20_1.jpg, id=341, 540.0175pt x 371.3875pt>
+<instancia20x20_1.jpg, id=325, 540.0175pt x 371.3875pt>
 File: instancia20x20_1.jpg Graphic file (type jpg)
 
 <use instancia20x20_1.jpg>
-Package pdftex.def Info: instancia20x20_1.jpg used on input line 142.
+Package pdftex.def Info: instancia20x20_1.jpg used on input line 141.
 (pdftex.def)             Requested size: 216.00316pt x 148.55235pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--143
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
 
  []
 
-[24 <./82x71h3.jpg> <./82x71h9.jpg>]
-<instancia20x20_2.jpg, id=346, 540.0175pt x 371.3875pt>
+[23 <./82x71h3.jpg> <./82x71h9.jpg>]
+<instancia20x20_2.jpg, id=330, 540.0175pt x 371.3875pt>
 File: instancia20x20_2.jpg Graphic file (type jpg)
 
 <use instancia20x20_2.jpg>
-Package pdftex.def Info: instancia20x20_2.jpg used on input line 147.
+Package pdftex.def Info: instancia20x20_2.jpg used on input line 146.
 (pdftex.def)             Requested size: 216.00316pt x 148.55235pt.
 
-<instancia20x20_3.jpg, id=347, 540.0175pt x 371.3875pt>
+<instancia20x20_3.jpg, id=331, 540.0175pt x 371.3875pt>
 File: instancia20x20_3.jpg Graphic file (type jpg)
 
 <use instancia20x20_3.jpg>
-Package pdftex.def Info: instancia20x20_3.jpg used on input line 152.
+Package pdftex.def Info: instancia20x20_3.jpg used on input line 151.
 (pdftex.def)             Requested size: 216.00316pt x 148.55235pt.
- [25pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
+ [24pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.154 
+l.153 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.154 
+l.153 
        <./instancia20x20_1.jpg> <./instancia20x20_2.jpg>]
-<instancias40x40.jpg, id=355, 857.2025pt x 729.72626pt>
+<instancias40x40.jpg, id=338, 857.2025pt x 729.72626pt>
 File: instancias40x40.jpg Graphic file (type jpg)
 
 <use instancias40x40.jpg>
-Package pdftex.def Info: instancias40x40.jpg used on input line 157.
+Package pdftex.def Info: instancias40x40.jpg used on input line 156.
 (pdftex.def)             Requested size: 342.87492pt x 291.88533pt.
- [26pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
+ [25pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.159 
+l.158 
        <./instancia20x20_3.jpg>]
-<instancias40x40_2.jpg, id=361, 857.2025pt x 729.72626pt>
+<instancias40x40_2.jpg, id=345, 857.2025pt x 729.72626pt>
 File: instancias40x40_2.jpg Graphic file (type jpg)
 
 <use instancias40x40_2.jpg>
-Package pdftex.def Info: instancias40x40_2.jpg used on input line 162.
+Package pdftex.def Info: instancias40x40_2.jpg used on input line 161.
 (pdftex.def)             Requested size: 342.87492pt x 291.88533pt.
- [27pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
+ [26pdfTeX warning (ext4): destination with the same identifier (name{figure.5}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.164 
+l.163 
        <./instancias40x40.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
 
  []
 
-<graphs/tablaOriginal.jpg, id=367, 720.6925pt x 455.7025pt>
+<graphs/tablaOriginal.jpg, id=351, 720.6925pt x 455.7025pt>
 File: graphs/tablaOriginal.jpg Graphic file (type jpg)
 
 <use graphs/tablaOriginal.jpg>
-Package pdftex.def Info: graphs/tablaOriginal.jpg used on input line 184.
+Package pdftex.def Info: graphs/tablaOriginal.jpg used on input line 183.
 (pdftex.def)             Requested size: 432.41884pt x 273.4236pt.
 
-Overfull \hbox (4.9873pt too wide) in paragraph at lines 184--185
+Overfull \hbox (4.9873pt too wide) in paragraph at lines 183--184
  [][] 
  []
 
-[28pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.186 
+l.185 
        <./instancias40x40_2.jpg>]
-<graphs/tablaSherman.jpg, id=373, 682.55pt x 379.4175pt>
+<graphs/tablaSherman.jpg, id=357, 682.55pt x 379.4175pt>
 File: graphs/tablaSherman.jpg Graphic file (type jpg)
 
 <use graphs/tablaSherman.jpg>
-Package pdftex.def Info: graphs/tablaSherman.jpg used on input line 190.
+Package pdftex.def Info: graphs/tablaSherman.jpg used on input line 189.
 (pdftex.def)             Requested size: 409.53316pt x 227.65225pt.
 
-<graphs/graficoExp1.jpg, id=374, 610.28pt x 440.64626pt>
+<graphs/graficoExp1.jpg, id=358, 610.28pt x 440.64626pt>
 File: graphs/graficoExp1.jpg Graphic file (type jpg)
 
 <use graphs/graficoExp1.jpg>
-Package pdftex.def Info: graphs/graficoExp1.jpg used on input line 199.
+Package pdftex.def Info: graphs/graficoExp1.jpg used on input line 198.
 (pdftex.def)             Requested size: 366.17082pt x 264.38979pt.
- [29 <./graphs/tablaOriginal.jpg> <./graphs/tablaSherman.jpg>] <graphs/grafico3
-.jpg, id=379, 872.25874pt x 341.275pt>
+ [28 <./graphs/tablaOriginal.jpg> <./graphs/tablaSherman.jpg>] <graphs/grafico3
+.jpg, id=363, 872.25874pt x 341.275pt>
 File: graphs/grafico3.jpg Graphic file (type jpg)
 
 <use graphs/grafico3.jpg>
 Package pdftex.def Info: graphs/grafico3.jpg used on input line 219.
 (pdftex.def)             Requested size: 436.1283pt x 170.63707pt.
 
-Overfull \hbox (8.69676pt too wide) in paragraph at lines 219--220
- [][] 
+Overfull \hbox (8.69676pt too wide) in paragraph at lines 219--219
+ [][][] 
  []
 
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.220     \end{figure}\
                         <./graphs/graficoExp1.jpg>]
-<graphs/graf.jpg, id=385, 670.505pt x 491.8375pt>
+<graphs/graf.jpg, id=369, 670.505pt x 491.8375pt>
 File: graphs/graf.jpg Graphic file (type jpg)
  <use graphs/graf.jpg>
 Package pdftex.def Info: graphs/graf.jpg used on input line 227.
 (pdftex.def)             Requested size: 402.3061pt x 295.10477pt.
 )
-[31pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+[30pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
  has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.29 \newpage
+             pdfTeX warning (ext4): destination with the same identifier (name{
+figure.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1588,57 +1597,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-[32] [33]
-Underfull \hbox (badness 10000) in paragraph at lines 32--37
+[31] [32]
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
 
  []
 
-) [34] (./conclusion.tex) [35] (./apendices.tex [36]
-
-LaTeX Warning: Citation `ShermanMorrison' on page 37 undefined on input line 99
-.
-
-
-LaTeX Warning: Reference `enum:Esperanza' on page 37 undefined on input line 10
-3.
-
-
-LaTeX Warning: Reference `enum:EGbanda' on page 37 undefined on input line 109.
-
-
-
-LaTeX Warning: Reference `enum:LU' on page 37 undefined on input line 109.
-
-
-LaTeX Warning: Reference `enum:EGbanda' on page 37 undefined on input line 109.
-
-
-
-LaTeX Warning: Reference `enum:LU' on page 37 undefined on input line 109.
-
-
-LaTeX Warning: Reference `enum:Esperanza' on page 37 undefined on input line 11
-0.
-
-
-LaTeX Warning: Reference `enum:SM' on page 37 undefined on input line 110.
+) [33] (./conclusion.tex) [34] (./apendices.tex [35] [36]
+Overfull \hbox (10.35658pt too wide) in paragraph at lines 119--120
+[]\T1/cmr/m/n/10 ?`Cómo mo-di-fi-ca-ría el al-go-rit-mo pro-pues-to en [][]3[][
+] pa-ra apro-ve-char la fór-mu-la de Sher-man^^UMorrison
+ []
 
 [37]
-
-LaTeX Warning: Reference `enum:Esperanza' on page 38 undefined on input line 11
-9.
-
-
-LaTeX Warning: Citation `ShermanMorrison' on page 38 undefined on input line 11
-9.
-
-
-Overfull \hbox (16.21626pt too wide) in paragraph at lines 119--120
-[]\T1/cmr/m/n/10 ?`Cómo mo-di-fi-ca-ría el al-go-rit-mo pro-pues-to en [] pa-ra
- apro-ve-char la fór-mu-la de Sher-man^^UMorrison
- []
-
-[38]
 Overfull \hbox (34.45567pt too wide) in paragraph at lines 200--200
 []    \T1/cmtt/m/n/10 for(unsigned int i = desdeColumna, j = 0 ; i < filas && j
  <= maxRestasPos; i++, j++)[] 
@@ -1650,7 +1620,7 @@ Overfull \hbox (13.4608pt too wide) in paragraph at lines 202--202
 e*Obtener(primera,i)));[] 
  []
 
-[39] [40]) [41] (./referencias.tex) 
+[38] [39]) [40] (./referencias.tex) 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 41.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 41.
@@ -1660,17 +1630,8 @@ LaTeX Info: Redefining \% on input line 19.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 41.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 41.
-
-
-Package rerunfilecheck Warning: File `document.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `document.out':
-(rerunfilecheck)             Before: FD29998CDF3FD74F0E7C112D401764DD;2637
-(rerunfilecheck)             After:  84B7229D04467574CFC242855752D37F;2743.
-
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Info: File `document.out' has not changed.
+(rerunfilecheck)             Checksum: 080CCD00559C5593260B7B642F5A77F8;2356.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1678,43 +1639,37 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 41.
  ) 
 Here is how much of TeX's memory you used:
- 19853 strings out of 493304
- 329458 string characters out of 6139872
- 453901 words of memory out of 5000000
- 22723 multiletter control sequences out of 15000+600000
+ 19845 strings out of 493304
+ 329305 string characters out of 6139872
+ 453102 words of memory out of 5000000
+ 22721 multiletter control sequences out of 15000+600000
  17959 words of font info for 42 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 58i,14n,58p,1878b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsubsection.3.9.2} has been referenced but does
- not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.8.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texm
-f/fonts/type1/public/cm-super/sfbi1200.pfb></usr/share/texmf/fonts/type1/public
-/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.p
-fb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf
-/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/
-cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sftt1000.pfb>
-Output written on document.pdf (41 pages, 2576408 bytes).
+ 58i,14n,58p,2262b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfbi1200.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.
+pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texm
+f/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public
+/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf
+/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on document.pdf (40 pages, 2638934 bytes).
 PDF statistics:
- 551 PDF objects out of 1000 (max. 8388607)
- 453 compressed objects within 5 object streams
- 115 named destinations out of 1000 (max. 500000)
- 436 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 543 PDF objects out of 1000 (max. 8388607)
+ 446 compressed objects within 5 object streams
+ 109 named destinations out of 1000 (max. 500000)
+ 420 words of extra memory for PDF output out of 10000 (max. 10000000)
 

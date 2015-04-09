@@ -48,7 +48,7 @@ Se trabajó con 3 discretizaciones distintas 2, 5 y 10. Los resultados se pueden
 %45x45
 
 Otro caso que analizamos fue trabajar con un parabrisas de tamaño IMPARxIMPAR (lo que se corresponde al caso PARxPAR, al momento de obtener la temperatura en el punto crítico). El mótivo de trabajar con este caso, fue que como consecuencias de las dimensiones del parabrisas la temperatura en el punto crítico ahora depende de 4 valores en total. Basta con que al menos uno de los mismos se modifique, entre las distintas discretizaciones, para que la temperatura en el punto crítico cambie. Esta idea es la que se refleja en la hipótesis3.\newline
-Ademas, se trabajó con una granularidad menor a uno en este caso. Ya que a diferencia de los restantes las dimensiones del parabrisas son menores y dado que al momento de discretizar. Los parametros ancho y alto son dividos por la granularidad, el sistema cuenta con mas puntos que para los valores mayores e iguales a 1. Y para parabrisas de mayor tamaño el tiempo de computo sería excesivamente caro.  
+Ademas, se trabajó con una granularidad menor a uno en este caso. Ya que a diferencia de los restantes las dimensiones del parabrisas son menores y dado que al momento de discretizar. Los parametros ancho y alto son dividos por la granularidad, el sistema cuenta con mas puntos que para los valores mayores e iguales a 1. Y para parabrisas de mayor tamaño el tiempo de computo aumenta. Ademas la relación entre la perfomance y calidad de las soluciones sera desarollado detalladamente en el experimento 2.  
 Una caracteristica de esta experimentación es que predominan las denominadas Sanguijuelas unitarias. Dicha elección se realizo para tratar de verificar la hipótesis4. Los resultados obtenidos son los presentados en los gráficos \textit{figure 2.a, figure 2.b, figure 2.c y figure 2.d} (pueden encontrarse las instancias, junto con los datos de cada gráfico en en los archivos de Experimentos/Experimento1/caso2)\newline
 
 
@@ -209,6 +209,7 @@ Los resultados obtenidos fueron los siguientes:
     \item 3\hspace{-1.5mm}$\phantom{a}^{\circ}$ Instancia  = Granularidad 2
  \end{itemize}
  
+
   La temperatura de las sanguijuelas no es relevante al experimento, ya que no nos agrega nada saber la temperatura del punto crítico al mismo.
   
   Los resultados obtenido fueron los siguientes:
@@ -225,5 +226,7 @@ Los resultados obtenidos fueron los siguientes:
     \centering
     \includegraphics[scale=0.6]{graphs/graf.jpg}\caption{Gráfico obtenido de los valores del porcentaje de eficiencia del algoritmo con Sherman-Morrison comparándolo con el algoritmo original en función de la granularidad.}
     \end{figure}
+
+
 
 
