@@ -7,11 +7,19 @@
 
 \subsection{Experimento 1}
 
+Para los gráficos de distribución de temperaturas adoptaremos las siguientes notaciones:\newline
+a: Ancho del parabrisas sin discretizar; \newline
+b: Alto del parabrisas sin discretizar; \newline
+h: Granularidad;\newline
+n: número total de sanguijuelas;\newline
+Y la temperatura en el punto crítico fue calculado con la función dameTempPtoCritico (explicada en el sección $Desarrollo$ pág 10 )\newline
+
+
 \subsubsection{Primer caso}
 
 Para el primer caso lo que se hizo fue trabajar con un parabrisas de tamaño PARxPAR (a par y b par). En el caso de la función dameTempPtoCritico ésta representacion entra como el caso IMPARxIMPAR (ya que recordemos que se resta una unidad a las medidas de ancho y alto para no contar los bordes). De esta forma, la temperatura en el punto crítico esta dada por un solo punto.
 El radio de las sanguijuelas puede variar hasta los 15 metros, para tener una mayor diversidad de tamaños, y tratar de verificar lo planteado en la hipótesis5.\newline
-Se trabajó con 3 discretizaciones distintas 2, 5 y 10. Los resultados se pueden observar en los gráficos: \textit{figure 1.a, figura 1.b y figure 1.c}
+Se trabajó con 3 discretizaciones distintas 2, 5 y 10. Los resultados se pueden observar en los gráficos: \textit{figure 1.a, figura 1.b y figure 1.c} (pueden encontrarse las instancias, junto con los datos de cada gráfico en en los archivos de Experimentos/Experimento1/caso1)
 
 %140x140
 \includegraphics[width=\textwidth,height=3.0in,keepaspectratio
@@ -41,7 +49,7 @@ Se trabajó con 3 discretizaciones distintas 2, 5 y 10. Los resultados se pueden
 
 Otro caso que analizamos fue trabajar con un parabrisas de tamaño IMPARxIMPAR (lo que se corresponde al caso PARxPAR, al momento de obtener la temperatura en el punto crítico). El mótivo de trabajar con este caso, fue que como consecuencias de las dimensiones del parabrisas la temperatura en el punto crítico ahora depende de 4 valores en total. Basta con que al menos uno de los mismos se modifique, entre las distintas discretizaciones, para que la temperatura en el punto crítico cambie. Esta idea es la que se refleja en la hipótesis3.\newline
 Ademas, se trabajó con una granularidad menor a uno en este caso. Ya que a diferencia de los restantes las dimensiones del parabrisas son menores y dado que al momento de discretizar. Los parametros ancho y alto son dividos por la granularidad, el sistema cuenta con mas puntos que para los valores mayores e iguales a 1. Y para parabrisas de mayor tamaño el tiempo de computo sería excesivamente caro.  
-Una caracteristica de esta experimentación es que predominan las denominadas Sanguijuelas unitarias. Dicha elección se realizo para tratar de verificar la hipótesis4. Los resultados obtenidos son los presentados en los gráficos \textit{figure 2.a, figure 2.b, figure 2.c y figure 2.d}\newline
+Una caracteristica de esta experimentación es que predominan las denominadas Sanguijuelas unitarias. Dicha elección se realizo para tratar de verificar la hipótesis4. Los resultados obtenidos son los presentados en los gráficos \textit{figure 2.a, figure 2.b, figure 2.c y figure 2.d} (pueden encontrarse las instancias, junto con los datos de cada gráfico en en los archivos de Experimentos/Experimento1/caso2)\newline
 
 
 \includegraphics[width=\textwidth,height=3.0in,keepaspectratio
@@ -72,7 +80,7 @@ Una caracteristica de esta experimentación es que predominan las denominadas Sa
 \subsubsection{Tercer caso}
 
 
-Para continuar con la idea de ver cuanto difiere las temperaturas en un parabrisas de tamaño IMPARxIMPAR. Pero, sobre todo para corroborar la hipótesis4. Se trabajó con el mismo parabrisas que en el caso anterior. Porlo que ahora se aumentó el radio de acción de las sanguijuelas de manera que haya una mayor diversidad de sanguijuelas. Ademas, que de esta forma vamos a poder conluir como afecta el radio de una sanguijuela sobre un mismo sistema. Los datos obtenidos se muestran en las figuras: \textit{figure 3.a, figure 3.b, figure 3.c}  \newline
+Para continuar con la idea de ver cuanto difiere las temperaturas en un parabrisas de tamaño IMPARxIMPAR. Pero, sobre todo para corroborar la hipótesis4. Se trabajó con el mismo parabrisas que en el caso anterior. Porlo que ahora se aumentó el radio de acción de las sanguijuelas de manera que haya una mayor diversidad de sanguijuelas. Ademas, que de esta forma vamos a poder conluir como afecta el radio de una sanguijuela sobre un mismo sistema. Los datos obtenidos se muestran en las figuras: \textit{figure 3.a, figure 3.b, figure 3.c} (pueden encontrarse las instancias, junto con los datos de cada gráfico en en los archivos de Experimentos/Experimento1/caso3) \newline
 
 
 \includegraphics[width=\textwidth,height=3.0in,keepaspectratio
@@ -98,7 +106,7 @@ Para continuar con la idea de ver cuanto difiere las temperaturas en un parabris
 
 
 Debido a que en los anteriores caso el valor del punto crítico dependia de uno o cuatro valores. Se decidió ver la última variante que existe, que es cuando un parabrisas tiene un lado par y el otro impar. De esta forma, el punto crítico depende del promedio entre dos valores. \newline
-Este caso nos resulta útil para tratar de corroborar la veracidad de la hipótesis3. Para acercanos a un caso promedio en el que no solo van a aparecer sanguijuelas con radio acción bajo, el mismo puede variar hasta los 10 metros. Los gráficos presentados a continuación reflejan los datos obtenidos.    
+Este caso nos resulta útil para tratar de corroborar la veracidad de la hipótesis3. Para acercanos a un caso promedio en el que no solo van a aparecer sanguijuelas con radio acción bajo, el mismo puede variar hasta los 10 metros. Los gráficos presentados a continuación reflejan los datos obtenidos.   (pueden encontrarse las instancias, junto con los datos de cada gráfico en en los archivos de Experimentos/Experimento1/caso4) 
 
 \includegraphics[width=\textwidth,height=3.0in,keepaspectratio
 ]{82x71h1.jpg} \newline

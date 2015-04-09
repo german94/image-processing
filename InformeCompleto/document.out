@@ -8,12 +8,12 @@
 \BOOKMARK [2][-]{subsection.3.5}{Eliminacion Gaussiana para matriz Banda}{section.3}% 8
 \BOOKMARK [2][-]{subsection.3.6}{BackWard Substitution para matriz Banda}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.7}{Matriz LU para matriz Banda}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.8}{Experimento 1}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.8.1}{Hip\363tesis}{subsection.3.8}% 12
-\BOOKMARK [2][-]{subsection.3.9}{Experimento 2}{section.3}% 13
-\BOOKMARK [3][-]{subsubsection.3.9.1}{Eliminaci\363n Gaussiana vs Factorizaci\363n LU}{subsection.3.9}% 14
-\BOOKMARK [3][-]{subsubsection.3.9.2}{Experimento: calidad/tiempo de c\363mputo}{subsection.3.9}% 15
-\BOOKMARK [2][-]{subsection.3.10}{C\341lculo de la temperatura en el punto cr\355tico}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.8}{C\341lculo de la temperatura en el punto cr\355tico}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.9}{Experimento 1}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.9.1}{Hip\363tesis}{subsection.3.9}% 13
+\BOOKMARK [2][-]{subsection.3.10}{Experimento 2}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.10.1}{Eliminaci\363n Gaussiana vs Factorizaci\363n LU}{subsection.3.10}% 15
+\BOOKMARK [3][-]{subsubsection.3.10.2}{Experimento: calidad/tiempo de c\363mputo}{subsection.3.10}% 16
 \BOOKMARK [2][-]{subsection.3.11}{Experimento 3}{section.3}% 17
 \BOOKMARK [3][-]{subsubsection.3.11.1}{Eliminar sanguijuela}{subsection.3.11}% 18
 \BOOKMARK [1][-]{section.4}{Resultados}{}% 19
@@ -34,3 +34,5 @@
 \BOOKMARK [2][-]{subsection.5.3}{Experimento 3}{section.5}% 34
 \BOOKMARK [1][-]{section.6}{Conclusiones}{}% 35
 \BOOKMARK [1][-]{section.7}{Ap\351ndices}{}% 36
+\BOOKMARK [2][-]{subsection.7.1}{A}{section.7}% 37
+\BOOKMARK [2][-]{subsection.7.2}{B}{section.7}% 38

@@ -192,6 +192,21 @@ Mientras que para la matriz U, si $d_s$ $=$ d significa que heredó la misma can
 
 Al conocer las propiedades que va a tener la matriz LU (la misma cantidad de bandas que la matriz a la cual se aplicó dicha factorización). Para optimizar en costo espacial. Lo que se implementó fue, que a medidad que se factorizaba la matriz A guardabamos los multiplicando en la misma matriz. Y luego, mediante dos funciones, pedir la matriz L y la matriz U. Cada una respresentada con un vector de vectores. Pero, como cada fila de las mismas tiene a lo sumo d+1 elementos distintos de cero (con d la cantidad de bandas superiores e inferiores y el uno que se adiciona es por contar el elemento de la diagonal) cada uno de los vectores interiores era de a lo sumo de tamaño d+1. Representando de esta manera solo los elementos que se ubican dentro de las bandas correspondientes para cada matriz.     
 
+
+
+\subsection{Cálculo de la temperatura en el punto crítico}
+En esta sección, explicaremos brevemente como se calcula la temperatura en el punto crítico. Como explicaremos más adelante, dado que estamos discretizando el problema, puede llegar a ocurrir que, dependiendo de las dimensiones de nuestra discretización, no exista \textbf{él} punto crítico. Por lo tanto esto va a ser una explicación de las decisiones que tomamos en estos casos, más que una explicación sobre cómo se "debe calcular" la temperatura en el punto crítico ya que podrían existir otros criterios.
+\par Existen entonces cuatro casos distintos a la hora de calcular esta temperatura y, todos ellos dependen de las dimensiones de nuestra discretización. Sea $n'$ el alto de nuestra discretización y $m'$ el ancho
+\begin{itemize}
+\item Si tanto $n'$ como $m'$ son pares quiere decir que no vamos a poder encontrar el punto del medio de nuestra discretización. Lo que haremos en este caso será calcular un promedio de los cuatro puntos que estarían "rodeando" de alguna manera al punto crítico. Estos puntos serían $(n'/2, m'/2)$, $(n'/2 + 1, m'/2)$, $(n'/2, m'/2 + 1)$ y $(n'/2 + 1, m'/2 + 1)$ (estamos indexando desde 1).
+\item Si $n'$ y $m'$ son ambos impares, entonces efectivamente vamos a poder encontrar el punto crítico de nuestra discretización. Dicho punto será $(n'/2 + 1, m'/2 + 1)$
+\item Si $n'$ es impar y $m'$ par, no vamos a poder encontrar el punto crítico de nuestra discretización porque no hay un punto medio a lo ancho, pero sí a lo largo. Con lo cual la temperatura del punto crítico será estimada con el promedio de las temperaturas de los dos puntos que estarían rodeándolo, o sea $(n'/2 + 1, m'/2)$ y $(n'/2 +1, m'/2 + 1)$.
+\item Si $n'$ es par y $m'$ impar ahora no podemos encontrar el punto crítico porque no hay un punto medio a lo largo, con lo cual la temperatura se estima con el promedio de los puntos a lo largo que lo rodean, dejando fija la coordenada correspondiente al ancho: $(n'/2, m'/2 + 1)$ y $(n'/2 + 1, m'/2 + 1)$.
+\end{itemize}
+
+Una vez que ubicamos él o los puntos requeridos para realizar el cálculo, resta ver como hacemos para obtener sus respectivas temperaturas. Dado el vector $b$ de temperaturas, si queremos el valor de la temperatura del punto $(i, j)$ de nuestra discretización, ese valor estará en el elemento $m'i + j$ de $b$. Esto es así porque el vector $b$ guarda las temperaturas de los puntos de manera tal que los primeros $m'$ elementos corresponden a la primer fila de la discretización, los segundos $m'$ elementos a la segunda y así con lo cual al multiplicar por $m'$ nos estamos moviendo $i$ filas (que es lo que queremos) y al sumar $j$ nos estamos posicionando en la columna correspondiente, obteniendo así el elemento del vector correspondiente a la temperatura del punto $(i, j)$.
+\par Es importante aclarar que, en la implementación los índices difieren levemente debido a que tenemos que indexar desde 0, sin embargo, estos son los conceptos que subyacen a lo que está implementado.
+
 \subsection{Experimento 1}
 
 Para el experimento número uno, comportamiento de la distribucion de la temperatura, se evaluaron distintos casos. Como el cálculo de la temperatura del punto crítico difiere segun sea el tamaño del parabrisas y su posterior discretización. Se trabajó con distintos tamaños. Más aún ingresamos otros factores entre los distintos casos, como el número de sanguijuelas y  el radio de acción de cada una de estas. Además, vamos a comparar como varía la temperatura en el punto crítico (si es que lo hace) para un mismo parabrisas pero, variando la granularidad del mismo. De esta forma, aunque estamos representando a un mismo parabrisas, obtenemos discretizaciones de diferentes dimensiones.        
@@ -225,21 +240,6 @@ La idea del siguiente experimento, es tratar de ver como se relaciona el tiempo 
 \newline
 \par 
 \end{enumerate}
-
-
-\subsection{Cálculo de la temperatura en el punto crítico}
-En esta sección, explicaremos brevemente como se calcula la temperatura en el punto crítico. Como explicaremos más adelante, dado que estamos discretizando el problema, puede llegar a ocurrir que, dependiendo de las dimensiones de nuestra discretización, no exista \textbf{él} punto crítico. Por lo tanto esto va a ser una explicación de las decisiones que tomamos en estos casos, más que una explicación sobre cómo se "debe calcular" la temperatura en el punto crítico ya que podrían existir otros criterios.
-\par Existen entonces cuatro casos distintos a la hora de calcular esta temperatura y, todos ellos dependen de las dimensiones de nuestra discretización. Sea $n'$ el alto de nuestra discretización y $m'$ el ancho
-\begin{itemize}
-\item Si tanto $n'$ como $m'$ son pares quiere decir que no vamos a poder encontrar el punto del medio de nuestra discretización. Lo que haremos en este caso será calcular un promedio de los cuatro puntos que estarían "rodeando" de alguna manera al punto crítico. Estos puntos serían $(n'/2, m'/2)$, $(n'/2 + 1, m'/2)$, $(n'/2, m'/2 + 1)$ y $(n'/2 + 1, m'/2 + 1)$ (estamos indexando desde 1).
-\item Si $n'$ y $m'$ son ambos impares, entonces efectivamente vamos a poder encontrar el punto crítico de nuestra discretización. Dicho punto será $(n'/2 + 1, m'/2 + 1)$
-\item Si $n'$ es impar y $m'$ par, no vamos a poder encontrar el punto crítico de nuestra discretización porque no hay un punto medio a lo ancho, pero sí a lo largo. Con lo cual la temperatura del punto crítico será estimada con el promedio de las temperaturas de los dos puntos que estarían rodeándolo, o sea $(n'/2 + 1, m'/2)$ y $(n'/2 +1, m'/2 + 1)$.
-\item Si $n'$ es par y $m'$ impar ahora no podemos encontrar el punto crítico porque no hay un punto medio a lo largo, con lo cual la temperatura se estima con el promedio de los puntos a lo largo que lo rodean, dejando fija la coordenada correspondiente al ancho: $(n'/2, m'/2 + 1)$ y $(n'/2 + 1, m'/2 + 1)$.
-\end{itemize}
-
-Una vez que ubicamos él o los puntos requeridos para realizar el cálculo, resta ver como hacemos para obtener sus respectivas temperaturas. Dado el vector $b$ de temperaturas, si queremos el valor de la temperatura del punto $(i, j)$ de nuestra discretización, ese valor estará en el elemento $m'i + j$ de $b$. Esto es así porque el vector $b$ guarda las temperaturas de los puntos de manera tal que los primeros $m'$ elementos corresponden a la primer fila de la discretización, los segundos $m'$ elementos a la segunda y así con lo cual al multiplicar por $m'$ nos estamos moviendo $i$ filas (que es lo que queremos) y al sumar $j$ nos estamos posicionando en la columna correspondiente, obteniendo así el elemento del vector correspondiente a la temperatura del punto $(i, j)$.
-\par Es importante aclarar que, en la implementación los índices difieren levemente debido a que tenemos que indexar desde 0, sin embargo, estos son los conceptos que subyacen a lo que está implementado.
-
 
 \subsection{Experimento 3}
 
