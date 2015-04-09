@@ -167,3 +167,141 @@ de la lista de apellidos de los integrantes del grupo. Ejemplo: \texttt{[TP1] Ac
 \begin{thebibliography}{1}
 	\bibitem{ShermanMorrison} Golub, G. H. and Van Loan, C. F. Matrix Computations, 3rd ed. Baltimore, MD: Johns Hopkins, p. 51, 1996.
 \end{thebibliography}
+
+
+\subsection{B}
+
+\begin{verbatim}
+
+void SistemaBandas::EliminacionGaussiana0(char metodo)
+{
+    for(unsigned int j = 0; j < filas; j++) 
+    {
+	    for (unsigned int i = j+1; (i <= j + ancho) && (i < filas); i++) 
+        {
+            if(Obtener(i,j) !=0)
+            {	
+                double coeficiente = (Obtener(i,j)/Obtener(j,j));
+                RestarFila(coeficiente, j, i, j+1, metodo);
+            }
+        }
+        CerosAIzquierda(j,j);
+    }
+}
+
+///////////////////////////////////////////
+
+
+void SistemaBandas::RestarFila(double coeficiente, unsigned int primera,
+unsigned int segunda, unsigned int desdeColumna, char metodo)
+{
+
+    int maxRestasPos = 2*ancho + 1; 
+    for(unsigned int i = desdeColumna, j = 0 ; i < filas && j <= maxRestasPos; i++, j++) 
+	{
+        Modificar(segunda,i, Obtener(segunda,i) - (coeficiente*Obtener(primera,i)));
+	}
+    if(metodo == '0' || metodo == '2' ) 
+    {
+        Modificar(segunda, filas, Obtener(segunda,filas)
+        - (coeficiente*Obtener(primera,filas)));
+    } 
+}
+
+
+///////////////////////////////////////////////
+
+void SistemaBandas::CerosAIzquierda(unsigned int fila, unsigned int hastaColumna)
+{
+    for(unsigned int i = 0; i < hastaColumna; i++) 
+        Modificar(fila,i, 0);
+}
+
+
+//////////////////////////////////////////////
+
+vector<double> SistemaBandas::BackWardSubstitution()
+{
+	vector<double> result = vector<double>(filas);
+    for (int i = filas -1; i>=0; i--)
+    {
+        result[i] = Obtener(i,filas);
+        for (int k=i+1; k< filas && (k <= ( i + ancho)); k++)
+        {
+            result[i] = result[i] - Obtener(i,k)*result[k];
+        }
+        result[i] = result[i]/Obtener(i,i);
+    }
+    return result;
+}
+
+////////////////////////////////////////////////
+
+
+void SistemaBandas::LU1(char metodo)
+{
+    for(unsigned int j = 0; j < filas; j++) 
+    {
+        for (unsigned int i = j+1; (i<= j + ancho) && (i < filas); i++)
+        {
+            double coeficiente = (Obtener(i,j)/Obtener(j,j));
+            Modificar(i, j, coeficiente);
+            if(Obtener(i,j) !=0) //para no hacer restas de mas
+            {	
+                RestarFila(coeficiente, j, i, j+1, metodo);
+            }
+        }
+    }
+}
+
+
+////////////////////////////////////////////////
+
+vector<double>  Sherman_Morrison(vector<double> &nuevoB, vector<vector<double>
+> &L, vector<vector<double> > &U, vector<double> &vt, vector<double> &u, 
+int f_v, unsigned int discrWidth)
+{
+    vector<double> y = ForWardSubstitution(nuevoB, L, discrWidth -1); 
+
+    vector<double> invAxB = BackWardSubstitution2(y, U); 
+
+
+    vector<double> z = ForWardSubstitution(u, L, discrWidth -1);
+
+    vector<double> invAxu = BackWardSubstitution2(z, U); 
+	
+    double k = 0;
+
+    if (vt[0]!=0) {k += invAxB[(int)(f_v - (discrWidth -1))]*vt[0];} 
+    if(vt[1]!=0) {k += invAxB[f_v - 1]*vt[1];}
+    k += invAxB[f_v]*vt[2];
+    if(vt[3]!=0) {k += invAxB[f_v +1 ]*vt[3];} 
+    if(vt[4]!=0) {k += invAxB[(int)(f_v + discrWidth -1)]*vt[4];}; 
+
+    double l = 1;
+    if (vt[0]!=0) {l += invAxu[(int)(f_v - (discrWidth -1))]*vt[0];} 
+    if(vt[1]!=0) {l +=invAxu[f_v - 1]*vt[1];}
+    l += invAxu[f_v]*vt[2]; 
+    if(vt[3]!=0) {l += invAxu[f_v +1 ]*vt[3];} 
+    if(vt[4]!=0) {l += invAxu[(int)(f_v + discrWidth -1)]*vt[4];};
+
+	
+
+    for(int i = 0; i < invAxu.size(); i++)
+	{
+        invAxu[i] = (k/l)*invAxu[i];
+	}
+	
+    for(int i = 0; i < invAxu.size(); i++)
+	{
+        invAxB[i] = invAxB[i] - invAxu[i];
+	}
+    return invAxB;
+}
+
+
+\end{verbatim}
+
+
+
+
