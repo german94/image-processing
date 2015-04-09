@@ -144,8 +144,10 @@ Además, en el momento de ir consiguiendo los número 0 de la triangulación, se
 
 \For{$j = 0; filas; j++$}
     \For{$(i = j+1; (i <= j + ancho) \&\&  (i < filas); i++)$}
+    		\If{$Obtener(i, j) != 0$}
         \State coeficiente  = (Obtener(i,j)/Obtener(j,j));
 		\State  RestarFila0(coeficiente, j, i, j+1);
+		\EndIf
 	\EndFor 
     		\State cerosAIzquierda(j,j);
 \EndFor
