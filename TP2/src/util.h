@@ -19,7 +19,7 @@ T string_to_type( const std::string& s )
    if (!(i >> x))
 		throw runtime_error("Se esperaba un tipo diferente de dato");
    return x;
-} 
+}
 
 template<class T>
 string type_to_string( const T& s )
@@ -28,7 +28,7 @@ string type_to_string( const T& s )
    if (!(ss << s))
 		throw runtime_error("Se esperaba imprimir otro tipo de dato");
    return ss.str();
-} 
+}
 
 vector<string> separar(const string& linea) {
     vector<string> res;
@@ -37,6 +37,21 @@ vector<string> separar(const string& linea) {
     stringstream ss(linea);
 
     while (getline(ss, token, ' ')) {
+        if (!token.empty()) {
+            res.push_back(token);
+        }
+    }
+
+    return res;
+}
+
+vector<string> separarComa(const string& linea) {
+    vector<string> res;
+
+    string token;
+    stringstream ss(linea);
+
+    while (getline(ss, token, ',')) {
         if (!token.empty()) {
             res.push_back(token);
         }

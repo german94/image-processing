@@ -97,12 +97,12 @@ int main(int argc, char *argv[]) {
 
     }
 
-/*
+
 cout<< "el path es "<<path<< endl;
 cout<< "el k es "<<k<<endl;
 cout<< "el alpha es "<<alpha<<endl;
 cout<< "el K es "<<K<<endl;
-
+/*
 for(int i=0;i<Klineas.filas();i++){
 cout<<"[ ";
     for(int j=0;j<Klineas.columnas();j++){
@@ -122,8 +122,113 @@ cout<<" ]\n";
         case KNN:{
 
 
-  //ifstream train("../data/train.csv");
-  //ifstream test("../data/test.csv");
+  ifstream train("../data/train.csv", std::ifstream::in);
+  ifstream test("../data/test.csv", std::ifstream::in);
+
+	//ifstream entrada(argv[1],std::ifstream::in);
+
+string lineaNombrePixel;
+getline(test, lineaNombrePixel); //la linea de la entrada avanzo
+
+/*
+cout<<"primera linea de test\n";
+cout<<lineaNombrePixel<<endl;
+*/
+
+
+    string Imagen1;
+    getline(test, Imagen1);
+
+
+cout<<"primera imagen\n";
+cout<<Imagen1<<endl;
+cout<<"fin\n";
+
+    vector<string> Imagen1Vector = separarComa(Imagen1);
+
+    int Imagen1Numeros[784];
+
+    for(int i=0;i<Imagen1Vector.size();i++){
+
+       Imagen1Numeros[i]= string_to_type<int>(Imagen1Vector[i]);
+
+    }
+
+cout<<"IMAGEN 1 DE TEST.CSV\n";
+cout<<"[";
+    for(int j=0;j<784;j++){
+    cout<<Imagen1Numeros[j]<<" ";
+
+
+    }
+
+cout<<"]\nfinImagen1\n";
+
+
+    string Imagen2;
+    getline(test, Imagen2);
+
+cout<<"segunda imagen\n";
+cout<<Imagen2<<endl;
+cout<<"fin\n";
+
+    vector<string> Imagen2Vector = separarComa(Imagen2);
+
+   int Imagen2Numeros[784];
+
+    for(int i=0;i<Imagen2Vector.size();i++){
+
+       Imagen2Numeros[i]= string_to_type<int>(Imagen2Vector[i]);
+
+    }
+
+
+/*
+cout<<"IMAGEN 2 DE TEST.CSV\n";
+cout<<"[";
+    for(int j=0;j<Imagen2Vector.size();j++){
+    cout<<Imagen2Vector[j];
+
+
+    }
+
+cout<<"aaaaaaaaaaaaaaaaa\n";
+//cout<<" finn\n";
+*/
+
+cout<<"IMAGEN 2 DE TEST.CSV\n";
+cout<<"[";
+    for(int j=0;j<784;j++){
+    cout<<Imagen2Numeros[j]<<" ";
+
+
+    }
+
+cout<<"]\nfinImagen2\n";
+
+int restaImagenes[784];
+for(int i=0;i<784;i++){
+
+    restaImagenes[i]=Imagen1Numeros[i] - Imagen2Numeros[i];
+
+}
+
+
+cout<<"RESTA DE IMAGENS\n";
+cout<<"[";
+    for(int j=0;j<784;j++){
+    cout<<restaImagenes[j]<<" ";
+
+
+    }
+
+cout<<"]\nfinRESTA\n";
+
+
+
+
+
+
 
 
 
