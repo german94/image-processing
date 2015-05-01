@@ -290,7 +290,7 @@ void cargarMatrizTrain(Matriz<unsigned int>& train)
 
 vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz<unsigned int>& train)
 {
-    vector<double> tasaDeReconocimiento(K);
+    vector<double> tasaDeReconocimiento;
 
     for(int i = 0; i < K; i++)
     {
@@ -337,21 +337,21 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
                         normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
                     }
                 }
-
+            }
                 unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
                 for(int t = 0; t < k; t++)
                     digitos[normas2AlCuadrado[t].first]++;
 
-                int ganador = -1;
+                unsigned int ganador = digitos[0];
                 for(int x = 0; x < 10; x++)
                 {
-                    if(digitos[x] > ganador)
+                    if(digitos[x] > digitos[ganador])
                         ganador = x;
                 }
 
                 if(ganador == imagenesDeTrainParaReconocer[z].first)
                     reconocidos++;
-            }
+            
         }
 
         double tasa = (double)reconocidos/(double)imagenesDeTrainParaReconocer.size();
