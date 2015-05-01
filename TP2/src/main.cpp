@@ -18,7 +18,7 @@ using namespace std;
         }
         return res;
     }
-    
+
     int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado)
     {
         int res = 0;
@@ -132,11 +132,11 @@ int main(int argc, char *argv[]) {
             }
 
             ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
-            tasaReconocimiento<<"ImageId,Label\n";
+            tasaReconocimiento<<"Particion"<<"\t"<<"Tasa de Reconocimiento\n";
 
             for (int i = 0; i < res.size(); ++i){
 
-               tasaReconocimiento<<i+1<<","<<res[i]<<endl;
+               tasaReconocimiento<<i+1<<"\t\t\t"<<res[i]<<endl;
 
            }
 
@@ -220,7 +220,7 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
             for(int m = 0; m < imagenesDeTrainParaEntrenar.size(); m++)
             {
                 unsigned int distanciaAlCuadrado = norma2AlCuadrado(imagenesDeTrainParaReconocer[z].second, imagenesDeTrainParaEntrenar[m].second);
-                
+
                 if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
                 {
                     pair<unsigned int, int> a;
@@ -237,7 +237,7 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
                         normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
                     }
                 }
-                
+
                 unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
                 for(int t = 0; t < k; t++)
                     digitos[normas2AlCuadrado[t].first]++;
