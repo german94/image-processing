@@ -105,6 +105,15 @@ int main(int argc, char *argv[]) {
     Matriz<unsigned int> train(42000, 785);     //42k de imagenes, cada imagen son 784 valores y un valor mas que representa el digito al que corresponde
     cargarMatrizTrain(train);
 
+    cout<<"IMAGEN 2 DE TEST.CSV\n";
+cout<<"[";
+    for(int j=0;j<785;j++){
+    cout<<train[0][j]<<" ";
+
+    }
+cout<<"]\n";
+
+
 /*
 cout<< "el path es "<<path<< endl;
 cout<< "el k es "<<k<<endl;
@@ -129,13 +138,27 @@ cout<<" ]\n";
 
         case KNN:{
 
-              vector<double> res = kNN(K, k, Klineas, train);
 
-              for (int i = 0; i < res.size(); ++i)
-              {
-                  cout<<res[i]<<endl;
-              }
+            vector<double> res = kNN(K, k, Klineas, train);
 
+
+            for(int i=0; i<res.size;i++){
+            cout<<res[i]<<endl;
+
+            }
+
+            ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
+            tasaReconocimiento<<"ImageId,Label\n";
+
+            for (int i = 0; i < res.size(); ++i){
+
+               tasaReconocimiento<<i+1<<","<<res[i]<<endl;
+
+           }
+
+            break;
+
+        }
 
 /*
   ifstream train("../data/train.csv", std::ifstream::in);
@@ -253,8 +276,7 @@ cout<<"]\nfinRESTA\n";
             // }
 
 
-            break;
-        }
+
 
         case PCA_KNN: {
 
@@ -283,6 +305,12 @@ cout<<"]\nfinRESTA\n";
 void cargarMatrizTrain(Matriz<unsigned int>& train)
 {
     ifstream baseTrain("../data/train.csv", std::ifstream::in);
+    string lineaNombrePixel;
+    getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
+
+
+   // cout<<"primera linea\n";
+   // cout<<lineaNombrePixel<<endl;
 
     int filaM = 0;
     for (string linea; getline(baseTrain, linea);)
@@ -315,9 +343,9 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
         {
             vector<unsigned int> imagen;
             for(int l = 0; l < 784; l++)
-                imagen.push_back(train[j + 1][l + 1]);
+                imagen.push_back(train[j][l + 1]);
 
-            pair<unsigned int, vector<unsigned int> > p(train[j + 1][0], imagen);
+            pair<unsigned int, vector<unsigned int> > p(train[j][0], imagen);
 
             if(Klineas[i][j] == 0)
                 imagenesDeTrainParaReconocer.push_back(p);
@@ -359,7 +387,7 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
             }
         }
 
-        double tasa = reconocidos/imagenesDeTrainParaReconocer.size();
+        double tasa = (double)reconocidos/(double)imagenesDeTrainParaReconocer.size();
         tasaDeReconocimiento.push_back(tasa);
     }
 
