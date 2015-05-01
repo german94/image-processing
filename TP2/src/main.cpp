@@ -9,8 +9,6 @@
 
 using namespace std;
 
-
-    /* //DESCOMENTAR SI ES QUE SE DEBE ARREGLAR LO DE LOS k VECINOS
     bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado)
     {
         bool res = false;
@@ -30,7 +28,7 @@ using namespace std;
         }
         return res;
     }
-*/
+
 
 void cargarMatrizTrain(Matriz<unsigned int>& train);
 vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz<unsigned int>& train);
@@ -217,58 +215,7 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
         unsigned int reconocidos = 0;
         for(int z = 0; z < imagenesDeTrainParaReconocer.size(); z++)
         {
-            vector<pair<int, int> > normas2AlCuadrado(k, pair<unsigned int, int>(-1, -1));
-
-            for(int m = 0; m < imagenesDeTrainParaEntrenar.size(); m++)
-            {
-                unsigned int distanciaAlCuadrado = norma2AlCuadrado(imagenesDeTrainParaReconocer[z].second, imagenesDeTrainParaEntrenar[m].second);
-                for(int r = 0; r < k; r++)
-                {
-                    if(normas2AlCuadrado[r].first == -1 || (normas2AlCuadrado[r].first != -1 && normas2AlCuadrado[r].second > distanciaAlCuadrado))
-                    {
-                        normas2AlCuadrado[r].first = imagenesDeTrainParaEntrenar[m].first;
-                        normas2AlCuadrado[r].second = distanciaAlCuadrado;
-                    }
-                }
-
-                unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-                for(int t = 0; t < k; t++)
-                    digitos[normas2AlCuadrado[t].first]++;
-
-                int ganador = -1;
-                for(int x = 0; x < 10; x++)
-                {
-                    if(digitos[x] > ganador)
-                        ganador = x;
-                }
-
-                if(ganador == imagenesDeTrainParaReconocer[z].first)
-                    reconocidos++;
-            }
-        }
-
-        double tasa = (double)reconocidos/(double)imagenesDeTrainParaReconocer.size();
-        tasaDeReconocimiento.push_back(tasa);
-    }
-
-    return tasaDeReconocimiento;
-}
-
-
-unsigned int norma2AlCuadrado(vector<unsigned int> v1, vector<unsigned int> v2)
-{
-    unsigned int n = 0;
-    for(int i = 0; i < v1.size(); i++)
-    {
-        n += (v1[i] - v2[i]) * (v1[i] - v2[i]);
-    }
-
-    return n;
-}
-
-/*
-//HABRIA QUE REEMPLAZAR LO DE ADENTRO DEL FOR DE LA LINEA 218 POR TODO LO SGTE
-    vector<pair<int, int> > normas2AlCuadrado;
+            vector<pair<int, int> > normas2AlCuadrado;
 
             for(int m = 0; m < imagenesDeTrainParaEntrenar.size(); m++)
             {
@@ -305,5 +252,23 @@ unsigned int norma2AlCuadrado(vector<unsigned int> v1, vector<unsigned int> v2)
                 if(ganador == imagenesDeTrainParaReconocer[z].first)
                     reconocidos++;
             }
+        }
 
-*/
+        double tasa = (double)reconocidos/(double)imagenesDeTrainParaReconocer.size();
+        tasaDeReconocimiento.push_back(tasa);
+    }
+
+    return tasaDeReconocimiento;
+}
+
+
+unsigned int norma2AlCuadrado(vector<unsigned int> v1, vector<unsigned int> v2)
+{
+    unsigned int n = 0;
+    for(int i = 0; i < v1.size(); i++)
+    {
+        n += (v1[i] - v2[i]) * (v1[i] - v2[i]);
+    }
+
+    return n;
+}
