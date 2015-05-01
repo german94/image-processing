@@ -15,6 +15,7 @@ class Matriz
         Matriz<T> operator-(Matriz<T>& B);
         Matriz<T> operator+(Matriz<T>& B);
         bool operator==(Matriz<T>& B);
+        Matriz<T> traspuesta();
         int filas();
         int columnas();
         void display();
@@ -126,6 +127,9 @@ Matriz<T> Matriz<T>::operator*(T l){
     return result;
 }
 
+
+
+
 template<class T>
 bool Matriz<T>::operator==(Matriz<T>& B){
     // A(this): n x m, B: m x k
@@ -143,6 +147,20 @@ bool Matriz<T>::operator==(Matriz<T>& B){
         i++;
     }
     return iguales;
+}
+
+template<class T>
+Matriz<T> Matriz<T>::traspuesta(){
+    int n = this->filas();
+    int m = this->columnas();
+
+    Matriz<T> result(n,m);
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j< m ;j++){
+            result[i][j] =  this->_matrix[j][i] ;
+        }
+    }
+    return result;
 }
 
 

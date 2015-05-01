@@ -144,8 +144,108 @@ int main(int argc, char *argv[]) {
 
         }
 
-        case PCA_KNN: {
+    case PCA_KNN: {
 
+        Matriz<unsigned int> train(42000,785);
+
+        cargarMatrizTrain(train);
+
+        vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
+
+        vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
+
+        for(int particion = 0; particion < K; particion++){
+
+            unsigned int cantidadImagenesTrain=0;
+            for(int j=0; j<Klineas.columnas(); j++){
+
+                if(Klineas[particion][j]){
+
+                    cantidadImagenesTrain++; //problema  este recorrido podria evitarse
+
+                    digitosImagenesTrain.push_back(train[j][0]);
+                }
+                else{
+
+                    digitosImagenesTest.push_back(train[j][0]);
+                }
+            }
+
+            unsigned int cantidadImagenesTest= 42000 - cantidadImagenesTrain;
+
+            Matriz<double> imagenesDeTrain(cantidadImagenesTrain,784); /// le faltan los digitos etiquetados de la primera columna
+
+            Matriz <unsigned int> imagenesDeTest(cantidadImagenesTest,784);
+
+            int imTrain=0;// contador de la fila de Train
+            int imTest=0;// contador de la fila de Test
+            Matriz <unsigned int> promedioImagenes(1,784);
+            //promedioImagenes[0][0]=0
+            cout<< "promedioImagenes "<<promedioImagenes[0][0]<<endl;
+
+
+            for(int imagen = 0; imagen < 42000; imagen++){ // cada imagen de train la mandamos a una de las dos matrices segun diga la particion
+
+                if(Klineas[particion][imagen]) {
+                    /// copiamos en imagenesDeTrain la imagen de train
+                   for(int j=0;j<784;j++){
+                        imagenesDeTrain[imTrain][j] = train[imagen][j+1];
+                   }
+
+
+                   imTrain++;
+
+                   for(int j=0;j<784;j++){
+                        promedioImagenes[0][j] += train[imagen][j+1];
+                   }
+
+
+                }
+                else {
+                    /// copiamos en imagenesDeTest la imagen de train
+                    for(int j=0;j<784;j++){
+                        imagenesDeTest[imTest][j] = train[imagen][j+1];
+                    }
+
+                    imTest++;
+
+                }
+
+            }
+            ///dividimos para calcular el promedio de las filas
+            double cte=1.0/ ((double) cantidadImagenesTrain);
+            for (int j=0; j<784; j++){
+                promedioImagenes[0][j] *= cte;
+            }
+
+            ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
+
+            for(int fila=0; fila<cantidadImagenesTrain;fila++){
+
+                for (int j=0; j<784; j++){
+                    imagenesDeTrain[fila][j] -= promedioImagenes[0][j];
+                }
+
+            }
+
+
+
+            Matriz<double> covarianza(cantidadImagenesTrain, cantidadImagenesTrain);
+            Matriz<double> traspuestaTrain(784, cantidadImagenesTrain);
+            traspuestaTrain= imagenesDeTrain.traspuesta();
+
+            covarianza= imagenesDeTrain * traspuestaTrain;
+
+
+            double cteCov=1.0/ ((double) (cantidadImagenesTrain-1));
+
+            covarianza = covarianza * cteCov; // esta es la matriz de covarianza
+
+            /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
+
+
+
+       }
 
             //metodo
             break;
