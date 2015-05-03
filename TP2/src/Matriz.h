@@ -154,9 +154,9 @@ Matriz<T> Matriz<T>::traspuesta(){
     int n = this->filas();
     int m = this->columnas();
 
-    Matriz<T> result(n,m);
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j< m ;j++){
+    Matriz<T> result(m,n);
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j< n ;j++){
             result[i][j] =  this->_matrix[j][i] ;
         }
     }
