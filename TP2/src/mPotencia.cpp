@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <fstream>
 #include "Matriz.h"
 #include <math.h>
 
@@ -22,13 +24,13 @@ void copiarMatriz(Matriz<double>& m1, Matriz<double>& m2)
 	}
 }
 
-
+/*
 pair<Matriz<double>, double> metodoPotencia(Matriz<double> A, Matriz<double>& x, unsigned int k)
 {
 	Matriz<double> A_kx(A.filas(), 1);
 	A_kx = A * x;
 	//cout<<A_kx[0][0]<<endl;
-	A_kx = A_kx * (1 / norma2(A_kx));
+	A_kx = A_kx * (1.0f / norma2(A_kx));
 
 	Matriz<double> A_kmenos1x(A.filas(), 1);
 
@@ -38,7 +40,7 @@ pair<Matriz<double>, double> metodoPotencia(Matriz<double> A, Matriz<double>& x,
 			copiarMatriz(A_kmenos1x, A_kx);
 
 		A_kx = A * A_kx;
-		A_kx = A_kx * (1 / norma2(A_kx));
+		A_kx = A_kx * (1.0f / norma2(A_kx));
 	}
 
 	// cout<<"___"<<endl;
@@ -89,6 +91,59 @@ vector<pair<Matriz<double>, double> > dameAvecYAval(Matriz<double>& A, Matriz<do
 
 	return ret;
 }
+*/
+//devuelve un vector con alpha autovalores
+/*
+vector<double> obtenerAutovalores(Matriz<double> A, Matriz<double>& v0, unsigned int k){
+
+
+
+
+}
+
+*/
+double metodoPotencia(Matriz<double> A, Matriz<double>& v0, unsigned int k){
+
+double lambda=v0[0][0];
+
+    double normalizar= 1.0/ norma2(v0);
+
+    v0= v0* normalizar;
+
+    Matriz<double> v1(v0.columnas(),1);
+
+    for(int i=0;i<k;i++){
+
+        v1= A* v0;
+
+         if(v0[0][0] == 0){
+            //throw runtime_error("Se esperaban 4 valores en línea ");
+            cout<<"se dividio por cero\n";
+        }
+
+        lambda= v1[1][0]/v0[1][0];
+      //  cout<<"lamda "<<lambda<<endl;
+
+        normalizar= 1.0/ norma2(v1);
+
+        v1= v1* normalizar;
+
+        v0=v1;
+    }
+
+    return lambda;
+
+}
+/*
+
+vector<double> obtenerAutovalores(Matriz<double> A, unsigned int alpha, unsigned int k){
+
+
+
+}
+*/
+
+
 
 int main()
 {
@@ -100,11 +155,53 @@ int main()
 
 	Matriz<double> v(3, 1);
 	v[0][0] = 1;
-	v[1][0] = 0;
+	v[1][0] = 5;
 	v[2][0] = 6;
 
+	double autovalor1= metodoPotencia(m,v,150);
+
+	cout<<"v[0]= "<<v[0][0]<<endl;
+
+	cout<<"v[1]= "<<v[1][0]<<endl;
+
+	cout<<"v[2]= "<<v[2][0]<<endl;
+
+	cout<<"autovalor1 "<<autovalor1<<endl;
+
+    Matriz<double> vtras1(1, v.columnas());
+
+	vtras1= v.traspuesta();
+
+	Matriz<double> prod(3,3);
+	prod= v*vtras1*autovalor1;
+
+	m =m - prod;
+
+	double autovalor2= metodoPotencia(m,v,150);
+
+	cout<<"v[0]= "<<v[0][0]<<endl;
+
+	cout<<"v[1]= "<<v[1][0]<<endl;
+
+	cout<<"v[2]= "<<v[2][0]<<endl;
+
+	cout<<"autovalor2 "<<autovalor2<<endl;
+
+
+
+
+
+
+
+
+
+
+/*
 	vector<pair<Matriz<double>, double> > res = dameAvecYAval(m, v, 150);
+
 	cout<<res[0].second<<" - ("<<res[0].first[0][0]<<" "<<res[0].first[1][0]<<" "<<res[0].first[2][0]<<" )"<<endl;
 	cout<<res[1].second<<" - ("<<res[1].first[0][0]<<" "<<res[1].first[1][0]<<" "<<res[1].first[2][0]<<" )"<<endl;
 	cout<<res[2].second<<" - ("<<res[2].first[0][0]<<" "<<res[2].first[1][0]<<" "<<res[2].first[2][0]<<" )"<<endl;
+
+*/
 }
