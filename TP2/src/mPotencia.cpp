@@ -102,9 +102,9 @@ vector<double> obtenerAutovalores(Matriz<double> A, Matriz<double>& v0, unsigned
 }
 
 */
-double metodoPotencia(Matriz<double> A, Matriz<double>& v0, unsigned int k){
+double ObtenerAutovalor(Matriz<double> A, Matriz<double>& v0, unsigned int k){
 
-double lambda=v0[0][0];
+    double lambda=v0[0][0];
 
     double normalizar= 1.0/ norma2(v0);
 
@@ -118,10 +118,11 @@ double lambda=v0[0][0];
 
          if(v0[0][0] == 0){
             //throw runtime_error("Se esperaban 4 valores en línea ");
-            cout<<"se dividio por cero\n";
+            cerr<<"se dividio por cero\n";
+            return -1;
         }
 
-        lambda= v1[1][0]/v0[1][0];
+        lambda= v1[0][0]/v0[0][0];
       //  cout<<"lamda "<<lambda<<endl;
 
         normalizar= 1.0/ norma2(v1);
@@ -134,14 +135,42 @@ double lambda=v0[0][0];
     return lambda;
 
 }
-/*
 
-vector<double> obtenerAutovalores(Matriz<double> A, unsigned int alpha, unsigned int k){
+// k es la cantidad de iteraciones para aproximar
+vector<double> metodoPotencias(Matriz<double>& A, unsigned int alpha, unsigned int k, Matriz<double>& P,Matriz<double>& v){
 
 
+    vector<double> autovalores;
 
+    for(int i=0;i<alpha;i++){
+
+
+        double autovalori= ObtenerAutovalor(A,v,k);
+
+        autovalores.push_back(autovalori);
+
+        //guardamos en P los autovectores como columnas
+        for(int j=0;j<A.columnas();j++){
+
+            P[j][i]=v[j][0];
+
+        }
+
+        Matriz<double> vt(1, v.filas());
+
+        vt= v.traspuesta();
+
+        Matriz<double> prod(v.filas(),v.filas());
+        prod= v*vt*autovalori;
+
+        A =A - prod;
+
+
+    }
+
+    return autovalores;
 }
-*/
+
 
 
 
@@ -158,7 +187,7 @@ int main()
 	v[1][0] = 5;
 	v[2][0] = 6;
 
-	double autovalor1= metodoPotencia(m,v,150);
+	/*double autovalor1= ObtenerAutovalor(m,v,150);
 
 	cout<<"v[0]= "<<v[0][0]<<endl;
 
@@ -168,7 +197,7 @@ int main()
 
 	cout<<"autovalor1 "<<autovalor1<<endl;
 
-    Matriz<double> vtras1(1, v.columnas());
+    Matriz<double> vtras1(1, v.filas());
 
 	vtras1= v.traspuesta();
 
@@ -177,7 +206,7 @@ int main()
 
 	m =m - prod;
 
-	double autovalor2= metodoPotencia(m,v,150);
+	double autovalor2= ObtenerAutovalor(m,v,150);
 
 	cout<<"v[0]= "<<v[0][0]<<endl;
 
@@ -186,7 +215,25 @@ int main()
 	cout<<"v[2]= "<<v[2][0]<<endl;
 
 	cout<<"autovalor2 "<<autovalor2<<endl;
+	*/
 
+
+	cout<<"metodopotencias\n";
+
+	vector<double> autoV;
+
+	Matriz<double> P(m.columnas(),2);
+
+    autoV= metodoPotencias(m, 2, 20, P, v);
+    cout<<"[";
+    for(int i=0; i<autoV.size();i++){
+
+    cout<<autoV[i]<<", ";
+
+    }
+    cout<<"]\n";
+
+    P.display();
 
 
 

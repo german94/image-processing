@@ -32,6 +32,8 @@ template<class T>
 Matriz<T>::~Matriz(){
 }
 
+
+
 template<class T>
 Matriz<T>::Matriz(int filas, int cols){
     _filas = filas;
@@ -51,6 +53,7 @@ template<class T>
 int Matriz<T>::columnas(){
     return _columnas;
 }
+
 
 
 template<class T>
@@ -163,6 +166,20 @@ Matriz<T> Matriz<T>::traspuesta(){
     return result;
 }
 
+
+template<class T>
+void Matriz<T>::display(){
+    std::cout<<"Empieza matriz\n";
+    for(int i=0;i<_filas;i++){
+        std::cout<<"[ ";
+        for(int j=0;j<_columnas;j++){
+             std::cout<< _matrix[i][j]<<" , ";
+
+        }
+        std::cout<<" ]\n";
+    }
+    std::cout<<"Fin matriz\n";
+}
 
 
 #endif // MATRIZ_H
