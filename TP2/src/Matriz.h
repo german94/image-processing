@@ -19,6 +19,7 @@ class Matriz
         int filas();
         int columnas();
         void display();
+        void eliminar();
     protected:
     private:
         std::vector<std::vector <T> > _matrix;
@@ -30,8 +31,23 @@ class Matriz
 
 template<class T>
 Matriz<T>::~Matriz(){
+
+for(int i=0;i<_matrix.size();i++){
+_matrix[i].clear();
+}
+_matrix.clear();
+
 }
 
+template<class T>
+void Matriz<T>::eliminar(){
+
+for(int i=0;i<_matrix.size();i++){
+_matrix[i].clear();
+}
+_matrix.clear();
+
+}
 
 
 template<class T>

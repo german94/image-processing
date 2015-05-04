@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="test2.in test2.out 1" />
+				<Option parameters="test1mini.in test1mini.out 0" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -34,6 +34,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Matriz.h" />
+		<Unit filename="mPotencia.cpp" />
+		<Unit filename="mPotencia.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="util.h" />
 		<Extensions>
