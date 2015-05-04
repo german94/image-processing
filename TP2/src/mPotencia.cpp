@@ -102,7 +102,7 @@ vector<double> obtenerAutovalores(Matriz<double> A, Matriz<double>& v0, unsigned
 }
 
 */
-double ObtenerAutovalor(Matriz<double> A, Matriz<double>& v0, unsigned int k){
+double ObtenerAutovalor(Matriz<double> &A, Matriz<double>& v0, unsigned int k){
 
     double lambda=v0[0][0];
 
@@ -205,6 +205,7 @@ int main()
 	prod= v*vtras1*autovalor1;
 
 	m =m - prod;
+	*/
 
 	double autovalor2= ObtenerAutovalor(m,v,150);
 
@@ -215,16 +216,16 @@ int main()
 	cout<<"v[2]= "<<v[2][0]<<endl;
 
 	cout<<"autovalor2 "<<autovalor2<<endl;
-	*/
+	
 
 
 	cout<<"metodopotencias\n";
 
 	vector<double> autoV;
 
-	Matriz<double> P(m.columnas(),2);
+	Matriz<double> P(m.columnas(),3);
 
-    autoV= metodoPotencias(m, 2, 20, P, v);
+    autoV= metodoPotencias(m, 3, 20, P, v);
     cout<<"[";
     for(int i=0; i<autoV.size();i++){
 
@@ -235,13 +236,9 @@ int main()
 
     P.display();
 
+    return 0;
 
-
-
-
-
-
-
+}
 
 /*
 	vector<pair<Matriz<double>, double> > res = dameAvecYAval(m, v, 150);
@@ -250,5 +247,5 @@ int main()
 	cout<<res[1].second<<" - ("<<res[1].first[0][0]<<" "<<res[1].first[1][0]<<" "<<res[1].first[2][0]<<" )"<<endl;
 	cout<<res[2].second<<" - ("<<res[2].first[0][0]<<" "<<res[2].first[1][0]<<" "<<res[2].first[2][0]<<" )"<<endl;
 
+
 */
-}
