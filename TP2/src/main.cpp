@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include "util.h"
 #include "Matriz.h"
+#include "mPotencia.h"
+
 
 // #define DEBUG
 
@@ -146,9 +148,7 @@ int main(int argc, char *argv[]) {
 
     case PCA_KNN: {
 
-        Matriz<unsigned int> train(42000,785);
-
-        cargarMatrizTrain(train);
+ 
 
         vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
 
@@ -228,13 +228,13 @@ int main(int argc, char *argv[]) {
 
             }
 
-
+          
 
             Matriz<double> covarianza(cantidadImagenesTrain, cantidadImagenesTrain);
             Matriz<double> traspuestaTrain(784, cantidadImagenesTrain);
             traspuestaTrain= imagenesDeTrain.traspuesta();
 
-            covarianza= imagenesDeTrain * traspuestaTrain;
+            covarianza= traspuestaTrain * imagenesDeTrain;
 
 
             double cteCov=1.0/ ((double) (cantidadImagenesTrain-1));
@@ -242,7 +242,24 @@ int main(int argc, char *argv[]) {
             covarianza = covarianza * cteCov; // esta es la matriz de covarianza
 
             /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
+    		  /* matriz con las transformaciones caracteristicas
+			Matriz<double> P(covarianza.filas(), alpha); 
+			Matriz<double> v(covarianza.filas(), 1); 
+		    vector<double> los_autovectores = metodoPotencias(covarianza, alpha, k, P, v); // no tiene por que ser k no?
 
+		    Matriz<double> tc(imagenesDeTrain.filas(), alpha);
+		    for(int i = 0; i < tc.filas(); i++)
+		    {
+		    	for(int j = 0; j < tc.columnas(); j++)
+		    	{
+		    		tc[i][j] = 0;
+		    	
+		    		for(int Im_c = 0; Im_c < imagenesDeTrain.columnas(); Im_c++ )
+		    		{
+		   				tc[i][j] = tc[i][j] + P[Im_c][j] + imagenesDeTrain[i][Im_c]; 
+		   			}  		 
+		    	}
+		    } */
 
 
        }
