@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include "util.h"
 #include "Matriz.h"
-#include "mPotencia.h"
+#include "mPotencia.cpp"
 #include <math.h>
 
 
@@ -65,9 +65,9 @@ void usage() {
 	cout << "./tp <input_filename> <output_filename> <metodo>" << endl;
 }
 
-const int CIMAGENES=42000;
-const int CPIXELES=784;
-const int CPIXELESYETIQUETA=785;
+const int CIMAGENES=30;
+const int CPIXELES=7;
+const int CPIXELESYETIQUETA=8;
 
 int main(int argc, char *argv[]) {
 	if(argc != 4) {
@@ -309,7 +309,7 @@ vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz
         for(int j = 0; j < Klineas.columnas(); j++)//42000
         {
             vector<unsigned int> imagen;
-            for(int l = 0; l < 784; l++)
+            for(int l = 0; l < CPIXELES; l++)
                 imagen.push_back(train[j][l + 1]);
 
             pair<unsigned int, vector<unsigned int> > p(train[j][0], imagen);
