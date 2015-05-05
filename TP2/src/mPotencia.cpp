@@ -24,7 +24,7 @@ void copiarMatriz(Matriz<double>& m1, Matriz<double>& m2)
 	}
 }
 
-double ObtenerAutovalor(Matriz<double> A, Matriz<double>& v0, unsigned int k){
+double ObtenerAutovalorMayor(Matriz<double> A, Matriz<double>& v0, unsigned int k){
 
     double lambda=v0[0][0];
 
@@ -38,32 +38,13 @@ double ObtenerAutovalor(Matriz<double> A, Matriz<double>& v0, unsigned int k){
 
         v1= A* v0;
 
-/*
 
-        int sum0=0;
-        int sum1=0;
-        for(int j=0; j<v1.filas();j++){
-            sum0+=v0[j][0];
-            sum1+=v1[j][0];
-
+        if(norma2(v0)==0){
+            cerr<<"se dividiria por cero\n";
+            return lambda;
         }
 
-           if(sum0 == 0){
-            //throw runtime_error("Se esperaban 4 valores en línea ");
-            cerr<<"se dividio por cero\n";
-            return -1;
-        }
-        lambda= sum1/sum0;
-
-        */
-
-        if(v0[0][0] == 0){
-            //throw runtime_error("Se esperaban 4 valores en línea ");
-            cerr<<"se dividio por cero\n";
-            return -1;
-        }
-
-         lambda= v1[0][0]/v0[0][0];
+        lambda= norma2(v1)/norma2(v0);
 
       //  cout<<"lamda "<<lambda<<endl;
 
@@ -87,7 +68,7 @@ vector<double> metodoPotencias(Matriz<double>& A, unsigned int alpha, unsigned i
     for(int i=0;i<alpha;i++){
 
 
-        double autovalori= ObtenerAutovalor(A,v,k);
+        double autovalori= ObtenerAutovalorMayor(A,v,k);
 
         autovalores.push_back(autovalori);
 
@@ -126,12 +107,7 @@ Matriz<double> res(m1.filas(),m2.columnas());
 
             }
             res[i][j]= sum;
-
         }
-
     }
-
-
-
 }
 

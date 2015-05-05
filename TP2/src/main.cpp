@@ -5,6 +5,8 @@
 #include "util.h"
 #include "Matriz.h"
 #include "mPotencia.h"
+#include <math.h>
+
 
 // #define DEBUG
 
@@ -63,9 +65,9 @@ void usage() {
 	cout << "./tp <input_filename> <output_filename> <metodo>" << endl;
 }
 
-const int cImagenes=20;
-const int cPixeles=7;
-const int cPixelesYEtiqueta=8;
+const int CIMAGENES=42000;
+const int CPIXELES=784;
+const int CPIXELESYETIQUETA=785;
 
 int main(int argc, char *argv[]) {
 	if(argc != 4) {
@@ -75,8 +77,8 @@ int main(int argc, char *argv[]) {
 	ifstream entrada(argv[1],std::ifstream::in);
 	ofstream salida(argv[2],std::ofstream::out);
 
-	Metodo metodo = (Metodo) string_to_type<int>(argv[3]);
 
+	Metodo metodo = (Metodo) string_to_type<int>(argv[3]);
     unsigned int num_linea = 1;
     int estado = 0;
 
@@ -100,8 +102,7 @@ int main(int argc, char *argv[]) {
     alpha = string_to_type<unsigned int>(valoresIniciales[2]);
     K = string_to_type<unsigned int>(valoresIniciales[3]);
 
-
-    Matriz<bool> Klineas(K,cImagenes); // matriz con las particiones a realizar
+    Matriz<bool> Klineas(K,CIMAGENES); // matriz con las particiones a realizar
     int filaM=0;  // fila de la matriz
 
    //se empieza a analizar desde la segunda linea
@@ -109,11 +110,11 @@ int main(int argc, char *argv[]) {
 
         vector<string> valores = separar(linea);
 
-                if (valores.size() != cImagenes) {
-                    throw runtime_error("Se esperaban cImagenes valores en línea ");
+                if (valores.size() != CIMAGENES) {
+                    throw runtime_error("Se esperaban CIMAGENES valores en línea ");
                 }
 
-                for(int colM=0;colM<cImagenes;colM++){
+                for(int colM=0;colM<CIMAGENES;colM++){
 
                     Klineas[filaM][colM] = string_to_type<bool>(valores[colM]);
                 }
@@ -121,217 +122,161 @@ int main(int argc, char *argv[]) {
                 filaM++;
     }
 
-    Matriz<int> train(cImagenes, cPixelesYEtiqueta);     //42k de imagenes, cada imagen son 784 valores y un valor mas que representa el digito al que corresponde
+    Matriz<int> train(CIMAGENES, CPIXELESYETIQUETA);     //42k de imagenes, cada imagen son 784 valores y un valor mas que representa el digito al que corresponde
+
     cargarMatrizTrain(train);
 
     switch(metodo){
 
-    case KNN:{
+        case KNN:{
 
             vector<double> res = kNN(K, k, Klineas, train);
             //en pantalla
             for(int i=0; i<res.size();i++){
             cout<<res[i]<<endl;
-
             }
 
             ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
             tasaReconocimiento<<"Particion"<<"\t"<<"Tasa de Reconocimiento\n";
 
             for (int i = 0; i < res.size(); ++i){
+            tasaReconocimiento<<i+1<<"\t\t\t"<<res[i]<<endl;
+            }
 
-               tasaReconocimiento<<i+1<<"\t\t\t"<<res[i]<<endl;
-
-           }
-
+            ///aplicarle knn a la base de test y devover los resultados en el formato que envio agustin por mail
             break;
-
-    }
-
-    case PCA_KNN: {
-
-        vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
-
-        vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
-
-        for(int particion = 0; particion < K; particion++){
-
-            //asignamos los digitos(primera columna)
-            unsigned int cantidadImagenesTrain=0;
-            unsigned int cantidadImagenesTest=0;
-            for(int j=0; j<Klineas.columnas(); j++){
-
-                if(Klineas[particion][j]){
-
-                    cantidadImagenesTrain++; //problema  este recorrido podria evitarse
-
-                    digitosImagenesTrain.push_back(train[j][0]);
-                }
-                else{
-
-                    digitosImagenesTest.push_back(train[j][0]);
-                    cantidadImagenesTest++;
-                }
-            }
-
-
-            cout<<"cantidad imagenes train "<<cantidadImagenesTrain<<endl;
-            cout<<"cantidad imagenes test "<<cantidadImagenesTest<<endl;
-
-
-            Matriz<double> imagenesDeTrain(cantidadImagenesTrain,cPixeles); /// le faltan los digitos etiquetados de la primera columna
-
-            Matriz <int> imagenesDeTest(cantidadImagenesTest,cPixeles);
-
-            int imTrain=0;// contador de la fila de Train
-            int imTest=0;// contador de la fila de Test
-            Matriz <double> promedioImagenes(1,cPixeles);
-            //promedioImagenes[0][0]=0
-            cout<< "promedioImagenes "<<promedioImagenes[0][0]<<endl;
-
-
-            for(int imagen = 0; imagen < cImagenes; imagen++){ // cada imagen de train la mandamos a una de las dos matrices segun diga la particion
-
-                if(Klineas[particion][imagen]) {
-                    /// copiamos en imagenesDeTrain la imagen de train
-                   for(int j=0;j<cPixeles;j++){
-                        imagenesDeTrain[imTrain][j] = train[imagen][j+1];
-                   }
-                   imTrain++;
-                }
-                else {
-                    /// copiamos en imagenesDeTest la imagen de train
-                    for(int j=0;j<cPixeles;j++){
-                        imagenesDeTest[imTest][j] = train[imagen][j+1];
-                    }
-
-                    imTest++;
-
-                }
-
-            }
-
-            cout<<"filas de imagenesDeTrain "<<imagenesDeTrain.filas()<<endl;
-
-
-            cout<<"imagenesDeTest\n ";
-
-           imagenesDeTest.display();
-
-
-
-            cout<<"imagenesDeTrain "<<endl;
-            imagenesDeTrain.display();
-
-
-            for(int j=0;j<cPixeles;j++){
-                for(int i=0;i<imagenesDeTrain.filas();i++){
-                       promedioImagenes[0][j] += imagenesDeTrain[i][j];
-                    }
-            }
-
-            cout<<"Promedio de imagenes\n";
-            promedioImagenes.display();
-
-            ///dividimos para calcular el promedio de las filas
-            double cte=1.0/ ((double) cantidadImagenesTrain);
-
-
-            cout<<"cte es "<<cte<<endl;
-
-            promedioImagenes=promedioImagenes * cte;
-                        promedioImagenes.display();
-
-          //  promedioImagenes.display();
-
-            ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
-
-          for (int j=0; j<cPixeles; j++){
-            for(int fila=0; fila<cantidadImagenesTrain;fila++){
-                    imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
-                }
-
-            }
-
-
-            cout<<"antes covarianza\n";
-            Matriz<double> covarianza(cPixeles, cPixeles);
-            cout<<"covarianza alojada\n";
-
-
-            Matriz<double> traspuestaTrain(cPixeles, cantidadImagenesTrain);
-            cout<<"imagenesTrain\n";
-
-
-            traspuestaTrain= imagenesDeTrain.traspuesta();
-            cout<<" traspuesta echa\n";
-
-
-            covarianza= traspuestaTrain * imagenesDeTrain;
-            cout<<" multilicacion echa\n";
-
-            double cteCov=1.0/ ((double) (cantidadImagenesTrain-1));
-            covarianza = covarianza * cteCov; // esta es la matriz de covarianza
-            cout<< "matriz de covarianza: \n";
-            covarianza.display();
-
-
-            /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
-
-            vector<double> valoresSingulares;
-
-            covarianza.display();
-
-            Matriz<double> P(covarianza.filas(), alpha);
-
-            Matriz<double> v(cPixeles,1);
-
-            for(int i=0;i<cPixeles;i++){
-
-                v[i][0]=2;
-            }
-
-
-            cout<<"aplicando metodo potencias\n";
-           valoresSingulares= metodoPotencias(covarianza,alpha,150,P,v);
-           cout<<"valoresSingulares\n";
-
-           for(int i=0;i<valoresSingulares.size();i++){
-            cout<<valoresSingulares[i]<<endl;
-            salida<<valoresSingulares[i]<<endl;
-           }
-            cout<<"autovectores\n";
-
-            P.display();
-
-
-
-            cout<<"fin de particion\n";
-
-
-
         }
 
+        case PCA_KNN: {
 
-        break;
+            vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
+
+            vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
+
+            salida<<scientific<<setprecision(6);
+
+
+            for(int particion = 0; particion < K; particion++){
+
+                //asignamos los digitos(primera columna)
+                unsigned int cantidadImagenesTrain=0;
+                for(int j=0; j<Klineas.columnas(); j++){
+
+                    if(Klineas[particion][j]){
+                        cantidadImagenesTrain++; //problema  este recorrido podria evitarse
+                        digitosImagenesTrain.push_back(train[j][0]);
+                    }
+                    else{
+                        digitosImagenesTest.push_back(train[j][0]);
+                    }
+                }
+
+                unsigned int cantidadImagenesTest=CIMAGENES-cantidadImagenesTrain;
+
+                Matriz<double> imagenesDeTrain(cantidadImagenesTrain,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
+
+                Matriz <int> imagenesDeTest(cantidadImagenesTest,CPIXELES);
+
+                int imTrain=0;// contador de la fila de Train
+                int imTest=0;// contador de la fila de Test
+                Matriz <double> promedioImagenes(1,CPIXELES);
+                for(int imagen = 0; imagen < CIMAGENES; imagen++){ // cada imagen de train la mandamos a una de las dos matrices segun diga la particion
+                    if(Klineas[particion][imagen]) {
+                        /// copiamos en imagenesDeTrain la imagen de train
+                       for(int j=0;j<CPIXELES;j++){
+                            imagenesDeTrain[imTrain][j] = train[imagen][j+1];
+                       }
+                       imTrain++;
+                    }
+                    else {
+                        /// copiamos en imagenesDeTest la imagen de train
+                        for(int j=0;j<CPIXELES;j++){
+                            imagenesDeTest[imTest][j] = train[imagen][j+1];
+                        }
+                        imTest++;
+                    }
+                }
+
+         //       cout<<"imagenesDeTest\n ";
+          //     imagenesDeTest.display();
+            //    cout<<"imagenesDeTrain "<<endl;
+           //    imagenesDeTrain.display();
+                ///calculo el promedio
+                for(int j=0;j<CPIXELES;j++){
+                    for(int i=0;i<imagenesDeTrain.filas();i++){
+                        promedioImagenes[0][j] += imagenesDeTrain[i][j];
+                    }
+                }
+
+             //   promedioImagenes.display();
+
+                ///dividimos para calcular el promedio de las filas
+                double cte=1.0/ ((double) cantidadImagenesTrain);
+                promedioImagenes=promedioImagenes * cte;
+        //       promedioImagenes.display();
+        //        cout<<"promedio de imagenes\n";
+        //    promedioImagenes.display();
+                ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
+
+                for (int j=0; j<CPIXELES; j++){
+                    for(int fila=0; fila<cantidadImagenesTrain;fila++){
+                        imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
+                    }
+                }
+
+                Matriz<double> covarianza(CPIXELES, CPIXELES);
+                Matriz<double> traspuestaTrain(CPIXELES, cantidadImagenesTrain);
+        //cout<<"imagenesTrain\n";
+           //     imagenesDeTrain.display();
+                traspuestaTrain= imagenesDeTrain.traspuesta();
+           //     traspuestaTrain.display();
+                covarianza= traspuestaTrain * imagenesDeTrain;
+                double cteCov=1.0/ ((double) (cantidadImagenesTrain-1));
+        //cout<<"constante covarianza "<<cteCov<<endl;
+                covarianza = covarianza * cteCov; // esta es la matriz de covarianza
+        //      cout<< "matriz de covarianza: \n";
+        //        covarianza.display();
+                /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
+
+                vector<double> valoresSingulares;
+                Matriz<double> P(covarianza.filas(), alpha);
+                Matriz<double> v(CPIXELES,1);
+
+                for(int i=0;i<CPIXELES;i++){
+
+                    v[i][0]=2;
+                }
+
+
+                cout<<"aplicando metodo potencias\n";
+                valoresSingulares= metodoPotencias(covarianza,alpha,300,P,v);
+                cout<<"escribiendo valoresSingulares\n";
+                for(int i=0;i<valoresSingulares.size();i++){
+        //     cout<<valoresSingulares[i]<<endl;
+                    salida<<sqrt(valoresSingulares[i])<<endl;
+               }
+
+        // P.display();
+
+                cout<<"fin de particion\n";
+            }
+            break;
+        }
+
+        default:
+            throw runtime_error("No existe ese metodo");
     }
 
-    default:
-        throw runtime_error("No existe ese metodo");
-}
-
     return 0;
-
 }
 
 
 void cargarMatrizTrain(Matriz<int>& train)
 {
-    ifstream baseTrain("../data/trainChico.csv", std::ifstream::in);
+    ifstream baseTrain("../data/train.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
-   // cout<<"primera linea\n";
    // cout<<lineaNombrePixel<<endl;
 
     int filaM = 0;
@@ -339,11 +284,11 @@ void cargarMatrizTrain(Matriz<int>& train)
     {
         vector<string> valores = separarComa(linea);
 
-        if (valores.size() != 8) {
-            throw runtime_error("Se esperaban 8 valores en línea ");
+        if (valores.size() != CPIXELESYETIQUETA) {
+            throw runtime_error("Se esperaban CPIXELESYETIQUETA valores en línea ");
         }
 
-        for(int colM = 0; colM < cPixelesYEtiqueta; colM++){
+        for(int colM = 0; colM < CPIXELESYETIQUETA; colM++){
 
             train[filaM][colM] = string_to_type<int>(valores[colM]);
         }
