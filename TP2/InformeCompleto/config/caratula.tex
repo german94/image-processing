@@ -1,0 +1,52 @@
+
+\begin{figure}[ptb]
+\includegraphics[scale=0.30]{logo.jpg}\hspace{6cm}
+\includegraphics[scale=0.90]{logo_dc.jpg}
+\end{figure}
+
+\newcommand{\autores}{Armagno, More, Pinzón, Porto}
+
+%Datos de la caratula
+\materia{M\'etodos Num\'ericos}
+\titulo{Trabajo Pr\'actico 2}
+\subtitulo{Reconocimiento de dígitos.}
+\hspace{6cm}
+\integrante{Armagno, Julián}{377/12}{julian.armagno@gmail.com}
+\integrante{More, Ángel}{931/12}{angel\_21\_fer@hotmail.com}
+\integrante{Pinzón, Germán}{475/13}{pinzon.german.94@gmail.com}
+\integrante{Porto, Jorge}{376/11}{cuanto.p.p@gmail.com}
+\resumen{En este trabajo pondremos en práctica distintos algoritmos para reconocer una cierta cantidad de dígitos manuscritos. Se trabajará con una base train, a la cual le realizaremos particiones para entrenar los algoritmos. Se implementará el metodo de kNN(k-Nearest Neighbors). Debido a que este es sensible a la dimensión de los objetos a considerar, además se implementará el método de Análisis de Componentes Principales para reducir el tamaño de dichos objetos. Se llevarán a cabo experimentaciones para poder determinar los parámetros óptimos para cada método. Al final del trabajo, se llegarán a conclusiones sobre lo descubierto.}
+\palabrasClave{Learning Machine. kNN. Análisis de Componentes Principales. Auto-Valores. Auto-Vectores. Método de las Potencias. K-fold cross validation}
+\hypersetup{%
+ % Para que el PDF se abra a página completa.
+ pdfstartview= {FitH \hypercalcbp{\paperheight-\topmargin-1in-\headheight}},
+ pdfauthor={\autores},
+ pdfsubject={TP1}
+}
+
+\parskip=5pt % 10pt es el tamaño de fuente
+
+% Pongo en 0 la distancia extra entre ítemes.
+\let\olditemize\itemize
+\def\itemize{\olditemize\itemsep=0pt}
+
+% Acomodo fancyhdr <- Creo que es el encabezado de pagina
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\addtolength{\headheight}{1pt}
+\lhead{M\'etodos Num\'ericos - 1$^{er}$ Cuatr. 2015}
+\rhead{TP1 - \autores}
+\cfoot{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+%Pagina de titulo e indice
+\thispagestyle{empty}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
