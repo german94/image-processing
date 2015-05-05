@@ -34,7 +34,7 @@ using namespace std;
 
 
 void cargarMatrizTrain(Matriz<int>& train);
-vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz<int>& train);
+double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > imgParantrenar);
 unsigned int norma2AlCuadrado(vector<unsigned int> v1, vector<unsigned int> v2);
 
 
@@ -130,17 +130,42 @@ int main(int argc, char *argv[]) {
 
         case KNN:{
 
-            vector<double> res = kNN(K, k, Klineas, train);
+                vector<double> tasaDeReco;
+                for(int i = 0; i < K; i++)
+                {
+                    vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaReconocer;
+                    vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaEntrenar;
+
+                    for(int j = 0; j < Klineas.columnas(); j++)//42000
+                    {
+                        vector<unsigned int> imagen;
+                        for(int l = 0; l < CPIXELES; l++)
+                            imagen.push_back(train[j][l + 1]);
+
+                        pair<unsigned int, vector<unsigned int> > p(train[j][0], imagen);
+
+                        if(Klineas[i][j] == 0)
+                            imagenesDeTrainParaReconocer.push_back(p);
+                        else
+                            imagenesDeTrainParaEntrenar.push_back(p);
+                    }
+
+                    double tasa = kNN(k, imagenesDeTrainParaReconocer, imagenesDeTrainParaEntrenar);
+                    tasaDeReco.push_back(tasa);
+
+                }
+
+       
             //en pantalla
-            for(int i=0; i<res.size();i++){
-            cout<<res[i]<<endl;
+            for(int i=0; i<tasaDeReco.size();i++){
+            cout<<tasaDeReco[i]<<endl;
             }
 
             ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
             tasaReconocimiento<<"Particion"<<"\t"<<"Tasa de Reconocimiento\n";
 
-            for (int i = 0; i < res.size(); ++i){
-            tasaReconocimiento<<i+1<<"\t\t\t"<<res[i]<<endl;
+            for (int i = 0; i < tasaDeReco.size(); ++i){
+            tasaReconocimiento<<i+1<<"\t\t\t"<<tasaDeReco[i]<<endl;
             }
 
             ///aplicarle knn a la base de test y devover los resultados en el formato que envio agustin por mail
@@ -273,7 +298,7 @@ int main(int argc, char *argv[]) {
 
 void cargarMatrizTrain(Matriz<int>& train)
 {
-    ifstream baseTrain("../data/train.csv", std::ifstream::in);
+    ifstream baseTrain("../data/trainChico.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
@@ -297,77 +322,54 @@ void cargarMatrizTrain(Matriz<int>& train)
     }
 }
 
-vector<double> kNN(unsigned int K, unsigned int k, Matriz<bool>& Klineas, Matriz<int>& train)
+double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > imgParantrenar)
 {
-    vector<double> tasaDeReconocimiento;
-
-    for(int i = 0; i < K; i++)
+    double tasaDeReconocimiento;
+    unsigned int reconocidos = 0;
+    for(int z = 0; z < imgAReconocer.size(); z++)
     {
-        vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaReconocer;
-        vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaEntrenar;
+        vector<pair<int, int> > normas2AlCuadrado;
 
-        for(int j = 0; j < Klineas.columnas(); j++)//42000
+        for(int m = 0; m < imgParantrenar.size(); m++)
         {
-            vector<unsigned int> imagen;
-            for(int l = 0; l < CPIXELES; l++)
-                imagen.push_back(train[j][l + 1]);
+            unsigned int distanciaAlCuadrado = norma2AlCuadrado(imgAReconocer[z].second, imgParantrenar[m].second);
 
-            pair<unsigned int, vector<unsigned int> > p(train[j][0], imagen);
-
-            if(Klineas[i][j] == 0)
-                imagenesDeTrainParaReconocer.push_back(p);
-            else
-                imagenesDeTrainParaEntrenar.push_back(p);
-        }
-
-
-        unsigned int reconocidos = 0;
-        for(int z = 0; z < imagenesDeTrainParaReconocer.size(); z++)
-        {
-            vector<pair<int, int> > normas2AlCuadrado;
-
-            for(int m = 0; m < imagenesDeTrainParaEntrenar.size(); m++)
+            if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
             {
-                unsigned int distanciaAlCuadrado = norma2AlCuadrado(imagenesDeTrainParaReconocer[z].second, imagenesDeTrainParaEntrenar[m].second);
-
-                if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
+                pair<unsigned int, int> a;
+                a.first =  imgParantrenar[m].first;
+                a.second = distanciaAlCuadrado;
+                normas2AlCuadrado.push_back(a);
+            }
+            else
+            {
+                if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)); //si ya tengo k voy sacando las mayores
                 {
-                    pair<unsigned int, int> a;
-                    a.first =  imagenesDeTrainParaEntrenar[m].first;
-                    a.second = distanciaAlCuadrado;
-                    normas2AlCuadrado.push_back(a);
-                }
-                else
-                {
-                    if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)); //si ya tengo k voy sacando las mayores
-                    {
-                        int pos_mayor = dondemayor(normas2AlCuadrado);
-                        normas2AlCuadrado[pos_mayor].first = imagenesDeTrainParaEntrenar[m].first;
-                        normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
-                    }
+                    int pos_mayor = dondemayor(normas2AlCuadrado);
+                    normas2AlCuadrado[pos_mayor].first = imgParantrenar[m].first;
+                    normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
                 }
             }
-                unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-                for(int t = 0; t < k; t++)
-                    digitos[normas2AlCuadrado[t].first]++;
-
-                unsigned int ganador = digitos[0];
-                for(int x = 0; x < 10; x++)
-                {
-                    if(digitos[x] > digitos[ganador])
-                        ganador = x;
-                }
-
-                if(ganador == imagenesDeTrainParaReconocer[z].first)
-                    reconocidos++;
-
         }
 
-        double tasa = (double)reconocidos/(double)imagenesDeTrainParaReconocer.size();
-        tasaDeReconocimiento.push_back(tasa);
+        unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        for(int t = 0; t < k; t++)
+            digitos[normas2AlCuadrado[t].first]++;
+
+        unsigned int ganador = digitos[0];
+        for(int x = 0; x < 10; x++)
+        {
+            if(digitos[x] > digitos[ganador])
+                ganador = x;
+        }
+
+        if(ganador == imgAReconocer[z].first)
+            reconocidos++;
+
     }
 
-    return tasaDeReconocimiento;
+        tasaDeReconocimiento = (double)reconocidos/(double)imgAReconocer.size();
+        return tasaDeReconocimiento;
 }
 
 
