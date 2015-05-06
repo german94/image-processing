@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include "util.h"
 #include "Matriz.h"
-#include "mPotencia.h"
+#include "mPotencia.cpp"
 #include <math.h>
 
 // #define DEBUG
@@ -14,7 +14,7 @@ using namespace std;
 bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado);
 int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado);
 void cargarMatrizTrain(Matriz<int>& train);
-double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > &imgParantrenar);
+/*double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > &imgParantrenar);*/
 unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2);
 double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int>  &digitosImagenesTest, vector<int> &digitosImagenesTrain);
 
@@ -108,7 +108,10 @@ int main(int argc, char *argv[]) {
 
         case KNN:{
 
+                vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
+                vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
                 vector<double> tasaDeReco;
+                /*
                 for(int i = 0; i < K; i++)
                 {
                     vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaReconocer;
@@ -129,7 +132,53 @@ int main(int argc, char *argv[]) {
                     }
 
                     double tasa = kNN(k, imagenesDeTrainParaReconocer, imagenesDeTrainParaEntrenar);
+
+                    */
+                 for(int i = 0; i < K; i++)
+                 {
+                    unsigned int cantidadImagenesTrain=0;
+                    for(int j=0; j<Klineas.columnas(); j++)
+                    {
+                        if(Klineas[i][j])
+                        {
+                            cantidadImagenesTrain++;
+                            digitosImagenesTrain.push_back(train[j][0]);
+                        }
+                        else
+                        {
+                            digitosImagenesTest.push_back(train[j][0]);
+                        }
+                    }
+
+
+                    unsigned int cantidadImagenesTest=CIMAGENES-cantidadImagenesTrain;
+
+                    Matriz<double> imagenesDeTrain(cantidadImagenesTrain,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
+
+                    Matriz<double> imagenesDeTest(cantidadImagenesTest,CPIXELES);
+
+                    int imTrain=0;// contador de la fila de Train
+                    int imTest=0;// contador de la fila de Test
+                    for(int imagen = 0; imagen < CIMAGENES; imagen++)
+                    { // cada imagen de train la mandamos a una de las dos matrices segun diga la i
+                        if(Klineas[i][imagen]) 
+                        {                       
+                            for(int j=0;j<CPIXELES;j++){ imagenesDeTrain[imTrain][j] = train[imagen][j+1];}
+                            imTrain++;
+                        }
+                        else 
+                        {                        
+                            for(int j=0;j<CPIXELES;j++){imagenesDeTest[imTest][j] = train[imagen][j+1];}
+                            imTest++;
+                        }
+                    }
+
+
+                 
+
+                    double tasa = kNN2(k, imagenesDeTest, imagenesDeTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
+
                 }
 
 	            for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
@@ -319,7 +368,7 @@ void cargarMatrizTrain(Matriz<int>& train)
         filaM++;
     }
 }
-
+/*
 double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > &imgParantrenar)
 {
     double tasaDeReconocimiento;
@@ -369,7 +418,7 @@ double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &i
         tasaDeReconocimiento = (double)reconocidos/(double)imgAReconocer.size();
         return tasaDeReconocimiento;
 }
-
+*/
 double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int>  &digitosImagenesTest, vector<int> &digitosImagenesTrain)
 {
 	double tasaDeReconocimiento;
