@@ -6,6 +6,22 @@
 
 using namespace std;
 
+
+double normaInf(Matriz<double>& v)
+{
+    double res = abs(v[0][0]);
+    for(int i = 0; i < v.filas(); i++)
+    {
+   		if(res < abs(v[i][0])) {res = abs(v[i][0]);}
+    }
+
+    return res;
+}
+
+
+
+
+
 double norma2(Matriz<double>& v)
 {
     double n = 0;
@@ -48,7 +64,7 @@ double ObtenerAutovalorMayor(Matriz<double> A, Matriz<double>& v0, unsigned int 
 
       //  cout<<"lamda "<<lambda<<endl;
 
-        normalizar= 1.0/ norma2(v1);
+        normalizar= 1.0/ normaInf(v1);
 
         v1= v1* normalizar;
 
