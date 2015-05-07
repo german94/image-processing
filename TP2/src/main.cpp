@@ -265,12 +265,13 @@ int main(int argc, char *argv[]) {
 
                 	Matriz<double> covarianza(CPIXELES, CPIXELES);
                 	Matriz<double> traspuestaTrain(CPIXELES, cantidadImagenesTrain);
-        
+
+                    double cteCov=1.0/ sqrt(((double)(cantidadImagenesTrain-1)));
+
+                    imagenesDeTrain = imagenesDeTrain*cteCov;
                 	traspuestaTrain= imagenesDeTrain.traspuesta();
          
                 	covarianza= traspuestaTrain * imagenesDeTrain;
-               		double cteCov=1.0/ ((double) (cantidadImagenesTrain-1));
-                	covarianza = covarianza * cteCov; // esta es la matriz de covarianza
        
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
 
@@ -306,16 +307,26 @@ int main(int argc, char *argv[]) {
 		    		} 
 					
 					// matriz con las transformaciones caracteristicas para las imagenes de test
+
+					for (int j=0; j<CPIXELES; j++)//resto la media de las de train
+                	{
+                    	for(int fila=0; fila<imagenesDeTest.filas();fila++)
+                    	{
+                        	imagenesDeTest[fila][j] =imagenesDeTest[fila][j]- promedioImagenes[0][j];
+                    	}
+                	}
+
+                	imagenesDeTest = imagenesDeTest*cteCov; //multiplico por la raiz
 	
-		    		Matriz<double> tcTest(imagenesDeTest.filas(), alpha);
+		    		Matriz<double> tcTest(imagenesDeTest.filas(), alpha); // y ahora la tc
 		    		for(int i = 0; i < tcTest.filas(); i++)
 		    		{
 		    			for(int j = 0; j < tcTest.columnas(); j++)
 		    				{
 		    					tcTest[i][j] = 0;
-		    					for(int Im_c = 0; Im_c < imagenesDeTrain.columnas(); Im_c++ )
+		    					for(int Im_c = 0; Im_c < imagenesDeTest.columnas(); Im_c++ )
 		    					{
-		   							tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTrain[i][Im_c]; 
+		   							tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTest[i][Im_c]; 
 		   						}  		 
 		    				}
 		    		}
