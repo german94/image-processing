@@ -204,6 +204,12 @@ int main(int argc, char *argv[])
         	            }
                 	}
 
+                	cout<<"imagenesTest\n";
+                	imagenesDeTest.display();
+                	cout<<endl;
+                	cout<<"imagenesTrain\n";
+                	imagenesDeTrain.display();
+                    cout<<endl;
                 	///calculo el promedio
                 	for(int j=0;j<CPIXELES;j++)
                     {
@@ -212,22 +218,38 @@ int main(int argc, char *argv[])
                         promedioImagenes[0][j] = promedioImagenes[0][j]/cantidadImagenesTrain;
                     }
 
+                	cout<<"promedioImagenes\n";
+
+                    promedioImagenes.display();
         	        ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
+                    cout<<endl;
+
+                	Matriz<double> imagenesDeTrainRP(imagenesDeTrain.filas(), imagenesDeTrain.columnas());
                 	for (int j=0; j<CPIXELES; j++)
                     {
                         for(int fila=0; fila<cantidadImagenesTrain;fila++)
                         {
-                            imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
-                            imagenesDeTrain[fila][j] = imagenesDeTrain[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
+                            imagenesDeTrainRP[fila][j] = imagenesDeTrain[fila][j]/(sqrt(cantidadImagenesTrain -1));
                         }
                     }
 
+                	cout<<"imagenesDeTrainRP\n";
+
+                	imagenesDeTrainRP.display();
+
+                	cout<<endl;
                 	Matriz<double> covarianza(CPIXELES, CPIXELES);
-                	Matriz<double> traspuestaTrain(CPIXELES, cantidadImagenesTrain);
+                	Matriz<double> traspuestaTrainRP(CPIXELES, cantidadImagenesTrain);
 
-                	traspuestaTrain= imagenesDeTrain.traspuesta();
 
-                	covarianza= traspuestaTrain * imagenesDeTrain;
+                	traspuestaTrainRP= imagenesDeTrainRP.traspuesta();
+
+                	covarianza= traspuestaTrainRP * imagenesDeTrainRP;
+
+                	cout<<"matriz de covarianza\n";
+                	covarianza.display();
+                	cout<<endl;
 
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
                 	vector<double> valoresSingulares;
@@ -237,14 +259,58 @@ int main(int argc, char *argv[])
                 	for(int i=0;i<CPIXELES;i++){v[i][0]=2;}
 
                 	valoresSingulares= metodoPotencias(covarianza,alpha, P,v);
+                	cout<<"valoresSingulares:\n";
 
                 	for(int i=0;i<valoresSingulares.size();i++)
                 	{
+                    	cout<<sqrt(valoresSingulares[i])<<endl;
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
-                	/// matriz con las transformaciones caracteristicas para las imagenes de train
 
-		    		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
+                        cout<<"P\n";
+                        P.display();
+                        cout<<endl;
+                	/// ahora que tenemos la matriz de covarianza, y sus autovectores, calculamos tc
+
+                	Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
+
+
+                    for(int i = 0; i < imagenesDeTrain.filas(); i++){
+                        for(int j = 0; j< alpha ;j++){
+                            double sum = 0;
+                            for(int r = 0; r < P.filas(); r++){
+                               sum += imagenesDeTrain[i][r] * P[r][j];
+                            }
+                            tcTrain[i][j] = sum;
+                        }
+                    }
+
+                    Matriz<double> tcTest(imagenesDeTest.filas(), alpha);
+
+                    for(int i = 0; i < imagenesDeTest.filas(); i++){
+                        for(int j = 0; j< alpha ;j++){
+                            double sum = 0;
+                            for(int r = 0; r < P.filas(); r++){
+                               sum += imagenesDeTest[i][r] * P[r][j];
+                            }
+                            tcTest[i][j] = sum;
+                        }
+                    }
+
+
+                   cout<<"tcTest\n";
+                    tcTest.display();
+                    cout<<endl;
+
+                    cout<<"tcTrain\n";
+                    tcTrain.display();
+                    cout<<endl;
+
+                    /// en tcTrain y tcTest tenemos las coordenadas de las imagenes de train y de test en la base de autovectores, calculamos la distancia
+                    /// entre las imagenes de test y las de train como la distancia entre sus coordenadas en la base de autovectores
+
+
+		    /*		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
 		    		for(int i = 0; i < tcTrain.filas(); i++)
 		    		{
 		    			for(int j = 0; j < tcTrain.columnas(); j++)
@@ -279,11 +345,14 @@ int main(int argc, char *argv[])
 		   						}
 		    				}
 		    		}
+					*/
+
+
 
 					double tasa = kNN2(k, tcTest, tcTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
 
-            	}
+            }
 
 				for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
 
