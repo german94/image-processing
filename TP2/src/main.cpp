@@ -99,15 +99,15 @@ int main(int argc, char *argv[])
 
         case KNN:{
 
-                vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
-                vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
-                vector<double> tasaDeReco;
-              
+        		vector<double> tasaDeReco;
+
                 for(int i = 0; i < K; i++)
                 {
-                   unsigned int cantidadImagenesTrain=0;
-                   for(int j=0; j<Klineas.columnas(); j++)
-                   {
+       				vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
+                	vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
+                    unsigned int cantidadImagenesTrain=0;
+                    for(int j=0; j<Klineas.columnas(); j++)
+                    {
                         if(Klineas[i][j])
                         {
                             cantidadImagenesTrain++;
@@ -157,16 +157,13 @@ int main(int argc, char *argv[])
 
         case PCA_KNN:{
 
-            	vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
-
-          		vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
-
            		salida<<scientific<<setprecision(6);
-
-           		 vector<double> tasaDeReco;
+				vector<double> tasaDeReco;
 
            	 	for(int particion = 0; particion < K; particion++)
            	 	{
+           	 		vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
+          			vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
                 //asignamos los digitos(primera columna)
                 	unsigned int cantidadImagenesTrain=0;
                 	for(int j=0; j<Klineas.columnas(); j++)
