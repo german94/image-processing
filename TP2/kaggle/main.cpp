@@ -309,7 +309,7 @@ vector<double> kNN(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTra
             }
             else
             {
-                if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)); //si ya tengo k voy sacando las mayores
+                if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)) //si ya tengo k voy sacando las mayores
                 {
                     int pos_mayor = dondemayor(normas2AlCuadrado);
                     normas2AlCuadrado[pos_mayor].first = digitosImagenesTrain[m];
