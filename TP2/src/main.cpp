@@ -4,20 +4,21 @@
 #include <sys/time.h>
 #include "util.h"
 #include "Matriz.h"
-#include "mPotencia.cpp"
+#include "mPotencia.h"
 #include <math.h>
-
-// #define DEBUG
-
 using namespace std;
+
+const int CIMAGENES=42000;
+const int CPIXELES=784;
+const int CPIXELESYETIQUETA=785;
+enum Metodo { KNN = 0, PCA_KNN = 1};
+void usage() { cout << "./tp <input_filename> <output_filename> <metodo>" << endl; }
 
 bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado);
 int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado);
 void cargarMatrizTrain(Matriz<int>& train);
-/*double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > &imgParantrenar);*/
 unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2);
 double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int>  &digitosImagenesTest, vector<int> &digitosImagenesTrain);
-
 
 timeval start, endTime;
 //////////////////////////////////////////////////////////////
@@ -26,7 +27,6 @@ void init_time()
       gettimeofday(&start,NULL);
 }
 //////////////////////////////////////////////////////////////
-
 
 //////////////////////////////////////////////////////////////
 double get_time()
@@ -37,18 +37,9 @@ double get_time()
 }
 //////////////////////////////////////////////////////////////
 
-enum Metodo { KNN = 0,
-			  PCA_KNN = 1};
 
-void usage() {
-	cout << "./tp <input_filename> <output_filename> <metodo>" << endl;
-}
-
-const int CIMAGENES=42000;
-const int CPIXELES=784;
-const int CPIXELESYETIQUETA=785;
-
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
 	if(argc != 4) {
 		usage();
 		return 0;
@@ -83,8 +74,8 @@ int main(int argc, char *argv[]) {
     int filaM=0;  // fila de la matriz
 
    //se empieza a analizar desde la segunda linea
-    for (string linea; getline(entrada, linea); num_linea++) {
-
+    for (string linea; getline(entrada, linea); num_linea++)
+    {
         vector<string> valores = separar(linea);
 
         if (valores.size() != CIMAGENES)
@@ -111,34 +102,12 @@ int main(int argc, char *argv[]) {
                 vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
                 vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
                 vector<double> tasaDeReco;
-                /*
+              
                 for(int i = 0; i < K; i++)
                 {
-                    vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaReconocer;
-                    vector<pair<unsigned int, vector<unsigned int> > > imagenesDeTrainParaEntrenar;
-
-                    for(int j = 0; j < Klineas.columnas(); j++)//42000
-                    {
-                        vector<unsigned int> imagen;
-                        for(int l = 0; l < CPIXELES; l++)
-                            imagen.push_back(train[j][l + 1]);
-
-                        pair<unsigned int, vector<unsigned int> > p(train[j][0], imagen);
-
-                        if(Klineas[i][j] == 0)
-                            imagenesDeTrainParaReconocer.push_back(p);
-                        else
-                            imagenesDeTrainParaEntrenar.push_back(p);
-                    }
-
-                    double tasa = kNN(k, imagenesDeTrainParaReconocer, imagenesDeTrainParaEntrenar);
-
-                    */
-                 for(int i = 0; i < K; i++)
-                 {
-                    unsigned int cantidadImagenesTrain=0;
-                    for(int j=0; j<Klineas.columnas(); j++)
-                    {
+                   unsigned int cantidadImagenesTrain=0;
+                   for(int j=0; j<Klineas.columnas(); j++)
+                   {
                         if(Klineas[i][j])
                         {
                             cantidadImagenesTrain++;
@@ -149,7 +118,6 @@ int main(int argc, char *argv[]) {
                             digitosImagenesTest.push_back(train[j][0]);
                         }
                     }
-
 
                     unsigned int cantidadImagenesTest=CIMAGENES-cantidadImagenesTrain;
 
@@ -173,12 +141,8 @@ int main(int argc, char *argv[]) {
                         }
                     }
 
-
-                 
-
                     double tasa = kNN2(k, imagenesDeTest, imagenesDeTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
-
                 }
 
 	            for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
@@ -222,7 +186,7 @@ int main(int argc, char *argv[]) {
 
                 	Matriz<double> imagenesDeTrain(cantidadImagenesTrain,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
 
-                	Matriz <int> imagenesDeTest(cantidadImagenesTest,CPIXELES);
+                	Matriz <double> imagenesDeTest(cantidadImagenesTest,CPIXELES);
 
                 	int imTrain=0;// contador de la fila de Train
                 	int imTest=0;// contador de la fila de Test
@@ -245,52 +209,42 @@ int main(int argc, char *argv[]) {
 
                 	///calculo el promedio
                 	for(int j=0;j<CPIXELES;j++)
-                	{
-                    	for(int i=0;i<imagenesDeTrain.filas();i++){ promedioImagenes[0][j] += imagenesDeTrain[i][j];}
-                	}
+                    {
+                        promedioImagenes[0][j] = 0;
+                        for(int i=0;i<imagenesDeTrain.filas();i++){ promedioImagenes[0][j] = promedioImagenes[0][j] + imagenesDeTrain[i][j];}
+                        promedioImagenes[0][j] = promedioImagenes[0][j]/cantidadImagenesTrain;
+                    }
 
-               		///dividimos para calcular el promedio de las filas
-                	double cte=1.0/ ((double) cantidadImagenesTrain);
-                	promedioImagenes=promedioImagenes * cte;
-        
         	        ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
-
                 	for (int j=0; j<CPIXELES; j++)
-                	{
-                    	for(int fila=0; fila<cantidadImagenesTrain;fila++)
-                    	{
-                        	imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
-                    	}
-                	}
+                    {
+                        for(int fila=0; fila<cantidadImagenesTrain;fila++)
+                        {
+                            imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
+                            imagenesDeTrain[fila][j] = imagenesDeTrain[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                        }
+                    }
 
                 	Matriz<double> covarianza(CPIXELES, CPIXELES);
                 	Matriz<double> traspuestaTrain(CPIXELES, cantidadImagenesTrain);
 
-                    double cteCov=1.0/ sqrt(((double)(cantidadImagenesTrain-1)));
-
-                    imagenesDeTrain = imagenesDeTrain*cteCov;
                 	traspuestaTrain= imagenesDeTrain.traspuesta();
          
                 	covarianza= traspuestaTrain * imagenesDeTrain;
        
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
-
                 	vector<double> valoresSingulares;
                		Matriz<double> P(covarianza.filas(), alpha);
                 	Matriz<double> v(CPIXELES,1);
 
                 	for(int i=0;i<CPIXELES;i++){v[i][0]=2;}
 
-                	cout<<"aplicando metodo potencias\n";
-                	valoresSingulares= metodoPotencias(covarianza,alpha,300,P,v);
-                	cout<<"escribiendo valoresSingulares\n";
+                	valoresSingulares= metodoPotencias(covarianza,alpha, P,v);
+
                 	for(int i=0;i<valoresSingulares.size();i++)
                 	{
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
-
-                	cout<<"fin de particion\n";
-            	
                 	// matriz con las transformaciones caracteristicas para las imagenes de train
 	
 		    		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
@@ -307,17 +261,15 @@ int main(int argc, char *argv[]) {
 		    		} 
 					
 					// matriz con las transformaciones caracteristicas para las imagenes de test
-
 					for (int j=0; j<CPIXELES; j++)//resto la media de las de train
                 	{
                     	for(int fila=0; fila<imagenesDeTest.filas();fila++)
                     	{
                         	imagenesDeTest[fila][j] =imagenesDeTest[fila][j]- promedioImagenes[0][j];
+                            imagenesDeTest[fila][j] =imagenesDeTest[fila][j]/(sqrt(cantidadImagenesTrain -1));
                     	}
                 	}
 
-                	imagenesDeTest = imagenesDeTest*cteCov; //multiplico por la raiz
-	
 		    		Matriz<double> tcTest(imagenesDeTest.filas(), alpha); // y ahora la tc
 		    		for(int i = 0; i < tcTest.filas(); i++)
 		    		{
@@ -360,8 +312,6 @@ void cargarMatrizTrain(Matriz<int>& train)
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
-   // cout<<lineaNombrePixel<<endl;
-
     int filaM = 0;
     for (string linea; getline(baseTrain, linea);)
     {
@@ -379,57 +329,7 @@ void cargarMatrizTrain(Matriz<int>& train)
         filaM++;
     }
 }
-/*
-double kNN(unsigned int k, vector<pair<unsigned int, vector<unsigned int> > > &imgAReconocer, vector<pair<unsigned int, vector<unsigned int> > > &imgParantrenar)
-{
-    double tasaDeReconocimiento;
-    unsigned int reconocidos = 0;
-    for(int z = 0; z < imgAReconocer.size(); z++)
-    {
-        vector<pair<int, int> > normas2AlCuadrado;
 
-        for(int m = 0; m < imgParantrenar.size(); m++)
-        {
-            unsigned int distanciaAlCuadrado = norma2AlCuadrado(imgAReconocer[z].second, imgParantrenar[m].second);
-
-            if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
-            {
-                pair<unsigned int, int> a;
-                a.first =  imgParantrenar[m].first;
-                a.second = distanciaAlCuadrado;
-                normas2AlCuadrado.push_back(a);
-            }
-            else
-            {
-                if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)); //si ya tengo k voy sacando las mayores
-                {
-                    int pos_mayor = dondemayor(normas2AlCuadrado);
-                    normas2AlCuadrado[pos_mayor].first = imgParantrenar[m].first;
-                    normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
-                }
-            }
-        }
-
-        unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        for(int t = 0; t < k; t++)
-            digitos[normas2AlCuadrado[t].first]++;
-
-        unsigned int ganador = digitos[0];
-        for(int x = 0; x < 10; x++)
-        {
-            if(digitos[x] > digitos[ganador])
-                ganador = x;
-        }
-
-        if(ganador == imgAReconocer[z].first)
-            reconocidos++;
-
-    }
-
-        tasaDeReconocimiento = (double)reconocidos/(double)imgAReconocer.size();
-        return tasaDeReconocimiento;
-}
-*/
 double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int>  &digitosImagenesTest, vector<int> &digitosImagenesTrain)
 {
 	double tasaDeReconocimiento;
@@ -479,9 +379,8 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
             reconocidos++;
 
     }
-
-        tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
-        return tasaDeReconocimiento;
+    tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
+    return tasaDeReconocimiento;
 }
 
 
@@ -493,26 +392,25 @@ unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2
     {
         n += (v1[i] - v2[i]) * (v1[i] - v2[i]);
     }
-
     return n;
 }
 
 bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado)
+{
+    bool res = false;
+    for(int i = 0;  i < normas2AlCuadrado.size(); i++)
     {
-        bool res = false;
-        for(int i = 0;  i < normas2AlCuadrado.size(); i++)
-        {
-            if(distanciaAlCuadrado <= normas2AlCuadrado[i].second) { res = true; break;}
-        }
-        return res;
+       if(distanciaAlCuadrado <= normas2AlCuadrado[i].second) { res = true; break;}
     }
+    return res;
+}
 
-    int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado)
+int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado)
+{
+    int res = 0;
+    for(int i = 0; i < normas2AlCuadrado.size(); i++)
     {
-        int res = 0;
-        for(int i = 0; i < normas2AlCuadrado.size(); i++)
-        {
-            if (normas2AlCuadrado[i].second >= normas2AlCuadrado[res].second) {res = i;}
-        }
-        return res;
+        if (normas2AlCuadrado[i].second >= normas2AlCuadrado[res].second) {res = i;}
     }
+    return res;
+}
