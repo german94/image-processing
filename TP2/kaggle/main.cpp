@@ -14,7 +14,7 @@ using namespace std;
 bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado);
 int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado);
 void cargarMatrizTrain(Matriz<int>& train);
-void cargarMatrizTest(Matriz<int>& test);
+void cargarMatrizTest(Matriz<double>& test);
 unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2);
 vector<double> kNN(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int> &digitosImagenesTrain);
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 
     cargarMatrizTrain(train);
 
-    Matriz<int> test(CIMAGENESTEST, CPIXELES);
+    Matriz<double> test(CIMAGENESTEST, CPIXELES);
 
     cargarMatrizTest(test);
 
@@ -74,49 +74,24 @@ int main(int argc, char *argv[]) {
 
         case KNN:{
 
-
                 vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
        
                 for(int j=0; j<CIMAGENESTRAIN; j++)
                 {
-                       
-                    digitosImagenesTrain.push_back(train[j][0]);
-                      
+                    digitosImagenesTrain.push_back(train[j][0]);   
                 }
 
-
                 //casteo para que ande con knn que ahora toma double
-
                 Matriz<double> imagenesDeTrain(CIMAGENESTRAIN,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
 
-            
                 int imTrain=0;// contador de la fila de Train
-                
                 for(int imagen = 0; imagen < CIMAGENESTRAIN; imagen++)
                 {                     
                     for(int j=0;j<CPIXELES;j++){ imagenesDeTrain[imTrain][j] = train[imagen][j+1];}
-                    imTrain++;
-                      
-                     
+                    imTrain++; 
                 }
 
-                Matriz<double> imagenesDeTest(CIMAGENESTEST,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
-
-                 
-
-                int imTest=0;// contador de la fila de Train
-                    
-                for(int imagen = 0; imagen < CIMAGENESTEST; imagen++)
-                {                     
-                    for(int j=0;j<CPIXELES;j++){ imagenesDeTest[imTest][j] = test[imagen][j];}
-                   imTest++;
-                      
-                     
-                }
-
-                 
-
-                vector<double> prediccionDigitos = kNN(k, imagenesDeTest, imagenesDeTrain, digitosImagenesTrain);
+                vector<double> prediccionDigitos = kNN(k, test, imagenesDeTrain, digitosImagenesTrain);
                 if(prediccionDigitos.size() != CIMAGENESTEST){
                     throw runtime_error("La longitud de la prediccion de digitos no es la esperada");
                 }
@@ -136,12 +111,10 @@ int main(int argc, char *argv[]) {
                 	
                     for(int j=0; j<CIMAGENESTRAIN; j++)
                     {                    	
-                        digitosImagenesTrain.push_back(train[j][0]);
-                        
+                        digitosImagenesTrain.push_back(train[j][0]); 
                     }           
 
                 	Matriz<double> imagenesDeTrain(CIMAGENESTRAIN,CPIXELES); /// le faltan los digitos etiquetados de la primera columna
-                    Matriz<double> imagenesDeTest(CIMAGENESTEST,CPIXELES);
                 	int imTrain=0;// contador de la fila de Train
                 	int imTest=0;// contador de la fila de Test
                     
@@ -153,40 +126,31 @@ int main(int argc, char *argv[]) {
                  
                     }
 
-                    //casteo para usar el knn
-                    for(int imagen = 0; imagen < CIMAGENESTEST; imagen++)
-                    {
-                            for(int j=0;j<CPIXELES;j++){ imagenesDeTest[imTest][j] = test[imagen][j];}
-                            imTest++;
-                 
-                    }
-
                     Matriz <double> promedioImagenesTrain(1,CPIXELES);
             
                     ///calculo el promedio train
                     for(int j=0;j<CPIXELES;j++)
                     {
+                    	promedioImagenesTrain[0][j] = 0;
                         for(int i=0;i<imagenesDeTrain.filas();i++){ promedioImagenesTrain[0][j] += imagenesDeTrain[i][j];}
+                        promedioImagenesTrain[0][j] = promedioImagenesTrain[0][j]/CIMAGENESTRAIN;
                     }
 
                     ///dividimos para calcular el promedio de las filas
                     double cteTrain=1.0/ ((double) CIMAGENESTRAIN);
-                    promedioImagenesTrain=promedioImagenesTrain * cteTrain;
                                    
                     for (int j=0; j<CPIXELES; j++)
                     {
                         for(int fila=0; fila<CIMAGENESTRAIN;fila++)
                         {
                             imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenesTrain[0][j];
+                       		imagenesDeTrain[fila][j] = imagenesDeTrain[fila][j]/(sqrt(CIMAGENESTRAIN -1));
                         }
                     }
 
                     Matriz<double> covarianza(CPIXELES, CPIXELES);
-                    Matriz<double> traspuestaTrain(CPIXELES, CIMAGENESTEST);
+                    Matriz<double> traspuestaTrain(CPIXELES, CIMAGENESTRAIN); //ANTES DECIA CIMAGENESTEST ESO ESTA BIEN?
 
-                    double cteCov=1.0/ sqrt(((double)(CIMAGENESTEST-1)));
-
-                    imagenesDeTrain = imagenesDeTrain*cteCov;
                     traspuestaTrain= imagenesDeTrain.traspuesta();
          
                     covarianza= traspuestaTrain * imagenesDeTrain;
@@ -199,7 +163,7 @@ int main(int argc, char *argv[]) {
 
                     for(int i=0;i<CPIXELES;i++){v[i][0]=2;}
 
-                    valoresSingulares= metodoPotencias(covarianza,alpha,300,P,v);         
+                    valoresSingulares= metodoPotencias(covarianza,alpha,P,v);         
                             
                     // matriz con las transformaciones caracteristicas para las imagenes de train
     
@@ -220,23 +184,22 @@ int main(int argc, char *argv[]) {
 
                     for (int j=0; j<CPIXELES; j++)//resto la media de las de train
                     {
-                        for(int fila=0; fila<imagenesDeTest.filas();fila++)
+                        for(int fila=0; fila<test.filas();fila++)
                         {
-                            imagenesDeTest[fila][j] =imagenesDeTest[fila][j]- promedioImagenesTrain[0][j];
+                            test[fila][j] =test[fila][j]- promedioImagenesTrain[0][j];
+                        	test[fila][j] = test[fila][j]/(sqrt(CIMAGENESTRAIN -1));
                         }
                     }
 
-                    imagenesDeTest = imagenesDeTest*cteCov; //multiplico por la raiz
-    
-                    Matriz<double> tcTest(imagenesDeTest.filas(), alpha); // y ahora la tc
+                    Matriz<double> tcTest(test.filas(), alpha); // y ahora la tc
                     for(int i = 0; i < tcTest.filas(); i++)
                     {
                         for(int j = 0; j < tcTest.columnas(); j++)
                             {
                                 tcTest[i][j] = 0;
-                                for(int Im_c = 0; Im_c < imagenesDeTest.columnas(); Im_c++ )
+                                for(int Im_c = 0; Im_c < test.columnas(); Im_c++ )
                                 {
-                                    tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTest[i][Im_c]; 
+                                    tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + test[i][Im_c]; 
                                 }        
                             }
                     }
@@ -293,7 +256,7 @@ void cargarMatrizTrain(Matriz<int>& train)
 }
 
 
-void cargarMatrizTest(Matriz<int>& test)
+void cargarMatrizTest(Matriz<double>& test)
 {
     ifstream baseTest("../data/testChico.csv", std::ifstream::in);
     string lineaNombrePixel;
@@ -313,7 +276,7 @@ void cargarMatrizTest(Matriz<int>& test)
 
         for(int colM = 0; colM < CPIXELES; colM++){
 
-            test[filaM][colM] = string_to_type<int>(valores[colM]);
+            test[filaM][colM] = string_to_type<double>(valores[colM]);
         }
 
         filaM++;
