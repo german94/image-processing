@@ -8,9 +8,9 @@
 #include <math.h>
 using namespace std;
 
-const int CIMAGENES=42000;
-const int CPIXELES=784;
-const int CPIXELESYETIQUETA=785;
+const int CIMAGENES=106;
+const int CPIXELES=14;
+const int CPIXELESYETIQUETA=15;
 enum Metodo { KNN = 0, PCA_KNN = 1};
 void usage() { cout << "./tp <input_filename> <output_filename> <metodo>" << endl; }
 
@@ -38,7 +38,7 @@ double get_time()
 //////////////////////////////////////////////////////////////
 
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
 	if(argc != 4) {
 		usage();
@@ -129,13 +129,13 @@ int main(int argc, char *argv[])
                     int imTest=0;// contador de la fila de Test
                     for(int imagen = 0; imagen < CIMAGENES; imagen++)
                     { // cada imagen de train la mandamos a una de las dos matrices segun diga la i
-                        if(Klineas[i][imagen]) 
-                        {                       
+                        if(Klineas[i][imagen])
+                        {
                             for(int j=0;j<CPIXELES;j++){ imagenesDeTrain[imTrain][j] = train[imagen][j+1];}
                             imTrain++;
                         }
-                        else 
-                        {                        
+                        else
+                        {
                             for(int j=0;j<CPIXELES;j++){imagenesDeTest[imTest][j] = train[imagen][j+1];}
                             imTest++;
                         }
@@ -190,13 +190,13 @@ int main(int argc, char *argv[])
                 	Matriz <double> promedioImagenes(1,CPIXELES);
                 	for(int imagen = 0; imagen < CIMAGENES; imagen++)
                 	{ // cada imagen de train la mandamos a una de las dos matrices segun diga la particion
-                    	if(Klineas[particion][imagen]) 
+                    	if(Klineas[particion][imagen])
                     	{
                         /// copiamos en imagenesDeTrain la imagen de train
                        		for(int j=0;j<CPIXELES;j++){ imagenesDeTrain[imTrain][j] = train[imagen][j+1];}
                        		imTrain++;
                     	}
-                    	else 
+                    	else
                     	{
                         /// copiamos en imagenesDeTest la imagen de train
 	                        for(int j=0;j<CPIXELES;j++){imagenesDeTest[imTest][j] = train[imagen][j+1];}
@@ -226,9 +226,9 @@ int main(int argc, char *argv[])
                 	Matriz<double> traspuestaTrain(CPIXELES, cantidadImagenesTrain);
 
                 	traspuestaTrain= imagenesDeTrain.traspuesta();
-         
+
                 	covarianza= traspuestaTrain * imagenesDeTrain;
-       
+
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
                 	vector<double> valoresSingulares;
                		Matriz<double> P(covarianza.filas(), alpha);
@@ -242,8 +242,8 @@ int main(int argc, char *argv[])
                 	{
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
-                	// matriz con las transformaciones caracteristicas para las imagenes de train
-	
+                	/// matriz con las transformaciones caracteristicas para las imagenes de train
+
 		    		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
 		    		for(int i = 0; i < tcTrain.filas(); i++)
 		    		{
@@ -252,11 +252,11 @@ int main(int argc, char *argv[])
 		    					tcTrain[i][j] = 0;
 		    					for(int Im_c = 0; Im_c < imagenesDeTrain.columnas(); Im_c++ )
 		    					{
-		   							tcTrain[i][j] = tcTrain[i][j] + P[Im_c][j] + imagenesDeTrain[i][Im_c]; 
-		   						}  		 
+		   							tcTrain[i][j] = tcTrain[i][j] + P[Im_c][j] + imagenesDeTrain[i][Im_c];
+		   						}
 		    				}
-		    		} 
-					
+		    		}
+
 					// matriz con las transformaciones caracteristicas para las imagenes de test
 					for (int j=0; j<CPIXELES; j++)//resto la media de las de train
                 	{
@@ -275,8 +275,8 @@ int main(int argc, char *argv[])
 		    					tcTest[i][j] = 0;
 		    					for(int Im_c = 0; Im_c < imagenesDeTest.columnas(); Im_c++ )
 		    					{
-		   							tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTest[i][Im_c]; 
-		   						}  		 
+		   							tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTest[i][Im_c];
+		   						}
 		    				}
 		    		}
 
@@ -284,7 +284,7 @@ int main(int argc, char *argv[])
                     tasaDeReco.push_back(tasa);
 
             	}
-				
+
 				for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
 
 	            ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
 
 void cargarMatrizTrain(Matriz<int>& train)
 {
-    ifstream baseTrain("../data/train.csv", std::ifstream::in);
+    ifstream baseTrain("../data/trainChico.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
@@ -332,26 +332,35 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
 	double tasaDeReconocimiento;
     unsigned int reconocidos = 0;
     for(int z = 0; z < tcTest.filas(); z++)
-    {
-        vector<pair<int, int> > normas2AlCuadrado;
-
+    {/// z imagenes test
+        vector<pair<int, int> > normas2AlCuadrado; /// almaceno los k vecimos mas cercanos, su distancia y su digito
+        cout<<"digito a reconocer: "<<digitosImagenesTest[z]<<endl<<endl;
+        cout<<"se copara con \n";
+        cout<<"[ ";
         for(int m = 0; m < tcTrain.filas(); m++)
-        {
+        {/// m imagenes de train
+
+        cout<<"("<<digitosImagenesTrain[m]<<",";
+
+
+            ///calculo la distancia al cuadrado entre la imagen de test y la de train
             unsigned int distanciaAlCuadrado = 0;
-    		for(int i = 0; i < tcTest.columnas(); i++)
+    		for(int j = 0; j < tcTest.columnas(); j++)
     		{
-        		distanciaAlCuadrado += (tcTest[z][i] - tcTrain[m][i]) *(tcTest[z][i] - tcTrain[m][i]);
+        		distanciaAlCuadrado += (tcTest[z][j] - tcTrain[m][j]) *(tcTest[z][j] - tcTrain[m][j]);
     		}
+        cout<<distanciaAlCuadrado<<"),";
+    		/// en caso de ser cercana la almaceno
 
             if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
             {
                 pair<unsigned int, int> a;
-                a.first =  digitosImagenesTrain[m];
+                a.first =  digitosImagenesTrain[m]; //almaceno el digito con su distancia
                 a.second = distanciaAlCuadrado;
                 normas2AlCuadrado.push_back(a);
             }
             else
-            {
+            {/// si  en normas2alcuadrado hay uno mayor, el elemento se transorma en un elemento de los vecinos mas cercanos
                 if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)) //si ya tengo k voy sacando las mayores
                 {
                     int pos_mayor = dondemayor(normas2AlCuadrado);
@@ -359,11 +368,26 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
                     normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
                 }
             }
+            cout<<"  vectorconKminimos: {";
+            for(int i=0;i<normas2AlCuadrado.size();i++){
+
+            cout<<normas2AlCuadrado[i].first<<", ";
+
+            }
+            cout<<"}   ";
+
         }
 
+
+        cout<<"]\n";
+
+        /// una vez que encontre los k vecinos mas cercanos, me quedo con el digito que mas veces aparecio
+
         unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        for(int t = 0; t < k; t++)
+
+        for(int t = 0; t < k; t++){
             digitos[normas2AlCuadrado[t].first]++;
+        }
 
         unsigned int ganador = digitos[0];
         for(int x = 0; x < 10; x++)
@@ -373,11 +397,21 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
         }
 
         if(ganador == digitosImagenesTest[z])
-            reconocidos++;
+          {  reconocidos++;}
+        ///si ese digito de test fue reconocido, aumento la candidad de reconocidos
+       cout<<"digitos reconocidos: \n";
+        cout<<"[";
 
+        for(int i=0;i<10;i++){
+            cout<<digitos[i]<<", ";
+        }
+cout<<"]\n";
     }
-    tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
-    return tasaDeReconocimiento;
+
+    ///luego de consultar todos los tests, calculo la tasa de reconocimiento
+
+        tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
+        return tasaDeReconocimiento;
 }
 
 
