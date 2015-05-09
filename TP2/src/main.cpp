@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
 
                         for (int j=0; j<CPIXELES; j++)
                         {
-                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j];//- promedioImagenes[0][j];
+                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
                             imagenesDeTrainRP[fila][j] = imagenesDeTrainRP[fila][j]/(sqrt(cantidadImagenesTrain -1));
                         }
                     }
