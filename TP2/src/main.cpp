@@ -145,6 +145,10 @@ int main(int argc, char *argv[])
 
                     double tasa = kNN2(k, imagenesDeTest, imagenesDeTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
+
+                     cout<<"tasa "<<i<<": "<<tasa<<endl;
+
+
                 }
 
 	            for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
