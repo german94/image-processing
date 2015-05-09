@@ -205,14 +205,7 @@ int main(int argc, char *argv[])
     	                    imTest++;
         	            }
                 	}
-/*
-                	cout<<"imagenesTest\n";
-                	imagenesDeTest.display();
-                	cout<<endl;
-                	cout<<"imagenesTrain\n";
-                	imagenesDeTrain.display();
-                    cout<<endl;*/
-                	///calculo el promedio
+
                 	for(int j=0;j<CPIXELES;j++)
                     {
                         promedioImagenes[0][j] = 0;
@@ -220,47 +213,24 @@ int main(int argc, char *argv[])
                         promedioImagenes[0][j] = promedioImagenes[0][j]/cantidadImagenesTrain;
                     }
 
-                /*	cout<<"promedioImagenes\n";
-
-                    promedioImagenes.display();
-        	        ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
-                    cout<<endl;*/
-
-                	Matriz<double> imagenesDeTrainRP(imagenesDeTrain.filas(), imagenesDeTrain.columnas());
-
 
                     for(int fila=0; fila<cantidadImagenesTrain;fila++)
                     {
 
                         for (int j=0; j<CPIXELES; j++)
                         {
-                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
-                            imagenesDeTrainRP[fila][j] = imagenesDeTrainRP[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                            imagenesDeTrain[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
+                            imagenesDeTrain[fila][j] = imagenesDeTrain[fila][j]/(sqrt(cantidadImagenesTrain -1));
                         }
                     }
 
-                    //double cteCov= (double) 1/((double) sqrt(cantidadImagenesTrain -1));
-
-                  //  imagenesDeTrainRP=imagenesDeTrainRP*cteCov;
-
-
-
-               /* 	cout<<"imagenesDeTrainRP\n";
-
-                	imagenesDeTrainRP.display();
-
-                	cout<<endl;*/
                 	Matriz<double> covarianza(CPIXELES, CPIXELES);
                 	Matriz<double> traspuestaTrainRP(CPIXELES, cantidadImagenesTrain);
 
 
-                	traspuestaTrainRP= imagenesDeTrainRP.traspuesta();
+                	traspuestaTrainRP= imagenesDeTrain.traspuesta();
 
-                	covarianza= traspuestaTrainRP * imagenesDeTrainRP;
-
-                	/*cout<<"matriz de covarianza\n";
-                	covarianza.display();
-                	cout<<endl;*/
+                	covarianza= traspuestaTrainRP * imagenesDeTrain;
 
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
                 	vector<double> valoresSingulares;
@@ -278,89 +248,25 @@ int main(int argc, char *argv[])
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
 
-                    /*    cout<<"P\n";
-                        P.display();
-                        cout<<endl;*/
-                	/// ahora que tenemos la matriz de covarianza, y sus autovectores, calculamos tc
-
-
-                 ///le restamos a las de test el promedio
-
-                	Matriz<double> imagenesDeTestRP(imagenesDeTest.filas(), imagenesDeTest.columnas());
-
 
                     for(int fila=0; fila<cantidadImagenesTest;fila++)
                     {
                         for (int j=0; j<CPIXELES; j++)
                         {
-                            imagenesDeTestRP[fila][j] = imagenesDeTest[fila][j] - promedioImagenes[0][j];
-                            imagenesDeTestRP[fila][j] = imagenesDeTestRP[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                            imagenesDeTest[fila][j] = imagenesDeTest[fila][j] - promedioImagenes[0][j];
+                            imagenesDeTest[fila][j] = imagenesDeTest[fila][j]/(sqrt(cantidadImagenesTrain -1));
                         }
                     }
 
+                	Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
 
-                //    imagenesDeTestRP.display();
-
-
-                    ///cambio de base
-
-                	Matriz<double> tcTrain(imagenesDeTrainRP.filas(), alpha);
-
-                	tcTrain=imagenesDeTrainRP*P;
+                	tcTrain=imagenesDeTrain*P;
 
 
 
-                    Matriz<double> tcTest(imagenesDeTestRP.filas(), alpha);
+                    Matriz<double> tcTest(imagenesDeTest.filas(), alpha);
 
-                    tcTest=imagenesDeTestRP*P;
-
-
-                 /*   cout<<"tcTest\n";
-                    tcTest.display();
-                    cout<<endl;
-
-                    cout<<"tcTrain\n";
-                    tcTrain.display();
-                    cout<<endl;*/
-
-
-		    /*		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
-		    		for(int i = 0; i < tcTrain.filas(); i++)
-		    		{
-		    			for(int j = 0; j < tcTrain.columnas(); j++)
-		    				{
-		    					tcTrain[i][j] = 0;
-		    					for(int Im_c = 0; Im_c < imagenesDeTrain.columnas(); Im_c++ )
-		    					{
-		   							tcTrain[i][j] = tcTrain[i][j] + P[Im_c][j] + imagenesDeTrain[i][Im_c];
-		   						}
-		    				}
-		    		}
-
-					// matriz con las transformaciones caracteristicas para las imagenes de test
-					for (int j=0; j<CPIXELES; j++)//resto la media de las de train
-                	{
-                    	for(int fila=0; fila<imagenesDeTest.filas();fila++)
-                    	{
-                        	imagenesDeTest[fila][j] =imagenesDeTest[fila][j]- promedioImagenes[0][j];
-                            imagenesDeTest[fila][j] =imagenesDeTest[fila][j]/(sqrt(cantidadImagenesTrain -1));
-                    	}
-                	}
-
-		    		Matriz<double> tcTest(imagenesDeTest.filas(), alpha); // y ahora la tc
-		    		for(int i = 0; i < tcTest.filas(); i++)
-		    		{
-		    			for(int j = 0; j < tcTest.columnas(); j++)
-		    				{
-		    					tcTest[i][j] = 0;
-		    					for(int Im_c = 0; Im_c < imagenesDeTest.columnas(); Im_c++ )
-		    					{
-		   							tcTest[i][j] = tcTest[i][j] + P[Im_c][j] + imagenesDeTest[i][Im_c];
-		   						}
-		    				}
-		    		}
-					*/
-
+                    tcTest=imagenesDeTest*P;
 
 
 					double tasa = kNN2(k, tcTest, tcTrain, digitosImagenesTest, digitosImagenesTrain);
