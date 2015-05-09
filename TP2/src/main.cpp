@@ -8,9 +8,9 @@
 #include <math.h>
 using namespace std;
 
-const int CIMAGENES=5;
-const int CPIXELES=5;
-const int CPIXELESYETIQUETA=6;
+const int CIMAGENES=20;
+const int CPIXELES=7;
+const int CPIXELESYETIQUETA=8;
 enum Metodo { KNN = 0, PCA_KNN = 1};
 void usage() { cout << "./tp <input_filename> <output_filename> <metodo>" << endl; }
 
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
            		salida<<scientific<<setprecision(6);
 				vector<double> tasaDeReco;
 
-           	 	for(int particion = 0; particion < 1; particion++)
+           	 	for(int particion = 0; particion < K; particion++)
            	 	{
            	 		vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
           			vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
