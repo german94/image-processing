@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
            		salida<<scientific<<setprecision(6);
 				vector<double> tasaDeReco;
 
-           	 	for(int particion = 0; particion < 1; particion++)
+           	 	for(int particion = 0; particion < K; particion++)
            	 	{
            	 		vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
           			vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
