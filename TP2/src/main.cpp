@@ -298,29 +298,18 @@ int main(int argc, char *argv[])
 
                     imagenesDeTestRP.display();
 
+
+                    ///cambio de base
+
                 	Matriz<double> tcTrain(imagenesDeTrainRP.filas(), alpha);
 
-                    for(int i = 0; i < imagenesDeTrain.filas(); i++){
-                        for(int j = 0; j< alpha ;j++){
-                            double sum = 0;
-                            for(int r = 0; r < P.filas(); r++){
-                               sum += imagenesDeTrainRP[i][r] * P[r][j];
-                            }
-                            tcTrain[i][j] = sum;
-                        }
-                    }
+                	tcTrain=imagenesDeTrainRP*P;
+
+
 
                     Matriz<double> tcTest(imagenesDeTestRP.filas(), alpha);
 
-                    for(int i = 0; i < imagenesDeTest.filas(); i++){
-                        for(int j = 0; j< alpha ;j++){
-                            double sum = 0;
-                            for(int r = 0; r < P.filas(); r++){
-                               sum += imagenesDeTestRP[i][r] * P[r][j];
-                            }
-                            tcTest[i][j] = sum;
-                        }
-                    }
+                    tcTest=imagenesDeTestRP*P;
 
 
                     cout<<"tcTest\n";
@@ -330,9 +319,6 @@ int main(int argc, char *argv[])
                     cout<<"tcTrain\n";
                     tcTrain.display();
                     cout<<endl;
-
-                    /// en tcTrain y tcTest tenemos las coordenadas de las imagenes de train y de test en la base de autovectores, calculamos la distancia
-                    /// entre las imagenes de test y las de train como la distancia entre sus coordenadas en la base de autovectores
 
 
 		    /*		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
