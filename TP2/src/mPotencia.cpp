@@ -54,8 +54,8 @@ double ObtenerAutovalorMayor(Matriz<double> &A, Matriz<double>& v0){
     for(int i = 0; i < v0.filas(); i++){ v0[i][0] = v0[i][0]/normalizar;}
 
     Matriz<double> v1(v0.filas(),1);
-
-    for(int i=0;i<1000 ;i++)/// hay que cortarlo xq sino puede quedar en loop, a mi me queo en loop infinito para un minitest
+    int i = 0;
+    for(;i<3000 ;i++)/// hay que cortarlo xq sino puede quedar en loop, a mi me queo en loop infinito para un minitest
     {
 
         v1= A* v0;
@@ -68,6 +68,9 @@ double ObtenerAutovalorMayor(Matriz<double> &A, Matriz<double>& v0){
         if(haypocadif(v0, v1)){break;}
         v0=v1;
     }
+
+    if(i == 3000)
+        cout<<"Se pasaron las 3000 iteraciones en el metodo de la potencia"<<endl;
 
     return lambda;
 }
