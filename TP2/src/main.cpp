@@ -8,9 +8,9 @@
 #include <math.h>
 using namespace std;
 
-const int CIMAGENES=20;
-const int CPIXELES=7;
-const int CPIXELESYETIQUETA=8;
+const int CIMAGENES=42000;
+const int CPIXELES=784;
+const int CPIXELESYETIQUETA=785;
 enum Metodo { KNN = 0, PCA_KNN = 1};
 void usage() { cout << "./tp <input_filename> <output_filename> <metodo>" << endl; }
 
@@ -40,6 +40,8 @@ double get_time()
 
 int main(int argc, char *argv[])
 {
+
+    init_time();
 	if(argc != 4) {
 		usage();
 		return 0;
@@ -160,7 +162,7 @@ int main(int argc, char *argv[])
            		salida<<scientific<<setprecision(6);
 				vector<double> tasaDeReco;
 
-           	 	for(int particion = 0; particion < K; particion++)
+           	 	for(int particion = 0; particion < 1; particion++)
            	 	{
            	 		vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
           			vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
@@ -203,13 +205,13 @@ int main(int argc, char *argv[])
     	                    imTest++;
         	            }
                 	}
-
+/*
                 	cout<<"imagenesTest\n";
                 	imagenesDeTest.display();
                 	cout<<endl;
                 	cout<<"imagenesTrain\n";
                 	imagenesDeTrain.display();
-                    cout<<endl;
+                    cout<<endl;*/
                 	///calculo el promedio
                 	for(int j=0;j<CPIXELES;j++)
                     {
@@ -218,11 +220,11 @@ int main(int argc, char *argv[])
                         promedioImagenes[0][j] = promedioImagenes[0][j]/cantidadImagenesTrain;
                     }
 
-                	cout<<"promedioImagenes\n";
+                /*	cout<<"promedioImagenes\n";
 
                     promedioImagenes.display();
         	        ///resto a cada imagen del nuevo train el promedio, modifico imagenesDeTrain(se podria haber copiado)
-                    cout<<endl;
+                    cout<<endl;*/
 
                 	Matriz<double> imagenesDeTrainRP(imagenesDeTrain.filas(), imagenesDeTrain.columnas());
 
@@ -243,11 +245,11 @@ int main(int argc, char *argv[])
 
 
 
-                	cout<<"imagenesDeTrainRP\n";
+               /* 	cout<<"imagenesDeTrainRP\n";
 
                 	imagenesDeTrainRP.display();
 
-                	cout<<endl;
+                	cout<<endl;*/
                 	Matriz<double> covarianza(CPIXELES, CPIXELES);
                 	Matriz<double> traspuestaTrainRP(CPIXELES, cantidadImagenesTrain);
 
@@ -256,9 +258,9 @@ int main(int argc, char *argv[])
 
                 	covarianza= traspuestaTrainRP * imagenesDeTrainRP;
 
-                	cout<<"matriz de covarianza\n";
+                	/*cout<<"matriz de covarianza\n";
                 	covarianza.display();
-                	cout<<endl;
+                	cout<<endl;*/
 
        		        /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
                 	vector<double> valoresSingulares;
@@ -276,9 +278,9 @@ int main(int argc, char *argv[])
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
 
-                        cout<<"P\n";
+                    /*    cout<<"P\n";
                         P.display();
-                        cout<<endl;
+                        cout<<endl;*/
                 	/// ahora que tenemos la matriz de covarianza, y sus autovectores, calculamos tc
 
 
@@ -296,7 +298,8 @@ int main(int argc, char *argv[])
                         }
                     }
 
-                    imagenesDeTestRP.display();
+
+                //    imagenesDeTestRP.display();
 
 
                     ///cambio de base
@@ -312,13 +315,13 @@ int main(int argc, char *argv[])
                     tcTest=imagenesDeTestRP*P;
 
 
-                    cout<<"tcTest\n";
+                 /*   cout<<"tcTest\n";
                     tcTest.display();
                     cout<<endl;
 
                     cout<<"tcTrain\n";
                     tcTrain.display();
-                    cout<<endl;
+                    cout<<endl;*/
 
 
 		    /*		Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
@@ -384,14 +387,14 @@ int main(int argc, char *argv[])
         default:
             throw runtime_error("No existe ese metodo");
     }
-
+cout << "Tiempo de computo "<<get_time()<<endl;
     return 0;
 }
 
 
 void cargarMatrizTrain(Matriz<int>& train)
 {
-    ifstream baseTrain("../data/trainChico.csv", std::ifstream::in);
+    ifstream baseTrain("../data/train.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
@@ -418,35 +421,26 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
 	double tasaDeReconocimiento;
     unsigned int reconocidos = 0;
     for(int z = 0; z < tcTest.filas(); z++)
-    {/// z imagenes test
-        vector<pair<int, int> > normas2AlCuadrado; /// almaceno los k vecimos mas cercanos, su distancia y su digito
-        cout<<"digito a reconocer: "<<digitosImagenesTest[z]<<endl<<endl;
-        cout<<"se copara con \n";
-        cout<<"[ ";
+    {
+        vector<pair<int, int> > normas2AlCuadrado;
+
         for(int m = 0; m < tcTrain.filas(); m++)
-        {/// m imagenes de train
-
-        cout<<"("<<digitosImagenesTrain[m]<<",";
-
-
-            ///calculo la distancia al cuadrado entre la imagen de test y la de train
+        {
             unsigned int distanciaAlCuadrado = 0;
-    		for(int j = 0; j < tcTest.columnas(); j++)
+    		for(int i = 0; i < tcTest.columnas(); i++)
     		{
-        		distanciaAlCuadrado += (tcTest[z][j] - tcTrain[m][j]) *(tcTest[z][j] - tcTrain[m][j]);
+        		distanciaAlCuadrado += (tcTest[z][i] - tcTrain[m][i]) *(tcTest[z][i] - tcTrain[m][i]);
     		}
-        cout<<distanciaAlCuadrado<<"),";
-    		/// en caso de ser cercana la almaceno
 
             if(normas2AlCuadrado.size() < k) //coloco las primeras k normas
             {
                 pair<unsigned int, int> a;
-                a.first =  digitosImagenesTrain[m]; //almaceno el digito con su distancia
+                a.first =  digitosImagenesTrain[m];
                 a.second = distanciaAlCuadrado;
                 normas2AlCuadrado.push_back(a);
             }
             else
-            {/// si  en normas2alcuadrado hay uno mayor, el elemento se transorma en un elemento de los vecinos mas cercanos
+            {
                 if(haymayor(normas2AlCuadrado, distanciaAlCuadrado)) //si ya tengo k voy sacando las mayores
                 {
                     int pos_mayor = dondemayor(normas2AlCuadrado);
@@ -454,26 +448,11 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
                     normas2AlCuadrado[pos_mayor].second = distanciaAlCuadrado;
                 }
             }
-            cout<<"  vectorconKminimos: {";
-            for(int i=0;i<normas2AlCuadrado.size();i++){
-
-            cout<<normas2AlCuadrado[i].first<<", ";
-
-            }
-            cout<<"}   ";
-
         }
-
-
-        cout<<"]\n";
-
-        /// una vez que encontre los k vecinos mas cercanos, me quedo con el digito que mas veces aparecio
 
         unsigned int digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-        for(int t = 0; t < k; t++){
+        for(int t = 0; t < k; t++)
             digitos[normas2AlCuadrado[t].first]++;
-        }
 
         unsigned int ganador = digitos[0];
         for(int x = 0; x < 10; x++)
@@ -483,21 +462,11 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
         }
 
         if(ganador == digitosImagenesTest[z])
-          {  reconocidos++;}
-        ///si ese digito de test fue reconocido, aumento la candidad de reconocidos
-       cout<<"digitos reconocidos: \n";
-        cout<<"[";
+            reconocidos++;
 
-        for(int i=0;i<10;i++){
-            cout<<digitos[i]<<", ";
-        }
-cout<<"]\n";
     }
-
-    ///luego de consultar todos los tests, calculo la tasa de reconocimiento
-
-        tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
-        return tasaDeReconocimiento;
+    tasaDeReconocimiento = (double)reconocidos/(double)tcTest.filas();
+    return tasaDeReconocimiento;
 }
 
 
