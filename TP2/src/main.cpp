@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
 					double tasa = kNN2(k, tcTest, tcTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
 
-                    cout<<"tasa "<<paricion<<": "<<tasa<<endl;
+                    cout<<"tasa "<<particion<<": "<<tasa<<endl;
 
                     cout<<"FIN PARTICION\n";
 
