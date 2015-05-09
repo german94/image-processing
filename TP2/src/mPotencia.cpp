@@ -55,7 +55,7 @@ double ObtenerAutovalorMayor(Matriz<double> &A, Matriz<double>& v0){
 
     Matriz<double> v1(v0.filas(),1);
 
-    for(; ;)
+    for(int i=0;i<1000 ;i++)/// hay que cortarlo xq sino puede quedar en loop, a mi me queo en loop infinito para un minitest
     {
 
         v1= A* v0;

@@ -8,9 +8,9 @@
 #include <math.h>
 using namespace std;
 
-const int CIMAGENES=106;
-const int CPIXELES=14;
-const int CPIXELESYETIQUETA=15;
+const int CIMAGENES=5;
+const int CPIXELES=5;
+const int CPIXELESYETIQUETA=6;
 enum Metodo { KNN = 0, PCA_KNN = 1};
 void usage() { cout << "./tp <input_filename> <output_filename> <metodo>" << endl; }
 
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
            		salida<<scientific<<setprecision(6);
 				vector<double> tasaDeReco;
 
-           	 	for(int particion = 0; particion < K; particion++)
+           	 	for(int particion = 0; particion < 1; particion++)
            	 	{
            	 		vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train
           			vector<int> digitosImagenesTest; ///importante este vector tiene los digitos de la etiqueta de los Test, parece fea la implementacion, pero no jode
@@ -225,14 +225,23 @@ int main(int argc, char *argv[])
                     cout<<endl;
 
                 	Matriz<double> imagenesDeTrainRP(imagenesDeTrain.filas(), imagenesDeTrain.columnas());
-                	for (int j=0; j<CPIXELES; j++)
+
+
+                    for(int fila=0; fila<cantidadImagenesTrain;fila++)
                     {
-                        for(int fila=0; fila<cantidadImagenesTrain;fila++)
+
+                        for (int j=0; j<CPIXELES; j++)
                         {
-                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j]- promedioImagenes[0][j];
-                            imagenesDeTrainRP[fila][j] = imagenesDeTrain[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                            imagenesDeTrainRP[fila][j] =imagenesDeTrain[fila][j];//- promedioImagenes[0][j];
+                            imagenesDeTrainRP[fila][j] = imagenesDeTrainRP[fila][j]/(sqrt(cantidadImagenesTrain -1));
                         }
                     }
+
+                    //double cteCov= (double) 1/((double) sqrt(cantidadImagenesTrain -1));
+
+                  //  imagenesDeTrainRP=imagenesDeTrainRP*cteCov;
+
+
 
                 	cout<<"imagenesDeTrainRP\n";
 
@@ -272,33 +281,49 @@ int main(int argc, char *argv[])
                         cout<<endl;
                 	/// ahora que tenemos la matriz de covarianza, y sus autovectores, calculamos tc
 
-                	Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
 
+                 ///le restamos a las de test el promedio
+
+                	Matriz<double> imagenesDeTestRP(imagenesDeTest.filas(), imagenesDeTest.columnas());
+
+
+                    for(int fila=0; fila<cantidadImagenesTest;fila++)
+                    {
+                        for (int j=0; j<CPIXELES; j++)
+                        {
+                            imagenesDeTestRP[fila][j] = imagenesDeTest[fila][j] - promedioImagenes[0][j];
+                            imagenesDeTestRP[fila][j] = imagenesDeTestRP[fila][j]/(sqrt(cantidadImagenesTrain -1));
+                        }
+                    }
+
+                    imagenesDeTestRP.display();
+
+                	Matriz<double> tcTrain(imagenesDeTrainRP.filas(), alpha);
 
                     for(int i = 0; i < imagenesDeTrain.filas(); i++){
                         for(int j = 0; j< alpha ;j++){
                             double sum = 0;
                             for(int r = 0; r < P.filas(); r++){
-                               sum += imagenesDeTrain[i][r] * P[r][j];
+                               sum += imagenesDeTrainRP[i][r] * P[r][j];
                             }
                             tcTrain[i][j] = sum;
                         }
                     }
 
-                    Matriz<double> tcTest(imagenesDeTest.filas(), alpha);
+                    Matriz<double> tcTest(imagenesDeTestRP.filas(), alpha);
 
                     for(int i = 0; i < imagenesDeTest.filas(); i++){
                         for(int j = 0; j< alpha ;j++){
                             double sum = 0;
                             for(int r = 0; r < P.filas(); r++){
-                               sum += imagenesDeTest[i][r] * P[r][j];
+                               sum += imagenesDeTestRP[i][r] * P[r][j];
                             }
                             tcTest[i][j] = sum;
                         }
                     }
 
 
-                   cout<<"tcTest\n";
+                    cout<<"tcTest\n";
                     tcTest.display();
                     cout<<endl;
 
@@ -352,17 +377,23 @@ int main(int argc, char *argv[])
 					double tasa = kNN2(k, tcTest, tcTrain, digitosImagenesTest, digitosImagenesTrain);
                     tasaDeReco.push_back(tasa);
 
+                    cout<<"FIN PARTICION\n";
+
             }
+
+
+
+				cout<<"escribiendo resultados\n";
 
 				for(int i=0; i<tasaDeReco.size();i++) {cout<<tasaDeReco[i]<<endl;}
 
 	            ofstream tasaReconocimiento("tasaReconocimiento.txt",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
 	            tasaReconocimiento<<"Particion"<<"\t"<<"Tasa de Reconocimiento\n";
 
-	            for (int i = 0; i < tasaDeReco.size(); ++i){ tasaReconocimiento<<i+1<<"\t\t\t"<<tasaDeReco[i]<<endl;}
-
+	            for (int i = 0; i < tasaDeReco.size(); i++){ tasaReconocimiento<<i+1<<"\t\t\t"<<tasaDeReco[i]<<endl;}
+                cout<<"se terminaron de escribir resultados\n";
            		break;
-        	}
+    }
 
         default:
             throw runtime_error("No existe ese metodo");
