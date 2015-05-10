@@ -158,6 +158,14 @@ int main(int argc, char *argv[])
 
 	            for (int i = 0; i < tasaDeReco.size(); ++i){ tasaReconocimiento<<i+1<<"\t\t\t"<<tasaDeReco[i]<<endl;}
 	            ///aplicarle knn a la base de test y devover los resultados en el formato que envio agustin por mail
+
+	            double sum=0;
+	            for(int i=0;i<tasaDeReco.size();i++){
+                    sum+=tasaDeReco[i];
+	            }
+
+	            cout<<"promedio: "<<sum/tasaDeReco.size()<<endl;
+
 	            break;
 	        }
 
@@ -293,6 +301,17 @@ int main(int argc, char *argv[])
 
 	            for (int i = 0; i < tasaDeReco.size(); i++){ tasaReconocimiento<<i+1<<"\t\t\t"<<tasaDeReco[i]<<endl;}
                 cout<<"se terminaron de escribir resultados\n";
+
+
+
+                double sum=0;
+	            for(int i=0;i<tasaDeReco.size();i++){
+                    sum+=tasaDeReco[i];
+	            }
+
+	            cout<<"promedio: "<<sum/tasaDeReco.size()<<endl;
+
+
            		break;
     }
 
