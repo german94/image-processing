@@ -256,7 +256,7 @@ int main(int argc, char *argv[])
 
                 	for(int i=0;i<valoresSingulares.size();i++)
                 	{
-                    	cout<<sqrt(valoresSingulares[i])<<endl;
+                    	//cout<<sqrt(valoresSingulares[i])<<endl;
                     	salida<<sqrt(valoresSingulares[i])<<endl;
                		}
 
