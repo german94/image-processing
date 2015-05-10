@@ -7,4 +7,78 @@
 %equivocadas, experimentos y métodos malogrados deben figurar en esta sección, con
 %una breve explicación de los motivos de estas fallas (en caso de ser conocidas).
 
+\subsection{Principal Component Analysis (PCA):}
 
+
+El segundo método utilizado es PCA. Dado que las imagenes estan representadas por vectores y las dimensiones de de los mismos pueden ser muy grandes, a la hora de analizar las imagenes se requiere una gran cantidad de tiempo de computo así como de memoria. PCA tiene como objetivo redimensionar dichos vectores, siempre que se obtenga un determinado compromiso entre las nueva cantidad de variables y la calidad de las imagenes que ahora se representan. Para esto PCA construye un nuevo sistema de ecuaciones donde en el eje i se representa la i-esima varianza de mayor valor para el conjunto de original de imagenes dadas (representando la i-esima componente principal). De esta manera cada variable esta correlacionada siendo las primeras las de mayor importancia, por lo que se pueden obviar las últimas componentes (ya que serían las que menos importancia tienenn) reduciendo el número de variables. Para poder llevar a cabo esta transformacion lineal es necesario construir la matriz de covarianza para el conjunto de valores que representan a las imagenes.
+Para esto dadas dos coordenadas $x_i$, $x_j$ su covarianza se obtiene como: \newline
+
+
+$\sigma_{x_j x_k}$ = $(1/(n-1))\sum_{i=1}^{n}(x_{j}^{i}-\mu_j)(x_{k}^{i}-\mu_k)$  = $(1/(n-1))(x_{k}^{i}-\mu_kv)^{t}(x_{j}^{i}-\mu_jv)$ \newline
+\textit{con $v^{t}$ = (1,.....,1)}\newline
+
+De esta forma la covarianza entre dos muestras puede ser calculado como el producto entre dos vectores. Por lo que si A $\epsilon$ $\Re^{nx784}$ representa n imagenes de train vectorizadas de 784 variables cada una, la covarianza pueden ser calculadas como:\newline
+
+ $M_x$ = $A'^{t}*A'$; \ \ \ \ \textit {con $A'=A/\sqrt{n-1}$ y $M_x$ $\epsilon$  $\Re^{784x784}$} \newline
+
+obteniendo en la diagonal la varianza de cada coordenada. Con el fin de disminuir las redundancias, covarianza, se plantea un cambio de base. Para esto se diagonaliza la matriz $M_x$, de forma tal que: \newline
+
+ $M_x$ = $P*D*P^{t}$; \ \ \ \ \ \textit{D diagonal y P matriz ortogonal con los autovectores de A como columnas*} \newline%TEOREMA 9.10 I COROLARIO 9.11 BURDEN PAG 555.
+ 
+ Para obtener los autovectores de $M_x$ se empleó el metodo de la potencia* %PAG 560 BURDEN
+.Dado que la misma es una técnica iterativa que converge al autovector asociado se estableció que la misma se detenga luego de alcanzar un maximo de 3000 iteraciones o cuando la diferencia entre cada coordenada del vector obtenido en la iteración k respecto de la k+1 sea muy poca (en este caso optamos por 0.0000009). Una vez obtenidó el primer autovector procedimos a calcular el segundo para esto aplicamos el metodo de deflación* %pag 570 teorema 9.15 burden.
+ambas técnicas serán aplicadas un numero $\alpha$ de veces. En la sección experimentación se evaluara como se comportan los resultados y el tiempo obtenidos al variar este valor.
+Una vez obtenidos los $\alpha$ autovectores se procedió a llevar a cabo el cambio de dimensionalidad tanto para las imagenes utilizadas como train como para las de test. Para esto se multiplico cada autovector obtenido por las imagenes vectorizadas en A': \newline
+
+$v_i^{t}*a^{(i)}$ ; \textit{$v_i$ el i-esimo autovector y $a_i$ la i-esima imagen vectorizada} \newline
+
+lo que matricialmente se puede obtener al hacer: A'*P (llamaremos a la matriz resultante $TcTrain$). De esta forma la matriz TcTrain $\epsilon$ $\Re^{n*\alpha}$. Para poder comparar las imagenes de test (matriz B), con estos cambios aplicados a las de train, es necesario llevar a las imagenes de test a las mismas dimensiones, por lo que a cada una se le restara la media que corresponda y dividirá por $\sqrt{n-1}$, obteniendo $ B'$. 
+Una vez realizado esto procedemos a cambiar la base tal como se hizo para las de train:
+ TcTest = $B'*P$
+
+ Finalizado los cambios de bases obtenemos imagenes en un mismo espacio vectorial cuyas dimesiones son menores a las originales. Pudiendo aplicar distintas tecnicas para llevar a cabo el reconocimiento de los dígitos. Optaremos por aplicar KNN para así poder comparar las diferencias entre tiempo de computo y analisis cuando se busca reconocer dígitos utilizando PCA + KNN y solo KNN.
+ 
+A continuación se muestra un pseudocódigo de los procedimientos descriptos anteriormente:
+
+\begin{algorithm}[H]
+\caption{PCA(matriz Train, matriz Test, int $\alpha$)}
+\begin{algorithmic}[1]
+\State n = cantidad de imagenes de train
+\State \textit{$\setminus\setminus$Se procede a calcular el promedio de las imagenes de train}
+\State $ vector Promedio \gets crear(784)$
+\For{i = 0; i < 784; i++}
+	\State sum = 0	
+	\For{j = 0; i < n; j++}
+		\State sum = sum + Train[j][i]
+	\EndFor
+	\State promedio[i] = sum
+\EndFor
+
+\State \textit{$\setminus\setminus$ calculamos la matriz de covarianza:}
+\For {i = 0; i < n; i++}
+	\For {j = 0; j < 784; j++}
+		\State Train[i][j] = Train[i][j] - promedio[j]
+	\EndFor
+	\State Train[i][j] = Train[i][j]/$\sqrt{n-1}$
+\EndFor	
+
+\State $matriz$ $covarianza$ $\gets$ $Train^{t}*Train$	
+\State \textit{$\setminus\setminus$ obtenemos P la matriz con los $\alpha$ autovectores, de la matriz de covarianza, como columna:}
+\State $P$ $\gets$ metodo de la potencia y de deflacion (covarianza, $\alpha$)
+
+\For {i = 0; i < cantidad de imagenes de test; i++}
+	\For {j = 0; j < 784; j++}
+		\State test[i][j] = test[i][j] - promedio[j]
+	\EndFor
+	\State test[i][j] = test[i][j]/$\sqrt{n-1}$
+\EndFor	
+
+\State \textit{$\setminus\setminus$ realizamos la transformaci\'on caracteristica para train (TcTrain) y para test (TcTest)):}
+\State  TcTrain $\gets$ $Train*P$
+\State  TcTest $\gets$ $Test*P$
+
+
+\State \textit{$\setminus\setminus$ finalmente procedemos a reconocer los d\'igitos:}
+\State Knn(tcTriain, TcTest)
+\end{algorithmic}
+\end{algorithm}

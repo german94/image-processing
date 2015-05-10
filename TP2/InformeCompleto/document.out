@@ -1,6 +1,9 @@
 \BOOKMARK [1][-]{section.1}{Introducci\363n Te\363rica}{}% 1
-\BOOKMARK [1][-]{section.2}{Desarrollo}{}% 2
-\BOOKMARK [1][-]{section.3}{Resultados}{}% 3
-\BOOKMARK [1][-]{section.4}{Discusi\363n}{}% 4
-\BOOKMARK [1][-]{section.5}{Conclusiones}{}% 5
-\BOOKMARK [1][-]{section.6}{Ap\351ndices}{}% 6
+\BOOKMARK [2][-]{subsection.1.1}{k Nearest Neighbor y Principal Component Analysis}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{M\351todo de la potencia y deflaci\363n}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Desarrollo}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Principal Component Analysis \(PCA\):}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Resultados}{}% 6
+\BOOKMARK [1][-]{section.4}{Discusi\363n}{}% 7
+\BOOKMARK [1][-]{section.5}{Conclusiones}{}% 8
+\BOOKMARK [1][-]{section.6}{Ap\351ndices}{}% 9

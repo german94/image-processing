@@ -1,7 +1,10 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Introducci\IeC {\'o}n Te\IeC {\'o}rica}{3}{section.1}
-\contentsline {section}{\numberline {2}Desarrollo}{4}{section.2}
-\contentsline {section}{\numberline {3}Resultados}{5}{section.3}
-\contentsline {section}{\numberline {4}Discusi\IeC {\'o}n}{6}{section.4}
-\contentsline {section}{\numberline {5}Conclusiones}{7}{section.5}
-\contentsline {section}{\numberline {6}Ap\IeC {\'e}ndices}{8}{section.6}
+\contentsline {subsection}{\numberline {1.1}k Nearest Neighbor y Principal Component Analysis}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}M\IeC {\'e}todo de la potencia y deflaci\IeC {\'o}n}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}Desarrollo}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Principal Component Analysis (PCA):}{5}{subsection.2.1}
+\contentsline {section}{\numberline {3}Resultados}{7}{section.3}
+\contentsline {section}{\numberline {4}Discusi\IeC {\'o}n}{8}{section.4}
+\contentsline {section}{\numberline {5}Conclusiones}{9}{section.5}
+\contentsline {section}{\numberline {6}Ap\IeC {\'e}ndices}{10}{section.6}
