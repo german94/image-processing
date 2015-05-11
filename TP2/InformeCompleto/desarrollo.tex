@@ -6,6 +6,59 @@
 %y realizadas las mediciones experimentales. Los ensayos fallidos, hipótesis y conjeturas
 %equivocadas, experimentos y métodos malogrados deben figurar en esta sección, con
 %una breve explicación de los motivos de estas fallas (en caso de ser conocidas).
+\subsection{k-Nearest Neighbors (kNN):}
+El primer método utilizado es kNN. Como se dijo en la introducción teórica, este método es muy intuitivo, se basa en tomar a cada imagen como un punto en un espacio, y se hace una votación de la moda de los k vecinos cercanos. Todas las imagenes de dbTrain (28x28 pixeles), se encuentran guardadas vectorizadas en una matriz de ${\rm I\!R}^{42000x785}$. La primera columna establece el label de cada imagen, las columnas restantes son los pixeles.\\
+Mediante el K que determine la partición, vamos a dividir esa matriz, en dos, una de train, con $(42000/K)*(K-1)$ imágenes y otra de test, con $42000/K$ imágenes. A su vez, vamos a eliminar la primera columna de cada matriz, y nos las vamos a guardar en 2 vectores diferentes. Asi podremos comparar cada imagen de la matriz de test, con todas las imágenes de la matriz de train y al mismo tiempo tener guardados los labels correspondientes a cada imagen. Finalmente la idea algoritmica se detalla en el siguiente pseudocódigo:\\
+\begin{algorithm}[H]
+\caption{kNN(int $k$, matriz Test, matriz Train, vector digTest, vector digTrain)}
+\begin{algorithmic}[1]
+\State reconocidos = 0
+\For{z = 0; z <Test.filas() ; z++}
+	\State vector<pair<int, int> > normas2AlCuadrado	
+	\For{m = 0; m < Train.filas(); m++}
+		\State \textit{$\setminus\setminus$ calculamos las distancias}
+		\State distanciaAlCuadrado = 0
+		\For{i = 0; i <Test.columnas() ; i++}
+			\State distanciaAlCuadrado += (Test[z][i] - Train[m][i]) *(Test[z][i] - Train[m][i])
+		\EndFor
+		\If{normas2AlCuadrado.size() < k} \State \textit{$\setminus\setminus$ colocamos las primeras k normas}
+			\State pair<unsigned int, int> a
+            \State a.first =  digTrain[m]
+            \State a.second = distanciaAlCuadrado
+            \State normas2AlCuadrado.pushback(a)
+         \Else
+         	\If{haymayor(normas2AlCuadrado, distanciaAlCuadrado}
+         			\State \textit{$\setminus\setminus$  si ya tengo k voy sacando las mayores distancias}
+         		    \State int posmayor = dondemayor(normas2AlCuadrado)
+                    \State normas2AlCuadrado[posmayor].first = digTrain[m]
+                    \State normas2AlCuadrado[posmayor].second = distanciaAlCuadrado
+             \EndIf
+         \EndIf
+
+	\EndFor
+	
+\EndFor
+\State \textit{$\setminus\setminus$  Ahora hago la votación entre los k vecinos}
+\State digitos[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+\For{int t = 0; t < k; t++}
+	\State digitos[normas2AlCuadrado[t].first]++
+\EndFor
+\State ganador = digitos[0]
+\For {int x = 0; x < 10; x++}
+	\If {digitos[x] > digitos[ganador]}
+				\State  ganador = x
+			\EndIf
+\EndFor
+\State \textit{$\setminus\setminus$  Si en la votación gano el verdadero label de la imagen de test, sumamos reconocidos}
+\If {ganador == digTest[z]}
+				\State  reconocidos++
+\EndIf
+
+\State tasaDeReconocimiento = reconocidos/Test.filas()
+
+
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Principal Component Analysis (PCA):}
 
