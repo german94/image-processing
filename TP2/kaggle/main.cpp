@@ -15,7 +15,7 @@ bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanc
 int dondemayor(vector<pair<int, int> >  &normas2AlCuadrado);
 void cargarMatrizTrain(Matriz<int>& train);
 void cargarMatrizTest(Matriz<double>& test);
-unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2);
+//unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2);
 vector<double> kNN(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vector<int> &digitosImagenesTrain);
 
 
@@ -44,12 +44,13 @@ void usage() {
 	cout << "./main <output_filename> <metodo> <k> <alpha>" << endl;
 }
 
-const int CIMAGENESTRAIN=20;
-const int CIMAGENESTEST=10;
-const int CPIXELES=7;
-const int CPIXELESYETIQUETA=8; //solo train
+const int CIMAGENESTRAIN=42000;
+const int CIMAGENESTEST=28000;
+const int CPIXELES=784;
+const int CPIXELESYETIQUETA=785; //solo train
 
 int main(int argc, char *argv[]) {
+    init_time();
 	if(argc != 5) {
 		usage();
 		return 0;
@@ -106,6 +107,8 @@ int main(int argc, char *argv[]) {
 	        }
 
         case PCA_KNN:{
+
+                    cout<<"Empece método con: alpha = "<<alpha<<" y k = "<<k<<endl;
               
                 	vector<int> digitosImagenesTrain; ///importante este vector tiene los digitos de la etiqueta de los Train          
                 	
@@ -152,9 +155,9 @@ int main(int argc, char *argv[]) {
                     Matriz<double> traspuestaTrain(CPIXELES, CIMAGENESTRAIN); //ANTES DECIA CIMAGENESTEST ESO ESTA BIEN?
 
                     traspuestaTrain= imagenesDeTrain.traspuesta();
-         
+                    cout<<"empiezo calculo de matriz de covarianza"<<endl;
                     covarianza= traspuestaTrain * imagenesDeTrain;
-       
+                    
                     /// ahora que tenemos la matriz de covarianza aplicamos el metodo de la potencia
 
                     vector<double> valoresSingulares;
@@ -162,13 +165,26 @@ int main(int argc, char *argv[]) {
                     Matriz<double> v(CPIXELES,1);
 
                     for(int i=0;i<CPIXELES;i++){v[i][0]=2;}
-
+                    cout<<"empiezo metodo de las potencias"<<endl;
                     valoresSingulares= metodoPotencias(covarianza,alpha,P,v);         
                             
                     // matriz con las transformaciones caracteristicas para las imagenes de train
     
+                    for (int j=0; j<CPIXELES; j++)//resto la media de las de train
+                    {
+                        for(int fila=0; fila<test.filas();fila++)
+                        {
+                            test[fila][j] =test[fila][j]- promedioImagenesTrain[0][j];
+                        	test[fila][j] = test[fila][j]/(sqrt(CIMAGENESTRAIN -1));
+                        }
+                    }
                     Matriz<double> tcTrain(imagenesDeTrain.filas(), alpha);
-                    for(int i = 0; i < tcTrain.filas(); i++)
+                    tcTrain=imagenesDeTrain*P;
+
+                    Matriz<double> tcTest(test.filas(), alpha); // y ahora la tc
+                    tcTest=test*P;
+
+                   /* for(int i = 0; i < tcTrain.filas(); i++)
                     {
                         for(int j = 0; j < tcTrain.columnas(); j++)
                             {
@@ -179,20 +195,12 @@ int main(int argc, char *argv[]) {
                                 }        
                             }
                     } 
-                    
+                    */
+
                     // matriz con las transformaciones caracteristicas para las imagenes de test
 
-                    for (int j=0; j<CPIXELES; j++)//resto la media de las de train
-                    {
-                        for(int fila=0; fila<test.filas();fila++)
-                        {
-                            test[fila][j] =test[fila][j]- promedioImagenesTrain[0][j];
-                        	test[fila][j] = test[fila][j]/(sqrt(CIMAGENESTRAIN -1));
-                        }
-                    }
 
-                    Matriz<double> tcTest(test.filas(), alpha); // y ahora la tc
-                    for(int i = 0; i < tcTest.filas(); i++)
+                    /*for(int i = 0; i < tcTest.filas(); i++)
                     {
                         for(int j = 0; j < tcTest.columnas(); j++)
                             {
@@ -204,8 +212,8 @@ int main(int argc, char *argv[]) {
                             }
                     }
 
-
-
+                    */
+                    cout<<"empiezo kNN"<<endl;
                     vector<double> prediccionDigitos = kNN(k, tcTest, tcTrain, digitosImagenesTrain);
                     if(prediccionDigitos.size() != CIMAGENESTEST){
                         throw runtime_error("La longitud de la prediccion de digitos no es la esperada");
@@ -224,14 +232,14 @@ int main(int argc, char *argv[]) {
         default:
             throw runtime_error("No existe ese metodo");
     }
-
+cout << "Tiempo de computo "<<get_time()<<endl;
     return 0;
 }
 
 
 void cargarMatrizTrain(Matriz<int>& train)
 {
-    ifstream baseTrain("../data/trainChico.csv", std::ifstream::in);
+    ifstream baseTrain("../data/train.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTrain, lineaNombrePixel); //la linea de la entrada avanzo
 
@@ -258,7 +266,7 @@ void cargarMatrizTrain(Matriz<int>& train)
 
 void cargarMatrizTest(Matriz<double>& test)
 {
-    ifstream baseTest("../data/testChico.csv", std::ifstream::in);
+    ifstream baseTest("../data/test.csv", std::ifstream::in);
     string lineaNombrePixel;
     getline(baseTest, lineaNombrePixel); //la linea de la entrada avanzo
 
@@ -322,7 +330,7 @@ vector<double> kNN(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTra
         for(int t = 0; t < k; t++)
             digitos[normas2AlCuadrado[t].first]++;
 
-        unsigned int ganador = digitos[0];
+        unsigned int ganador = 0;
         for(int x = 0; x < 10; x++)
         {
             if(digitos[x] > digitos[ganador])
@@ -338,7 +346,7 @@ vector<double> kNN(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTra
 }
 
 
-
+/*
 unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2)
 {
     unsigned int n = 0;
@@ -349,7 +357,7 @@ unsigned int norma2AlCuadrado(vector<unsigned int> &v1, vector<unsigned int> &v2
 
     return n;
 }
-
+*/
 bool haymayor(vector<pair<int, int> >  &normas2AlCuadrado,  unsigned int distanciaAlCuadrado)
     {
         bool res = false;
