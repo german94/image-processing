@@ -385,7 +385,7 @@ double kNN2(unsigned int k, Matriz<double> &tcTest, Matriz<double> &tcTrain, vec
         for(int t = 0; t < k; t++)
             digitos[normas2AlCuadrado[t].first]++;
 
-        unsigned int ganador = digitos[0];
+        unsigned int ganador = 0;
         for(int x = 0; x < 10; x++)
         {
             if(digitos[x] > digitos[ganador])
