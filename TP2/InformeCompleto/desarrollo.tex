@@ -158,28 +158,10 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 
 \end{algorithmic}
 \end{algorithm}
-\subsection{Experimento 1: Variando el k en kNN}
-Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
-para poder contrastar la siguiente hipótesis:
 
-\begin{itemize}
-\item Hipótesis N 1: En el método de kNN, manteniendo K constante, al incrementar k vamos obteniendo una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, mayor porcentaje de la tasa.
-\end{itemize}
+\subsection{Experimentaciones:}
 
-Para verificar la hipótesis N 1, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20  y variando los k, con k $\in$ $\{$2, 30, 100, 500$\}$. En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
-
-\subsection{Experimento 2: variando el $\alpha$ en kNN + PCA}
-
-Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
-para poder contrastar la siguiente hipótesis:
-
-\begin{itemize}
-\item Hipótesis N 2: En el método de kNN aplicandole el complemento de PCA, manteniendo K constante, diferencias notables de $\alpha$ reflejan diferencias notables en las tasas de efectividad. Más profundamente, a mayor valor de $\alpha$ mayor nivel de la tasa y a menor valor de $\alpha$ menor nivel de la tasa
-\end{itemize}
-
-Para verificar la hipótesis N 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20, k = 2 y variando los $\alpha$, con $\alpha$ $\in$ $\{$20, 50, 100, 300, 500$\}$. La eleccion del k, se baso en las experimentaciones anteriores, dicho valor escogido fue el de mejor resultado en cuanto a tiempo y tasa de efectividad\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
-
-\subsection{Experimento 3: variando el K}
+\subsection{Elección de K, hipótesis}
 Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
 para poder contrastar las siguientes hipótesis:
 
@@ -191,5 +173,32 @@ para poder contrastar las siguientes hipótesis:
 Para verificar la hipótesis N 3, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle....\\
 Para verificar la hipótesis N 3, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle....
  \\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
+
+
+
+
+
+\subsection{Experimento 1: Variando el k en kNN}
+Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
+para poder contrastar la siguiente hipótesis:
+
+\begin{itemize}
+\item Hipótesis N 1: En el método de kNN, manteniendo K constante, al incrementar k vamos obteniendo una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, mayor porcentaje de la tasa.
+\end{itemize}
+
+Para verificar la hipótesis N 1, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20  y variando los k, con k $\in$ $\{$2, 30, 100, 500$\}$. En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
+
+\subsection{Experimento 2.a: variando el k en kNN + PCA}
+
+Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
+para poder contrastar la siguiente hipótesis:
+
+\begin{itemize}
+\item Hipótesis N 2: En el método de kNN aplicandole el complemento de PCA, manteniendo K constante, diferencias notables de $\alpha$ reflejan diferencias notables en las tasas de efectividad. Más profundamente, a mayor valor de $\alpha$ mayor nivel de la tasa y a menor valor de $\alpha$ menor nivel de la tasa
+\end{itemize}
+
+Para verificar la hipótesis N 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20, k = 2 y variando los $\alpha$, con $\alpha$ $\in$ $\{$20, 50, 100, 300, 500$\}$. La eleccion del k, se baso en las experimentaciones anteriores, dicho valor escogido fue el de mejor resultado en cuanto a tiempo y tasa de efectividad\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
+
+\subsection{Experimento 2.b: variando el alpha en kNN + PCA}
 
 

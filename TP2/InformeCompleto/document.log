@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  11 MAY 2015 03:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  13 MAY 2015 02:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1043,13 +1043,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros (./config/caratula.tex
-<logo.jpg, id=47, 371.3875pt x 241.90375pt>
+<logo.jpg, id=91, 371.3875pt x 241.90375pt>
 File: logo.jpg Graphic file (type jpg)
  <use logo.jpg>
 Package pdftex.def Info: logo.jpg used on input line 3.
 (pdftex.def)             Requested size: 111.4171pt x 72.57167pt.
 
-<logo_dc.jpg, id=48, 215.6055pt x 83.5923pt>
+<logo_dc.jpg, id=92, 215.6055pt x 83.5923pt>
 File: logo_dc.jpg Graphic file (type jpg)
  <use logo_dc.jpg>
 Package pdftex.def Info: logo_dc.jpg used on input line 4.
@@ -1096,58 +1096,109 @@ LaTeX Info: Redefining \% on input line 1.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 13.
 
-Underfull \hbox (badness 10000) in paragraph at lines 10--61
+Underfull \hbox (badness 10000) in paragraph at lines 10--62
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 66--68
+Underfull \hbox (badness 10000) in paragraph at lines 67--69
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--73
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--86
+Underfull \hbox (badness 10000) in paragraph at lines 83--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
-) [7] [8] (./resultados.tex) [9] (./discusion.tex) [10] (./conclusion.tex)
-[11] (./apendices.tex) [12] (./referencias.tex) [13]
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 142--160
 
+ []
+
+[8] [9]) [10] (./resultados.tex
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
+ []
+
+<Tablas/kNNK10.jpg, id=185, 724.7075pt x 227.85126pt>
+File: Tablas/kNNK10.jpg Graphic file (type jpg)
+ <use Tablas/kNNK10.jpg>
+Package pdftex.def Info: Tablas/kNNK10.jpg used on input line 18.
+(pdftex.def)             Requested size: 362.35286pt x 113.92534pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+<Graficos/graficoknnK10.jpg, id=186, 607.26875pt x 341.275pt>
+File: Graficos/graficoknnK10.jpg Graphic file (type jpg)
+
+<use Graficos/graficoknnK10.jpg>
+Package pdftex.def Info: Graficos/graficoknnK10.jpg used on input line 23.
+(pdftex.def)             Requested size: 425.08524pt x 238.89085pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
+
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.36 \item C
+            on K = 10\\ <./Tablas/kNNK10.jpg> <./Graficos/graficoknnK10.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+) [12] (./discusion.tex) [13] (./conclusion.tex) [14] (./apendices.tex)
+[15] (./referencias.tex) [16] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 41.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 41.
@@ -1158,17 +1209,17 @@ LaTeX Info: Redefining \% on input line 19.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 41.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 41.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: FCA07DD080988DC480585AC778BF7032;642.
+(rerunfilecheck)             Checksum: A5D95A990E923037FD8170869D622B99;1483.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 41.
  ) 
 Here is how much of TeX's memory you used:
- 19582 strings out of 493304
- 325143 string characters out of 6139872
- 444926 words of memory out of 5000000
- 22566 multiletter control sequences out of 15000+600000
+ 19624 strings out of 493304
+ 325802 string characters out of 6139872
+ 444933 words of memory out of 5000000
+ 22588 multiletter control sequences out of 15000+600000
  15053 words of font info for 38 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 58i,13n,58p,1349b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,13n,58p,1349b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1187,10 +1238,10 @@ per/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sftt1000.pfb>
-Output written on document.pdf (13 pages, 479604 bytes).
+Output written on document.pdf (16 pages, 560402 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 180 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 103 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 296 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 201 words of extra memory for PDF output out of 10000 (max. 10000000)
 
