@@ -1,0 +1,23 @@
+{
+    ".deps_version": 2, 
+    "g++ -O2 -c ./mPotencia.cpp -o ./mPotencia.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Matriz.h": "input-1be449f3ac4d3be4cd631e1bea42fca4", 
+        "mPotencia.cpp": "input-4213961b2f8d6974e17ebfe6bfd3fdf0", 
+        "mPotencia.o": "output-e2b2953451b4a347c6b6f91f12bdb20f"
+    }, 
+    "g++ -O2 -c ./main.cpp -o ./main.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "Matriz.h": "input-1be449f3ac4d3be4cd631e1bea42fca4", 
+        "mPotencia.h": "input-1ffc0b225859e0f7324753e28c2366a0", 
+        "main.cpp": "input-aadd91b7600c437798213f84ae786ae3", 
+        "main.o": "output-13b26eddea456da9814180f274a49ca8", 
+        "util.h": "input-4915794f8fcfae2b669d10c9e7ad2712"
+    }, 
+    "g++ -o ./tp ./mPotencia.o ./main.o": {
+        ".": "input-5058f1af8388633f609cadb75a75dc9d", 
+        "mPotencia.o": "input-e2b2953451b4a347c6b6f91f12bdb20f", 
+        "main.o": "input-13b26eddea456da9814180f274a49ca8", 
+        "tp": "output-08025313769420e9c78ca302ecc8c7d5"
+    }
+}
