@@ -163,10 +163,13 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 \newpage
 \section{Experimentaciones}
 
+
+Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrollar distintas experimentaciones. En primer lugar para KNN variaremos la cantidad de vecinos (k) que vamos a utilizar para reconocer a que clase pertenece cada imagen de test. Luego, para PCA + KNN también vamos a variar la cantidad de vecinos a tomar, fijando un $\alpha$ (cantidad de componentes principales),  y para el mejor de ellos (evaluando calidad de la solucion y tiempo de computo) procederemos a variar el valor de $\alpha$ utilizando el mejor k obtenido  anteriormente. Los valores obtenidos por estas experimentaciones seran detallados en la sección resultados, los mismos fueron obtenidos en una pc Intel Core i3 con 4gb de RAM.\newline
+
 \subsection{Elección de K, hipótesis 1}
 
-Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrollar distintas experimentaciones. En primer lugar para KNN variaremos la cantidad de vecinos (k) que vamos a utilizar para reconocer a que clase pertenece cada imagen de test. Luego, para PCA + KNN también vamos a variar la cantidad de vecinos a tomar, fijando un $\alpha$ (cantidad de componentes principales),  y para el mejor de ellos (evaluando calidad de la solucion y tiempo de computo) procederemos a variar el valor de $\alpha$ utilizando el mejor k obtenido  anteriormente.\newline
- Además para dichas experimentaciones aplicaremos la técnica de $K-Fold$ $Cross$ $Validation$, para la misma es necesario la elección de un valor K que representa la cantidad de conjuntos en la que dividiremos la base de train. Dado que para la formación de las particiones, que serán utilizadas tanto para test como para train, utilizamos el comando CVPARTITION la misma las calcula como:\newline
+
+ Para las anteriores experimentaciones aplicaremos la técnica de $K-Fold$ $Cross$ $Validation$, para la misma es necesario la elección de un valor K que representa la cantidad de conjuntos en la que dividiremos la base de train. Dado que para la formación de las particiones, que serán utilizadas tanto para test como para train, utilizamos el comando CVPARTITION la misma las calcula como:\newline
  
  cantidad de imágenes de test = $n/K$  (1)\newline
   cantidad de imágenes de train = n - $n/K$ (2)\newline
