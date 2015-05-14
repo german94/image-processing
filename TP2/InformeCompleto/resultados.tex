@@ -153,7 +153,7 @@ Ahora vamos a comparar las tasas de PCA + KNN con las de KNN para los distintos 
 \includegraphics[scale=0.5]{Tablas/comtrK20.jpg}
 }
 
-Podemos observar como sorprendentemente PCA siempre supera a KNN, teóricamente esto no debería suceder.
+Podemos observar como sorprendentemente PCA siempre supera a KNN, teóricamente esto no debería suceder. Aunque hipotéticamente se deba a un arrastre de error por estar trabajando con aritmética finita, o por las característica de las imágenes, que al aplicar PCA, este me elimine los datos que distorcionan de manera muy grande la muestra. Es decir que PCA, aun siendo chico el valor $\alpha$ me capture gran parte de los datos esenciales de cada imagen.
 \newline
 \newline
 A continuación presentamos un gráfico que compara los tiempos de KNN y PCA + KNN para $K = 2$ y $K = 10$, fijando $\alpha = 50$ en PCA y variando $k$:
