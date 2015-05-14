@@ -159,9 +159,11 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 
 \end{algorithmic}
 \end{algorithm}
-\subsection{Experimentos}
 
-\subsection{Elección de K, hipótesis}
+\newpage
+\section{Experimentaciones}
+
+\subsection{Elección de K, hipótesis 1}
 
 Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrollar distintas experimentaciones. En primer lugar para KNN variaremos la cantidad de vecinos (k) que vamos a utilizar para reconocer a que clase pertenece cada imagen de test. Luego, para PCA + KNN también vamos a variar la cantidad de vecinos a tomar, fijando un $\alpha$ (cantidad de componentes principales),  y para el mejor de ellos (evaluando calidad de la solucion y tiempo de computo) procederemos a variar el valor de $\alpha$ utilizando el mejor k obtenido  anteriormente.\newline
  Además para dichas experimentaciones aplicaremos la técnica de $K-Fold$ $Cross$ $Validation$, para la misma es necesario la elección de un valor K que representa la cantidad de conjuntos en la que dividiremos la base de train. Dado que para la formación de las particiones, que serán utilizadas tanto para test como para train, utilizamos el comando CVPARTITION la misma las calcula como:\newline
@@ -171,7 +173,7 @@ Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrolla
   \textit{con n la cantidad de imágenes total, en nuestro caso las 42.000 de la base de train.}
   
 A partir de esta distribución elaboramos una primer hipótesis. 
- Hipótesis1: Para los K de mayor valor, la tasa de reconocimiento promedio es mayor que para los de menor valor.  
+ \textbf{Hipótesis 1}: Para los K de mayor valor, la tasa de reconocimiento promedio es mayor que para los de menor valor.  
  
  Como se menciono, lo que nos llevo a formular esta hipótesis es la distribución en la cantidad de imágenes de test y de train al utilizar distintos K. Notemos por (1) que la cantidad de imágenes utilizadas como test aumenta a medida que K disminuye y como consecuencia las de train disminuyen (2). 
  
@@ -180,24 +182,16 @@ Si al momento de reconocer un dígito i, se tienen pocas imágenes con las que c
 Para poder corroborar esta hipótesis a las experimentaciones mencionadas anteriormente (variación de k, y alpha) también las haremos variando el valor de K. Se eligieron tres valores para experimentar, los mismos son K =  2, 10, y 20, dicha elección esta ligada a como quedan distribuidas la cantidad de imágenes utilizadas tanto para test como para train. Cuando K = 2 solo un 50\% del total de las imágenes son de entrenamiento (además es el mínimo valor permitido por matlab para el comando cvpartition, usando Kfold); para K = 10 un 90\% y para 20 un 95\%, de esta manera abarcamos un amplio y variado rango de valores para la cantidad de imágenes a reconocer y las utilizadas como entrenamiento. Como consecuencia de esta elección surge otro problema a analizar y es que, si al aumentar el K las tasas de reconocimiento promedio aumentan ¿que porcentaje de mejora obtenemos (si es que lo hacen)? y ¿como influye el tiempo de computo en estas variaciones?. Por lo que en las experimentaciones además buscaremos responder estas preguntas para poder determinar la mejor relación entre calidad de soluciones y tiempo. 
 
 
-
-
- En el método de kNN+PCA, claramente incrementa el tiempo de cómputo a medida que aumenta el valor de K, esto se debe a que el cálculo de la matriz de covarianza del entrenamiento domina gran parte del tiempo del metodo. Dicha matriz se calcula de la siguiente forma: por ejemplo, si K=2, la matriz de entranamiento va a tener un tamaño de 21000x784, su transpuesta de 784x21000, entonces la matriz de covarianza se calcula multiplicando la transpuesta por la matriz de entrenamiento resultando siempre una matriz de 784x784. Para este caso de K, haremos 2 multiplicaciones de matrices de 784x21000 y 21000x784. Ahora bien, si suponemos que K=10, el procedimiento es el mismo, salvo que ahora, mi base de entrenamiento va a ser mas grande, por ende, su matriz también que este caso va a tener tamaño de (42.000-42.000/10)x784 = 37800x784. Para este caso de K, haremos 10 multiplicaciones de matrices de 784x37.800 y 37.800x784. Al aumentar el valor de K, además de hacer más multiplicaciones por tener más particiones, las matrices aumentan de tamaño por lo explicado anteriormente. Para K=20 es el mismo procedimiento.\\
-En el método de kNN, por ejemplo para K=2, voy a recorrer 2 veces la base de entrenamiento de 21000 dígitos para un base de test con la misma cantidad de dígitos. Para k=10, voy a recorrer 10 veces la base de train de 37.800 dígitos para una base de test de 4.200 digitos. Realizando un análisis más exhaustivo, para el primer caso de K=2, estariamos recorriendo 21.000 veces la base de 21.000 digitos, todo eso 2 veces lo que resultaria en 2*21.000*21.000 = 822.000.000 iteraciones. Para el caso de K=10, estariamos recorriendo 4200 veces la base de 37800 digitos, todo eso 10 veces lo que resultaria en 10*4.200*37.800 = 1.587.600.000 iteraciones, lo que implacarŕia un 93$\%$ más de iteraciones. Para K=20 pasa lo mismo.\\
-
-
-
-
 \subsubsection{Experimento 1: Variando el k en kNN}
 Se llevará a cabo una cierta cantidad de experimentaciones
 para poder contrastar la siguiente hipótesis:
 
 \begin{itemize}
-\item Hipótesis N$ ^{\circ} $ 1: En el método de kNN, al incrementar k vamos obteniendo una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, mayor porcentaje de la tasa.
+\item Hipótesis N$ ^{\circ} $ 2: En el método de kNN, al incrementar k vamos obteniendo una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, mayor porcentaje de la tasa.
 \end{itemize}
 %y variando los k, con k $\in$ $\{$2, 30, 100, 500$\}$.
 
-Para verificar la hipótesis N$ ^{\circ} $ 1, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, utilizando la técnica de K-Fold cross validation, con 2, 10 y 20 particiones.
+Para verificar la hipótesis N$ ^{\circ} $ 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, utilizando la técnica de K-Fold cross validation, con 2, 10 y 20 particiones.
  En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
 
 \subsubsection{Experimento 2: variando el $\alpha$ en kNN + PCA}
@@ -206,8 +200,8 @@ Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de expe
 para poder contrastar la siguiente hipótesis:
 
 \begin{itemize}
-\item Hipótesis N 2: En el método de kNN aplicandole el complemento de PCA, manteniendo K constante, diferencias notables de $\alpha$ reflejan diferencias notables en las tasas de efectividad. Más profundamente, a mayor valor de $\alpha$ mayor nivel de la tasa y a menor valor de $\alpha$ menor nivel de la tasa
+\item Hipótesis N 3: En el método de kNN aplicandole el complemento de PCA, manteniendo K constante, diferencias notables de $\alpha$ reflejan diferencias notables en las tasas de efectividad. Más profundamente, a mayor valor de $\alpha$ mayor nivel de la tasa y a menor valor de $\alpha$ menor nivel de la tasa
 \end{itemize}
 
-Para verificar la hipótesis N 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20, k = 2 y variando los $\alpha$, con $\alpha$ $\in$ $\{$20, 50, 100, 300, 500$\}$. La eleccion del k, se baso en las experimentaciones anteriores, dicho valor escogido fue el de mejor resultado en cuanto a tiempo y tasa de efectividad\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
+Para verificar la hipótesis N 3, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20, k = 2 y variando los $\alpha$, con $\alpha$ $\in$ $\{$20, 50, 100, 300, 500$\}$. La eleccion del k, se baso en las experimentaciones anteriores, dicho valor escogido fue el de mejor resultado en cuanto a tiempo y tasa de efectividad\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
 

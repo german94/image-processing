@@ -5,15 +5,15 @@
 \BOOKMARK [2][-]{subsection.2.1}{k-Nearest Neighbors \(kNN\):}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.2}{Principal Component Analysis \(PCA\):}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.3}{K-Fold Cross Validation}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.4}{Experimentos}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.5}{Elecci\363n de K, hip\363tesis}{section.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.5.1}{Experimento 1: Variando el k en kNN}{subsection.2.5}% 10
-\BOOKMARK [3][-]{subsubsection.2.5.2}{Experimento 2: variando el \040en kNN + PCA}{subsection.2.5}% 11
-\BOOKMARK [1][-]{section.3}{Resultados}{}% 12
-\BOOKMARK [2][-]{subsection.3.1}{Experimento 1}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.2}{Experimento 2}{section.3}% 14
-\BOOKMARK [1][-]{section.4}{Discusi\363n}{}% 15
-\BOOKMARK [2][-]{subsection.4.1}{Elecci\363n de los K}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.2}{Competencia Kaggle}{section.4}% 17
-\BOOKMARK [1][-]{section.5}{Conclusiones}{}% 18
-\BOOKMARK [1][-]{section.6}{Ap\351ndices}{}% 19
+\BOOKMARK [1][-]{section.3}{Experimentaciones}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Elecci\363n de K, hip\363tesis}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Experimento 1: Variando el k en kNN}{subsection.3.1}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Experimento 2: variando el \040en kNN + PCA}{subsection.3.1}% 11
+\BOOKMARK [1][-]{section.4}{Resultados}{}% 12
+\BOOKMARK [2][-]{subsection.4.1}{Experimento 1}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Experimento 2}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Discusi\363n}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Hip\363tesis 1:}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Competencia Kaggle}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Conclusiones}{}% 18
+\BOOKMARK [1][-]{section.7}{Ap\351ndices}{}% 19
