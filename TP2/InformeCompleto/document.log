@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  14 MAY 2015 16:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.15)  14 MAY 2015 16:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **document.tex
 (./document.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+Babel <3.9f> and hyphenation patterns for 5 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -280,13 +280,13 @@ File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2013/12/03 3.9h The Babel package
+Package: babel 2013/05/16 v3.9f The Babel package
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf
-Language: spanish.ldf 2014/01/29 v5.0m Spanish support from the babel system
+Language: spanish.ldf 2010/05/23 v5.0j Spanish support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2013/12/03 3.9h Babel common definitions
+File: babel.def 2013/05/16 v3.9f Babel common definitions
 \babel@savecnt=\count90
 \U@D=\dimen111
 )
@@ -394,7 +394,7 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen113
@@ -463,24 +463,24 @@ Package: a4 2004/04/15 v1.2g A4 based page layout
 \lst@maxwidth=\dimen121
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
 \c@lstnumber=\count112
 \lst@skipnumbers=\count113
 \lst@framebox=\box27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2013/08/26 1.5b listings configuration
+File: listings.cfg 2013/06/27 1.5pre1 listings configuration
 ))
-Package: listings 2013/08/26 1.5b (Carsten Heinz)
+Package: listings 2013/07/10 1.5 (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2013/08/26 1.5b listings language file
+File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2013/08/26 1.5b listings language file
+File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
 ) (./algorithm.sty
 Package: algorithm 
 Document Style `algorithm' - floating environment
@@ -1249,50 +1249,50 @@ l.121
 File: Tablas/variandoktr.jpg Graphic file (type jpg)
 
 <use Tablas/variandoktr.jpg>
-Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 131.
+Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 133.
 (pdftex.def)             Requested size: 221.22258pt x 75.48065pt.
 
 <Tablas/variandok.jpg, id=240, 509.905pt x 189.70876pt>
 File: Tablas/variandok.jpg Graphic file (type jpg)
 
 <use Tablas/variandok.jpg>
-Package pdftex.def Info: Tablas/variandok.jpg used on input line 138.
+Package pdftex.def Info: Tablas/variandok.jpg used on input line 140.
 (pdftex.def)             Requested size: 203.95837pt x 75.88214pt.
  <Tablas/comtrK2.jpg, id=241, 606.265pt x 341.275pt>
 File: Tablas/comtrK2.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK2.jpg>
-Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 146.
+Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 148.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
  <Tablas/comtrK10.jpg, id=242, 606.265pt x 341.275pt>
 File: Tablas/comtrK10.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK10.jpg>
-Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 149.
+Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 151.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
  <Tablas/comtrK20.jpg, id=243, 606.265pt x 341.275pt>
 File: Tablas/comtrK20.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK20.jpg>
-Package pdftex.def Info: Tablas/comtrK20.jpg used on input line 152.
+Package pdftex.def Info: Tablas/comtrK20.jpg used on input line 154.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--153
+Underfull \hbox (badness 10000) in paragraph at lines 126--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--153
+Underfull \hbox (badness 10000) in paragraph at lines 126--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--153
+Underfull \hbox (badness 10000) in paragraph at lines 126--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--153
+Underfull \hbox (badness 10000) in paragraph at lines 126--155
 
  []
 
@@ -1301,57 +1301,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--153
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.153 
+l.155 
        <./Graficos/knnTasa20.png> <./Tablas/variandoktr.jpg> <./Tablas/variando
 k.jpg>] <Tablas/comtcK2.jpg, id=250, 606.265pt x 341.275pt>
 File: Tablas/comtcK2.jpg Graphic file (type jpg)
 
 <use Tablas/comtcK2.jpg>
-Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 162.
+Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 164.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
  <Tablas/comtcK10.jpg, id=251, 606.265pt x 341.275pt>
 File: Tablas/comtcK10.jpg Graphic file (type jpg)
 
 <use Tablas/comtcK10.jpg>
-Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 165.
+Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 167.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
  <Tablas/comtcK20.jpg, id=252, 606.265pt x 341.275pt>
 File: Tablas/comtcK20.jpg Graphic file (type jpg)
 
 <use Tablas/comtcK20.jpg>
-Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 168.
+Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 170.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--169
+Underfull \hbox (badness 10000) in paragraph at lines 156--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--169
+Underfull \hbox (badness 10000) in paragraph at lines 156--171
 
  []
 
 [15 <./Tablas/comtrK2.jpg> <./Tablas/comtrK10.jpg> <./Tablas/comtrK20.jpg>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 172.
+(hyperref)                removing `math shift' on input line 174.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 172.
+(hyperref)                removing `\alpha' on input line 174.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 172.
+(hyperref)                removing `math shift' on input line 174.
 
 <Tablas/variandoAlfas.jpg, id=257, 607.26875pt x 180.675pt>
 File: Tablas/variandoAlfas.jpg Graphic file (type jpg)
 
 <use Tablas/variandoAlfas.jpg>
-Package pdftex.def Info: Tablas/variandoAlfas.jpg used on input line 178.
+Package pdftex.def Info: Tablas/variandoAlfas.jpg used on input line 180.
 (pdftex.def)             Requested size: 242.9032pt x 72.2687pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--179
+Underfull \hbox (badness 10000) in paragraph at lines 175--181
 
  []
 
@@ -1360,48 +1360,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--179
 File: Tablas/variandoalfatc.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfatc.jpg>
-Package pdftex.def Info: Tablas/variandoalfatc.jpg used on input line 186.
+Package pdftex.def Info: Tablas/variandoalfatc.jpg used on input line 188.
 (pdftex.def)             Requested size: 260.16739pt x 69.85976pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--190
+Underfull \hbox (badness 10000) in paragraph at lines 182--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--190
+Underfull \hbox (badness 10000) in paragraph at lines 182--192
 
  []
 
 <Tablas/alfa5.jpg, id=263, 310.15875pt x 147.55125pt>
 File: Tablas/alfa5.jpg Graphic file (type jpg)
  <use Tablas/alfa5.jpg>
-Package pdftex.def Info: Tablas/alfa5.jpg used on input line 195.
+Package pdftex.def Info: Tablas/alfa5.jpg used on input line 197.
 (pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
 <Tablas/variandoalfaschicos.jpg, id=264, 310.15875pt x 147.55125pt>
 File: Tablas/variandoalfaschicos.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfaschicos.jpg>
-Package pdftex.def Info: Tablas/variandoalfaschicos.jpg used on input line 203.
+Package pdftex.def Info: Tablas/variandoalfaschicos.jpg used on input line 205.
 
 (pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--207
+Underfull \hbox (badness 10000) in paragraph at lines 192--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--207
+Underfull \hbox (badness 10000) in paragraph at lines 192--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--207
+Underfull \hbox (badness 10000) in paragraph at lines 192--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--207
+Underfull \hbox (badness 10000) in paragraph at lines 192--209
 
  []
 
@@ -1470,40 +1470,42 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
  ) 
 Here is how much of TeX's memory you used:
- 19792 strings out of 493304
- 328760 string characters out of 6139872
- 445267 words of memory out of 5000000
- 22699 multiletter control sequences out of 15000+600000
+ 19777 strings out of 494969
+ 328490 string characters out of 6179592
+ 440451 words of memory out of 5000000
+ 22440 multiletter control sequences out of 15000+600000
  23710 words of font info for 62 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
+ 40 hyphenation exceptions out of 8191
  58i,18n,58p,2457b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
-m0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1
-000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on document.pdf (27 pages, 957971 bytes).
+ </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1000.600pk> </home/
+jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/jporto/.te
+xmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0700.600pk> </home/jporto/.texmf-var/fo
+nts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/jporto/.texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecsx1200.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm0800.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
+1200.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk
+> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/j
+porto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/jporto/.tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/jporto/.texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/jporto/.texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecbi1000.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm1440.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
+440.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on document.pdf (27 pages, 804382 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 345 compressed objects within 4 object streams
+ 904 PDF objects out of 1000 (max. 8388607)
+ 360 compressed objects within 4 object streams
  71 named destinations out of 1000 (max. 500000)
  319 words of extra memory for PDF output out of 10000 (max. 10000000)
 
