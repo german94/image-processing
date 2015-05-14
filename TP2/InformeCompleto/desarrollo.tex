@@ -159,7 +159,18 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 
 \end{algorithmic}
 \end{algorithm}
-\subsection{Experimento 1: Variando el k en kNN}
+\subsection{Experimentos}
+BORRARR ESTA FRASE, ES UNA PRUEBA
+
+\subsubsection{Elección de los K}
+
+ En el método de kNN+PCA, claramente incrementa el tiempo de cómputo a medida que aumenta el valor de K, esto se debe a que el cálculo de la matriz de covarianza del entrenamiento domina gran parte del tiempo del metodo. Dicha matriz se calcula de la siguiente forma: por ejemplo, si K=2, la matriz de entranamiento va a tener un tamaño de 21000x784, su transpuesta de 784x21000, entonces la matriz de covarianza se calcula multiplicando la transpuesta por la matriz de entrenamiento resultando siempre una matriz de 784x784. Para este caso de K, haremos 2 multiplicaciones de matrices de 784x21000 y 21000x784. Ahora bien, si suponemos que K=10, el procedimiento es el mismo, salvo que ahora, mi base de entrenamiento va a ser mas grande, por ende, su matriz también que este caso va a tener tamaño de (42.000-42.000/10)x784 = 37800x784. Para este caso de K, haremos 10 multiplicaciones de matrices de 784x37.800 y 37.800x784. Al aumentar el valor de K, además de hacer más multiplicaciones por tener más particiones, las matrices aumentan de tamaño por lo explicado anteriormente. Para K=20 es el mismo procedimiento.\\
+En el método de kNN, por ejemplo para K=2, voy a recorrer 2 veces la base de entrenamiento de 21000 dígitos para un base de test con la misma cantidad de dígitos. Para k=10, voy a recorrer 10 veces la base de train de 37.800 dígitos para una base de test de 4.200 digitos. Realizando un análisis más exhaustivo, para el primer caso de K=2, estariamos recorriendo 21.000 veces la base de 21.000 digitos, todo eso 2 veces lo que resultaria en 2*21.000*21.000 = 822.000.000 iteraciones. Para el caso de K=10, estariamos recorriendo 4200 veces la base de 37800 digitos, todo eso 10 veces lo que resultaria en 10*4.200*37.800 = 1.587.600.000 iteraciones, lo que implacarŕia un 93$\%$ más de iteraciones. Para K=20 pasa lo mismo.\\
+
+
+
+
+\subsubsection{Experimento 1: Variando el k en kNN}
 Se llevará a cabo una cierta cantidad de experimentaciones
 para poder contrastar la siguiente hipótesis:
 
@@ -171,7 +182,7 @@ para poder contrastar la siguiente hipótesis:
 Para verificar la hipótesis N$ ^{\circ} $ 1, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, utilizando la técnica de K-Fold cross validation, con 2, 10 y 20 particiones.
  En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
 
-\subsection{Experimento 2: variando el $\alpha$ en kNN + PCA}
+\subsubsection{Experimento 2: variando el $\alpha$ en kNN + PCA}
 
 Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
 para poder contrastar la siguiente hipótesis:
@@ -181,18 +192,4 @@ para poder contrastar la siguiente hipótesis:
 \end{itemize}
 
 Para verificar la hipótesis N 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, tomando como parámetros K = 2, 10 y 20, k = 2 y variando los $\alpha$, con $\alpha$ $\in$ $\{$20, 50, 100, 300, 500$\}$. La eleccion del k, se baso en las experimentaciones anteriores, dicho valor escogido fue el de mejor resultado en cuanto a tiempo y tasa de efectividad\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
-
-\subsection{Experimento 3: variando el K}
-Ante lo observado y desarrollado, se llevará a cabo una cierta cantidad de experimentaciones
-para poder contrastar las siguientes hipótesis:
-
-\begin{itemize}
-\item Hipótesis N 3: En cualquiera de los 2 métodos implementados fijando k y $\alpha$, a mayor valor de K, mayor porcentaje de tasas.
-\item Hipótesis N 4: El tiempo de cómputo de kNN para distintos valores de K y un valor fijo de k no debería ser muy distinto, en cambio para kNN+PCA, fijando k y $\alpha$, a mayor valor de K, mayor tiempo de computo.
-\end{itemize}
-
-Para verificar la hipótesis N 3, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle....\\
-Para verificar la hipótesis N 3, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle....
- \\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
-
 
