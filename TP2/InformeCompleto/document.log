@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.6)  14 MAY 2015 05:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.6)  14 MAY 2015 05:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1165,6 +1165,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--170
 [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 197.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 200.
 
 
@@ -1180,7 +1200,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-<Graficos/knnTasa2.png, id=214, 1157.123pt x 658.46pt>
+<Graficos/knnTasa2.png, id=215, 1157.123pt x 658.46pt>
 File: Graficos/knnTasa2.png Graphic file (type png)
 
 <use Graficos/knnTasa2.png>
@@ -1204,7 +1224,7 @@ ame{figure.1}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.73 \end{center}
                   <./Graficos/knnTasa2.png>]
-<Graficos/knnTasa10.png, id=223, 1101.716pt x 720.291pt>
+<Graficos/knnTasa10.png, id=224, 1101.716pt x 720.291pt>
 File: Graficos/knnTasa10.png Graphic file (type png)
 
 <use Graficos/knnTasa10.png>
@@ -1215,7 +1235,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-<Graficos/knnTasa20.png, id=224, 1255.892pt x 741.169pt>
+<Graficos/knnTasa20.png, id=225, 1255.892pt x 741.169pt>
 File: Graficos/knnTasa20.png Graphic file (type png)
 
 <use Graficos/knnTasa20.png>
@@ -1240,32 +1260,32 @@ l.121
                                                   \fi \fi 
 l.121 
        <./Graficos/knnTasa10.png>]
-<Tablas/variandoktr.jpg, id=234, 553.06625pt x 188.705pt>
+<Tablas/variandoktr.jpg, id=235, 553.06625pt x 188.705pt>
 File: Tablas/variandoktr.jpg Graphic file (type jpg)
 
 <use Tablas/variandoktr.jpg>
 Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 139.
 (pdftex.def)             Requested size: 221.22258pt x 75.48065pt.
 
-<Tablas/variandok.jpg, id=235, 509.905pt x 189.70876pt>
+<Tablas/variandok.jpg, id=236, 509.905pt x 189.70876pt>
 File: Tablas/variandok.jpg Graphic file (type jpg)
 
 <use Tablas/variandok.jpg>
 Package pdftex.def Info: Tablas/variandok.jpg used on input line 146.
 (pdftex.def)             Requested size: 203.95837pt x 75.88214pt.
- <Tablas/comtrK2.jpg, id=236, 606.265pt x 341.275pt>
+ <Tablas/comtrK2.jpg, id=237, 606.265pt x 341.275pt>
 File: Tablas/comtrK2.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK2.jpg>
 Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 154.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
- <Tablas/comtrK10.jpg, id=237, 606.265pt x 341.275pt>
+ <Tablas/comtrK10.jpg, id=238, 606.265pt x 341.275pt>
 File: Tablas/comtrK10.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK10.jpg>
 Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 157.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
- <Tablas/comtrK20.jpg, id=238, 606.265pt x 341.275pt>
+ <Tablas/comtrK20.jpg, id=239, 606.265pt x 341.275pt>
 File: Tablas/comtrK20.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK20.jpg>
@@ -1298,19 +1318,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--161
                                                   \fi \fi 
 l.161 
        <./Graficos/knnTasa20.png> <./Tablas/variandoktr.jpg>]
-<Tablas/comtcK2.jpg, id=245, 606.265pt x 341.275pt>
+<Tablas/comtcK2.jpg, id=246, 606.265pt x 341.275pt>
 File: Tablas/comtcK2.jpg Graphic file (type jpg)
  <use Tablas/comtcK2.jpg>
 Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 170.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-<Tablas/comtcK10.jpg, id=246, 606.265pt x 341.275pt>
+<Tablas/comtcK10.jpg, id=247, 606.265pt x 341.275pt>
 File: Tablas/comtcK10.jpg Graphic file (type jpg)
  <use Tablas/comtcK10.jpg>
 Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 173.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-<Tablas/comtcK20.jpg, id=247, 606.265pt x 341.275pt>
+<Tablas/comtcK20.jpg, id=248, 606.265pt x 341.275pt>
 File: Tablas/comtcK20.jpg Graphic file (type jpg)
  <use Tablas/comtcK20.jpg>
 Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 176.
@@ -1339,7 +1359,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 180.
 
-<Tablas/variandoAlfas.jpg, id=252, 607.26875pt x 180.675pt>
+<Tablas/variandoAlfas.jpg, id=253, 607.26875pt x 180.675pt>
 File: Tablas/variandoAlfas.jpg Graphic file (type jpg)
 
 <use Tablas/variandoAlfas.jpg>
@@ -1351,7 +1371,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--187
  []
 
 [16 <./Tablas/comtcK2.jpg> <./Tablas/comtcK10.jpg> <./Tablas/comtcK20.jpg>]
-<Tablas/variandoalfatc.jpg, id=257, 650.43pt x 174.6525pt>
+<Tablas/variandoalfatc.jpg, id=258, 650.43pt x 174.6525pt>
 File: Tablas/variandoalfatc.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfatc.jpg>
@@ -1367,13 +1387,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--198
 
  []
 
-<Tablas/alfa5.jpg, id=258, 310.15875pt x 147.55125pt>
+<Tablas/alfa5.jpg, id=259, 310.15875pt x 147.55125pt>
 File: Tablas/alfa5.jpg Graphic file (type jpg)
  <use Tablas/alfa5.jpg>
 Package pdftex.def Info: Tablas/alfa5.jpg used on input line 203.
 (pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
-<Tablas/variandoalfaschicos.jpg, id=259, 310.15875pt x 147.55125pt>
+<Tablas/variandoalfaschicos.jpg, id=260, 310.15875pt x 147.55125pt>
 File: Tablas/variandoalfaschicos.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfaschicos.jpg>
@@ -1430,44 +1450,51 @@ LaTeX Info: Redefining \% on input line 19.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 42.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 42.
-Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 8D938659212478008DD88531B5264F8D;1735.
 
+
+Package rerunfilecheck Warning: File `document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `document.out':
+(rerunfilecheck)             Before: 8D938659212478008DD88531B5264F8D;1735
+(rerunfilecheck)             After:  617F9BA29A98203210976633870BED86;1770.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
  ) 
 Here is how much of TeX's memory you used:
- 19719 strings out of 493304
- 327673 string characters out of 6139872
+ 19751 strings out of 493304
+ 328001 string characters out of 6139872
  445269 words of memory out of 5000000
- 22651 multiletter control sequences out of 15000+600000
- 15053 words of font info for 38 fonts, out of 8000000 for 9000
+ 22672 multiletter control sequences out of 15000+600000
+ 20016 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  58i,14n,58p,2457b,410s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
-uper/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></
-usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sftt1000.pfb>
-Output written on document.pdf (24 pages, 850133 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+fbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+rm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sft
+t1000.pfb>
+Output written on document.pdf (24 pages, 858020 bytes).
 PDF statistics:
- 380 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
+ 384 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
  69 named destinations out of 1000 (max. 500000)
  306 words of extra memory for PDF output out of 10000 (max. 10000000)
 

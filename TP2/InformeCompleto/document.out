@@ -8,7 +8,7 @@
 \BOOKMARK [1][-]{section.3}{Experimentaciones}{}% 8
 \BOOKMARK [2][-]{subsection.3.1}{Elecci\363n de K, hip\363tesis 1}{section.3}% 9
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Experimento 1: Variando el k en kNN}{subsection.3.1}% 10
-\BOOKMARK [2][-]{subsection.3.2}{PCA + KNN}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Experimento 2: variando k y \040en PCA + KNN}{section.3}% 11
 \BOOKMARK [3][-]{subsubsection.3.2.1}{Variando k}{subsection.3.2}% 12
 \BOOKMARK [3][-]{subsubsection.3.2.2}{Variando }{subsection.3.2}% 13
 \BOOKMARK [1][-]{section.4}{Resultados}{}% 14

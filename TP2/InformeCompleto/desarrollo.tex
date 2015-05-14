@@ -194,7 +194,7 @@ para poder contrastar la siguiente hipótesis:
 Para verificar la hipótesis N$ ^{\circ} $ 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, utilizando la técnica de K-Fold cross validation, con 2, 10 y 20 particiones.
  En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
 
-\subsection{PCA + KNN}
+\subsection{Experimento 2: variando $k$ y $\alpha$ en PCA + KNN}
 \subsubsection{Variando k}
 Dados los valores de $K$ elegidos previamente, realizaremos una serie de mediciones de tiempos y tasas para $k \in \{2, 30, 100, 500\}$, fijando un valor de $\alpha = 50$. El objetivo de estas mediciones es conseguir el valor de $k$ que mejor se comporte de manera que estén equilibrados el tiempo de cómputo y la tasa de reconocimiento. Luego, tomaremos el valor de $k$ conseguido y procederemos a variar $\alpha$. Los valores de $k$ elegidos representan un subconjunto de los que se utilizaron en el experimento sobre KNN con el objetivo de que luego podamos comparar las tasas de reconocimiento y el tiempo de cómputo que producen ambos métodos. El valor de $\alpha$ fue fijado en 50 porque, si bien es un valor relativamente chico para el rango en el que se encuentra (de 1 a 784), observamos que las tasas de reconocimiento con este valor son sorprendentemente altas. Esto significa que no tendría sentido aumentar $\alpha$ para obtener (o no) una mínima diferencia en la tasa de reconocimiento y terminar pagando un costo de cómputo y memoria (a mayor $\alpha$ mayor son las dimensiones de las matrices que utilizamos) mucho mayor.
 \subsubsection{Variando $\alpha$}
