@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  14 MAY 2015 06:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.6)  14 MAY 2015 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1050,13 +1050,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros (./config/caratula.tex
-<logo.jpg, id=111, 371.3875pt x 241.90375pt>
+<logo.jpg, id=107, 371.3875pt x 241.90375pt>
 File: logo.jpg Graphic file (type jpg)
  <use logo.jpg>
 Package pdftex.def Info: logo.jpg used on input line 3.
 (pdftex.def)             Requested size: 111.4171pt x 72.57167pt.
 
-<logo_dc.jpg, id=112, 215.6055pt x 83.5923pt>
+<logo_dc.jpg, id=108, 215.6055pt x 83.5923pt>
 File: logo_dc.jpg Graphic file (type jpg)
  <use logo_dc.jpg>
 Package pdftex.def Info: logo_dc.jpg used on input line 4.
@@ -1158,31 +1158,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 143--161
  []
 
 [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 168--170
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
 
 [10]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 197.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 197.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 197.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 197.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 197.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 200.
@@ -1200,7 +1185,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-<Graficos/knnTasa2.png, id=215, 1157.123pt x 658.46pt>
+<Graficos/knnTasa2.png, id=209, 1157.123pt x 658.46pt>
 File: Graficos/knnTasa2.png Graphic file (type png)
 
 <use Graficos/knnTasa2.png>
@@ -1224,7 +1209,7 @@ ame{figure.1}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.73 \end{center}
                   <./Graficos/knnTasa2.png>]
-<Graficos/knnTasa10.png, id=224, 1101.716pt x 720.291pt>
+<Graficos/knnTasa10.png, id=218, 1101.716pt x 720.291pt>
 File: Graficos/knnTasa10.png Graphic file (type png)
 
 <use Graficos/knnTasa10.png>
@@ -1235,7 +1220,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-<Graficos/knnTasa20.png, id=225, 1255.892pt x 741.169pt>
+<Graficos/knnTasa20.png, id=219, 1255.892pt x 741.169pt>
 File: Graficos/knnTasa20.png Graphic file (type png)
 
 <use Graficos/knnTasa20.png>
@@ -1260,103 +1245,54 @@ l.121
                                                   \fi \fi 
 l.121 
        <./Graficos/knnTasa10.png>]
+<Tablas/variandoktr.jpg, id=229, 553.06625pt x 188.705pt>
+File: Tablas/variandoktr.jpg Graphic file (type jpg)
 
-LaTeX Warning: File `Tablas/variandoktr.jpg' not found on input line 139.
+<use Tablas/variandoktr.jpg>
+Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 138.
+(pdftex.def)             Requested size: 221.22258pt x 75.48065pt.
 
+<Tablas/variandok.jpg, id=230, 509.905pt x 189.70876pt>
+File: Tablas/variandok.jpg Graphic file (type jpg)
 
-! Package pdftex.def Error: File `Tablas/variandoktr.jpg' not found.
+<use Tablas/variandok.jpg>
+Package pdftex.def Info: Tablas/variandok.jpg used on input line 145.
+(pdftex.def)             Requested size: 203.95837pt x 75.88214pt.
+ <Tablas/comtrK2.jpg, id=231, 606.265pt x 341.275pt>
+File: Tablas/comtrK2.jpg Graphic file (type jpg)
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.139 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<use Tablas/comtrK2.jpg>
+Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 153.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
+ <Tablas/comtrK10.jpg, id=232, 606.265pt x 341.275pt>
+File: Tablas/comtrK10.jpg Graphic file (type jpg)
 
+<use Tablas/comtrK10.jpg>
+Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 156.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
+ <Tablas/comtrK20.jpg, id=233, 606.265pt x 341.275pt>
+File: Tablas/comtrK20.jpg Graphic file (type jpg)
 
-LaTeX Warning: File `Tablas/variandok.jpg' not found on input line 146.
+<use Tablas/comtrK20.jpg>
+Package pdftex.def Info: Tablas/comtrK20.jpg used on input line 159.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-
-! Package pdftex.def Error: File `Tablas/variandok.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.146 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/comtrK2.jpg' not found on input line 154.
-
-
-! Package pdftex.def Error: File `Tablas/comtrK2.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.154 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/comtrK10.jpg' not found on input line 157.
-
-
-! Package pdftex.def Error: File `Tablas/comtrK10.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.157 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/comtrK20.jpg' not found on input line 160.
-
-
-! Package pdftex.def Error: File `Tablas/comtrK20.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.160 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 132--161
+Underfull \hbox (badness 10000) in paragraph at lines 131--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--161
+Underfull \hbox (badness 10000) in paragraph at lines 131--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--161
+Underfull \hbox (badness 10000) in paragraph at lines 131--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--161
+Underfull \hbox (badness 10000) in paragraph at lines 131--160
 
  []
 
@@ -1365,185 +1301,117 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--161
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.161 
-       <./Graficos/knnTasa20.png>]
+l.160 
+       <./Graficos/knnTasa20.png> <./Tablas/variandoktr.jpg>]
+<Tablas/comtcK2.jpg, id=240, 606.265pt x 341.275pt>
+File: Tablas/comtcK2.jpg Graphic file (type jpg)
+ <use Tablas/comtcK2.jpg>
+Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 169.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-LaTeX Warning: File `Tablas/comtcK2.jpg' not found on input line 170.
+<Tablas/comtcK10.jpg, id=241, 606.265pt x 341.275pt>
+File: Tablas/comtcK10.jpg Graphic file (type jpg)
+ <use Tablas/comtcK10.jpg>
+Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 172.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
+<Tablas/comtcK20.jpg, id=242, 606.265pt x 341.275pt>
+File: Tablas/comtcK20.jpg Graphic file (type jpg)
+ <use Tablas/comtcK20.jpg>
+Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 175.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-! Package pdftex.def Error: File `Tablas/comtcK2.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.170 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/comtcK10.jpg' not found on input line 173.
-
-
-! Package pdftex.def Error: File `Tablas/comtcK10.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.173 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/comtcK20.jpg' not found on input line 176.
-
-
-! Package pdftex.def Error: File `Tablas/comtcK20.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.176 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 162--177
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--177
+Underfull \hbox (badness 10000) in paragraph at lines 161--176
 
  []
+
+[15 <./Tablas/variandok.jpg> <./Tablas/comtrK2.jpg> <./Tablas/comtrK10.jpg> <./
+Tablas/comtrK20.jpg>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 179.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 180.
+(hyperref)                removing `\alpha' on input line 179.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 180.
+(hyperref)                removing `math shift' on input line 179.
 
+<Tablas/variandoAlfas.jpg, id=247, 607.26875pt x 180.675pt>
+File: Tablas/variandoAlfas.jpg Graphic file (type jpg)
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 180.
+<use Tablas/variandoAlfas.jpg>
+Package pdftex.def Info: Tablas/variandoAlfas.jpg used on input line 185.
+(pdftex.def)             Requested size: 242.9032pt x 72.2687pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 180--186
 
-LaTeX Warning: File `Tablas/variandoAlfas.jpg' not found on input line 186.
+ []
 
+[16 <./Tablas/comtcK2.jpg> <./Tablas/comtcK10.jpg> <./Tablas/comtcK20.jpg>]
+<Tablas/variandoalfatc.jpg, id=252, 650.43pt x 174.6525pt>
+File: Tablas/variandoalfatc.jpg Graphic file (type jpg)
 
-! Package pdftex.def Error: File `Tablas/variandoAlfas.jpg' not found.
+<use Tablas/variandoalfatc.jpg>
+Package pdftex.def Info: Tablas/variandoalfatc.jpg used on input line 193.
+(pdftex.def)             Requested size: 260.16739pt x 69.85976pt.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.186 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--187
+Underfull \hbox (badness 10000) in paragraph at lines 187--197
 
  []
 
 
-LaTeX Warning: File `Tablas/variandoalfatc.jpg' not found on input line 194.
+Underfull \hbox (badness 10000) in paragraph at lines 187--197
 
+ []
 
-! Package pdftex.def Error: File `Tablas/variandoalfatc.jpg' not found.
+<Tablas/alfa5.jpg, id=253, 310.15875pt x 147.55125pt>
+File: Tablas/alfa5.jpg Graphic file (type jpg)
+ <use Tablas/alfa5.jpg>
+Package pdftex.def Info: Tablas/alfa5.jpg used on input line 202.
+(pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.194 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<Tablas/variandoalfaschicos.jpg, id=254, 310.15875pt x 147.55125pt>
+File: Tablas/variandoalfaschicos.jpg Graphic file (type jpg)
 
+<use Tablas/variandoalfaschicos.jpg>
+Package pdftex.def Info: Tablas/variandoalfaschicos.jpg used on input line 210.
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--198
+(pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--198
-
- []
-
-[15]
-
-LaTeX Warning: File `Tablas/alfa5.jpg' not found on input line 203.
-
-
-! Package pdftex.def Error: File `Tablas/alfa5.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.203 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `Tablas/variandoalfaschicos.jpg' not found on input line 21
-1.
-
-
-! Package pdftex.def Error: File `Tablas/variandoalfaschicos.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.211 }
-       
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--215
+Underfull \hbox (badness 10000) in paragraph at lines 197--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--215
+Underfull \hbox (badness 10000) in paragraph at lines 197--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--215
+Underfull \hbox (badness 10000) in paragraph at lines 197--214
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 198--215
-
- []
-
-) [16] (./discusion.tex
+[17 <./Tablas/variandoAlfas.jpg> <./Tablas/variandoalfatc.jpg> <./Tablas/alfa5.
+jpg>]) [18 <./Tablas/variandoalfaschicos.jpg>] (./discusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 18--21
 
  []
 
-[17]
+[19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 25.
@@ -1556,8 +1424,8 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 25.
 
-[18]) [19] (./conclusion.tex) [20] (./apendices.tex) [21] (./referencias.tex)
-[22] 
+[20]) [21] (./conclusion.tex) [22] (./apendices.tex) [23] (./referencias.tex)
+[24] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 42.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 42.
@@ -1568,7 +1436,7 @@ LaTeX Info: Redefining \% on input line 19.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 42.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 42.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 617F9BA29A98203210976633870BED86;1770.
+(rerunfilecheck)             Checksum: C768D845E224824D5AB96EF677A0864B;1691.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1576,36 +1444,35 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
  ) 
 Here is how much of TeX's memory you used:
- 19701 strings out of 493304
- 326715 string characters out of 6139872
- 446269 words of memory out of 5000000
- 22624 multiletter control sequences out of 15000+600000
- 20016 words of font info for 59 fonts, out of 8000000 for 9000
+ 19717 strings out of 493304
+ 327643 string characters out of 6139872
+ 445264 words of memory out of 5000000
+ 22650 multiletter control sequences out of 15000+600000
+ 15053 words of font info for 38 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 58i,14n,58p,2457b,410s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,14n,58p,2457b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
-hare/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-rm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sft
-t1000.pfb>
-Output written on document.pdf (22 pages, 655382 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+/usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fon
+ts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></
+usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sftt1000.pfb>
+Output written on document.pdf (24 pages, 847625 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
- 246 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 305 compressed objects within 4 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 298 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -161,7 +161,6 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 \end{algorithm}
 
 \newpage
-\section{Experimentaciones}
 
 
 Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrollar distintas experimentaciones. En primer lugar para KNN variaremos la cantidad de vecinos (k) que vamos a utilizar para reconocer a que clase pertenece cada imagen de test. Luego, para PCA + KNN también vamos a variar la cantidad de vecinos a tomar, fijando un $\alpha$ (cantidad de componentes principales),  y para el mejor de ellos (evaluando calidad de la solucion y tiempo de computo) procederemos a variar el valor de $\alpha$ utilizando el mejor k obtenido  anteriormente. Los valores obtenidos por estas experimentaciones seran detallados en la sección resultados, los mismos fueron obtenidos en una pc Intel Core i3 con 4gb de RAM.\newline
@@ -185,7 +184,7 @@ Si al momento de reconocer un dígito i, se tienen pocas imágenes con las que c
 Para poder corroborar esta hipótesis a las experimentaciones mencionadas anteriormente (variación de k, y alpha) también las haremos variando el valor de K. Se eligieron tres valores para experimentar, los mismos son K =  2, 10, y 20, dicha elección esta ligada a como quedan distribuidas la cantidad de imágenes utilizadas tanto para test como para train. Cuando K = 2 solo un 50\% del total de las imágenes son de entrenamiento (además es el mínimo valor permitido por matlab para el comando cvpartition, usando Kfold); para K = 10 un 90\% y para 20 un 95\%, de esta manera abarcamos un amplio y variado rango de valores para la cantidad de imágenes a reconocer y las utilizadas como entrenamiento. Como consecuencia de esta elección surge otro problema a analizar y es que, si al aumentar el K las tasas de reconocimiento promedio aumentan ¿que porcentaje de mejora obtenemos (si es que lo hacen)? y ¿como influye el tiempo de computo en estas variaciones?. Por lo que en las experimentaciones además buscaremos responder estas preguntas para poder determinar la mejor relación entre calidad de soluciones y tiempo. 
 
 
-\subsubsection{Experimento 1: Variando el k en kNN}
+\subsection{Experimento 1: Variando el k en kNN}
 Una de las experimentaciones a desarrollar es analizar el comportamiento de la técnica KNN para distintos valores de k. Una hipótesis que podemos elaborar en esta experimentación es: 
 \begin{itemize}
 \item Hipótesis N$ ^{\circ} $ 2: En el método de kNN, al incrementar k vamos a obtener una menor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, menor porcentaje de la tasa.
@@ -195,7 +194,7 @@ La elaboración de esta hipótesis se basa en que al aumentar el valor de k, par
   Entonces se elegiría la clase j antes que la de i porque es la que predomina dentro de los k vecinos seleccionados pero, seria errónea la elección. En cambio si se eligiera un k menor y adecuado, la cantidad de imágenes de la clase j podría seria menor a la de i, y de esta manera se seleccionaría la clase correcta.
 Para poder corroborar nuestra hipótesis tomaremos los valores K = 2, 30, 100 y 500. De esta manera para los tres primeros valores deberían haber diferencias entre las tasas de reconocimientos pero, no tan abruptas que cuando le damos a k un valor mucho mas grande, en comparación a los elegidos anteriormente que es cuando k = 500. Además aplicaremos la técnica de K-Fold cross validation, con los valores de K definicos en la sección  \textit{Elección de K, hipótesis}. 
 
-\subsection{Experimento 2: variando $k$ y $\alpha$ en PCA + KNN}
+\subsection{Experimento 2: PCA + KNN}
 \subsubsection{Variando k}
 Dados los valores de $K$ elegidos previamente, realizaremos una serie de mediciones de tiempos y tasas para $k \in \{2, 30, 100, 500\}$, fijando un valor de $\alpha = 50$. El objetivo de estas mediciones es conseguir el valor de $k$ que mejor se comporte de manera que estén equilibrados el tiempo de cómputo y la tasa de reconocimiento. Luego, tomaremos el valor de $k$ conseguido y procederemos a variar $\alpha$. Los valores de $k$ elegidos representan un subconjunto de los que se utilizaron en el experimento sobre KNN con el objetivo de que luego podamos comparar las tasas de reconocimiento y el tiempo de cómputo que producen ambos métodos. El valor de $\alpha$ fue fijado en 50 porque, si bien es un valor relativamente chico para el rango en el que se encuentra (de 1 a 784), observamos que las tasas de reconocimiento con este valor son sorprendentemente altas. Esto significa que no tendría sentido aumentar $\alpha$ para obtener (o no) una mínima diferencia en la tasa de reconocimiento y terminar pagando un costo de cómputo y memoria (a mayor $\alpha$ mayor son las dimensiones de las matrices que utilizamos) mucho mayor.
 \subsubsection{Variando $\alpha$}
