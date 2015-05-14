@@ -78,10 +78,10 @@ De esta forma la covarianza entre dos muestras puede ser calculado como el produ
 
 obteniendo en la diagonal la varianza de cada coordenada. Con el fin de disminuir las redundancias (covarianza), se plantea un cambio de base. Para esto se diagonaliza la matriz $M_x$, de forma tal que: \newline
 
- $M_x$ = $P*D*P^{t}$; \ \ \ \ \ \textit{D diagonal y P matriz ortogonal con los autovectores de A como columnas$^{1}$} \newline%TEOREMA 9.10 I COROLARIO 9.11 BURDEN PAG 555.
+ $M_x$ = $P*D*P^{t}$; \ \ \ \ \ \textit{D diagonal y P matriz ortogonal con los autovectores de A como columnas} \newline%TEOREMA 9.10 I COROLARIO 9.11 BURDEN PAG 555.
  
- Para obtener los autovectores de $M_x$ se empleó el método de la potencia$^{2}$ %PAG 560 BURDEN
-. Dado que la misma es una técnica iterativa que converge al autovector asociado, se estableció que la misma se detenga luego de alcanzar un maximo de 3000 iteraciones o cuando la diferencia entre cada coordenada del vector obtenido en la iteración k respecto de la k+1 sea muy poca (en este caso optamos por 0.0000009). Una vez obtenido el primer autovector procedimos a calcular el segundo, aplicando el método de deflación$^{3}$ %pag 570 teorema 9.15 burden.
+ Para obtener los autovectores de $M_x$ se empleó el método de la potencia %PAG 560 BURDEN
+. Dado que la misma es una técnica iterativa que converge al autovector asociado, se estableció que la misma se detenga luego de alcanzar un maximo de 3000 iteraciones o cuando la diferencia entre cada coordenada del vector obtenido en la iteración k respecto de la k+1 sea muy poca (en este caso optamos por 0.0000009). Una vez obtenido el primer autovector procedimos a calcular el segundo, aplicando el método de deflación %pag 570 teorema 9.15 burden.
 .Ambas técnicas serán aplicadas un número $\alpha$ de veces. En la sección experimentación se evaluará como se comportan los resultados y el tiempo al variar este valor.
 Una vez obtenidos los $\alpha$ autovectores se procedió a llevar a cabo el cambio de base, tanto para las imagenes utilizadas como train como para las de test, por lo que se multiplicó cada autovector obtenido por las imagenes vectorizadas en A': \newline
 
