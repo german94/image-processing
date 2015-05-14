@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.5.6)  14 MAY 2015 16:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  14 MAY 2015 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1451,7 +1451,7 @@ Overfull \hbox (34.45567pt too wide) in paragraph at lines 154--154
 t alpha, Matriz<double>& P,[] 
  []
 
-) [27] (./referencias.tex) [28] 
+) [27] (./referencias.tex) 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 42.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 42.
@@ -1470,8 +1470,8 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
  ) 
 Here is how much of TeX's memory you used:
- 19797 strings out of 493304
- 328890 string characters out of 6139872
+ 19792 strings out of 493304
+ 328760 string characters out of 6139872
  445267 words of memory out of 5000000
  22699 multiletter control sequences out of 15000+600000
  23710 words of font info for 62 fonts, out of 8000000 for 9000
@@ -1500,10 +1500,10 @@ public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 /texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1
 000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on document.pdf (28 pages, 959026 bytes).
+Output written on document.pdf (27 pages, 957971 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 354 compressed objects within 4 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 426 PDF objects out of 1000 (max. 8388607)
+ 345 compressed objects within 4 object streams
+ 71 named destinations out of 1000 (max. 500000)
  319 words of extra memory for PDF output out of 10000 (max. 10000000)
 
