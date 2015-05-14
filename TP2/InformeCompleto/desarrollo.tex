@@ -183,16 +183,14 @@ Para poder corroborar esta hipótesis a las experimentaciones mencionadas anteri
 
 
 \subsubsection{Experimento 1: Variando el k en kNN}
-Se llevará a cabo una cierta cantidad de experimentaciones
-para poder contrastar la siguiente hipótesis:
-
+Una de las experimentaciones a desarrollar es analizar el comportamiento de la técnica KNN para distintos valores de k. Una hipótesis que podemos elaborar en esta experimentación es: 
 \begin{itemize}
-\item Hipótesis N$ ^{\circ} $ 2: En el método de kNN, al incrementar k vamos obteniendo una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, mayor porcentaje de la tasa.
+\item Hipótesis N$ ^{\circ} $ 2: En el método de kNN, al incrementar k vamos a obtener una menor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de k, menor porcentaje de la tasa.
 \end{itemize}
-%y variando los k, con k $\in$ $\{$2, 30, 100, 500$\}$.
-
-Para verificar la hipótesis N$ ^{\circ} $ 2, se llevará a cabo una experimentación corriendo el programa con la base de train de Kaggle, utilizando la técnica de K-Fold cross validation, con 2, 10 y 20 particiones.
- En este caso, como se ejecutará solo el método de kNN sin ningún complemento, la elección del parametro $\alpha$ no incide en la misma.\\ Luego se procederá a realizar un análisis de las tasas de efectividad resultantes.
+La elaboración de esta hipótesis se basa en que al aumentar el valor de k, para clasificar la clase de un dígito i, se deben tener en cuenta más vecinos pudiendo aumentar la cantidad de dígitos distintos de i a tal punto que la clase de otro dígito sea la que predomine. Por ejemplo si entre los k vecinos hay X que pertenecen a la clase de i e Y que pertenecen a una clase j (distinta de i) con: \newline
+ X $<$ Y, X + Y $\leq$ k .\newline
+  Entonces se elegiría la clase j antes que la de i porque es la que predomina dentro de los k vecinos seleccionados pero, seria errónea la elección. En cambio si se eligiera un k menor y adecuado, la cantidad de imágenes de la clase j podría seria menor a la de i, y de esta manera se seleccionaría la clase correcta.
+Para poder corroborar nuestra hipótesis tomaremos los valores K = 2, 30, 100 y 500. De esta manera para los tres primeros valores deberían haber diferencias entre las tasas de reconocimientos pero, no tan abruptas que cuando le damos a k un valor mucho mas grande, en comparación a los elegidos anteriormente que es cuando k = 500. Además aplicaremos la técnica de K-Fold cross validation, con los valores de K definicos en la sección  \textit{Elección de K, hipótesis}. 
 
 \subsection{Experimento 2: variando $k$ y $\alpha$ en PCA + KNN}
 \subsubsection{Variando k}
