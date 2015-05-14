@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  14 MAY 2015 14:01
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  14 MAY 2015 14:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1050,13 +1050,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros (./config/caratula.tex
-<logo.jpg, id=107, 371.3875pt x 241.90375pt>
+<logo.jpg, id=115, 371.3875pt x 241.90375pt>
 File: logo.jpg Graphic file (type jpg)
  <use logo.jpg>
 Package pdftex.def Info: logo.jpg used on input line 3.
 (pdftex.def)             Requested size: 111.4171pt x 72.57167pt.
 
-<logo_dc.jpg, id=108, 215.6055pt x 83.5923pt>
+<logo_dc.jpg, id=116, 215.6055pt x 83.5923pt>
 File: logo_dc.jpg Graphic file (type jpg)
  <use logo_dc.jpg>
 Package pdftex.def Info: logo_dc.jpg used on input line 4.
@@ -1185,7 +1185,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-<Graficos/knnTasa2.png, id=209, 1157.123pt x 658.46pt>
+<Graficos/knnTasa2.png, id=219, 1157.123pt x 658.46pt>
 File: Graficos/knnTasa2.png Graphic file (type png)
 
 <use Graficos/knnTasa2.png>
@@ -1209,7 +1209,7 @@ ame{figure.1}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.73 \end{center}
                   <./Graficos/knnTasa2.png>]
-<Graficos/knnTasa10.png, id=218, 1101.716pt x 720.291pt>
+<Graficos/knnTasa10.png, id=228, 1101.716pt x 720.291pt>
 File: Graficos/knnTasa10.png Graphic file (type png)
 
 <use Graficos/knnTasa10.png>
@@ -1220,7 +1220,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-<Graficos/knnTasa20.png, id=219, 1255.892pt x 741.169pt>
+<Graficos/knnTasa20.png, id=229, 1255.892pt x 741.169pt>
 File: Graficos/knnTasa20.png Graphic file (type png)
 
 <use Graficos/knnTasa20.png>
@@ -1245,54 +1245,54 @@ l.121
                                                   \fi \fi 
 l.121 
        <./Graficos/knnTasa10.png>]
-<Tablas/variandoktr.jpg, id=229, 553.06625pt x 188.705pt>
+<Tablas/variandoktr.jpg, id=239, 553.06625pt x 188.705pt>
 File: Tablas/variandoktr.jpg Graphic file (type jpg)
 
 <use Tablas/variandoktr.jpg>
-Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 138.
+Package pdftex.def Info: Tablas/variandoktr.jpg used on input line 131.
 (pdftex.def)             Requested size: 221.22258pt x 75.48065pt.
 
-<Tablas/variandok.jpg, id=230, 509.905pt x 189.70876pt>
+<Tablas/variandok.jpg, id=240, 509.905pt x 189.70876pt>
 File: Tablas/variandok.jpg Graphic file (type jpg)
 
 <use Tablas/variandok.jpg>
-Package pdftex.def Info: Tablas/variandok.jpg used on input line 145.
+Package pdftex.def Info: Tablas/variandok.jpg used on input line 138.
 (pdftex.def)             Requested size: 203.95837pt x 75.88214pt.
- <Tablas/comtrK2.jpg, id=231, 606.265pt x 341.275pt>
+ <Tablas/comtrK2.jpg, id=241, 606.265pt x 341.275pt>
 File: Tablas/comtrK2.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK2.jpg>
-Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 153.
+Package pdftex.def Info: Tablas/comtrK2.jpg used on input line 146.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
- <Tablas/comtrK10.jpg, id=232, 606.265pt x 341.275pt>
+ <Tablas/comtrK10.jpg, id=242, 606.265pt x 341.275pt>
 File: Tablas/comtrK10.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK10.jpg>
-Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 156.
+Package pdftex.def Info: Tablas/comtrK10.jpg used on input line 149.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
- <Tablas/comtrK20.jpg, id=233, 606.265pt x 341.275pt>
+ <Tablas/comtrK20.jpg, id=243, 606.265pt x 341.275pt>
 File: Tablas/comtrK20.jpg Graphic file (type jpg)
 
 <use Tablas/comtrK20.jpg>
-Package pdftex.def Info: Tablas/comtrK20.jpg used on input line 159.
+Package pdftex.def Info: Tablas/comtrK20.jpg used on input line 152.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--160
+Underfull \hbox (badness 10000) in paragraph at lines 124--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--160
+Underfull \hbox (badness 10000) in paragraph at lines 124--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--160
+Underfull \hbox (badness 10000) in paragraph at lines 124--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--160
+Underfull \hbox (badness 10000) in paragraph at lines 124--153
 
  []
 
@@ -1301,112 +1301,112 @@ Underfull \hbox (badness 10000) in paragraph at lines 131--160
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.160 
-       <./Graficos/knnTasa20.png> <./Tablas/variandoktr.jpg>]
-<Tablas/comtcK2.jpg, id=240, 606.265pt x 341.275pt>
+l.153 
+       <./Graficos/knnTasa20.png> <./Tablas/variandoktr.jpg> <./Tablas/variando
+k.jpg>] <Tablas/comtcK2.jpg, id=250, 606.265pt x 341.275pt>
 File: Tablas/comtcK2.jpg Graphic file (type jpg)
- <use Tablas/comtcK2.jpg>
-Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 169.
-(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-<Tablas/comtcK10.jpg, id=241, 606.265pt x 341.275pt>
+<use Tablas/comtcK2.jpg>
+Package pdftex.def Info: Tablas/comtcK2.jpg used on input line 162.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
+ <Tablas/comtcK10.jpg, id=251, 606.265pt x 341.275pt>
 File: Tablas/comtcK10.jpg Graphic file (type jpg)
- <use Tablas/comtcK10.jpg>
-Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 172.
-(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-<Tablas/comtcK20.jpg, id=242, 606.265pt x 341.275pt>
+<use Tablas/comtcK10.jpg>
+Package pdftex.def Info: Tablas/comtcK10.jpg used on input line 165.
+(pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
+ <Tablas/comtcK20.jpg, id=252, 606.265pt x 341.275pt>
 File: Tablas/comtcK20.jpg Graphic file (type jpg)
- <use Tablas/comtcK20.jpg>
-Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 175.
+
+<use Tablas/comtcK20.jpg>
+Package pdftex.def Info: Tablas/comtcK20.jpg used on input line 168.
 (pdftex.def)             Requested size: 303.13176pt x 170.63707pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+Underfull \hbox (badness 10000) in paragraph at lines 154--169
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+Underfull \hbox (badness 10000) in paragraph at lines 154--169
 
  []
 
-[15 <./Tablas/variandok.jpg> <./Tablas/comtrK2.jpg> <./Tablas/comtrK10.jpg> <./
-Tablas/comtrK20.jpg>]
+[15 <./Tablas/comtrK2.jpg> <./Tablas/comtrK10.jpg> <./Tablas/comtrK20.jpg>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 179.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 179.
+(hyperref)                removing `math shift' on input line 172.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 179.
+(hyperref)                removing `\alpha' on input line 172.
 
-<Tablas/variandoAlfas.jpg, id=247, 607.26875pt x 180.675pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 172.
+
+<Tablas/variandoAlfas.jpg, id=257, 607.26875pt x 180.675pt>
 File: Tablas/variandoAlfas.jpg Graphic file (type jpg)
 
 <use Tablas/variandoAlfas.jpg>
-Package pdftex.def Info: Tablas/variandoAlfas.jpg used on input line 185.
+Package pdftex.def Info: Tablas/variandoAlfas.jpg used on input line 178.
 (pdftex.def)             Requested size: 242.9032pt x 72.2687pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--186
+Underfull \hbox (badness 10000) in paragraph at lines 173--179
 
  []
 
 [16 <./Tablas/comtcK2.jpg> <./Tablas/comtcK10.jpg> <./Tablas/comtcK20.jpg>]
-<Tablas/variandoalfatc.jpg, id=252, 650.43pt x 174.6525pt>
+<Tablas/variandoalfatc.jpg, id=262, 650.43pt x 174.6525pt>
 File: Tablas/variandoalfatc.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfatc.jpg>
-Package pdftex.def Info: Tablas/variandoalfatc.jpg used on input line 193.
+Package pdftex.def Info: Tablas/variandoalfatc.jpg used on input line 186.
 (pdftex.def)             Requested size: 260.16739pt x 69.85976pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--197
+Underfull \hbox (badness 10000) in paragraph at lines 180--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--197
+Underfull \hbox (badness 10000) in paragraph at lines 180--190
 
  []
 
-<Tablas/alfa5.jpg, id=253, 310.15875pt x 147.55125pt>
+<Tablas/alfa5.jpg, id=263, 310.15875pt x 147.55125pt>
 File: Tablas/alfa5.jpg Graphic file (type jpg)
  <use Tablas/alfa5.jpg>
-Package pdftex.def Info: Tablas/alfa5.jpg used on input line 202.
+Package pdftex.def Info: Tablas/alfa5.jpg used on input line 195.
 (pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
-<Tablas/variandoalfaschicos.jpg, id=254, 310.15875pt x 147.55125pt>
+<Tablas/variandoalfaschicos.jpg, id=264, 310.15875pt x 147.55125pt>
 File: Tablas/variandoalfaschicos.jpg Graphic file (type jpg)
 
 <use Tablas/variandoalfaschicos.jpg>
-Package pdftex.def Info: Tablas/variandoalfaschicos.jpg used on input line 210.
+Package pdftex.def Info: Tablas/variandoalfaschicos.jpg used on input line 203.
 
 (pdftex.def)             Requested size: 124.0613pt x 59.01944pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--214
+Underfull \hbox (badness 10000) in paragraph at lines 190--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--214
+Underfull \hbox (badness 10000) in paragraph at lines 190--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--214
+Underfull \hbox (badness 10000) in paragraph at lines 190--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--214
+Underfull \hbox (badness 10000) in paragraph at lines 190--207
 
  []
 
 [17 <./Tablas/variandoAlfas.jpg> <./Tablas/variandoalfatc.jpg> <./Tablas/alfa5.
-jpg>]) [18 <./Tablas/variandoalfaschicos.jpg>] (./discusion.tex
+jpg> <./Tablas/variandoalfaschicos.jpg>]) [18] (./discusion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 18--21
 
  []
@@ -1414,18 +1414,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--21
 [19]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 25.
+(hyperref)                removing `math shift' on input line 33.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\alpha' on input line 25.
+(hyperref)                removing `\alpha' on input line 33.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 25.
+(hyperref)                removing `math shift' on input line 33.
 
-[20]) [21] (./conclusion.tex) [22] (./apendices.tex) [23] (./referencias.tex)
-[24] 
+[20]) [21] (./conclusion.tex) [22] (./apendices.tex
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 29.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+<logodpt.jpg, id=290, 138.5175pt x 160.6pt>
+File: logodpt.jpg Graphic file (type jpg)
+ <use logodpt.jpg>
+Package pdftex.def Info: logodpt.jpg used on input line 34.
+(pdftex.def)             Requested size: 45.52458pt x 52.7825pt.
+ [23 <./logodpt.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
+
+ []
+
+[25]
+Overfull \hbox (34.45567pt too wide) in paragraph at lines 154--154
+[]\T1/cmtt/m/n/10 vector<double> metodoPotencias(Matriz<double>& A, unsigned in
+t alpha, Matriz<double>& P,[] 
+ []
+
+[26]) [27] (./referencias.tex) [28] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 42.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 42.
@@ -1436,7 +1462,7 @@ LaTeX Info: Redefining \% on input line 19.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 42.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 42.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: C768D845E224824D5AB96EF677A0864B;1691.
+(rerunfilecheck)             Checksum: 05659C1B422BFF4AB753995BEBC883CE;1824.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1444,35 +1470,40 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
  ) 
 Here is how much of TeX's memory you used:
- 19717 strings out of 493304
- 327643 string characters out of 6139872
- 445264 words of memory out of 5000000
- 22650 multiletter control sequences out of 15000+600000
- 15053 words of font info for 38 fonts, out of 8000000 for 9000
+ 19797 strings out of 493304
+ 328890 string characters out of 6139872
+ 445267 words of memory out of 5000000
+ 22699 multiletter control sequences out of 15000+600000
+ 23710 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 58i,14n,58p,2457b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,18n,58p,2457b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
-uper/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></
-usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sftt1000.pfb>
-Output written on document.pdf (24 pages, 847697 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+bx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
+m0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1
+000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on document.pdf (28 pages, 956745 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 68 named destinations out of 1000 (max. 500000)
- 298 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 436 PDF objects out of 1000 (max. 8388607)
+ 354 compressed objects within 4 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 319 words of extra memory for PDF output out of 10000 (max. 10000000)
 

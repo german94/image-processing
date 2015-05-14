@@ -15,12 +15,14 @@
 \contentsline {subsection}{\numberline {3.1}Experimento 1}{12}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Experimento 2}{14}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Variando k}{14}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Variando $\alpha $}{17}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2}Variando $\alpha $}{16}{subsubsection.3.2.2}
 \contentsline {section}{\numberline {4}Discusi\IeC {\'o}n}{19}{section.4}
 \contentsline {subsection}{\numberline {4.1}Hip\IeC {\'o}tesis 1:}{19}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}PCA + KNN}{20}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Variando k}{20}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Variando $\alpha $}{20}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}Competencia Kaggle}{20}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.2}Experimento 1:}{20}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Experimento 2:}{20}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Variando k}{20}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Variando $\alpha $}{20}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Competencia Kaggle}{21}{subsection.4.4}
 \contentsline {section}{\numberline {5}Conclusiones}{22}{section.5}
 \contentsline {section}{\numberline {6}Ap\IeC {\'e}ndices}{23}{section.6}
+\contentsline {subsection}{\numberline {6.1}Ap\IeC {\'e}ndice B:}{26}{subsection.6.1}
