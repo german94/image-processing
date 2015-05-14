@@ -6,14 +6,21 @@
 \BOOKMARK [2][-]{subsection.2.2}{Principal Component Analysis \(PCA\):}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.3}{K-Fold Cross Validation}{section.2}% 7
 \BOOKMARK [1][-]{section.3}{Experimentaciones}{}% 8
-\BOOKMARK [2][-]{subsection.3.1}{Elecci\363n de K, hip\363tesis}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Elecci\363n de K, hip\363tesis 1}{section.3}% 9
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Experimento 1: Variando el k en kNN}{subsection.3.1}% 10
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Experimento 2: variando el \040en kNN + PCA}{subsection.3.1}% 11
-\BOOKMARK [1][-]{section.4}{Resultados}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{Experimento 1}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.2}{Experimento 2}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{Discusi\363n}{}% 15
-\BOOKMARK [2][-]{subsection.5.1}{Hip\363tesis 1:}{section.5}% 16
-\BOOKMARK [2][-]{subsection.5.2}{Competencia Kaggle}{section.5}% 17
-\BOOKMARK [1][-]{section.6}{Conclusiones}{}% 18
-\BOOKMARK [1][-]{section.7}{Ap\351ndices}{}% 19
+\BOOKMARK [2][-]{subsection.3.2}{PCA + KNN}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Variando k}{subsection.3.2}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Variando }{subsection.3.2}% 13
+\BOOKMARK [1][-]{section.4}{Resultados}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Experimento 1}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{PCA + KNN}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Variando k}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Variando }{subsection.4.2}% 18
+\BOOKMARK [1][-]{section.5}{Discusi\363n}{}% 19
+\BOOKMARK [2][-]{subsection.5.1}{Hip\363tesis 1:}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.2}{PCA + KNN}{section.5}% 21
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Variando k}{subsection.5.2}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Variando }{subsection.5.2}% 23
+\BOOKMARK [2][-]{subsection.5.3}{Competencia Kaggle}{section.5}% 24
+\BOOKMARK [1][-]{section.6}{Conclusiones}{}% 25
+\BOOKMARK [1][-]{section.7}{Ap\351ndices}{}% 26
