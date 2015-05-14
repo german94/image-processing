@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  13 MAY 2015 02:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.15)  14 MAY 2015 01:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **document.tex
 (./document.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+Babel <3.9f> and hyphenation patterns for 5 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -280,13 +280,13 @@ File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2013/12/03 3.9h The Babel package
+Package: babel 2013/05/16 v3.9f The Babel package
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel-spanish/spanish.ldf
-Language: spanish.ldf 2014/01/29 v5.0m Spanish support from the babel system
+Language: spanish.ldf 2010/05/23 v5.0j Spanish support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2013/12/03 3.9h Babel common definitions
+File: babel.def 2013/05/16 v3.9f Babel common definitions
 \babel@savecnt=\count90
 \U@D=\dimen111
 )
@@ -394,7 +394,7 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen113
@@ -463,24 +463,24 @@ Package: a4 2004/04/15 v1.2g A4 based page layout
 \lst@maxwidth=\dimen121
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
 \c@lstnumber=\count112
 \lst@skipnumbers=\count113
 \lst@framebox=\box27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2013/08/26 1.5b listings configuration
+File: listings.cfg 2013/06/27 1.5pre1 listings configuration
 ))
-Package: listings 2013/08/26 1.5b (Carsten Heinz)
+Package: listings 2013/07/10 1.5 (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2013/08/26 1.5b listings language file
+File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2013/08/26 1.5b listings language file
+File: lstlang1.sty 2013/06/27 1.5pre1 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
 ) (./algorithm.sty
 Package: algorithm 
 Document Style `algorithm' - floating environment
@@ -1146,59 +1146,111 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 142--160
+Underfull \hbox (badness 10000) in paragraph at lines 143--161
 
  []
 
-[8] [9]) [10] (./resultados.tex
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
+[8]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 174.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 174.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 174.
+
+[9]) [10] (./resultados.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-<Tablas/kNNK10.jpg, id=185, 724.7075pt x 227.85126pt>
-File: Tablas/kNNK10.jpg Graphic file (type jpg)
- <use Tablas/kNNK10.jpg>
-Package pdftex.def Info: Tablas/kNNK10.jpg used on input line 18.
-(pdftex.def)             Requested size: 362.35286pt x 113.92534pt.
+<Graficos/knnTasa2.png, id=186, 1157.123pt x 658.46pt>
+File: Graficos/knnTasa2.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--19
+<use Graficos/knnTasa2.png>
+Package pdftex.def Info: Graficos/knnTasa2.png used on input line 40.
+(pdftex.def)             Requested size: 347.13957pt x 197.53952pt.
 
- []
-
-<Graficos/graficoknnK10.jpg, id=186, 607.26875pt x 341.275pt>
-File: Graficos/graficoknnK10.jpg Graphic file (type jpg)
-
-<use Graficos/graficoknnK10.jpg>
-Package pdftex.def Info: Graficos/graficoknnK10.jpg used on input line 23.
-(pdftex.def)             Requested size: 425.08524pt x 238.89085pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
+[11pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+has been already used, duplicate ignored
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.73 \end{center}
+                 pdfTeX warning (ext4): destination with the same identifier (n
+ame{figure.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.73 \end{center}
+                  <./Graficos/knnTasa2.png>]
+<Graficos/knnTasa10.png, id=195, 1101.716pt x 720.291pt>
+File: Graficos/knnTasa10.png Graphic file (type png)
+
+<use Graficos/knnTasa10.png>
+Package pdftex.def Info: Graficos/knnTasa10.png used on input line 81.
+(pdftex.def)             Requested size: 330.51735pt x 216.08896pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+<Graficos/knnTasa20.png, id=196, 1255.892pt x 741.169pt>
+File: Graficos/knnTasa20.png Graphic file (type png)
+
+<use Graficos/knnTasa20.png>
+Package pdftex.def Info: Graficos/knnTasa20.png used on input line 115.
+(pdftex.def)             Requested size: 376.77051pt x 222.35242pt.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{table.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.36 \item C
-            on K = 10\\ <./Tablas/kNNK10.jpg> <./Graficos/graficoknnK10.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+l.121 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.121 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.121 
+       <./Graficos/knnTasa10.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
-) [12] (./discusion.tex) [13] (./conclusion.tex) [14] (./apendices.tex)
-[15] (./referencias.tex) [16] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.148 \begin{itemize}
+                      <./Graficos/knnTasa20.png>]) [14] (./discusion.tex)
+[15] (./conclusion.tex) [16] (./apendices.tex) [17] (./referencias.tex)
+[18] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 41.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 41.
@@ -1208,40 +1260,57 @@ LaTeX Info: Redefining \% on input line 19.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 41.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 41.
-Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: A5D95A990E923037FD8170869D622B99;1483.
+
+
+Package rerunfilecheck Warning: File `document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `document.out':
+(rerunfilecheck)             Before: A5D95A990E923037FD8170869D622B99;1483
+(rerunfilecheck)             After:  BB2A1C4A17CC33C5FEDD36ED7D5FDDC5;1316.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 41.
  ) 
 Here is how much of TeX's memory you used:
- 19624 strings out of 493304
- 325802 string characters out of 6139872
- 444933 words of memory out of 5000000
- 22588 multiletter control sequences out of 15000+600000
- 15053 words of font info for 38 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 58i,13n,58p,1349b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
-/usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-s
-uper/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></
-usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sftt1000.pfb>
-Output written on document.pdf (16 pages, 560402 bytes).
+ 19662 strings out of 494969
+ 326144 string characters out of 6179592
+ 440246 words of memory out of 5000000
+ 22363 multiletter control sequences out of 15000+600000
+ 20016 words of font info for 59 fonts, out of 8000000 for 9000
+ 40 hyphenation exceptions out of 8191
+ 58i,14n,58p,1349b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.2.8} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.2.7} has been referenced but does not ex
+ist, replaced by a fixed one
+
+ </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/jp
+orto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/jporto/.texm
+f-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/jporto/.texmf-var/font
+s/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/jporto/.texmf-var/fonts/pk/ljfou
+r/jknappen/ec/ectt1000.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen
+/ec/ecrm1000.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti10
+00.600pk> </home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> 
+</home/jporto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/jpo
+rto/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/jporto/.texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on document.pdf (18 pages, 515240 bytes).
 PDF statistics:
- 296 PDF objects out of 1000 (max. 8388607)
- 251 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 277 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
