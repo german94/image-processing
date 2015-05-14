@@ -8,7 +8,7 @@
 %una breve explicación de los motivos de estas fallas (en caso de ser conocidas).
 \subsection{k-Nearest Neighbors (kNN):}
 El primer método utilizado es kNN. Como se dijo en la introducción teórica, este método es muy intuitivo, se basa en tomar a cada imagen como un punto en el espacio, y se hace una votación de la moda de los k vecinos cercanos. Todas las imagenes de dbTrain (28x28 pixeles), se encuentran guardadas vectorizadas en una matriz de ${\rm I\!R}^{42000x785}$. La primera columna establece el label de cada imagen, las columnas restantes son los pixeles.\\
-Mediante el K que determine la partición, utilizando la técnica de K-Fold Cross Validation, vamos a dividir esa matriz, en dos, una de train, con $(42000/K)*(K-1)$ imágenes y otra de test, con $42000/K$ imágenes. A su vez, vamos a eliminar la primera columna de cada matriz, y nos las vamos a guardar en 2 vectores diferentes. Asi podremos comparar cada imagen de la matriz de test, con todas las imágenes de la matriz de train y al mismo tiempo tener guardados los labels correspondientes a cada imagen. Finalmente la idea algoritmica se detalla en el siguiente pseudocódigo:\\
+Mediante el K que determine la partición, utilizando la técnica de K-Fold Cross Validation, vamos a dividir esa matriz, en dos, una de train, con $(42000/K)*(K-1)$ imágenes y otra de test, con $42000/K$ imágenes. A su vez, vamos a eliminar la primera columna de cada matriz, y nos las vamos a guardar en 2 vectores diferentes. Asi podremos comparar cada imagen de la matriz de test, con todas las imágenes de la matriz de train y al mismo tiempo tener guardados los labels correspondientes a cada imagen para luego comparar si cada imagen de test fue caracterizada correctamente. Finalmente la idea algorítmica se detalla en el siguiente pseudocódigo:\\
 \begin{algorithm}[H]
 \caption{kNN(int $k$, matriz Test, matriz Train, vector digTest, vector digTrain)}
 \begin{algorithmic}[1]
@@ -64,7 +64,7 @@ Mediante el K que determine la partición, utilizando la técnica de K-Fold Cros
 \subsection{Principal Component Analysis (PCA):}
 
 
-El segundo método utilizado es PCA. Dado que las imagenes estan representadas por vectores y las dimensiones de los mismos pueden ser muy grandes, a la hora de analizar las imagenes se requiere una gran cantidad de tiempo de computo así como de memoria. PCA tiene como objetivo redimensionar dichos vectores, siempre que se obtenga un determinado compromiso entre las nueva cantidad de variables y la calidad de las imagenes que ahora se representan. Para esto se construye un nuevo sistema de ecuaciones donde en el eje i se representa la i-esima varianza de mayor valor para el conjunto original de imagenes dadas. De esta manera cada variable esta correlacionada, siendo las primeras las de mayor importancia, por lo que se pueden obviar las últimas componentes (ya que serían las que menos importancia tienen) reduciendo el número de variables. Para poder llevar a cabo esta transformacion lineal es necesario construir la matriz de covarianza para el conjunto de valores que representan a las imagenes.
+El segundo método utilizado es PCA. Dado que las imagenes estan representadas por vectores y las dimensiones de los mismos pueden ser muy grandes, a la hora de analizar las imagenes se requiere una gran cantidad de tiempo de cómputo así como de memoria. PCA tiene como objetivo redimensionar dichos vectores, siempre que se obtenga un determinado compromiso entre las nueva cantidad de variables y la calidad de las imagenes que ahora se representan. Para esto se construye un nuevo sistema de ecuaciones donde en el eje i se representa la i-esima varianza de mayor valor para el conjunto original de imagenes dadas. De esta manera cada variable esta correlacionada, siendo las primeras las de mayor importancia, por lo que se pueden obviar las últimas componentes (ya que serían las que menos importancia tienen) reduciendo el número de variables. Para poder llevar a cabo esta transformacion lineal es necesario construir la matriz de covarianza para el conjunto de valores que representan a las imagenes.
 Para esto, sean n observaciones (imagenes) y dadas dos coordenadas $x_i$, $x_k$ su covarianza se obtiene como: \newline
 
 
@@ -83,23 +83,23 @@ obteniendo en la diagonal la varianza de cada coordenada. Con el fin de disminui
  Para obtener los autovectores de $M_x$ se empleó el método de la potencia %PAG 560 BURDEN
 . Dado que la misma es una técnica iterativa que converge al autovector asociado, se estableció que la misma se detenga luego de alcanzar un maximo de 3000 iteraciones o cuando la diferencia entre cada coordenada del vector obtenido en la iteración k respecto de la k+1 sea muy poca (en este caso optamos por 0.0000009). Una vez obtenido el primer autovector procedimos a calcular el segundo, aplicando el método de deflación %pag 570 teorema 9.15 burden.
 .Ambas técnicas serán aplicadas un número $\alpha$ de veces. En la sección experimentación se evaluará como se comportan los resultados y el tiempo al variar este valor.
-Una vez obtenidos los $\alpha$ autovectores se procedió a llevar a cabo el cambio de base, tanto para las imagenes utilizadas como train como para las de test, por lo que se multiplicó cada autovector obtenido por las imagenes vectorizadas en A': \newline
+Una vez obtenidos los $\alpha$ autovectores se procedió a llevar a cabo el cambio de base, tanto para las imágenes utilizadas como train como para las de test, por lo que se multiplicó cada autovector obtenido por las imágenes vectorizadas en A': \newline
 
 $v_i^{t}*a^{(i)}$ ; \textit{$v_i$ el i-esimo autovector y $a^{(i)}$ la i-esima imagen vectorizada} \newline
 
-lo que matricialmente se puede obtener al hacer: A'*P (llamaremos a la matriz resultante $TcTrain$). De esta forma la matriz TcTrain $\epsilon$ $\Re^{n*\alpha}$. Para poder comparar las imagenes de test (matriz B) con TcTrain, es necesario llevar a las imagenes de test a las mismas dimensiones, por lo que a cada una se le restara la media que corresponda y dividirá por $\sqrt{n-1}$, obteniendo $ B'$. 
+Lo que matricialmente se puede obtener al hacer: A'*P (llamaremos a la matriz resultante $TcTrain$). De esta forma la matriz TcTrain $\epsilon$ $\Re^{n*\alpha}$. Para poder comparar las imágenes de test (matriz B) con TcTrain, es necesario llevar a las imagenes de test a las mismas dimensiones, por lo que a cada una se le restara la media que corresponda y dividirá por $\sqrt{n-1}$, obteniendo $ B'$. 
 Una vez realizado esto procedemos a cambiar la base tal como se hizo para las de train:\newline
  TcTest = $B'*P$. En las matrices TcTrain y TcTest se encuentran las nuevas coordenadas de las imágenes(con reducción de la dimensión) almacenadas como filas.
  
 
- Finalizado los cambios de bases obtenemos imagenes en un mismo espacio vectorial cuyas dimesiones son menores a las originales. Pudiendo aplicar distintas técnicas para llevar a cabo el reconocimiento de los dígitos. Optaremos por aplicar KNN para así poder comparar las diferencias entre tiempo de computo y análisis cuando se busca reconocer dígitos utilizando PCA + KNN y solo KNN.
+ Finalizado los cambios de bases obtenemos imágenes en un mismo espacio vectorial cuyas dimesiones son menores a las originales. Pudiendo aplicar distintas técnicas para llevar a cabo el reconocimiento de los dígitos. Optaremos por aplicar KNN para así poder comparar las diferencias entre tiempo de cómputo y análisis cuando se busca reconocer dígitos utilizando PCA + KNN y solo KNN.
  
 A continuación se muestra un pseudocódigo de los procedimientos descriptos anteriormente:
 
 \begin{algorithm}[H]
 \caption{PCA(matriz Train, matriz Test, int $\alpha$)}
 \begin{algorithmic}[1]
-\State n = cantidad de imagenes de train
+\State n = cantidad de imágenes de train
 \State \textit{$\setminus\setminus$Se procede a calcular el promedio de las imagenes de train}
 \State $ vector Promedio \gets crear(784)$
 \For{i = 0; i < 784; i++}
@@ -140,8 +140,8 @@ A continuación se muestra un pseudocódigo de los procedimientos descriptos ant
 \end{algorithm}
 
 \subsection{K-Fold Cross Validation}
-Para poder concentrarnos en la evalución de los métodos y la óptima eleccion de los parámetros, necesitamos probar los mismos sobre la base de train, ya que sobre sus elementos conocemos el digito al que pertenece cada uno. Ante esta situación, particionaremos dicha base en dos, utilizando una parte de ella en forma completa para el training y la restante como test, pudiendo asi verificar la predicción realizada y mostrar las tasas de efectividad (La cantidad de dígitos correctamente clasificados respecto a la cantidad total de casos analizados).\\
-Sin embargo, surge un problema no menor, realizar la experimentación sobre una única partición podría traer como consecuencia predicciones no deseadas, y una mala estimación de los parámetros, por ejemplo podría ocacionar $overfittin$, que el algoritmo del método bajo análisis quede ajustado a una serie de características muy específicas de la base de train que no tienen relación con el obejeto de estudio. Para soluconar el problema en cuestión, se usará la técnica de Cross Validation, en particular el K-Fold Cross Validation, para que los resultados de la experimentación resulte estadísticamente más robustos.\\
+Para poder concentrarnos en la evalución de los métodos y la óptima elección de los parámetros, necesitamos probar los mismos sobre la base de train, ya que sobre sus elementos conocemos el dígito al que pertenece cada uno. Ante esta situación, particionaremos dicha base en dos, utilizando una parte de ella en forma completa para el training y la restante como test, pudiendo asi verificar la predicción realizada y mostrar las tasas de efectividad (La cantidad de dígitos correctamente clasificados respecto a la cantidad total de casos analizados).\\
+Sin embargo, surge un problema no menor, realizar la experimentación sobre una única partición podría traer como consecuencia predicciones no deseadas, y una mala estimación de los parámetros, por ejemplo podría ocacionar $overfittin$, que el algoritmo del método bajo análisis quede ajustado a una serie de características muy específicas de la base de train que no tienen relación con el objeto de estudio. Para soluconar el problema en cuestión, se usará la técnica de Cross Validation, en particular el K-Fold Cross Validation, para que los resultados de la experimentación resulte estadísticamente más robustos.\\
 La técnica de K-Fold Cross Validation consiste en particionar de forma aleatoria la base de train en K conjuntos de igual tamaño (Siempre asumiendo que el cardinal del conjunto de la base de train es múltiplo de K).
 Luego se realizan K ejecuciones del programa, cada una de ellas eligiendo un conjunto para test, y utilizando los K-1 conjuntos restantes para train. Para las K ejecuciones se usarán los mismos parámetros en cada una de ellas. Además, en el método tradicional se suelen realizar varias corridas para un mismo valor de K.\\
 Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la siguiente manera:\\
@@ -162,21 +162,23 @@ Para calcular estas particiones usaremos el comando CVPARTITION de MATLAB de la 
 
 \newpage
 
-
+\subsection{Evaluación de los métodos}
 Para comprobar la eficacia del método KNN y KNN + PCA procederemos a desarrollar distintas experimentaciones. En primer lugar para KNN variaremos la cantidad de vecinos (k) que vamos a utilizar para reconocer a que clase pertenece cada imagen de test. Luego, para PCA + KNN también vamos a variar la cantidad de vecinos a tomar, fijando un $\alpha$ (cantidad de componentes principales),  y para el mejor de ellos (evaluando calidad de la solucion y tiempo de computo) procederemos a variar el valor de $\alpha$ utilizando el mejor k obtenido  anteriormente. Los valores obtenidos por estas experimentaciones seran detallados en la sección resultados, los mismos fueron obtenidos en una pc Intel Core i3 con 4gb de RAM.\newline
 
 \subsection{Elección de K, hipótesis 1}
 
 
- Para las anteriores experimentaciones aplicaremos la técnica de $K-Fold$ $Cross$ $Validation$, para la misma es necesario la elección de un valor K que representa la cantidad de conjuntos en la que dividiremos la base de train. Dado que para la formación de las particiones, que serán utilizadas tanto para test como para train, utilizamos el comando CVPARTITION la misma las calcula como:\newline
+ Para las siguientes experimentaciones aplicaremos la técnica de $K-Fold$ $Cross$ $Validation$, para la misma es necesario la elección de un valor K que representa la cantidad de conjuntos en la que dividiremos la base de train. Dado que para la formación de las particiones, que serán utilizadas tanto para test como para train, utilizamos el comando CVPARTITION la misma las calcula como:\newline
  
  cantidad de imágenes de test = $n/K$  (1)\newline
   cantidad de imágenes de train = n - $n/K$ (2)\newline
   \textit{con n la cantidad de imágenes total, en nuestro caso las 42.000 de la base de train.}
   
-A partir de esta distribución elaboramos una primer hipótesis. 
- \textbf{Hipótesis 1}: Para los K de mayor valor, la tasa de reconocimiento promedio es mayor que para los de menor valor.  
- 
+A partir de esta distribución elaboramos una primer hipótesis.
+\begin{itemize}
+\item Hipótesis N$ ^{\circ} $ 1: Para los K de mayor valor, la tasa de reconocimiento promedio es mayor que para los de menor valor.  
+\end{itemize}
+
  Como se menciono, lo que nos llevo a formular esta hipótesis es la distribución en la cantidad de imágenes de test y de train al utilizar distintos K. Notemos por (1) que la cantidad de imágenes utilizadas como test aumenta a medida que K disminuye y como consecuencia las de train disminuyen (2). 
  
 Si al momento de reconocer un dígito i, se tienen pocas imágenes con las que comparar (train) entonces tenemos menos representaciones de ese dígito, por lo que al momento de elegir los k vecinos estamos mas propensos a que solo una fracción de los mismos pertenezcan a la misma clase que i. Como en la elección de la clase, a la que supuestamente pertenecería i, también intervienen los otros vecinos (los que tienen clase distinta a la de i) podría ser que la clase prioritaria entre los k vecinos no sea la de i, dado a que hay pocas representaciones de este dígito, terminando en un reconocimiento erróneo. Es por esto que creemos que, en contraste, si aumentamos las imágenes de train habria mayores probabilidades de que la mayoria de los vecinos sean de la misma clase que i, obteniendo una mayor tasa de reconocimiento. 
@@ -192,11 +194,17 @@ Una de las experimentaciones a desarrollar es analizar el comportamiento de la t
 La elaboración de esta hipótesis se basa en que al aumentar el valor de k, para clasificar la clase de un dígito i, se deben tener en cuenta más vecinos pudiendo aumentar la cantidad de dígitos distintos de i a tal punto que la clase de otro dígito sea la que predomine. Por ejemplo si entre los k vecinos hay X que pertenecen a la clase de i e Y que pertenecen a una clase j (distinta de i) con: \newline
  X $<$ Y, X + Y $\leq$ k .\newline
   Entonces se elegiría la clase j antes que la de i porque es la que predomina dentro de los k vecinos seleccionados pero, seria errónea la elección. En cambio si se eligiera un k menor y adecuado, la cantidad de imágenes de la clase j podría seria menor a la de i, y de esta manera se seleccionaría la clase correcta.
-Para poder corroborar nuestra hipótesis tomaremos los valores K = 2, 30, 100 y 500. De esta manera para los tres primeros valores deberían haber diferencias entre las tasas de reconocimientos pero, no tan abruptas que cuando le damos a k un valor mucho mas grande, en comparación a los elegidos anteriormente que es cuando k = 500. Además aplicaremos la técnica de K-Fold cross validation, con los valores de K definicos en la sección  \textit{Elección de K, hipótesis}. 
+Para poder corroborar nuestra hipótesis tomaremos los valores K = 2, 30, 100 y 500. De esta manera para los tres primeros valores deberían haber diferencias entre las tasas de reconocimientos pero, no tan abruptas que cuando le damos a k un valor mucho mas grande, en comparación a los elegidos anteriormente que es cuando k = 500. Además aplicaremos la técnica de K-Fold cross validation, con los valores de K definidos en la sección  \textit{Elección de K, hipótesis}. 
 
 \subsection{Experimento 2: PCA + KNN}
 \subsubsection{Variando k}
 Dados los valores de $K$ elegidos previamente, realizaremos una serie de mediciones de tiempos y tasas para $k \in \{2, 30, 100, 500\}$, fijando un valor de $\alpha = 50$. El objetivo de estas mediciones es conseguir el valor de $k$ que mejor se comporte de manera que estén equilibrados el tiempo de cómputo y la tasa de reconocimiento. Luego, tomaremos el valor de $k$ conseguido y procederemos a variar $\alpha$. Los valores de $k$ elegidos representan un subconjunto de los que se utilizaron en el experimento sobre KNN con el objetivo de que luego podamos comparar las tasas de reconocimiento y el tiempo de cómputo que producen ambos métodos. El valor de $\alpha$ fue fijado en 50 porque, si bien es un valor relativamente chico para el rango en el que se encuentra (de 1 a 784), observamos que las tasas de reconocimiento con este valor son sorprendentemente altas. Esto significa que no tendría sentido aumentar $\alpha$ para obtener (o no) una mínima diferencia en la tasa de reconocimiento y terminar pagando un costo de cómputo y memoria (a mayor $\alpha$ mayor son las dimensiones de las matrices que utilizamos) mucho mayor.
 \subsubsection{Variando $\alpha$}
-Una vez ya conseguido el valor de $k$ que buscamos, la idea ahora es probar distintos valores de $\alpha$ y ver si al tomar valores grandes obtenemos tasas de reconocimiento mayores (esta será nuestra tercera hipótesis del trabajo). En principio parece muy razonable creer que esto va a suceder ya que al aumentar $\alpha$ estamos agrandando la nueva base en la cuál vamos a expresar nuestros datos. O sea cuanto más grande es $\alpha$, menor es la cantidad de información que "recortamos" de cada muestra. Los valores de $\alpha$ que vamos a elegir van a ser los del siguiente conjunto: $\{20, 100, 300\}$, no contamos el $\alpha = 50$ porque ya lo usamos cuando variamos $k$ pero también tenemos ese resultado. El máximo que usamos es $\alpha = 300$ debido a que, como estamos utilizando PCA con el objetivo de reducir el tiempo de cómputo de KNN, en la práctica vamos a tratar de no utilizar valores muy grandes y 300 es un valor que está cerca de la mitad en el rango de valores que puede llegar a tomar $\alpha$. El valor 20 lo elegimos para ver si al reducir $\alpha$ la tasa de reconocimiento empeora así como el 100 es elegido para ver si aumentar al doble el valor de $\alpha$ nos da una tasa de reconocimiento mucho mayor y, si esto no sucede entonces vemos que pasa con un valor mucho más grande como puede ser 300.
+Una vez ya conseguido el valor de $k$ que buscamos, la idea ahora es probar distintos valores de $\alpha$ y ver si al tomar valores grandes obtenemos tasas de reconocimiento mayores (esta será nuestra tercera hipótesis del trabajo), fomalizando:
+\begin{itemize}
+\item Hipótesis N$ ^{\circ} $ 3: En el método de kNN+PCA, al incrementar $\alpha$ vamos a obtener una mayor tasa de efectividad. En otras palabras, se resumiría que a mayor valor de $\alpha$, mayor porcentaje de la tasa.
+\end{itemize}
+
+
+ En principio parece muy razonable creer que esto va a suceder ya que al aumentar $\alpha$ estamos agrandando la nueva base en la cuál vamos a expresar nuestros datos. O sea cuanto más grande es $\alpha$, menor es la cantidad de información que "recortamos" de cada muestra. Los valores de $\alpha$ que vamos a elegir van a ser los del siguiente conjunto: $\{20, 100, 300\}$, no contamos el $\alpha = 50$ porque ya lo usamos cuando variamos $k$ pero también tenemos ese resultado. El máximo que usamos es $\alpha = 300$ debido a que, como estamos utilizando PCA con el objetivo de reducir el tiempo de cómputo de KNN, en la práctica vamos a tratar de no utilizar valores muy grandes y 300 es un valor que está cerca de la mitad en el rango de valores que puede llegar a tomar $\alpha$. El valor 20 lo elegimos para ver si al reducir $\alpha$ la tasa de reconocimiento empeora así como el 100 es elegido para ver si aumentar al doble el valor de $\alpha$ nos da una tasa de reconocimiento mucho mayor y, si esto no sucede entonces vemos que pasa con un valor mucho más grande como puede ser 300.
 
