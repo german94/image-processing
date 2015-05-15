@@ -6,11 +6,12 @@
 \contentsline {subsection}{\numberline {2.1}k-Nearest Neighbors (kNN):}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Principal Component Analysis (PCA):}{6}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}K-Fold Cross Validation}{8}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Elecci\IeC {\'o}n de K, hip\IeC {\'o}tesis 1}{10}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Experimento 1: Variando el k en kNN}{10}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Experimento 2: PCA + KNN}{11}{subsection.2.6}
-\contentsline {subsubsection}{\numberline {2.6.1}Variando k}{11}{subsubsection.2.6.1}
-\contentsline {subsubsection}{\numberline {2.6.2}Variando $\alpha $}{11}{subsubsection.2.6.2}
+\contentsline {subsection}{\numberline {2.4}Evaluaci\IeC {\'o}n de los m\IeC {\'e}todos}{9}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Elecci\IeC {\'o}n de K, hip\IeC {\'o}tesis 1}{9}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Experimento 1: Variando el k en kNN}{10}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Experimento 2: PCA + KNN}{10}{subsection.2.7}
+\contentsline {subsubsection}{\numberline {2.7.1}Variando k}{10}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Variando $\alpha $}{11}{subsubsection.2.7.2}
 \contentsline {section}{\numberline {3}Resultados}{12}{section.3}
 \contentsline {subsection}{\numberline {3.1}Experimento 1}{12}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Experimento 2}{14}{subsection.3.2}
