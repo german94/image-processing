@@ -1,3 +1,0 @@
-Particion	Tasa de Reconocimiento
-1			0.790048
-2			0.786571

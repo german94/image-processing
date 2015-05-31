@@ -1,3 +1,0 @@
--En la carpeta data se encuentrán las bases de test y train
--En la carpeta src se encuentra implementado el tp
--En la carpeta kaggle se encuentra el mismo tp implementado que en src/, salvo pequeñas diferencia para poder probar lo de kaggle, para poder cumplir el archivo de salida de kaggle, no hay k-fold cross validation, etc
