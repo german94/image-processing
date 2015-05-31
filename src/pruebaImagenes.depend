@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1433043285 source:/home/jporto/Escritorio/pruebaImagenes/main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"bmp.h"
+
+1430331449 /home/jporto/Escritorio/pruebaImagenes/bmp.h
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	<string.h>
+	<stdint.h>
+
+1433043233 source:/home/jporto/Escritorio/pruebaImagenes/bmp.cpp
+	"bmp.h"
+
