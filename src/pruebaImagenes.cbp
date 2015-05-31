@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="img1.bmp img2.bmp 0 3 salida.bmp" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -20,6 +21,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="img1.bmp img2.bmp 0 3 salida.bmp" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -32,7 +34,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Matriz.h" />
+		<Unit filename="bmp.cpp" />
+		<Unit filename="bmp.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="util.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

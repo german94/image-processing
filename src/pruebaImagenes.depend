@@ -16,3 +16,37 @@
 1433043233 source:/home/jporto/Escritorio/pruebaImagenes/bmp.cpp
 	"bmp.h"
 
+1433043233 source:/home/jporto/Escritorio/tp3Calculo/metodos/src/bmp.cpp
+	"bmp.h"
+
+1430331449 /home/jporto/Escritorio/tp3Calculo/metodos/src/bmp.h
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	<string.h>
+	<stdint.h>
+
+1433055888 source:/home/jporto/Escritorio/tp3Calculo/metodos/src/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"bmp.h"
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<sys/time.h>
+	"util.h"
+	"Matriz.h"
+	<math.h>
+	<cstring>
+
+1431631331 /home/jporto/Escritorio/tp3Calculo/metodos/src/util.h
+	<cstdlib>
+	<sstream>
+	<stdexcept>
+	<iomanip>
+	<vector>
+
+1431631331 /home/jporto/Escritorio/tp3Calculo/metodos/src/Matriz.h
+	<vector>
+
