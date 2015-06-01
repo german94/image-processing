@@ -5,6 +5,7 @@
 #include "util.h"
 #include <math.h>
 #include <algorithm>  
+
 using namespace std;
 
 enum Metodo { VECINO = 0, BILINEAL = 1 };
@@ -82,7 +83,17 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	ifstream entrada(argv[1],std::ifstream::in); //la matriz de entrada
+	string matlabCommand1 = "matlab -nodisplay -nosplash -nojvm -r \"Image2Csv('";
+	matlabCommand1 += argv[1];
+	matlabCommand1 += "');quit\"";
+
+	system(matlabCommand1.c_str());
+
+	string newFile = "";
+	newFile += argv[1];
+	newFile += ".csv";
+
+	ifstream entrada(newFile.c_str(),std::ifstream::in); //la matriz de entrada
 
 	int k = string_to_type<unsigned int>(argv[2]);
     
@@ -169,6 +180,12 @@ int main(int argc, char *argv[])
 	        	}
 	        	salida << endl;
 	        } 
+
+	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
+			matlabCommand2 += argv[1];
+			matlabCommand2 += "Output.bmp');quit\"";
+
+			system(matlabCommand2.c_str());
 		
 	        break;
 		}
