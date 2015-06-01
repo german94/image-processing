@@ -1,129 +1,158 @@
-#define FILE1 "img1.bmp"
-#define FILE2 "img2.bmp"
-#define FILE3 "img3.bmp"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include "bmp.h"
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <sys/time.h>
 #include "util.h"
-#include "Matriz.h"
 #include <math.h>
-#include <cstring>
-
+#include <algorithm>  
 using namespace std;
 
-timeval start, endTime;
-//////////////////////////////////////////////////////////////
-void init_time()
+enum Metodo { VECINO = 0 };
+
+void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
+
+
+int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
-      gettimeofday(&start,NULL);
-}
-//////////////////////////////////////////////////////////////
+	int datoSig_c = dato_c + k +1;
+	int datoSig_f = dato_f + k + 1;
+	if(dato_f == i) 
+	{
+		if(abs(j - dato_c) < abs(j - datoSig_c)) {return expandida[dato_f][dato_c];}
+		else {return expandida[dato_f][datoSig_c];}
+	}
+	if(dato_c == j)
+	{
+		if(abs(i - dato_f) < abs(i - datoSig_f)) {return expandida[dato_f][dato_c];}
+		else {return expandida[datoSig_f][dato_c];}	
+	}	
+	else
+	{
+		int a = (dato_c - j)*(dato_c - j) + (dato_f - i)*(dato_f - i);
+		int b = (datoSig_c - j)*(datoSig_c - j) + (dato_f - i)*(dato_f - i);
+		int c = (datoSig_f - i)*(datoSig_f - i) + (dato_c - j)*(dato_c - j);
+		int d = (datoSig_f - i)*(datoSig_f - i) + (datoSig_c - j)*(datoSig_c - j);
+		int cercano = min(min(a, b), min(c, d));
 
-//////////////////////////////////////////////////////////////
-double get_time()
+		if(cercano == a) {return expandida[dato_f][dato_c];}
+		else
+		{
+			if (cercano == b) {return expandida[dato_f][datoSig_c];}
+			else
+			{
+				if(cercano == c) {return expandida[datoSig_f][dato_c];}
+				else
+				{
+					return expandida[datoSig_f][datoSig_c];	
+				}	
+			}
+       	}	
+	}
+}		
+
+
+int main(int argc, char *argv[])
 {
-      gettimeofday(&endTime,NULL);
-      return
-(1000000*(endTime.tv_sec-start.tv_sec)+(endTime.tv_usec-start.tv_usec))/1000000.0;
-}
-//////////////////////////////////////////////////////////////
-
-enum Metodo {VECINO_MAS_CERCANO = 0, INTERPOLACION_BILINEAL= 1, INTERPOLACION_POR_SPLINES=2};
-
-
-void usage() { cout << "./tp <input_image> <output_image> <metodo> <k>" << endl; }
-
-
-int main(int argc, char *argv[]){
-
-
-
-	if(argc != 6) {
-        usage();
-        return 0;
+	if(argc != 4) { //archivo_input ; k; metodo
+		usage();
+		return 0;
 	}
 
-	//char* imagenEntrada=argv[1];
-	//char* imagenSalida=argv[2];
+	ifstream entrada(argv[1],std::ifstream::in); //la matriz de entrada
 
-	Metodo metodo = (Metodo) string_to_type<int>(argv[3]);
-	unsigned int k = string_to_type<unsigned int>(argv[4]);
+	int k = string_to_type<unsigned int>(argv[2]);
+    
+	Metodo metodo = (Metodo)string_to_type<int>(argv[3]);
 
+    vector<vector<int> > img_reducida; // matriz con las particiones a realizar
 
-    cout << "hello world!" << endl;
+    for (string linea; getline(entrada, linea); ) //tengo la imagen "original cargada"
+    {
+        vector<string> valores = separar(linea);
 
+		vector<int> fila_img(valores.size());
 
-    switch(metodo){
-
-        case VECINO_MAS_CERCANO:{
-
-            cout<<"zoom comun\n";
-
-            cout<<" k es "<<k<<endl;
-              // Abro los dos archivos
-              BMP* bmp1n = bmp_read(argv[1]);
-              BMP* bmp2n = bmp_read(argv[2]);
-
-              // copio la imagen con transparecia sin datos
-              BMP* bmpNEW = bmp_copy(bmp2n, 0);
-
-              // obtengo datos de new y las combino
-              uint8_t* data1n = bmp_get_data(bmp1n);
-              uint8_t* data2n = bmp_get_data(bmp2n);
-              uint8_t* dataNEW = bmp_get_data(bmpNEW);
-              for(int j=0;j<100;j++) {
-                for(int i=0;i<100;i++) {
-                  dataNEW[j*400+i*4+0] = data2n[j*400+i*4+0];
-                  dataNEW[j*400+i*4+1] = data1n[j*300+i*3+0];
-                  dataNEW[j*400+i*4+2] = data1n[j*300+i*3+1];
-                  dataNEW[j*400+i*4+3] = data1n[j*300+i*3+2];
-                }
-              }
-
-              // guardo la imagen
-              bmp_save(argv[5], bmpNEW);
-
-              // borrar bmp
-              bmp_delete(bmp1n);
-              bmp_delete(bmp2n);
-              bmp_delete(bmpNEW);
-
-            cout<<"termino metodo\n";
-
-            break;
+        for(int c =0; c < valores.size() ;c++)
+        {
+        	fila_img[c] = string_to_type<int>(valores[c]);
         }
 
-        case INTERPOLACION_BILINEAL:{
+        img_reducida.push_back(fila_img);
+    }
+/////////////cargada em img_reducida////////////////
+    vector<vector <int> > expandida;
 
-            //metodo
+    for(int i = 0; i < img_reducida.size(); i++)
+    {
+    	vector<int> fila_exp;
+		int j = 0;
+    	for(; j < img_reducida[i].size() -1 ; j++)
+    	{
+    		fila_exp.push_back(img_reducida[i][j]);
 
+    		for(int j_2 = 0; j_2 < k; j_2++)
+    		{
+    			fila_exp.push_back(-1);
+    		}
+    	}
+    	fila_exp.push_back(img_reducida[i][j]);
+    	expandida.push_back(fila_exp);
 
-
-
-            break;
-        }
-
-        case INTERPOLACION_POR_SPLINES:{
-
-            //metodo
-
-
-
-
-            break;
-        }
-
-        default:
-            throw runtime_error("No existe ese metodo");
+    	for(int i_2 = 0; i_2 < k && i < img_reducida.size() -1; i_2++)
+    	{
+    		vector<int> vacio;
+    		for (int j_v = 0; j_v < (img_reducida[i].size() -1)*k + img_reducida[i].size(); j_v++)
+    		{
+    			vacio.push_back(-1);
+    		}
+    		expandida.push_back(vacio);
+    	}
     }
 
 
-  return 0;
+    ////////////////esta "ampliada" //////////////////////////
 
-}
+    switch(metodo){
+
+    	case VECINO:
+    	{
+	 
+		    int dato_f, dato_c; 
+		    for(int i = 0; i < expandida.size(); i++)
+		    {
+		    	dato_c = 0;
+		    	for(int j = 0; j < expandida[i].size() ; j++)
+		    	{
+		    		
+		    		if(expandida[i][j] != -1) {dato_f = i; dato_c = j;}
+		    		else
+		    		{
+		    			if(j == dato_c + k + 1) {dato_c = j;}
+		    			expandida[i][j] = mas_cercano(k, dato_c, dato_f, i, j, expandida);	
+		    		}
+		    	}
+		    }
+
+		    ///////////muestro
+		   
+			ofstream salida("salida.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
+	        
+	        for(int i = 0; i < expandida.size(); i++)
+	        {
+	        	for(int j = 0; j < expandida[i].size(); j++)
+	        	{
+	        		salida << expandida[i][j] << " ";
+	        	}
+	        	salida << endl;
+	        } 
+		
+	        break;
+		}
+		
+		default:
+            throw runtime_error("No existe ese metodo");
+    }
+    return  0;
+
+}       
+      
