@@ -7,10 +7,34 @@
 #include <algorithm>  
 using namespace std;
 
-enum Metodo { VECINO = 0 };
+enum Metodo { VECINO = 0, BILINEAL = 1 };
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
 
+
+int calculo_bilineal(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
+{
+	int limite_c = expandida[0].size() - 1;
+	int limite_f = expandida.size() - 1;
+
+	int datoSig_c, datoSig_f;
+
+	if(dato_c + k + 1 <= limite_c) {datoSig_c = dato_c + k +1;}
+	else {datoSig_c = limite_c;}
+
+	if(dato_f + k + 1 <= limite_f) {datoSig_f = dato_f + k +1;}
+	else {datoSig_f = limite_f;}
+
+	int f_r2 = ((datoSig_c - j)/k)*expandida[dato_f][dato_c] + ((j - dato_c)/k)*expandida[dato_f][datoSig_c];
+	int f_r1 = ((datoSig_c - j)/k)*expandida[datoSig_f][dato_c] + ((j - dato_c)/k)*expandida[datoSig_f][datoSig_c];
+
+	int res = ((i - dato_f)/k)*f_r1 + ((datoSig_f - i)/k)*f_r2; //los numeradores estan al reves pero es porque la i aumenta a medida
+	//que descendemos las filas lo que es inverso a un eje de coordenadas
+	if(res < 255) {return res;}
+	else {return 254;} //no estoy seguro de esto
+}	
+
+	
 
 int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
@@ -48,7 +72,7 @@ int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int>
 			}
        	}	
 	}
-}		
+}	
 
 
 int main(int argc, char *argv[])
@@ -136,6 +160,40 @@ int main(int argc, char *argv[])
 		    ///////////muestro
 		   
 			ofstream salida("salida.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
+	        
+	        for(int i = 0; i < expandida.size(); i++)
+	        {
+	        	for(int j = 0; j < expandida[i].size(); j++)
+	        	{
+	        		salida << expandida[i][j] << " ";
+	        	}
+	        	salida << endl;
+	        } 
+		
+	        break;
+		}
+
+		case BILINEAL:
+    	{
+	 
+		    int dato_f, dato_c; 
+		    for(int i = 0; i < expandida.size(); i++)
+		    {
+		    	dato_c = 0;
+		    	for(int j = 0; j < expandida[i].size() ; j++)
+		    	{
+		    		if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_f = i; dato_c = j;}
+		    		else
+		    		{
+		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+		    			expandida[i][j] = calculo_bilineal(k, dato_c, dato_f, i, j, expandida);	
+		    		}
+		    	}
+		    }
+
+		    ///////////muestro
+		   
+			ofstream salida("salida1.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
 	        
 	        for(int i = 0; i < expandida.size(); i++)
 	        {
