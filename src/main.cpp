@@ -12,28 +12,20 @@ enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, };
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
 
-
 int calculo_bilineal(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
-	int limite_c = expandida[0].size() - 1;
-	int limite_f = expandida.size() - 1;
+	int datoSig_c = dato_c + k +1;
+	int datoSig_f = dato_f + k +1;
 
-	int datoSig_c, datoSig_f;
-
-	if(dato_c + k + 1 <= limite_c) {datoSig_c = dato_c + k +1;}
-	else {datoSig_c = limite_c;}
-
-	if(dato_f + k + 1 <= limite_f) {datoSig_f = dato_f + k +1;}
-	else {datoSig_f = limite_f;}
-
-	int f_r2 = ((datoSig_c - j)/k)*expandida[dato_f][dato_c] + ((j - dato_c)/k)*expandida[dato_f][datoSig_c];
-	int f_r1 = ((datoSig_c - j)/k)*expandida[datoSig_f][dato_c] + ((j - dato_c)/k)*expandida[datoSig_f][datoSig_c];
-
-	int res = ((i - dato_f)/k)*f_r1 + ((datoSig_f - i)/k)*f_r2; //los numeradores estan al reves pero es porque la i aumenta a medida
+	double f_r2 = (double)((datoSig_c - j)*expandida[dato_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[dato_f][datoSig_c])/(double)(k+1);
+	double f_r1 = (double)((datoSig_c - j)*expandida[datoSig_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[datoSig_f][datoSig_c])/(double)(k+1);
+	
+	int res = (double)(abs(i - dato_f)*f_r1)/(double)(k+1) + (double)(abs(datoSig_f - i)*f_r2)/(double)(k+1); //los numeradores estan al reves pero es porque la i aumenta a medida
+	
 	//que descendemos las filas lo que es inverso a un eje de coordenadas
 	if(res < 255) {return res;}
-	else {return 254;} //no estoy seguro de esto
-}	
+	else {return 255;} //no estoy seguro de esto
+}
 
 int calculo_bilineal_por_filas(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
@@ -212,10 +204,13 @@ int main(int argc, char *argv[])
 		    	dato_c = 0;
 		    	for(int j = 0; j < expandida[i].size() ; j++)
 		    	{
-		    		if(expandida[i][j] != -1 /*&& i != expandida.size() - 1*/) {dato_f = i; dato_c = j;}
+		    		if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+		    		if(expandida[i][j] != -1)
+		    		{
+		    			if(i != expandida.size() - 1)  {dato_f = i;}	
+		    		} 
 		    		else
 		    		{
-		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
 		    			expandida[i][j] = calculo_bilineal(k, dato_c, dato_f, i, j, expandida);	
 		    		}
 		    	}
@@ -229,10 +224,17 @@ int main(int argc, char *argv[])
 	        {
 	        	for(int j = 0; j < expandida[i].size(); j++)
 	        	{
-	        		salida << expandida[i][j] << " ";
+	        		if(j != expandida[i].size() - 1) {salida << expandida[i][j] << " ";}
+	        		else {salida << expandida[i][j];}
 	        	}
-	        	salida << endl;
+	        	if(i != expandida.size() -1) {salida << endl;}
 	        } 
+	        salida.close();
+	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida1.csv', '";
+			matlabCommand2 += argv[1];
+			matlabCommand2 += "Output.bmp');quit\"";
+
+			system(matlabCommand2.c_str());
 		
 	        break;
 		}
