@@ -8,7 +8,7 @@
 
 using namespace std;
 
-enum Metodo { VECINO = 0, BILINEAL = 1 };
+enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, };
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
 
@@ -35,6 +35,19 @@ int calculo_bilineal(int k, int dato_c, int dato_f, int i, int j, vector<vector 
 	else {return 254;} //no estoy seguro de esto
 }	
 
+int calculo_bilineal_por_filas(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
+{
+	int limite_c = expandida[0].size() - 1;
+	int datoSig_c;
+
+	if(dato_c + k + 1 <= limite_c) {datoSig_c = dato_c + k +1;}
+	else {datoSig_c = limite_c;}
+
+	int res = (int)((double)expandida[i][dato_c] + (((double)expandida[i][datoSig_c] - (double)expandida[i][dato_c])/(double)(k+1))*((double)j-(double)dato_c));
+
+	if(res < 255) {return res;}
+	else {return 254;} //no estoy seguro de esto
+}	
 	
 
 int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
@@ -199,7 +212,7 @@ int main(int argc, char *argv[])
 		    	dato_c = 0;
 		    	for(int j = 0; j < expandida[i].size() ; j++)
 		    	{
-		    		if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_f = i; dato_c = j;}
+		    		if(expandida[i][j] != -1 /*&& i != expandida.size() - 1*/) {dato_f = i; dato_c = j;}
 		    		else
 		    		{
 		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
@@ -222,6 +235,94 @@ int main(int argc, char *argv[])
 	        } 
 		
 	        break;
+		}
+
+		case BILINEALBIS:
+		{
+			//Primero interpolo por filas, de a k filas
+			int dato_f, dato_c; 
+		    for(int i = 0; i < expandida.size(); i = i+k+1)
+		    {
+		    	dato_c = 0;
+		    	for(int j = 0; j < expandida[i].size() ; j++)
+		    	{
+		    		if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_f = i; dato_c = j;}
+		    		else
+		    		{
+		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+		    			expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, dato_f, i, j, expandida);	
+		    		}
+		    	}
+		    }
+
+
+		    //Ahora interpolo todas las columnas
+		    //traspongo a lo cabeza
+		   vector<vector <int> > expandidaAux;
+		 
+		   for (int i = 0; i < expandida.size(); ++i)
+		   {
+			vector<int> fila_exp;
+		   		for (int j = 0; j < expandida.size(); ++j)
+		   		{
+		   			fila_exp.push_back(expandida[j][i]);
+		   			
+		   		}
+		   		expandidaAux.push_back(fila_exp);
+
+		   }
+
+
+		    for(int i = 0; i < expandidaAux.size(); i++)
+		    {
+		    	dato_c = 0;
+		    	for(int j = 0; j < expandidaAux[i].size() ; j++)
+		    	{
+		    		if(expandidaAux[i][j] != -1 && i != expandidaAux.size() - 1) {dato_f = i; dato_c = j;}
+		    		else
+		    		{
+		    			if(j == dato_c + k + 1 && j != expandidaAux[i].size() -1) {dato_c = j;}
+		    			expandidaAux[i][j] = calculo_bilineal_por_filas(k, dato_c, dato_f, i, j, expandidaAux);	
+		    		}
+		    	}
+		    }
+
+		    //vuelvo a trasponer a lo cabeza, perdon
+		    vector<vector <int> > expandidaAux2;
+		 
+		   for (int i = 0; i < expandidaAux.size(); ++i)
+		   {
+			vector<int> fila_exp2;
+		   		for (int j = 0; j < expandidaAux.size(); ++j)
+		   		{
+		   			fila_exp2.push_back(expandidaAux[j][i]);
+		   			
+		   		}
+		   		expandidaAux2.push_back(fila_exp2);
+
+		   }
+
+
+
+		    ofstream salida("salida2bis.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
+	        
+	        for(int i = 0; i < expandidaAux2.size(); i++)
+	        {
+	        	for(int j = 0; j < expandidaAux2[i].size(); j++)
+	        	{
+	        		salida << expandidaAux2[i][j] << " ";
+	        	}
+	        	salida << endl;
+	        } 
+
+	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida2bis.csv', '";
+			matlabCommand2 += argv[1];
+			matlabCommand2 += "Output.bmp');quit\"";
+
+			system(matlabCommand2.c_str());
+
+
+			break;
 		}
 		
 		default:
