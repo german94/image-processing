@@ -20,7 +20,7 @@ int calculo_bilineal(int k, int dato_c, int dato_f, int i, int j, vector<vector 
 	double f_r2 = (double)((datoSig_c - j)*expandida[dato_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[dato_f][datoSig_c])/(double)(k+1);
 	double f_r1 = (double)((datoSig_c - j)*expandida[datoSig_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[datoSig_f][datoSig_c])/(double)(k+1);
 	
-	int res = (double)(abs(i - dato_f)*f_r1)/(double)(k+1) + (double)(abs(datoSig_f - i)*f_r2)/(double)(k+1); //los numeradores estan al reves pero es porque la i aumenta a medida
+	int res = (double)((i - dato_f)*f_r1)/(double)(k+1) + (double)((datoSig_f - i)*f_r2)/(double)(k+1); //los numeradores estan al reves pero es porque la i aumenta a medida
 	
 	//que descendemos las filas lo que es inverso a un eje de coordenadas
 	if(res < 255) {return res;}
