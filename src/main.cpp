@@ -24,9 +24,10 @@ Spline dame_Spline(vector<int>& x, vector<double>& a, unsigned int k)
 {
 	unsigned int n = x.size() - 1;
 	double h_i = k + 1;
+	vector<double> alpha(n + 1, 0);
 
 	for(int i = 1; i < n; i++)
-		a[i] = ((double)3 / h_i)*(a[i + 1] - 2 * a[i] + a[i - 1]);
+		alpha[i] = ((double)3 / h_i)*(a[i + 1] - 2 * a[i] + a[i - 1]);
 
 	vector<double> l(n + 1, 0), u(n + 1, 0), z(n + 1, 0);
 	l[0] = 1;
@@ -267,15 +268,14 @@ int main(int argc, char *argv[])
 		    	{
 		    		int p = j - 1;		//p va a ser el punto "anterior" al punto que quiero calcular usando interpolacion, es decir si quiero calcular S(x) (S es el spline) con x el punto con el -1, p seria el punto correspondiente al pixel original anterior a x
 
+		    		//como voy saltando d a k + 1 filas y para calcular los splines por fila hicimos lo mismo, divido por k + 1 para obtener el spline correspondiente a la fila con la que estoy trabajando
+		    		double a_j = splinesPorFila[i / (k + 1)].a[p];
+		    		double b_j = splinesPorFila[i / (k + 1)].b[p];
+		    		double c_j = splinesPorFila[i / (k + 1)].c[p];
+		    		double d_j = splinesPorFila[i / (k + 1)].d[p];
+
 		    		for(int t = 0; t < k; t++)
 		    		{
-		    			//como voy saltando d a k + 1 filas y para calcular los splines por fila hicimos lo mismo, divido por k + 1 para obtener el spline correspondiente a la fila con la que estoy trabajando
-
-			    		double a_j = splinesPorFila[i / (k + 1)].a[p];
-			    		double b_j = splinesPorFila[i / (k + 1)].b[p];
-			    		double c_j = splinesPorFila[i / (k + 1)].c[p];
-			    		double d_j = splinesPorFila[i / (k + 1)].d[p];
-
 			    		//Lo siguiente es evaluar el polinomio en el punto, en realidad esta simplificando porque:
 			    		//t + 1 = j + t - p = j + t - j + 1 = t + 1, donde j + t es el punto que quiero calcular y p es el punto
 			    		//anterior. Se calcula asi porque el algoritmo para hallar el spline te lo devuelve expresado de determinada manera,
@@ -317,13 +317,13 @@ int main(int argc, char *argv[])
 		    	{
 		    		int p = i - 1;
 
-		    		for(int t = 0; t < k; t++)
-		    		{		    			
-		    			int a_i = splinesPorColumna[j].a[p];
-			    		int b_i = splinesPorColumna[j].b[p];
-			    		int c_i = splinesPorColumna[j].c[p];
-			    		int d_i = splinesPorColumna[j].d[p];
+					int a_i = splinesPorColumna[j].a[p];
+		    		int b_i = splinesPorColumna[j].b[p];
+		    		int c_i = splinesPorColumna[j].c[p];
+		    		int d_i = splinesPorColumna[j].d[p];
 
+		    		for(int t = 0; t < k; t++)
+		    		{		    				
 			    		int interpolacion = a_i + b_i * (t + 1) + c_i * (t + 1) * (t + 1) + d_i * (t + 1) * (t + 1) * (t + 1);
 
 			    		if(interpolacion > 255)
