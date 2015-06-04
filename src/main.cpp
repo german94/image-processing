@@ -83,7 +83,7 @@ int calculo_bilineal_por_filas(int k, int dato_c, int dato_f, int i, int j, vect
 	int res = (int)((double)expandida[i][dato_c] + (((double)expandida[i][datoSig_c] - (double)expandida[i][dato_c])/(double)(k+1))*((double)j-(double)dato_c));
 
 	if(res < 255) {return res;}
-	else {return 254;} //no estoy seguro de esto
+	else {return 255;} //no estoy seguro de esto
 }	
 	
 
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	string matlabCommand1 = "matlab -nodisplay -nosplash -nojvm -r \"Image2Csv('";
+	string matlabCommand1 = "nohup matlab -nodisplay -nosplash -nojvm -r \"Image2Csv('";
 	matlabCommand1 += argv[1];
 	matlabCommand1 += "');quit\"";
 
@@ -231,7 +231,7 @@ int main(int argc, char *argv[])
 	        	salida << endl;
 	        } 
 
-	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
+	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
@@ -351,7 +351,7 @@ int main(int argc, char *argv[])
 	        	salida << endl;
 	        } 
 
-	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
+	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
@@ -395,7 +395,7 @@ int main(int argc, char *argv[])
 	        	if(i != expandida.size() -1) {salida << endl;}
 	        } 
 	        salida.close();
-	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida1.csv', '";
+	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida1.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
@@ -482,7 +482,7 @@ int main(int argc, char *argv[])
 	        	salida << endl;
 	        } 
 
-	        string matlabCommand2 = "matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida2bis.csv', '";
+	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida2bis.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
