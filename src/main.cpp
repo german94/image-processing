@@ -39,10 +39,11 @@ Spline dame_Spline(vector<int>& x, vector<double>& a, unsigned int k)
 		z[i] = (a[i] - h_i*z[i - 1]) / l[i];
 	}
 
-	vector<double> c(n, 0), b(n, 0), d(n, 0);
+	vector<double> c(n + 1, 0), b(n, 0), d(n, 0);
 
 	l[n] = 1;
 	z[n] = 0;
+	c[n] = 0;
 
 	for(int j = n - 1; j >= 0; j--)
 	{
