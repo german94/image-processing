@@ -265,10 +265,10 @@ int main(int argc, char *argv[])
 		    //pixeles originales (es decir los que tienen -1)
 		    for(int i = 0; i < expandida.size(); i += k + 1)		//salto de a k + 1 filas para no tocar las que tienen todos -1
 		    {
-		    	for(int j = 1; j < expandida[i].size(); j += k + 1)	//salto de a k + 1 columnas para no tocar los pixeles originales, con el proximo for voy rellenando los pixeles nuevos entre cada par de pixeles originales
-		    	{
-		    		int p = j - 1;		//p va a ser el punto "anterior" al punto que quiero calcular usando interpolacion, es decir si quiero calcular S(x) (S es el spline) con x el punto con el -1, p seria el punto correspondiente al pixel original anterior a x
+		    	int p = 0;			//p va a ser el punto "anterior" al punto que quiero calcular usando interpolacion, es decir si quiero calcular S(x) (S es el spline) con x el punto con el -1, p seria el punto correspondiente al pixel original anterior a x
 
+		    	for(int j = 1; j < expandida[i].size(); j += k + 1, p++)	//salto de a k + 1 columnas para no tocar los pixeles originales, con el proximo for voy rellenando los pixeles nuevos entre cada par de pixeles originales
+		    	{
 		    		//como voy saltando d a k + 1 filas y para calcular los splines por fila hicimos lo mismo, divido por k + 1 para obtener el spline correspondiente a la fila con la que estoy trabajando
 		    		double a_j = splinesPorFila[i / (k + 1)].a[p];
 		    		double b_j = splinesPorFila[i / (k + 1)].b[p];
@@ -314,9 +314,10 @@ int main(int argc, char *argv[])
 
 		    for(int j = 0; j < expandida[0].size(); j++)
 		    {
-		    	for(int i = 1; i < expandida.size(); i += k + 1)
+		    	int p = 0;
+		    	
+		    	for(int i = 1; i < expandida.size(); i += k + 1, p++)
 		    	{
-		    		int p = i - 1;
 
 					int a_i = splinesPorColumna[j].a[p];
 		    		int b_i = splinesPorColumna[j].b[p];
