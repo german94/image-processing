@@ -36,7 +36,7 @@ Spline dame_Spline(vector<int>& x, vector<double>& a, unsigned int k)
 	{
 		l[i] = h_i * ((double)4 - u[i - 1]);
 		u[i] = h_i / l[i];
-		z[i] = (a[i] - h_i*z[i - 1]) / l[i];
+		z[i] = (alpha[i] - h_i*z[i - 1]) / l[i];//antes era a[i]
 	}
 
 	vector<double> c(n + 1, 0), b(n, 0), d(n, 0);
@@ -285,8 +285,8 @@ int main(int argc, char *argv[])
 
 			    		if(interpolacion > 255)
 			    			interpolacion = 255;
-			    		if(interpolacion < 0)
-			    			interpolacion = 0;
+			  //  		if(interpolacion < 0)
+			    //			interpolacion = 0;
 
 			    		expandida[i][j + t] = interpolacion;
 		    		}
@@ -330,8 +330,8 @@ int main(int argc, char *argv[])
 
 			    		if(interpolacion > 255)
 			    			interpolacion = 255;
-			    		if(interpolacion < 0)
-			    			interpolacion = 0;
+			    		//if(interpolacion < 0)
+			    		//	interpolacion = 0;
 
 			    		expandida[i + t][j] = interpolacion;
 		    		}
