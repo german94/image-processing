@@ -52,7 +52,7 @@ Spline dame_Spline(vector<int>& x, vector<double>& a, unsigned int k)
 		d[j] = (c[j + 1] - c[j]) / ((double)3 * h_i);
 	}
 
-	a.pop_back();
+//	a.pop_back();
 
 	Spline s(a, b, c, d);
 
@@ -284,8 +284,8 @@ int main(int argc, char *argv[])
 
 			    		if(interpolacion > 255)
 			    			interpolacion = 255;
-			   		if(interpolacion < 0)
-			    			interpolacion = 0;
+			   	//	if(interpolacion < 0)
+			    //			interpolacion = 0;
 
 			    		expandida[i][j + t] = interpolacion;
 		    		}
@@ -318,10 +318,10 @@ int main(int argc, char *argv[])
 		    	for(int i = 1; i < expandida.size(); i += k + 1, p++)
 		    	{
 
-					int a_i = splinesPorColumna[j].a[p];
-		    		int b_i = splinesPorColumna[j].b[p];
-		    		int c_i = splinesPorColumna[j].c[p];
-		    		int d_i = splinesPorColumna[j].d[p];
+					double a_i = splinesPorColumna[j].a[p];
+		    		double b_i = splinesPorColumna[j].b[p];
+		    		double c_i = splinesPorColumna[j].c[p];
+		    		double d_i = splinesPorColumna[j].d[p];
 
 		    		for(int t = 0; t < k; t++)
 		    		{

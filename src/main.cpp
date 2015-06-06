@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include "util.h"
 #include <math.h>
-#include <algorithm>  
+#include <algorithm>
 
 using namespace std;
 
@@ -12,7 +12,7 @@ enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, SPLINE = 3};
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
 
-struct Spline 
+struct Spline
 {
 	vector<double> a, b, c, d;
 
@@ -66,9 +66,9 @@ int calculo_bilineal(int k, int dato_c, int dato_f, int i, int j, vector<vector 
 
 	double f_r2 = (double)((datoSig_c - j)*expandida[dato_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[dato_f][datoSig_c])/(double)(k+1);
 	double f_r1 = (double)((datoSig_c - j)*expandida[datoSig_f][dato_c])/(double)(k+1) + (double)((j - dato_c)*expandida[datoSig_f][datoSig_c])/(double)(k+1);
-	
+
 	int res = (double)((i - dato_f)*f_r1)/(double)(k+1) + (double)((datoSig_f - i)*f_r2)/(double)(k+1); //los numeradores estan al reves pero es porque la i aumenta a medida
-	
+
 	//que descendemos las filas lo que es inverso a un eje de coordenadas
 	if(res < 255) {return res;}
 	else {return 255;} //no estoy seguro de esto
@@ -86,7 +86,7 @@ int calculo_bilineal_por_filas(int k, int dato_c, int i, int j, vector<vector <i
 
 	if(res < 255) {return res;}
 	else {return 255;} //no estoy seguro de esto
-}	
+}
 
 int calculo_bilineal_por_columnas(int k, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
@@ -100,14 +100,14 @@ int calculo_bilineal_por_columnas(int k, int dato_f, int i, int j, vector<vector
 
 	if(res < 255) {return res;}
 	else {return 255;} //no estoy seguro de esto
-}	
-	
+}
+
 
 int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
 {
 	int datoSig_c = dato_c + k +1;
 	int datoSig_f = dato_f + k + 1;
-	if(dato_f == i) 
+	if(dato_f == i)
 	{
 		if(abs(j - dato_c) < abs(j - datoSig_c)) {return expandida[dato_f][dato_c];}
 		else {return expandida[dato_f][datoSig_c];}
@@ -115,8 +115,8 @@ int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int>
 	if(dato_c == j)
 	{
 		if(abs(i - dato_f) < abs(i - datoSig_f)) {return expandida[dato_f][dato_c];}
-		else {return expandida[datoSig_f][dato_c];}	
-	}	
+		else {return expandida[datoSig_f][dato_c];}
+	}
 	else
 	{
 		int a = (dato_c - j)*(dato_c - j) + (dato_f - i)*(dato_f - i);
@@ -134,12 +134,12 @@ int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int>
 				if(cercano == c) {return expandida[datoSig_f][dato_c];}
 				else
 				{
-					return expandida[datoSig_f][datoSig_c];	
-				}	
+					return expandida[datoSig_f][datoSig_c];
+				}
 			}
-       	}	
+       	}
 	}
-}	
+}
 
 
 int main(int argc, char *argv[])
@@ -159,10 +159,10 @@ int main(int argc, char *argv[])
 	newFile += argv[1];
 	newFile += ".csv";
 
-	ifstream entrada(newFile.c_str(),std::ifstream::in); //la matriz de entrada	
+	ifstream entrada(newFile.c_str(),std::ifstream::in); //la matriz de entrada
 
 	int k = string_to_type<unsigned int>(argv[2]);
-    
+
 	Metodo metodo = (Metodo)string_to_type<int>(argv[3]);
 
     vector<vector<int> > img_reducida; // matriz con las particiones a realizar
@@ -217,27 +217,27 @@ int main(int argc, char *argv[])
 
     	case VECINO:
     	{
-	 
-		    int dato_f, dato_c; 
+
+		    int dato_f, dato_c;
 		    for(int i = 0; i < expandida.size(); i++)
 		    {
 		    	dato_c = 0;
 		    	for(int j = 0; j < expandida[i].size() ; j++)
 		    	{
-		    		
+
 		    		if(expandida[i][j] != -1) {dato_f = i; dato_c = j;}
 		    		else
 		    		{
 		    			if(j == dato_c + k + 1) {dato_c = j;}
-		    			expandida[i][j] = mas_cercano(k, dato_c, dato_f, i, j, expandida);	
+		    			expandida[i][j] = mas_cercano(k, dato_c, dato_f, i, j, expandida);
 		    		}
 		    	}
 		    }
 
 		    ///////////muestro
-		   
+
 			ofstream salida("salida.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
-	        
+
 	        for(int i = 0; i < expandida.size(); i++)
 	        {
 	        	for(int j = 0; j < expandida[i].size(); j++)
@@ -245,14 +245,14 @@ int main(int argc, char *argv[])
 	        		salida << expandida[i][j] << " ";
 	        	}
 	        	salida << endl;
-	        } 
+	        }
 
 	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
 			system(matlabCommand2.c_str());
-		
+
 	        break;
 		}
 
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 		    		x.push_back(j);
 		    		a.push_back(expandida[i][j]);
 		    	}
-		 
+
 		    	splinesPorFila.push_back(dame_Spline(x, a, k));
 		    }
 
@@ -299,8 +299,8 @@ int main(int argc, char *argv[])
 
 			    		if(interpolacion > 255)
 			    			interpolacion = 255;
-			  //  		if(interpolacion < 0)
-			    //			interpolacion = 0;
+                        if(interpolacion < 0)
+                            interpolacion = 0;
 
 			    		expandida[i][j + t] = interpolacion;
 		    		}
@@ -322,42 +322,42 @@ int main(int argc, char *argv[])
 		    		x.push_back(i);
 		    		a.push_back(expandida[i][j]);
 		    	}
-		 
+
 		    	splinesPorColumna.push_back(dame_Spline(x, a, k));
 		    }
 
 		    for(int j = 0; j < expandida[0].size(); j++)
 		    {
 		    	int p = 0;
-		    	
+
 		    	for(int i = 1; i < expandida.size(); i += k + 1, p++)
 		    	{
 
-					int a_i = splinesPorColumna[j].a[p];
-		    		int b_i = splinesPorColumna[j].b[p];
-		    		int c_i = splinesPorColumna[j].c[p];
-		    		int d_i = splinesPorColumna[j].d[p];
+					double a_i = splinesPorColumna[j].a[p];
+		    		double b_i = splinesPorColumna[j].b[p];
+		    		double c_i = splinesPorColumna[j].c[p];
+		    		double d_i = splinesPorColumna[j].d[p];
 
 		    		for(int t = 0; t < k; t++)
-		    		{		    				
+		    		{
 			    		int interpolacion = a_i + b_i * (t + 1) + c_i * (t + 1) * (t + 1) + d_i * (t + 1) * (t + 1) * (t + 1);
 
 			    		if(interpolacion > 255)
 			    			interpolacion = 255;
-			    		//if(interpolacion < 0)
-			    		//	interpolacion = 0;
+			    		if(interpolacion < 0)
+			    			interpolacion = 0;
 
 			    		expandida[i + t][j] = interpolacion;
 		    		}
 		    	}
 		    }
 
-		    
+
 
 		 //    ///////////muestro
-		   
+
 			ofstream salida("salida.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
-	        
+
 	        for(int i = 0; i < expandida.size(); i++)
 	        {
 	        	for(int j = 0; j < expandida[i].size(); j++)
@@ -365,21 +365,21 @@ int main(int argc, char *argv[])
 	        		salida << expandida[i][j] << " ";
 	        	}
 	        	salida << endl;
-	        } 
+	        }
 
 	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
 			system(matlabCommand2.c_str());
-		
+
 	        break;
 		}
 
 		case BILINEAL:
     	{
-	 
-		    int dato_f, dato_c; 
+
+		    int dato_f, dato_c;
 		    for(int i = 0; i < expandida.size(); i++)
 		    {
 		    	dato_c = 0;
@@ -388,19 +388,19 @@ int main(int argc, char *argv[])
 		    		if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
 		    		if(expandida[i][j] != -1)
 		    		{
-		    			if(i != expandida.size() - 1)  {dato_f = i;}	
-		    		} 
+		    			if(i != expandida.size() - 1)  {dato_f = i;}
+		    		}
 		    		else
 		    		{
-		    			expandida[i][j] = calculo_bilineal(k, dato_c, dato_f, i, j, expandida);	
+		    			expandida[i][j] = calculo_bilineal(k, dato_c, dato_f, i, j, expandida);
 		    		}
 		    	}
 		    }
 
 		    ///////////muestro
-		   
+
 			ofstream salida("salida1.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
-	        
+
 	        for(int i = 0; i < expandida.size(); i++)
 	        {
 	        	for(int j = 0; j < expandida[i].size(); j++)
@@ -409,21 +409,21 @@ int main(int argc, char *argv[])
 	        		else {salida << expandida[i][j];}
 	        	}
 	        	if(i != expandida.size() -1) {salida << endl;}
-	        } 
+	        }
 	        salida.close();
 	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida1.csv', '";
 			matlabCommand2 += argv[1];
 			matlabCommand2 += "Output.bmp');quit\"";
 
 			system(matlabCommand2.c_str());
-		
+
 	        break;
 		}
 
 		case BILINEALBIS:
 		{
 			//Primero interpolo por filas, de a k filas
-			int dato_c; 
+			int dato_c;
 		    for(int i = 0; i < expandida.size(); i = i+k+1)
 		    {
 		    	dato_c = 0;
@@ -433,13 +433,13 @@ int main(int argc, char *argv[])
 		    		else
 		    		{
 		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
-		    			expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);	
+		    			expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
 		    		}
 		    	}
 		    }
 
 		   	//Ahora interpolo por columnas, de a una fila
-			int dato_f; 
+			int dato_f;
 		    for(int j = 0; j < expandida[0].size(); j++)
 		    {
 		    	dato_f = 0;
@@ -449,13 +449,13 @@ int main(int argc, char *argv[])
 		    		else
 		    		{
 		    			if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
-		    			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);	
+		    			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
 		    		}
 		    	}
 		    }
 
 		    ofstream salida("salida2bis.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
-	        
+
 	        for(int i = 0; i < expandida.size(); i++)
 	        {
 	        	for(int j = 0; j < expandida[i].size(); j++)
@@ -463,7 +463,7 @@ int main(int argc, char *argv[])
 	        		salida << expandida[i][j] << " ";
 	        	}
 	        	salida << endl;
-	        } 
+	        }
 
 	        string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida2bis.csv', '";
 			matlabCommand2 += argv[1];
@@ -474,11 +474,11 @@ int main(int argc, char *argv[])
 
 			break;
 		}
-		
+
 		default:
             throw runtime_error("No existe ese metodo");
     }
     return  0;
 
-}       
-      
+}
+
