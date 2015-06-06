@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1433574266 source:/home/jporto/Escritorio/pruebasTpNum/pruebasNumm/main.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<sys/time.h>
+	"util.h"
+	<math.h>
+	<algorithm>
+
+1433302907 /home/jporto/Escritorio/pruebasTpNum/pruebasNumm/util.h
+	<cstdlib>
+	<sstream>
+	<stdexcept>
+	<iomanip>
+	<vector>
+
