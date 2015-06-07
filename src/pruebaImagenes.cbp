@@ -34,11 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Matriz.h" />
-		<Unit filename="bmp.cpp" />
-		<Unit filename="bmp.h" />
+		<Unit filename="aux.h" />
+		<Unit filename="bilineal.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="splines.h" />
 		<Unit filename="util.h" />
+		<Unit filename="vecino.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
