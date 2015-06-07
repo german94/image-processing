@@ -37,3 +37,101 @@ int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int>
        	}
 	}
 }
+
+void origin(vector<vector<int> > &expandida, int k)
+{
+	int dato_f, dato_c;
+    for(int i = 0; i < expandida.size(); i++)
+    {
+    	dato_c = 0;
+    	for(int j = 0; j < expandida[i].size() ; j++)
+    	{
+
+    		if(expandida[i][j] != -1) {dato_f = i; dato_c = j;}
+    		else
+    		{
+    			if(j == dato_c + k + 1) {dato_c = j;}
+    			expandida[i][j] = mas_cercano(k, dato_c, dato_f, i, j, expandida);
+    		}
+    	}
+    }
+}
+
+void porCol(vector<vector<int> > &expandida)
+{
+	for(int j = 0; j <  expandida[0].size(); j++)
+    {
+    	for(int i = 0; i < expandida.size() ; i++)
+	    {
+	    	if(expandida[i][j] == -1)
+		   	{
+		    	if(i == 0) {expandida[i][j] = expandida[i][j-1];}
+		    	else {expandida[i][j] = expandida[i-1][j];}
+		    }	
+		}
+	}
+}	
+
+void porFil(vector<vector<int> > &expandida)
+{		
+    for(int i = 0; i <  expandida.size(); i++)
+    {
+    	for(int j = 0; j < expandida[i].size() ; j++)
+    	{
+    		if(expandida[i][j] == -1)
+    		 {
+    		 	if(j == 0) {expandida[i][j] = expandida[i-1][j];}
+    		 	else {expandida[i][j] = expandida[i][j-1];}
+    		 }
+    		
+    	}
+    }
+}
+
+void prom(vector<vector<int> > &expandida)
+{
+    for(int i = 0; i <  expandida.size(); i++)
+    {
+    	for(int j = 0; j < expandida[i].size() ; j++)
+    	{
+    		if(expandida[i][j] == -1)
+    		 {
+    		 	int cantidad = 0;
+    		 	int valor = 0;
+    		 	if(j!=0 && j!= expandida[i].size() -1 && i!= 0 && i != expandida.size() -1)
+    		 	{
+    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
+    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
+    		 		if(expandida[i][j-1] != -1)	{cantidad++; valor+= expandida[i][j-1];}
+    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
+    		 	}
+    		 	if(j == 0) 
+    		 	{
+    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
+    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
+    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
+    		 	}
+    		 	if(j== expandida[i].size() -1)
+    		 	{	
+    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
+    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
+    		 		if(expandida[i][j-1] != -1)	{cantidad++; valor+= expandida[i][j-1];}
+    		 	}
+    		 	if(i == 0) 
+    		 	{
+    		 		if(expandida[i][j-1] != -1) {cantidad++; valor+= expandida[i][j-1];}
+    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
+    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
+    		 	}
+    		 	if(i== expandida.size() -1)
+    		 	{
+    		 		if(expandida[i][j-1] != -1) {cantidad++; valor+= expandida[i][j-1];}
+    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
+    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}	
+    		 	}	
+				expandida[i][j] = double(valor/cantidad);
+    		 }
+    		
+    	}
+    }
+}    

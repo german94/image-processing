@@ -5,18 +5,11 @@
 #include <math.h>
 #include <algorithm>
 
-enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, SPLINE = 3};
+enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, SPLINE = 3, SPLINEVARIABLE = 4};
+enum SubMetodo { ORGINALES = 0, CALCULADOSC = 1, CALCULADOSF = 2, PROM = 3};
+
 
 void usage() { cout << "./tp <input_filename> <K > <metodo> <bloques>" << endl; }
-
-void grabarImagen(char* str)
-{
-	string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
-	matlabCommand2 += str;
-	matlabCommand2 += "Output.bmp');quit\"";
-
-	system(matlabCommand2.c_str());
-}
 
 void grabarImagen(char* str, vector<vector<int> >& expandida)
 {
@@ -31,7 +24,11 @@ void grabarImagen(char* str, vector<vector<int> >& expandida)
     	salida << endl;
     }
 
-	grabarImagen(str);
+	string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
+	matlabCommand2 += str;
+	matlabCommand2 += "Output.bmp');quit\"";
+
+	system(matlabCommand2.c_str());
 }
 
 void preprocesarImagen(string newFile, int k, vector<vector<int> >& expandida)
