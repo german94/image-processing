@@ -308,7 +308,7 @@ int main(int argc, char *argv[])
 
 			if(argc != 5)
 			{
-                usageBilineal();
+                usage();
                 return 0;
             }
 
@@ -329,21 +329,29 @@ int main(int argc, char *argv[])
 				}
 				case PORDIAGONALES:
 				{
-					//porDiagBilineal(expandida);
+					cout<<"bilineal por diagonales\n";
+					porDiagBilineal(expandida, k);
 					break;
 				}
 				case PORBLOQUES:
 				{
 
 					break;
-				}			
-			}	
+				}
+			}
 
 		    grabarImagen(argv[1], expandida);
 
 
 			break;
 		}
+
+
+
+
+
+
+
 
 		default:
             throw runtime_error("No existe ese metodo");

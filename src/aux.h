@@ -15,7 +15,7 @@ void usageSplineVariable() { cout << "./tp <input_filename> <K > <metodo> <bloqu
 
 void usageVecino() { cout << "./tp <input_filename> <K > <metodo> <submetodo>" << endl; }
 
-void usageBilineal() { cout << "./tp <input_filename> <K > <metodo> <submetodo>" << endl; }
+void usageBilineal() { cout << "./tp <input_filename> <K > <metodo> <submetodoBilineal>" << endl; }
 
 void grabarImagen(char* str, vector<vector<int> >& expandida)
 {

@@ -78,6 +78,105 @@ void originBilineal(vector<vector<int> > &expandida, int k)
 	}
 }
 
+pair<double,double> dameBilineal(double x0, double y0, double x1, double y1){// devuelve la pendiente y ordenada al origen de una bilineal(en ese orden)
+
+    pair<double, double> res;
+    res.first =  ((double)(y1-y0))/(x1-x0);
+    res.second = y0 - res.first*x0;
+    return res;
+
+}
+
+void porDiagBilineal(vector<vector<int> > &expandida, int k){
+
+
+//Primero interpolo por filas, de a k filas
+				int dato_c;
+				for(int i = 0; i < expandida.size(); i = i+k+1)
+				{
+					dato_c = 0;
+					for(int j = 0; j < expandida[i].size() ; j++)
+					{
+						if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_c = j;}
+						else
+							{
+								if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+								expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
+							}
+					}
+				}
+
+                    //Ahora interpolo por columnas, de a una fila solo en los valores originales
+                    int dato_f;
+                    for(int j = 0; j < expandida[0].size(); j+=k+1)
+                    {
+                        dato_f = 0;
+                        for(int i = 0; i < expandida.size() ; i++)
+                        {
+                            if(expandida[i][j] != -1 && j != expandida[0].size() - 1) {dato_f = i;}
+                            else
+                            {
+                                if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
+                                expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
+                            }
+                        }
+                    }
+
+                    //ahora interpolo cada cuadradito
+
+
+            //ic, jc -> filas y columnas del cuadradito
+		    for(int ic = 0; ic < expandida.size() -1; ic +=k+1){
+
+		    	for(int jc = 0; jc < expandida[jc].size() -1 ; jc+=k+1){//para cada cuadradito
+
+                    int id=ic;
+                    int jd=jc+k+1;
+                    for(int cont=0;cont<=k-1;cont++){ //completamos las diagonales inferiores incluyendo la principal
+
+                        pair<double, double> pendiente_ordenada=dameBilineal(0,expandida[id][jc],k+1-cont,expandida[ic+k+1][jd]);
+
+                        for(int cont_diagonal=1;cont_diagonal<=k-cont;cont_diagonal++){ // calculamos e insertamos los valores de una diagonal
+
+                            expandida[id+cont_diagonal][jc+cont_diagonal]= pendiente_ordenada.first* cont_diagonal + pendiente_ordenada.second;
+
+                        }
+
+
+                        id++;
+                        jd--;
+
+                    }
+
+
+                    //ahora completamos las diagonales superiores, sin incluir la principal
+
+                    jd=jc+1;
+                    id=ic+k;
+                    for(int cont=0;cont<=k-2;cont++){
+
+                        pair<double, double> pendiente_ordenada=dameBilineal(0,expandida[ic][jd],k-cont,expandida[id][jc+k+1]);
+
+                        for(int cont_diagonal=1;cont_diagonal<=k-1-cont;cont_diagonal++){ // calculamos e insertamos los valores de una diagonal
+
+                            expandida[ic+cont_diagonal][jd+cont_diagonal]= pendiente_ordenada.first* cont_diagonal + pendiente_ordenada.second;
+
+                        }
+
+
+                        jd++;
+                        id--;
+
+                    }
+                }
+            }
+
+}
+
+
+
+
+
 void expandidoBilineal(vector<vector<int> > &expandida, int k)
 {
 	int cantDePixelesAIgnorar = 0; //Esto podria ser un paramentro, pero no se hasta donde tendria sentido
@@ -89,7 +188,7 @@ void expandidoBilineal(vector<vector<int> > &expandida, int k)
 	  	dato_c = 0;
 	  	for(int j = 0; j < expandida[i].size() ; j++)
 	   	{
-	   		if(expandida[i][j] != -1 &&  i != expandida.size() - 1) 
+	   		if(expandida[i][j] != -1 &&  i != expandida.size() - 1)
 	   		{
 	   			if(contador == cantDePixelesAIgnorar)
 	   			{
@@ -117,7 +216,7 @@ void expandidoBilineal(vector<vector<int> > &expandida, int k)
 	   	dato_f = 0;
 	   	for(int i = 0; i < expandida.size() ; i++)
 	   	{
-	   		if(expandida[i][j] != -1 && j != expandida[0].size() - 1) 
+	   		if(expandida[i][j] != -1 && j != expandida[0].size() - 1)
 	   		{
 	   			if(contador == cantDePixelesAIgnorar)
 	   			{
@@ -127,7 +226,7 @@ void expandidoBilineal(vector<vector<int> > &expandida, int k)
 	   			else
 	   			{
 	   				contador++;
-	   			}	   					
+	   			}
 	   		}
 	   		else
 	   		{
