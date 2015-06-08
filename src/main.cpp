@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 	preprocesarImagen(newFile, k, expandida);
 
-	cout<<expandida.size()<<endl;
+	//cout<<expandida.size()<<endl;
 
     switch(metodo){
 
@@ -306,43 +306,38 @@ int main(int argc, char *argv[])
 		case BILINEALBIS:
 		{
 
-			 if(argc != 4) {
-                usage();
+			if(argc != 5)
+			{
+                usageBilineal();
                 return 0;
-                }
+            }
 
+            SubMetodoDeBilineal submetodo = (SubMetodoDeBilineal) string_to_type<int>(argv[4]);
 
-			//Primero interpolo por filas, de a k filas
-			int dato_c;
-		    for(int i = 0; i < expandida.size(); i = i+k+1)
-		    {
-		    	dato_c = 0;
-		    	for(int j = 0; j < expandida[i].size() ; j++)
-		    	{
-		    		if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_c = j;}
-		    		else
-		    		{
-		    			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
-		    			expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
-		    		}
-		    	}
-		    }
+    		switch(submetodo){
 
-		   	//Ahora interpolo por columnas, de a una fila
-			int dato_f;
-		    for(int j = 0; j < expandida[0].size(); j++)
-		    {
-		    	dato_f = 0;
-		    	for(int i = 0; i < expandida.size() ; i++)
-		    	{
-		    		if(expandida[i][j] != -1 && j != expandida[0].size() - 1) {dato_f = i;}
-		    		else
-		    		{
-		    			if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
-		    			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
-		    		}
-		    	}
-		    }
+				case ORGINALEs:
+			    {
+			    	originBilineal(expandida, k);
+			    	break;
+				}
+			    case EXPANDIDO:
+				{
+					expandidoBilineal(expandida, k);
+					//Aca no se si habria que pasarle un parametro mas, diciendo de a cuantos pixeles voy a hacer la interpolacion
+					break;
+				}
+				case PORDIAGONALES:
+				{
+					//porDiagBilineal(expandida);
+					break;
+				}
+				case PORBLOQUES:
+				{
+
+					break;
+				}			
+			}	
 
 		    grabarImagen(argv[1], expandida);
 

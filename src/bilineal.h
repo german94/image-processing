@@ -42,3 +42,98 @@ int calculo_bilineal_por_columnas(int k, int dato_f, int i, int j, vector<vector
 	if(res < 255) {return res;}
 	else {return 255;} //no estoy seguro de esto
 }
+
+void originBilineal(vector<vector<int> > &expandida, int k)
+{
+	//Primero interpolo por filas, de a k filas
+	int dato_c;
+	for(int i = 0; i < expandida.size(); i = i+k+1)
+	{
+	  	dato_c = 0;
+	  	for(int j = 0; j < expandida[i].size() ; j++)
+	   	{
+	   		if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_c = j;}
+	   		else
+	    		{
+		   			if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+		   			expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
+		   		}
+    	}
+    }
+
+	//Ahora interpolo por columnas, de a una fila
+	int dato_f;
+	for(int j = 0; j < expandida[0].size(); j++)
+	{
+	   	dato_f = 0;
+	   	for(int i = 0; i < expandida.size() ; i++)
+	   	{
+	   		if(expandida[i][j] != -1 && j != expandida[0].size() - 1) {dato_f = i;}
+	   		else
+	   		{
+	   			if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
+	   			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
+	   		}
+	   	}
+	}
+}
+
+void expandidoBilineal(vector<vector<int> > &expandida, int k)
+{
+	int cantDePixelesAIgnorar = 0; //Esto podria ser un paramentro, pero no se hasta donde tendria sentido
+	//Primero interpolo por filas, de a k filas
+	int dato_c;
+	int contador = 0;
+	for(int i = 0; i < expandida.size(); i = i+k+1)
+	{
+	  	dato_c = 0;
+	  	for(int j = 0; j < expandida[i].size() ; j++)
+	   	{
+	   		if(expandida[i][j] != -1 &&  i != expandida.size() - 1) 
+	   		{
+	   			if(contador == cantDePixelesAIgnorar)
+	   			{
+	   				dato_c = j;
+	   				contador = 0;
+	   			}
+	   			else
+	   			{
+	   				contador++;
+	   			}
+	   		}
+	   		else
+	    	{
+		   		if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+		   		expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
+		   	}
+    	}
+    }
+
+	//Ahora interpolo por columnas, de a una fila
+	int dato_f;
+	contador = 0;
+	for(int j = 0; j < expandida[0].size(); j++)
+	{
+	   	dato_f = 0;
+	   	for(int i = 0; i < expandida.size() ; i++)
+	   	{
+	   		if(expandida[i][j] != -1 && j != expandida[0].size() - 1) 
+	   		{
+	   			if(contador == cantDePixelesAIgnorar)
+	   			{
+	   				dato_f = i;
+	   				contador = 0;
+	   			}
+	   			else
+	   			{
+	   				contador++;
+	   			}	   					
+	   		}
+	   		else
+	   		{
+	   			if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
+	   			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
+	   		}
+	   	}
+	}
+}
