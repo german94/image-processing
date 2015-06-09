@@ -43,6 +43,34 @@ int calculo_bilineal_por_columnas(int k, int dato_f, int i, int j, vector<vector
 	else {return 255;} //no estoy seguro de esto
 }
 
+int calculo_bilineal_por_filasExpandido(int k, int dato_c, int i, int j, int cPixAIgnorar, vector<vector <int> > &expandida)
+{
+	int limite_c = expandida[0].size() - 1;
+	int datoSig_c;
+
+	if((dato_c + (k*(cPixAIgnorar + 1))) + (cPixAIgnorar + 1) <= limite_c) {datoSig_c = (dato_c + (k*(cPixAIgnorar + 1))) + (cPixAIgnorar + 1);}
+	else {datoSig_c = limite_c;}
+	
+	int res = (int)((double)expandida[i][dato_c] + (((double)expandida[i][datoSig_c] - (double)expandida[i][dato_c])/((double)(datoSig_c)-(double)(dato_c)))*((double)j-(double)dato_c));
+
+	if(res < 255) {return res;}
+	else {return 255;} //no estoy seguro de esto
+}
+
+int calculo_bilineal_por_columnasExpandido(int k, int dato_f, int i, int j, int cPixAIgnorar, vector<vector <int> > &expandida)
+{
+	int limite_f = expandida.size() - 1;
+	int datoSig_f;
+
+	if((dato_f + (k*(cPixAIgnorar + 1))) + (cPixAIgnorar + 1) <= limite_f) {datoSig_f = (dato_f + (k*(cPixAIgnorar + 1))) + (cPixAIgnorar + 1);}
+	else {datoSig_f = limite_f;}
+
+	int res = (int)((double)expandida[dato_f][j] + (((double)expandida[datoSig_f][j] - (double)expandida[dato_f][j])/((double)(datoSig_f)-(double)(dato_f)))*((double)i-(double)dato_f));
+
+	if(res < 255) {return res;}
+	else {return 255;} //no estoy seguro de esto
+}
+
 void originBilineal(vector<vector<int> > &expandida, int k)
 {
 	//Primero interpolo por filas, de a k filas
@@ -179,21 +207,22 @@ void porDiagBilineal(vector<vector<int> > &expandida, int k){
 
 void expandidoBilineal(vector<vector<int> > &expandida, int k)
 {
-	int cantDePixelesAIgnorar = 0; //Esto podria ser un paramentro, pero no se hasta donde tendria sentido
+	int cantDePixelesAIgnorar = 1; //Esto podria ser un paramentro, pero no se hasta donde tendria sentido
 	//Primero interpolo por filas, de a k filas
 	int dato_c;
-	int contador = 0;
+	
 	for(int i = 0; i < expandida.size(); i = i+k+1)
 	{
 	  	dato_c = 0;
+	  	int contador = 0;
 	  	for(int j = 0; j < expandida[i].size() ; j++)
 	   	{
-	   		if(expandida[i][j] != -1 &&  i != expandida.size() - 1)
+	   		if(expandida[i][j] != -1) 
 	   		{
-	   			if(contador == cantDePixelesAIgnorar)
+	   			if(contador == (cantDePixelesAIgnorar + 1))
 	   			{
 	   				dato_c = j;
-	   				contador = 0;
+	   				contador = 1;
 	   			}
 	   			else
 	   			{
@@ -201,37 +230,35 @@ void expandidoBilineal(vector<vector<int> > &expandida, int k)
 	   			}
 	   		}
 	   		else
-	    	{
-		   		if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
-		   		expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
+	    	{		   		
+		   		expandida[i][j] = calculo_bilineal_por_filasExpandido(k, dato_c, i, j, cantDePixelesAIgnorar, expandida);
 		   	}
     	}
     }
 
 	//Ahora interpolo por columnas, de a una fila
 	int dato_f;
-	contador = 0;
+	int contador = 0;
 	for(int j = 0; j < expandida[0].size(); j++)
 	{
 	   	dato_f = 0;
 	   	for(int i = 0; i < expandida.size() ; i++)
 	   	{
-	   		if(expandida[i][j] != -1 && j != expandida[0].size() - 1)
+	   		if(expandida[i][j] != -1) 
 	   		{
-	   			if(contador == cantDePixelesAIgnorar)
+	   			if(contador == (cantDePixelesAIgnorar + 1))
 	   			{
 	   				dato_f = i;
-	   				contador = 0;
+	   				contador = 1;
 	   			}
 	   			else
 	   			{
 	   				contador++;
-	   			}
+	   			}	   					
 	   		}
 	   		else
-	   		{
-	   			if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
-	   			expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
+	   		{	   	
+	   			expandida[i][j] = calculo_bilineal_por_columnasExpandido(k, dato_f, i, j, cantDePixelesAIgnorar, expandida);
 	   		}
 	   	}
 	}
