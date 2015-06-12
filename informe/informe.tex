@@ -1,0 +1,187 @@
+\documentclass[a4paper]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}   % tipografia
+\usepackage{graphicx}
+
+\usepackage{subfig}
+\usepackage{float}
+%\usepackage{makeidx}
+
+%\usepackage{float}
+%\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{amsfonts}
+%\usepackage{sectsty}
+%\usepackage{charter}
+%\usepackage{wrapfig}
+\usepackage{listings}
+%\lstset{language=C}
+
+
+\input{codesnippet}
+\input{page.layout}
+% \setcounter{secnumdepth}{2}
+\usepackage{underscore}
+\usepackage{caratulaV}
+\usepackage{url}
+\usepackage{alltt}
+\usepackage{tikz}
+\usepackage{color}
+% \usepackage{gnuplottex}
+\usepackage{verbatim}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  numbers=left,
+  xleftmargin=2em,
+  frame=single,
+  framexleftmargin=2em,
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\small\color{gray} % the style that is used for the line-numbers
+ }
+
+
+
+
+
+
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\materia{Métodos Numéricos}
+\submateria{Primer Cuatrimestre - 2015}
+\titulo{Trabajo Práctico III}
+\subtitulo{Filtros de Imágen}
+\integrante{}{}{}
+\integrante{}{}{}
+\integrante{}{}{}
+\integrante{}{}{}
+
+\maketitle
+\newpage
+
+
+\vspace{3cm}
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+
+\begin{comment}
+\begin{codesnippet}
+\begin{verbatim}
+
+struct Pepe {
+
+    ...
+
+};
+
+\end{verbatim}
+\end{codesnippet}
+
+\begin{lstlisting}
+for (x = 1 to n - 2):
+	xmm1  <--  img[x-1][0] , img[x][0] , img[x+1][0] , img[x+2][0]
+	xmm2  <--  img[x-1][1] , img[x][1] , img[x+1][1] , img[x+2][1]
+	xmm1  <--  borrarprimero(xmm1)
+	xmm2  <--  borrarprimero(xmm2)
+	xmm1  <--  sumapixels(xmm1)
+	xmm2  <--  sumapixels(xmm2)
+	for (y = 1 to n - 2): 
+		xmm0  <--  xmm1
+		xmm1  <--  xmm2
+		xmm3  <--  img[x-1][y+1] , img[x][y+1] , img[x+1][y+1] , img[x+2][y+1]
+		xmm3  <--  borrarprimero(xmm3)
+		xmm3  <--  sumapixels(xmm3)
+		xmm0  <--  xmm0 + xmm1 + xmm2
+		xmm0  <--  promedio(xmm0)
+		img[x][y]  <--  xmm0
+	end
+end
+\end{lstlisting}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{imagenes/256value.png}
+\caption{Contenido de los registros utilizados para multiplicar}
+\label{256value}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\minipage{0.5\textwidth}
+	\begin{center}
+		\includegraphics[scale=0.4]{../tp2-bundle.v2/Testing/plots/all/merge-black-05--all.png}
+		\caption{Rendimiento para un value de 0.5, imágenes negras.}
+		\label{fig:exp1-5}
+	\end{center}
+	\endminipage\hfill
+	\minipage{0.5\textwidth}
+	\begin{center}
+		\includegraphics[scale=0.4]{../tp2-bundle.v2/Testing/plots/all/merge-normal-00--all.png}
+		\caption{Rendimiento para un value de 0.0, imágenes normales.}
+		\label{fig:exp1-2}
+	\end{center}
+	\endminipage\hfill
+\end{figure}
+
+\end{comment}
+
+\setcounter{page}{1}
+
+\section{Intoducción}
+
+Los filtros de imagen son una herramienta poderosa a la hora de retocar una imagen, usados ampliamente en fotografia, publicidad, videojuegos, etc.
+Su uso brinda una gamma de opciones para modificar las imagenes de manera que sea mas flexible su edicion o analisis.\\
+En este trabajo practico presentamos los metodos blur, merge y hsl ya existentes y los implementamos en lenguaje de ensamblador.
+Damos dos implementaciones de cada filtro siendo la segunda una optimizacion de la primera en merge y blur, y una variacion de implementacion C/Assembler a Assembler en hsl.\\
+Finalmente realizamos experimentos para comparar el tiempo de computo de los mismos.
+ 
+El lenguaje C es uno de los más eficientes en cuestión de performance, pero es posible mejorarla implementando las funciones directamente en assembler. En este trabajo se pondra enfasis en las posible ventajas que puede tener un codigo en assembler con respecto a uno en C, y también las ventajas de usar las e instrucciones SIMD de la arquitectura x86-64.
+
+
+\newpage 
+
+\section{Desarollo}
+
+
+
+\section{Experimentación}
+
+
+
+
+
+
+
+
+\section{Conclusiones}
+
+
+\end{document}
+
