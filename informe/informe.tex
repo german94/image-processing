@@ -72,7 +72,7 @@
 \materia{Métodos Numéricos}
 \submateria{Primer Cuatrimestre - 2015}
 \titulo{Trabajo Práctico III}
-\subtitulo{Filtros de Imágen}
+\subtitulo{Marche un telebeam Don Niembraaaaaa...}
 \integrante{}{}{}
 \integrante{}{}{}
 \integrante{}{}{}
@@ -150,19 +150,36 @@ end
 	\endminipage\hfill
 \end{figure}
 
+
 \end{comment}
 
 \setcounter{page}{1}
 
+
+\begin{abstract}
+
+En este trabajo se utilizaran distintas técnicas para obtener un re-escalamiento de imágenes. Se utilizara vecino más cercano, interpolación de polinomios bilineal, splines cúbicos, y distintas variantes de los métodos anteriormente mencionados. Se implementaran algoritmos para los mismos, dando la posibilidad de re-escalar las imágenes en distintos tamaños(siempre mayor al original). Se llevara a cabo una experimentación con su respectivo análisis. Como las imágenes obtenidas, no contienen integramente información original, se utilizaran las métricas de Error Cuadrático Medio (ECM) y Peak to Signal Noise Ratio (PSNR) para estudiar en forma cuantitativa la calidad de las mismas. También se considerara la calidad subjetiva, y el tiempo de computo. 
+
+\textbf{Palabras Clave}: re-escalamiento imágenes, interpolación, ECM, PSNR
+
+\end{abstract}
+
+
 \section{Intoducción}
 
-Los filtros de imagen son una herramienta poderosa a la hora de retocar una imagen, usados ampliamente en fotografia, publicidad, videojuegos, etc.
-Su uso brinda una gamma de opciones para modificar las imagenes de manera que sea mas flexible su edicion o analisis.\\
-En este trabajo practico presentamos los metodos blur, merge y hsl ya existentes y los implementamos en lenguaje de ensamblador.
-Damos dos implementaciones de cada filtro siendo la segunda una optimizacion de la primera en merge y blur, y una variacion de implementacion C/Assembler a Assembler en hsl.\\
-Finalmente realizamos experimentos para comparar el tiempo de computo de los mismos.
- 
-El lenguaje C es uno de los más eficientes en cuestión de performance, pero es posible mejorarla implementando las funciones directamente en assembler. En este trabajo se pondra enfasis en las posible ventajas que puede tener un codigo en assembler con respecto a uno en C, y también las ventajas de usar las e instrucciones SIMD de la arquitectura x86-64.
+Las imágenes digitales se obtienen a través de dispositivos de conversión análogico-digital como un escáner, una cámara fotográfica digital o directamente desde el ordenador utilizando cualquier programa de tratamiento de imágenes. La información digital que genera cualquiera de los medios citados es almacenada en la computadora mediante bits (unos y ceros). 
+
+Hay distintos tipos de formatos, pero a grandes rasgos se clasifican en imágenes mapa de bits e imágenes vectoriales. En general contienen una cabecera que contiene atributos (dimensiones de la imagen, tipo de codificación, etc.), seguida de los datos de la imagen en sí misma. La estructura de los atributos y de los datos de la imagen es distinto en cada formato. También puede contener metadatos, con información extra, como por ejemplo la fecha y lugar de creación en el caso de una imagen tomada con una camara digital.
+
+Los formatos de mapa de bits representan a la imagen como una matriz de pixeles. Estos son la menor unidad homogénea en color que forma parte de una imagen. Hay que tener presente que los mismos no tienen un tamaño especifico, ya que depende del tamaño del monitor con que se visualiza la imagen, o del zoom que se aplique sobre la misma. A su vez cada formato tiene una forma especifica de representar el color de un pixel, las principales son el RGB (rojo, verde y azul), el HLS (tono, luminosidad, saturación) y el CMYK (cian, magenta, amarillo y negro), escala de grises( cada color es una tonalidad distinta del gris).
+
+De esta manera las podemos caracterizar a las imágenes por su altura y anchura (en píxeles) y por su profundidad de color (en bits por píxel), que determina el número de colores distintos que se pueden almacenar en cada punto individual. Los principales formatos de mapas de bits son los siguientes: BMP, TIFF, XCF, PICT, JPG, GIF, PNG, PSD.
+
+Por otra parte los formatos vectoriales representan a la imagen con objetos geométricos independientes (segmentos, polígonos, arcos, etc.), cada uno de ellos definido por distintos atributos matemáticos de forma, de posición, de color, etc. Las líneas que componen la imagen están definidas por vectores (de ahí su nombre). El interés principal de los gráficos vectoriales es poder ampliar el tamaño de una imagen a voluntad sin sufrir la pérdida de calidad que sufren los mapas de bits. De la misma forma, permiten mover, estirar y retorcer imágenes de manera relativamente sencilla. Actualmente los procesadores traducen los gráficos vectoriales a mapas de bits para poder representarlos en pantalla. El formato mas utilizado es SVG.
+
+En este trabajo para re-escalar imágenes utilizando los distintos métodos, primero se las convertirá a escala de grises, y luego se aplicara el algoritmo. Se utilizaran los metodos de vecino más cercano, interpolación de polinomios bilineal, splines cúbicos. También distintas variantes de los anteriores.
+
+La iterpolacion de polinomios consiste en... 
 
 
 \newpage 
