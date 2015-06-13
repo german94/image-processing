@@ -348,11 +348,6 @@ int main(int argc, char *argv[])
 
 
 
-
-
-
-
-
 		default:
             throw runtime_error("No existe ese metodo");
     }
