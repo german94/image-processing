@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 	newFile += argv[1];
 	newFile += ".csv";
 
+
 	int k = string_to_type<unsigned int>(argv[2]);
 
 	Metodo metodo = (Metodo)string_to_type<int>(argv[3]);
@@ -31,7 +32,6 @@ int main(int argc, char *argv[])
 
 	preprocesarImagen(newFile, k, expandida);
 
-	//cout<<expandida.size()<<endl;
 
     switch(metodo){
 
@@ -42,27 +42,27 @@ int main(int argc, char *argv[])
                 return 0;
                 }
 
-            SubMetodo submetodo = (SubMetodo) string_to_type<int>(argv[4]);
+ 	cout<<"Vecino \n";
 
+            SubMetodo submetodo = (SubMetodo) string_to_type<int>(argv[4]);
     		switch(submetodo){
 
 				case ORGINALES:
 			    {
+			    	cout<<"Original\n";
 			    	origin(expandida, k);
 			    	break;
 				}
-			    case CALCULADOSC:
-				{
-					porCol(expandida);
-					break;
-				}
+
 				case CALCULADOSF:
 				{
-					porFil(expandida);
+					cout<<"Fila\n";
+					porFil(expandida,k);
 					break;
 				}
 				case PROM:
 				{
+					cout<<"Promedio\n";
 					prom(expandida);
 					break;
 				}

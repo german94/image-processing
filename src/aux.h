@@ -6,7 +6,7 @@
 #include <algorithm>
 
 enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, SPLINE = 3, SPLINEVARIABLE = 4};
-enum SubMetodo { ORGINALES = 0, CALCULADOSC = 1, CALCULADOSF = 2, PROM = 3};
+enum SubMetodo { ORGINALES = 0, CALCULADOSF = 1, PROM = 2};
 enum SubMetodoDeBilineal { ORGINALEs = 0, EXPANDIDO = 1, PORDIAGONALES = 2, PORBLOQUES = 3};
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
