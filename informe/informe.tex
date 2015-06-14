@@ -700,7 +700,109 @@ Un algoritmo equivalente podría ser primero trabajar con las columnas $0$, $k +
 Al observar las imágenes, nos puede llamar la atención el hecho de que cuando dos bloques están uno seguido del otro, la primera columna del segundo es la última del primero, al igual que cuando dos bloques están uno debajo del otro, la primera fila del que está abajo es la última del que está arriba. Uno esperaría que los bloques sean disjuntos, sin embargo, si así fuera entonces no podríamos definir correctamente los polinomios cúbicos al construir los splines porque por ejemplo el segundo bloque de la Figura 5 comenzaría con una columna de píxeles donde todos valen -1, con lo cual el extremo izquierdo correspondiente a este intervalo no estaría definido. Esto nos sugiere que además, es necesario que la última columna de cada bloque tenga valores de los píxeles originales, es decir sea un múltiplo de $k + 1$.
 \par Una dificultad con la que nos podemos encontrar es que, al ir moviendonos en bloques del tamaño fijado sobre la imagen expandida, suceda que nos pasemos de las dimensiones de dicha imagen. Cuando eso suceda lo que va a hacer el algoritmo es simplemente ``retroceder'' cierta cantidad de píxeles para formar un bloque del tamaño esperado. Más especificamente cuando hablamos de retroceder píxeles nos referimos a que si estamos queriendo procesar un bloque que supera la cantidad de columnas de la imagen expandida, entonces nos movemos horizontalmente en la imagen tantos píxeles como la diferencia entre la última columna del bloque y el ancho de la imagen. Si nos estamos pasando en la cantidad de filas de la imagen entonces nos movemos verticalmente tantos píxeles como la diferencia entre la última fila del bloque y el alto de la imagen.
 \subsection{Interpolación Bilineal}
+La interpolaci\'on bilineal intuye que el valor correcto de cada pixel es un promedio de sus valores m\'as cercanos, a priori, este m\'etodo tendr\'ia que ser un poco m\'as completo que \texttt{vecino mas cercano}\\
+En primera instacia, dentro del contexto del presente trabajo, a la interpolac\'ion bilineal la consideramos como una t\'ecnica que consiste en rellenar los p\'ixeles utilizando interpolaciones lineales entre p\'ixeles consecutivos de la imagen original, primero completando aquellas posiciones correspondientes a filas, es decir, completando de a k filas y luego sobre la matriz resultante, completando aquellas posiciones correspondientes a columnas.\\
+Por ejemplo tomando un fracci\'on de 2x2 de una imagen, obtenemos lo siquiente:\\
 
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
+
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{-1}{-1}{$P_{03}$}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {$P_{30}$}{-1}{-1}{$P_{33}$}
+	\end{tikzpicture}
+}
+
+\caption{Fracci\'on de imagen expandida con los valores de los píxeles originales. Indexamos desde 0.}
+\label{bloqueImagen}
+\end{figure}
+Luego interpolamos linealmente por filas, de a k filas,obteniendo:\\
+
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
+
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{$P_{01}$}{$P_{02}$}{$P_{03}$}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {$P_{30}$}{$P_{31}$}{$P_{32}$}{$P_{33}$}
+	\end{tikzpicture}
+}
+
+\caption{Fracci\'on de imagen expandida luego de interpolar por filas, de a k filas.}
+\label{bloqueImagen}
+\end{figure}
+Finalmente, a la matriz resultante la interpolamos linealmente por columnas, todas las columnas, obteniendo:
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
+
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{$P_{01}$}{$P_{02}$}{$P_{03}$}
+		\setrowauxx {$P_{10}$}{$P_{11}$}{$P_{12}$}{$P_{31}$}
+		\setrowauxx {$P_{20}$}{$P_{21}$}{$P_{22}$}{$P_{32}$}
+		\setrowauxx {$P_{30}$}{$P_{31}$}{$P_{32}$}{$P_{33}$}
+	\end{tikzpicture}
+}
+
+\caption{Fracci\'on de imagen expandida luego de interpolar por columnas, todas las columnas.}
+\label{bloqueImagen}
+\end{figure}
+El polinomio de grado 1 para interpolar linealmente, lo definimos de la siguiente manera, suponiendo $X_1$ y $X_2$ pixeles originales, y X un pixel a rellenar:
+\begin{equation}
+\texttt{}f(X) = f(X_1) + \frac{f(X_2) - f(X_1)}{(X_2 - X_1)}(X - X_1)
+\end{equation}
+Luego, ideamos distintas variaciones de este m\'etodo.\\
+En primer lugar, pensamos que pasar\'ia si en vez de interpolar con p\'ixeles originales consecutivos, interpolemos ignorando un pixel, es decir, sin utilizar toda la informaci\'on original de la imagen. Este razonamiento se produjo al pensar que pasar\'ia en las imagenes donde no haya tanta variaci\'on de colores(en este caso, variaciones de tonos de grises).\\
+Como la interpretaci\'on del  m\'etodo de interpolaci\'on bilineal es la denominaci\'on de cada pixel como un promedio de sus valores m\'as cercanos, tambi\'en pensamos que ser\'ia interesante interpolar por diagonales, a los sectores de la imagen que lo permitiera.\\
+Por \'ultimo tambi\'en verificaremos que suceder\'ia al interpolar bilinealmente de a bloques, es decir tomando fracciones de la imagen, en donde en las puntas estan los p\'ixeles originales, y los dem\'as ser\'an calculados en base a estos 4 pixeles, siguiendo la siguiente ecuaci\'on:\\
+Sean $Q_{11}=(X_1,Y_1)$, $Q_{12}=(X_1,Y_2)$, $Q_{21}=(X_2,Y_1)$, $Q_{22}=(X_2,Y_2)$, $R_1=(X,Y_1)$, $R_2=(X,Y_2)$ y $P=(X,Y)$, donde $Q_{11}$, $Q_{12}$, $Q_{21}$ y $Q_{22}$ son los 4 p\'ixeles originales, $P$ el pixel a rellenar y $R_1$, $R_2$ las proyecciones ortogonales de P a las rectas $Y_1$ y $Y_2$ respectivamente:\\
+
+\begin{equation}
+\texttt{}f(R_1) = \frac{x_2-x}{x_2-x_1} f(Q_{11}) + \frac{x-x_1}{x_2-x_1} f(Q_{21})
+\end{equation}
+
+\begin{equation}
+\texttt{}f(R_2) = \frac{x_2-x}{x_2-x_1} f(Q_{12}) + \frac{x-x_1}{x_2-x_1} f(Q_{22})
+\end{equation}
+
+\begin{equation}
+\texttt{}f(P) = \frac{y_2-y}{y_2-y_1} f(R_1) + \frac{y-y_1}{y_2-y_1} f(R_2)
+\end{equation}
 \section{Experimentación}
 
 \subsection{Calidad cuantificable}
