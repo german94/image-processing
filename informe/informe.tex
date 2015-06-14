@@ -214,81 +214,73 @@ En este trabajo se utilizaran distintas técnicas para obtener un re-escalamient
 
 \end{abstract}
 
+\newpage
 
 \section{Intoducción}
 
-Las imágenes digitales se obtienen a través de dispositivos de conversión análogico-digital como un escáner, una cámara fotográfica digital o directamente desde el ordenador utilizando cualquier programa de tratamiento de imágenes. La información digital que genera cualquiera de los medios citados es almacenada en la computadora mediante bits (unos y ceros). 
+En el presente trabajo se nos plantea como objetivo el re-escalamiento de imágenes, específicamente ampliarlas.
 
-Hay distintos tipos de formatos, pero a grandes rasgos se clasifican en imágenes mapa de bits e imágenes vectoriales. En general contienen una cabecera que contiene atributos (dimensiones de la imagen, tipo de codificación, etc.), seguida de los datos de la imagen en sí misma. La estructura de los atributos y de los datos de la imagen es distinto en cada formato. También puede contener metadatos, con información extra, como por ejemplo la fecha y lugar de creación en el caso de una imagen tomada con una camara digital.
+Se trabajara con imágenes en escala de grises por lo que dada una imagen de mxn, contendrá mxn pixels cada uno con un valor entre 0-255.
 
-Los formatos de mapa de bits representan a la imagen como una matriz de pixeles. Estos son la menor unidad homogénea en color que forma parte de una imagen. Hay que tener presente que los mismos no tienen un tamaño especifico, ya que depende del tamaño del monitor con que se visualiza la imagen, o del zoom que se aplique sobre la misma. A su vez cada formato tiene una forma especifica de representar el color de un pixel, las principales son el RGB (rojo, verde y azul), el HLS (tono, luminosidad, saturación) y el CMYK (cian, magenta, amarillo y negro), escala de grises( cada color es una tonalidad distinta del gris).
+Para ampliar las imágenes, a partir de un valor $k \in \mathbb{N}_{>0}$ insertaremos entre la fila i y la fila i +1, k filas con i = 1, ....., m -1, y de manera análoga para las columnas. De esta forma obtendremos una nueva imagen con $(m -1)*k + m$ filas y $(n -1)*k + n$ columnas.
 
-De esta manera las podemos caracterizar a las imágenes por su altura y anchura (en píxeles) y por su profundidad de color (en bits por píxel), que determina el número de colores distintos que se pueden almacenar en cada punto individual. Los principales formatos de mapas de bits son los siguientes: BMP, TIFF, XCF, PICT, JPG, GIF, PNG, PSD.
+El problema que ahora se genera es ¿que valores asignar a los pixels de las columnas y filas agregadas?. Para esto, emplearemos distintos criterios de asignación de valor a partir de ciertos métodos.
 
-Por otra parte los formatos vectoriales representan a la imagen con objetos geométricos independientes (segmentos, polígonos, arcos, etc.), cada uno de ellos definido por distintos atributos matemáticos de forma, de posición, de color, etc. Las líneas que componen la imagen están definidas por vectores (de ahí su nombre). El interés principal de los gráficos vectoriales es poder ampliar el tamaño de una imagen a voluntad sin sufrir la pérdida de calidad que sufren los mapas de bits. De la misma forma, permiten mover, estirar y retorcer imágenes de manera relativamente sencilla. Actualmente los procesadores traducen los gráficos vectoriales a mapas de bits para poder representarlos en pantalla. El formato mas utilizado es SVG.
+En primera instancia consideraremos el método de vecino mas cercano, para esto el valor de un píxel nuevo sera igual a aquel cuya distancia a otro píxel, en una vecindad definida, sea la mínima. En particular la vencidad tomada será de aquellos cuatro valores más cercano con respecto a los pixels originales (pixels de la imagen sin ampliar, $imagen$ $original$). 
 
-En este trabajo para re-escalar imágenes utilizando los distintos métodos, primero se las convertirá a escala de grises, se la expandira y luego se aplicara alguna técnica para rellenarla. Se utilizaran los métodos de vecino más cercano, interpolación de polinomios bilineal y splines cúbicos. También distintas variantes de los anteriores.
-
-La interpolación de polinomios consiste en dada una terna de puntos ($ x_{0} $, $ y_{0} $), ($ x_{1} $, $ y_{1} $), $ \ldots $ ($ x_{n} $, $ y_{n} $), obtener un polinomio que los interpole, es decir que verifique $ p(x_{0}) =  y_{0} $, $ p(x_{1}) =  y_{1} $, $ \ldots $ $ p(x_{n}) =  y_{n} $. En general, la interpolación de una serie de puntos es usada para aproximar una función continua en un cierto intervalo. Los polinomios son funciones continuas, de clase $ C^{\infty} $, además es muy fácil trabajar con ellos, y suelen aproximar bien a las funciones continuas que típicamente se usan. En general se utiliza el polinomio de menor grado que verifique la anterior condición, ya que los polinomios de grado mas grande pueden tener mayor cantidad de oscilaciones.
-
-Se puede garantizar la existencia del polinomio interpolador, ya que hay un teorema que establece que dado un conjunto de $ n +1 $ puntos $ \exists! $ polinomio de grado a lo sumo n que interpole. Hay distintos métodos para obtener a este ultimo. Uno de ellos es el método de interpolación de lagrange, el cual se basa en construir primero los polinomios $ L_{n,k} $ definidos como se indica en la ecuación~\ref{Ls}. \cite{burden}
+Otro método empleado fue mediante la interpolación de polinomios, esta consiste en que dada una terna de puntos ($ x_{0} $, $ y_{0} $), ($ x_{1} $, $ y_{1} $), $ \ldots $ ($ x_{n} $, $ y_{n} $) se busca obtener un polinomio $P$ que los interpole es decir, que verifique $ p(x_{0}) =  y_{0} $, $ p(x_{1}) =  y_{1} $, $ \ldots $ $ p(x_{n}) =  y_{n} $. En general, la interpolación de una serie de puntos es usada para aproximar una función continua en un cierto intervalo. 
+Dado que siempre existe un polinomio interpolador para $n+1$ puntos, de grado a lo sumo n que los interpole$^{1}$ %Burden 7 edicion teorema 3.2 pag 109
+, una de la forma de obtenerlo es mediante el método de interpolación de Lagrange, el cual se basa en construir primero los polinomios $ L_{n,k} $ definidos como se indica en la ecuación~\ref{Ls}.
 
 \begin{equation}
-L_{n,k}= \prod_{\substack{i=0\\i\neq k}} \frac{(x-x_{i})}{(x_{k}-x_{i})}^{n}
+L_{n,k}= \prod_{\substack{i=0\\i\neq k}}^{n} \frac{(x-x_{i})}{(x_{k}-x_{i})}
 \label{Ls}
 \end{equation}
 
-Estos últimos tienen grado $ n $ y se verifica que  $ L_{n,k}(x_{i})= 0 $ y que $ L_{n,k}(x_{k})= 1 $. El polinomio de grado a lo sumo $ n $ que interpola los $ n +1 $ puntos se construye según la ecuación~\ref{lagrange}.
-
+El polinomio de grado a lo sumo $ n $ que interpola los $ n +1 $ puntos se construye según la ecuación~\ref{lagrange}.
 \begin{equation}
-p(x)= \sum_{k=0}^{n}y_{k}L_{n,k}(x)
+P(x)= \sum_{k=0}^{n}y_{k}L_{n,k}(x)
 \label{lagrange}
 \end{equation}
-
-Por ejemplo para realizar una interpolación bilineal entre dos puntos ($ x_{0} $, $ y_{0} $) y ($ x_{1} $, $ y_{1} $), el polinomio interpolador de lagrange sera de grado a lo sumo uno, por lo será una recta que pasa por dos puntos. En la ecuación~\ref{bilinealInter}
+Por lo que el segundo método empleado consiste en usar interpolación bilineal entre dos puntos ($ x_{0} $, $ y_{0} $) y ($ x_{1} $, $ y_{1} $), en nuestro caso entre dos pixels, por lo que el polinomio interpolador de Lagrange sera de grado a lo sumo uno es decir, será una recta que pasa por dos puntos. En la ecuación~\ref{bilinealInter}
 \begin{equation}
-p(x)= L_{1,0}(x)y_{0} + L_{1,1}(x)y_{1}
+P(x)= L_{1,0}(x)y_{0} + L_{1,1}(x)y_{1} = \frac{x -x_{1}}{x_{0}-x_{1}}y_0 + \frac{x-x_{0}}{x_{1}-x_{0}} y_{1}
 \label{bilinealInter}
 \end{equation}
-
-Despejando la ecuación~\ref{bilinealInter} obtenemos una formula mas clara para el mismo, donde además podemos distinguir la pendiente y la ordenada al origen.
-
+o equivalentemente obtenemos una formula mas clara para el mismo, donde además podemos distinguir la pendiente y la ordenada al origen.
 \begin{equation}
-p(x)= \frac{y_{1}-y_{0}}{x_{1}-x_{0}} x - x_{0} \frac{y_{1}-y_{0}}{x_{1}-x_{0}} + y_{0}
+P(x)= \frac{y_{1}-y_{0}}{x_{1}-x_{0}}(x - x_{0}) + y_{0}
 \label{bilineal}
 \end{equation}
-
-Otro de los métodos utilizados en este trabajo es el de splines cúbicos. Dada una función $f$ definida en $[a,b]$ y un conjunto de nodos $a=x_0<x_1<\ldots<x_n=b$ un trazador cúbico $S$ para $f$ es una función tal que en cada subintervalo $[x_j, x_{j+1}]$ con  $j=0,1,\ldots,n-1$ es un polinomio cubico $S_j(x)$, y que verifica las siguientes condiciones:\cite{burden}
-
-
+Ses $f(x_i)$ = $y_i$, en nuestro caso el valor de f depende de dos puntos, por lo que el valor del píxel $p_{ij}$ se obtendrá extendiendo la ecuación~\ref{bilineal} a:
+\begin{equation}
+p(i, j) = \frac{f(i, j_1)-f(i,j_0)}{j_1 - j_0} + f(i,j_0)
+\end{equation}
+Otro de los métodos utilizados es el de splines cúbicos. Dada una función $f$ definida en $[a,b]$ y un conjunto de puntos $a=x_0<x_1<\ldots<x_n=b$ un trazador cúbico $S$ para $f$ es una función tal que en cada subintervalo $[x_j, x_{j+1}]$ con  $j=0,1,\ldots,n-1$ $S_j(x)$ es un polinomio cubico, y verifica:
 \begin{itemize}
   \item $S(x_j)=f(x_j)$ $ \forall $ $j=0,1,\ldots,n$
   \item $S_{j+1}(x_{j+1})=S_j(x_{j+1})$ $ \forall $ $j=0,1,\ldots,n-2$
   \item $S_{j+1}'(x_{j+1})=S_j'(x_{j+1})$ $ \forall $ $j=0,1,\ldots,n-2$
   \item $S_{j+1}''(x_{j+1})=S_j''(x_{j+1})$ $ \forall $ $j=0,1,\ldots,n-2$
-  \item Alguna de las siguientes condiciones
-  	\begin{itemize}
-  		\item $S''(x_0)=S''(x_n)=0$ $ \forall $ $j=0,1,\ldots,n-2$ (condicion natural)
- 		 \item $S'(x_0)=f'(x_0) y S'(x_n)=f'(x_n)$ (condicion sujeta)
-	\end{itemize}
+  \item Y una de las siguientes condiciones
+        \begin{itemize}
+                \item $S''(x_0)=S''(x_n)=0$ $ \forall $ $j=0,1,\ldots,n-2$ (condición natural)
+                 \item $S'(x_0)=f'(x_0) y S'(x_n)=f'(x_n)$ (condición sujeta)
+        \end{itemize}
 \end{itemize}
-
-Escribiendo a los $ S_j $ en la forma $S_j(x) = a_j + b_j(x-x_j)+c_j(x-x_j)^2+d_j(x-x_j)^3$, y planteando las condiciones anteriormente mencionadas se puede obtener un sistema lineal de $ n+1 $ ecuaciones y $ n+1 $ incógnitas donde estas son los $ c_{j} $. Además una vez determinadas estas últimas, se puede obtener en forma univoca los $ a_{j}$,$ b_{j} $ y $d_{j}$. En ambos casos queda un sistema lineal cuadrado $ Ac=b $ donde $ A $ es una matriz estrictamente diagonal dominante. Esto ultimo implica que la matriz es inversible y por lo tanto el sistema tiene solución única. En el caso de la condición natural, que fue el utilizado en este trabajo práctico, mas especificamente se obtiene:
-
+Escribiendo a los $ S_j $ en la forma $S_j(x) = a_j + b_j(x-x_j)+c_j(x-x_j)^2+d_j(x-x_j)^3$, y planteando las condiciones anteriormente mencionadas se puede obtener un sistema lineal de $ n+1 $ ecuaciones y $ n+1 $ incógnitas, donde estas son los $ c_{j} $. En el caso de la condición natural, que fue el utilizado en este trabajo práctico, mas específicamente se obtiene:
 $$
 A =
 \begin{bmatrix}
     1      & 0                  & 0      & \cdots & \cdots  & \cdots             & 0      \\
     h_0    & 2(h_0+h_1)         & h_1    & \ddots &         &                    & \vdots \\
-    0      & h_1 & 2(h_1 + h_2) & h_2    & \ddots & \ddots        &                     \vdots \\
+    0      & h_1 & 2(h_1 + h_2) & h_2    & \ddots &         &                     \vdots \\
     \vdots &                    & \ddots & \ddots & \ddots  &                    & \vdots \\
     \vdots &                    &        & \ddots & \ddots  & \ddots             & 0      \\
     \vdots &                    &        &        & h_{n-2} & 2(h_{n-2}+h_{n-1}) & h_{n-1} \\
     0      & \cdots             & \cdots & \cdots & 0       & 0                  & 1 \\
 \end{bmatrix}
 $$ \\
-
-
 $$
 b=
 \begin{bmatrix}
@@ -298,9 +290,7 @@ b=
 \frac{3}{h_{n-1}}(a_n-a_{n-1})-\frac{3}{h_{n-2}}(a_{n-1}-a_{n-2}) \\
 0 \\
 \end{bmatrix}
-$$
-
-$$
+;  \  \ \ 
 c=
 \begin{bmatrix}
 c_0\\
@@ -309,8 +299,19 @@ c_1\\
 c_n\\
 \end{bmatrix}
 $$
+con $h_j=x_{j+1}-x_j$.
 
-donde $h_j=x_{j+1}-x_j$.
+donde $ A $ es una matriz estrictamente diagonal dominante. Esto último implica que la matriz es invertible y por lo tanto el sistema tiene solución única. Una vez determinado c, se pueden obtener los $ a_{j}$,$ b_{j} $ y $d_{j}$.
+
+A partir de los resultados obtenidos en cada método buscaremos introducir alguna modificación en los mismos con el fin de obtener alguna mejora temporal y/o cualitativa. La forma en que se medirá la cálidad de la imagen obtenida será a través de el \emph{Error Cuadr\'atico Medio} (ECM) y \emph{Peak to Signal Noise Ratio} (PSNR) los mismos se definen como:
+\begin{equation}
+\texttt{ECM}(I,\bar{I}) = \frac{1}{mn}\sum_{i=1}^m\sum_{j = 1}^n |I_{ij} - \bar{I}_{ij}|^2 \label{eq:ecm}
+\end{equation}
+\noindent y
+\begin{equation}
+\texttt{PSNR}(I,\bar{I}) = 10 \log_{10}\bigg(\frac{255^2}{\texttt{ECM}(I,\bar{I})}\bigg). \label{eq:psnr}
+\end{equation}  
+Con $I$ e $\bar{I}$ la imagen original y la ampliada respectivamente, de dimensiones mxn. Como para útilizar esta métrica es necesario que las imágenes tengan igual dimensiones, aquellas con las que trabajaremos serán reducidas y luego ampliadas, con los métodos con los que trabajemos, a su tamaño original. 
 
 
 \newpage 
