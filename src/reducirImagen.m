@@ -12,4 +12,4 @@ while i <= size(M, 1)
     end
     i = i + k + 1;
 end
-imwrite(uint8(Mret), strcat(f, '_REDUCIDA.bmp'));
+imwrite(uint8(Mret), strcat(f, '_REDUCIDA.tiff'));
