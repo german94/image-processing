@@ -32,7 +32,7 @@ void grabarImagen(char* str, vector<vector<int> >& expandida)
 
 	string matlabCommand2 = "nohup matlab -nodisplay -nosplash -nojvm -r \"ImageTxtToBmp('salida.csv', '";
 	matlabCommand2 += str;
-	matlabCommand2 += "Output.bmp');quit\"";
+	matlabCommand2 += "Output.tiff');quit\"";
 
 	system(matlabCommand2.c_str());
 }
