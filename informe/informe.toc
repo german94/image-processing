@@ -1,6 +1,14 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Intoducci\IeC {\'o}n}{2}{section.1}
 \contentsline {section}{\numberline {2}Desarollo}{4}{section.2}
-\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Spline:}{4}{subsection.3.1}
-\contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}
+\contentsline {subsection}{\numberline {2.1}Vecino mas cercano}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Splines}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Splines 2:}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Interpolaci\IeC {\'o}n Bilineal}{9}{subsection.2.4}
+\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Calidad cuantificable}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Vecino mas cerano}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Splines}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Bilineal}{9}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Comparaci\IeC {\'o}n m\IeC {\'e}todos}{9}{subsection.3.5}
+\contentsline {section}{\numberline {4}Conclusiones}{9}{section.4}
