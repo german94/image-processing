@@ -318,7 +318,7 @@ Con $I$ e $\bar{I}$ la imagen original y la ampliada respectivamente, de dimensi
 
 \section{Desarollo}
 
-En este trabajo practico se aplicaran distintos métodos para re-escalar una imagen, es decir obtener una imagen "igual", pero con una cantidad de pixeles mayor. Para esto en todos los casos, se ejecutara desde el programa en \verb-C++- un script de matlab que dada una imagen en cualquier formato, obtenga un archivo''.csv'' con la matriz que representa esa imagen convertida a escala de grises. Luego se utilizara el mismo para aplicarle los métodos para re-escalarla, obteniendo un archivo ".csv'' con la imagen final, y nuevamente se llamara a un script de matlab para obtener una imagen en formato BMP en blanco y negro.
+En este trabajo practico se aplicaran distintos métodos para re-escalar una imagen, es decir obtener una imagen "igual", pero con una cantidad de pixeles mayor. Para esto en todos los casos, se ejecutara desde el programa en \verb-C++- un script de matlab que dada una imagen en cualquier formato, obtenga un archivo''.csv'' con la matriz que representa esa imagen convertida a escala de grises. Luego se utilizara el mismo para aplicarle los métodos para re-escalarla, obteniendo un archivo ".csv'' con la imagen final, y nuevamente se llamara a un script de matlab para obtener una imagen en formato TIFF en blanco y negro.
 
 Lo primero que se aplicara a la matriz de la imagen de entrada en escala de grises es aumentar su tamaño según un parámetro $k \in \mathbb{N}_{>0}$ que indica la cantidad de filas y columnas que seran insertadas entre cada par de puntos consecutivos, tal como se puede ver en la figura~\ref{expansionImagen}. Estas nuevas filas y columnas seran rellenadas provisoriamente con $ -1 $.
 
@@ -388,28 +388,32 @@ Luego se aplicaran distintos métodos para rellenar la imagen.
 
 Se llevaron a cabo tres versiones de este método. La original consiste en recorrer la matriz expandida sustituyendo en cada posición los $ -1 $ por el valor de la matriz original mas cercano. Se utiliza una función auxiliar que para cada posición nos devuelve el vecino mas cercano. Hay que notar que se puede dar el caso de que halla dos vecinos mas cercanos, en este caso el algoritmo implementado tomara alguno de ellos.
 
-Una segunda versión considera no solo los valores originales como los mas cercanos, sino que en cada paso considera también los valores que ya fueron completados. Para esto es importante el orden en que es completada la matriz, para este trabajo es completada por filas de izquierda a derecha, de arriba hacia abajo. En este caso el vecino mas cercano resulta ser el elemento de la izquierda o el de arriba, es por esto que el algoritmo se simplifica bastante. En el siguiente fragmento podemos encontrar el código del algoritmo efectivamente implementado.
+Una segunda versión considera no solo los valores originales como los mas cercanos, sino que en cada paso considera también los valores que ya fueron completados. Para esto es importante el orden en que es completada la matriz, para este trabajo es completada por filas de izquierda a derecha, de arriba hacia abajo.
+ 
+ En este caso el vecino mas cercano resulta ser el elemento de la izquierda o el de arriba, es por esto que el algoritmo se simplifica bastante. Para evitar el aglomeramiento de un número particular, es decir que un mismo número se repita en toda una fila, y en las siguientes de abajo, se decidió que en las columnas múltiplos de $ k +1 $ se tome como mas cercano al elemento de arriba, y en los demás casos al de la izquierda.
+ 
+ 
+ En el siguiente fragmento podemos encontrar el seudo-código del algoritmo efectivamente implementado.
 
-\bigskip
-\begin{lstlisting}
-void porFil(vector<vector<int> > &expandida, int k)
-{
-    for(int i = 0; i <  expandida.size(); i++)
-    {
-    	for(int j = 0; j < expandida[i].size() ; j++)
-    	{
-    		if(expandida[i][j] == -1)
-    		 {
-    		 	if(j%(k+1)== 0) {expandida[i][j] = expandida[i-1][j];}
-    		 	else {expandida[i][j] = expandida[i][j-1];}
-    		 }
 
-    	}
-    }
-}
-\end{lstlisting}
+\begin{algorithm}[H]
+    \caption{\texttt{vecinoMasCercano(expandida, k)}}
+\begin{algorithmic}[1]
+  \For{$i \leftarrow [0:cantidad\_filas) $}
+    \For{$j \leftarrow [0:cantidad\_columnas)$}
+      \If{$expandida[i][j]==-1$}
+        \If{$j \ \textbf{mod} \  (k+1)== 0$}
+        		\State $expandida[i][j] \leftarrow expandida[i-1][j]$
+          \Else
+            \State $expandida[i][j] \leftarrow expandida[i][j-1]$
+          \EndIf
+       \EndIf
+    \EndFor
+  \EndFor
+\end{algorithmic}
+\end{algorithm}
 
-Una tercera versión calcula los promedios...
+Una tercera versión calcula los promedios........
 
 
 \subsection{Splines}
