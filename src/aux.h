@@ -5,13 +5,30 @@
 #include <math.h>
 #include <algorithm>
 
+timeval start, endTime;
+//////////////////////////////////////////////////////////////
+void init_time()
+{
+      gettimeofday(&start,NULL);
+}
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+double get_time()
+{
+      gettimeofday(&endTime,NULL);
+      return
+(1000000*(endTime.tv_sec-start.tv_sec)+(endTime.tv_usec-start.tv_usec))/1000000.0;
+}
+//////////////////////////////////////////////////////////////
+
 enum Metodo { VECINO = 0, BILINEAL = 1, BILINEALBIS = 2, SPLINE = 3, SPLINEVARIABLE = 4};
 enum SubMetodo { ORGINALES = 0, CALCULADOSF = 1, PROM = 2};
 enum SubMetodoDeBilineal { ORGINALEs = 0, EXPANDIDO = 1, PORDIAGONALES = 2, PORBLOQUES = 3};
 
 void usage() { cout << "./tp <input_filename> <K > <metodo>" << endl; }
 
-void usageSplineVariable() { cout << "./tp <input_filename> <K > <metodo> <bloques>" << endl; }
+void usageSpline() { cout << "./tp <input_filename> <K > <metodo> <bloques>" << endl; }
 
 void usageVecino() { cout << "./tp <input_filename> <K > <metodo> <submetodo>" << endl; }
 
@@ -19,6 +36,8 @@ void usageBilineal() { cout << "./tp <input_filename> <K > <metodo> <submetodoBi
 
 void grabarImagen(char* str, vector<vector<int> >& expandida)
 {
+    cout << "Tiempo de computo "<<get_time()<<endl;
+
 	ofstream salida("salida.csv",std::ofstream::out);// genero este nuevo archivo de salda con el formato pero el vector tiene valores cero
 
     for(int i = 0; i < expandida.size(); i++)
@@ -35,6 +54,8 @@ void grabarImagen(char* str, vector<vector<int> >& expandida)
 	matlabCommand2 += "Output.tiff');quit\"";
 
 	system(matlabCommand2.c_str());
+    system("rm nohup.out");
+    system("rm salida.csv");
 }
 
 void preprocesarImagen(string newFile, int k, vector<vector<int> >& expandida)

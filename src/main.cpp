@@ -5,35 +5,8 @@
 
 using namespace std;
 
-timeval start, endTime;
-//////////////////////////////////////////////////////////////
-void init_time()
-{
-      gettimeofday(&start,NULL);
-}
-//////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////
-double get_time()
-{
-      gettimeofday(&endTime,NULL);
-      return
-(1000000*(endTime.tv_sec-start.tv_sec)+(endTime.tv_usec-start.tv_usec))/1000000.0;
-}
-//////////////////////////////////////////////////////////////
-
 int main(int argc, char *argv[])
 {
-//	if(argc != 6) { //archivo_input ; k; metodo, bloque (solo para metodo 3), submetodo (solo para metodo 0)
-//		usage();
-//		return 0;
-//	}
-
-
-
-    init_time();
-
-
 	string matlabCommand1 = "nohup matlab -nodisplay -nosplash -nojvm -r \"Image2Csv('";
 	matlabCommand1 += argv[1];
 	matlabCommand1 += "');quit\"";
@@ -51,7 +24,7 @@ int main(int argc, char *argv[])
 
 
 	vector<vector<int> > expandida;
-
+	init_time();
 	preprocesarImagen(newFile, k, expandida);
 
 
@@ -95,10 +68,10 @@ int main(int argc, char *argv[])
 	        break;
 		}
 
-		case SPLINEVARIABLE:
+		case SPLINE:
     	{
     		  if(argc != 5) {
-                usageSplineVariable();
+                usageSpline();
                 return 0;
                 }
 
@@ -148,7 +121,7 @@ int main(int argc, char *argv[])
 	        break;
 		}
 
-		case SPLINE:
+		case SPLINEVARIABLE:
     	{
 
             if(argc != 4) {
@@ -374,7 +347,10 @@ int main(int argc, char *argv[])
             throw runtime_error("No existe ese metodo");
     }
 
-    cout << "Tiempo de computo "<<get_time()<<endl;
+    string s = "rm ";
+    s += newFile;
+    system(s.c_str());
+
     return  0;
 
 }
