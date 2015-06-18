@@ -5,10 +5,13 @@
 \contentsline {subsection}{\numberline {2.2}Splines}{5}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Splines 2:}{8}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Interpolaci\IeC {\'o}n Bilineal}{9}{subsection.2.4}
-\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{9}{section.3}
-\contentsline {subsection}{\numberline {3.1}Calidad cuantificable}{9}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Vecino mas cerano}{9}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Splines}{9}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Bilineal}{9}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Comparaci\IeC {\'o}n m\IeC {\'e}todos}{9}{subsection.3.5}
-\contentsline {section}{\numberline {4}Conclusiones}{9}{section.4}
+\contentsline {section}{\numberline {3}Resultados}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Vecino Mas Cercano}{12}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Bilineal}{14}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Resultados Objetivos}{14}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Resultados Subjetivos}{16}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Tiempo de computo}{20}{subsection.3.3}
+\contentsline {section}{\numberline {4}Discusion}{20}{section.4}
+\contentsline {subsection}{\numberline {4.1}Vecino Mas Cercano}{20}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Metodo Bilineal}{20}{subsection.4.2}
+\contentsline {section}{\numberline {5}Conclusiones}{21}{section.5}
