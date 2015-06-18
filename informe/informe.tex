@@ -862,9 +862,10 @@ Las im\'agenes utilizadas para este experimento se pueden encontrar en...\\
 Las mismas fueron reducidas con el script de MATLab \texttt{reducirImagen.m}, para luego comparar lo que devuelve el m\'etodo con la imagen original.\\
 La experimentaci\'on empezar\'a aplicando zoom con k = 2 a todas las im\'agenes, y luego empezaremos a variar el k para las \'ultimas 3 im\'agenes, ya que al ser grande, hay mayor cantidad de k v\'alidos. Sin perdida de generalidad, usaremos im\'agenes cuadradas y valores de k,  talque $(anchoDeImagen + k) / (k + 1)$ de como resultado un n\'umero entero. Esto se asume para no trabajar con casos bordes de acuerdo a la esquematizaci\'on del zoom dada por la catedra.
 
-\section{Resultados}
+\section{Experimentación}
 
-.....En los archivos fuente se detallaran las imagenes nombradas...
+Para poder tener una idea de como se comportan las distintas implementaciones, hemos seleccionado un conjunto de imágenes (cada una con su particularidad que será explicada brevemente en la sección correspondiente) por cada método. De esta manera podemos ver, para ese conjunto, cual es la mejor variante en términos tanto cuantitavos (PSNR) como cualitativos (analizando visualmente como quedan las imágenes, artifacts y demás). Si bien esto nos da información sobre las variantes de cada método, se trata de una experimentación bastante aislada en el sentido de que permite comparar variantes de un mismo método y nunca relaciona un método con otro. Es por eso que decidimos, una vez terminada esta etapa, realizar una nueva experimentación seleccionando un nuevo conjunto de imágenes y probando con ellas la mejor variante de cada método, de esta manera podemos tener un candidato a la mejor implementación y vemos como se comportan distintos métodos.
+\par El tiempo de cómputo está presentado en segundos y fue tomado sin tener en cuenta las operaciones realizadas en MATLAB y las operaciones de escritura en archivos, es solo el procesamiento realizado por los algoritmos.
 
 \subsection{Vecino Mas Cercano}
 
@@ -1193,6 +1194,139 @@ Tambien es notable que el m\'etodo con la variante de ignorar un pixel, en las i
     \caption{Fracci\'on Imagen 2 - Orginal}
     \end{figure}
 Comparando las variantes original, por diagonal y por bloques sobre cada una de las imagen, no se noto diferencias visibles al sentido humano comparando cada una de ellas, es decir comparando la misma foto pero con diferentes variantes.
+
+\subsection{Splines}
+Como mencionamos anteriormente en el desarrollo, implementamos dos variantes distintas de este método y por lo tanto experimentamos con ambas variantes. Las imágenes seleccionadas se encuentran en la carpeta Experimentación/Splines y a continuación explicaremos qué particularidad tiene cada imagen junto con los k que vamos a trabajar.
+\newline
+\newline Tanque: esta imagen fue elegida para ver como afecta en los resultados el hecho de tener todo un terreno relativamente uniforme junto con un objeto más o menos mediano (en este caso el tanque), de tonalidad similar. Al igual que Cuadrícula y Grises, las dimensiones de esta imagen son 511x511 y trabajaremos con $k = 1, 2$ y $4$.
+\newline \newline Cuadrícula: nos pareció interesante incluir esta imagen por el hecho de contener, en su mayor parte, cuadrados y así poder ver el comportamiento del algoritmo de splines por bloques de tamaño fijo. Además como está compuesta básicamente por líneas, podemos ver que tan tolerante es al $k$, es decir, cuanta información se pierde.
+\newline \newline Grises: al igual que Cuadrícula, esta imagen se puede dividir pero en rectángulos y es interesante ver si el algoritmo por bloques fijos puede funcionar relativamente bien, ya que los bloques que usa deben ser necesariamente cuadrados. Además, dado que existe un cambio de tonalidad por cada rectángulo adyacente, esto puede significar una experimentación interesante en la variante de bloques de tamaño variable porque sirve para evaluar que tan bien puede identificar ese cambio de tonalidad.
+\newline \newline Lago: 
+\newline \newline Auto y Rosa: elegimos estas imágenes por el nivel de detalle que contienen. El auto sobre todo, tiene una cantidad importante de iluminación y reflejos, cosa que ninguna otra imagen hasta ahora tenía. Las dimensiones de Auto (4096x4096) nos permiten trabajar con varios valores de $k$ que serán 2, 4, 6, 8 y 12 mientras que con Rosa (2047x2047) vamos a usar $k = 1, 2, 5$.
+\newline \newline Piano: esta imagen fue elegida para ver como se comportan los algoritmos tanto con el reflejo de las teclas (que está bien delimitado) como con los bordes de las mismas. Sus dimensiones son 1549x1549 y trabajaremos con $k = 1, 2, 3$.
+
+Ahora que ya explicamos los aspectos que van a compartir las experiencias de ambas variantes, pasamos a hablar específicamente de la variante del método que utiliza bloques de tamaño fijo. La idea va a ser tratar de ver las diferencias en las imágenes al tomar bloques de un tamaño u otro, eligiendo estos tamaños en base a la imagen con la cual vamos a estar trabajando. El enfoque que adoptaremos en general va a ser el siguiente: dada una imagen y un $k$, aplicar el método una vez con un bloque del tamaño de la imagen y otra vez con bloques de cierto tamaño, que será decidido según ciertos aspectos de la imagen. Por ejemplo, si la imagen es relativamente parecida en todas partes (porque se trata de un terreno por ejemplo) salvo por un area delimitada, el tamaño del bloque va a ser el tamaño de este area. De esta manera, estamos separando de alguna manera a la parte que difiere en la imagen de las partes que son parecidas. Decimos en general porque en algunos casos no se va a cumplir que la imagen posea esta uniformidad y ahí va a ser cuando cambiemos un poco este enfoque. En casos donde la imagen posee muchos detalles y es muy cambiante, vamos a tomar bloques de tamaño chico bajo la hipótesis de que como es probable que de un bloque a otro la imagen cambie significativamente, al tomar bloques reducidos vamos a estar descartando información sobre otra parte de la imagen que no aporta al area que queremos procesar, porque justamente en esa otra parte la imagen pudo haber cambiado mucho.
+
+Comencemos analizando los resultados obtenidos para las imágenes de 511x511. Para la imagen Tanque.tiff, utilizamos bloques de un tamaño que aproxima a la mitad del tanque (esto es debido a que el tanque es rectangular y los bloques deben ser cuadrados por como está diseñado el algoritmo). Haciendo un análisis cualitativo de nuestras imágenes, comenzando por las que se procesaron con $k = 1$, podemos observar que entre la que trabaja con un bloque del tamaño entero de la imagen (256x256) y la que trabaja con bloques de 50x50 practicamente no hay diferencias que se puedan percibir fácilmente de manera visual. Si tratamos de ver muy detenidamente las diferencias entre ambas, podemos encontrar que, en la parte más oscura del tanque (más o menos por la mitad izquierda) la imagen procesada con bloques de 256 remarca un poco más el blanco del borde. Sin embargo, como ya dijimos, es practicamente imperceptible. Lo que sí se puede percibir notoriamente es la diferencia entre cualquiera de estas imágenes y la imagen original. Lo que más llama la atención son los detalles del tanque que se pierden totalmente, por ejemplo las lineas negras que tiene en la parte de arriba que se borronean. En la parte del cañón se produce un despixelado bastante fuerte, probablemente mayor al que se produce en las otras partes del tanque como por ejemplo en la de abajo donde están las ruedas. Una de las razones posibles que podrían explicar esto es que, justamente, los píxeles del cañón están aislados del resto del tanque y sus vecinos más cercanos corresponden a los píxeles del terreno, entonces por más que tomemos un bloque grande de 256x256 o bloques del tamaño de la mitad del tanque, seguramente en el/los bloque/s correspondiente/s al cañón del tanque van a estar tanto los píxeles del cañón como los del terreno y, seguramente van a predominar estos últimos. Obsevermos que en las lineas negras que mencionamos al principio sucede algo similar, se pierde mucha de esa información debido a que las líneas son muy finas y por lo tanto, en el bloque que tomemos que contengan estas líneas, van a predominar los píxeles grises. Todo esto sumado a que cuando realizamos la reducción del tamaño de la imagen ya se pierde una cantidad de información significativa y las partes donde están los detalles se ven más afectadas.
+\par Para $k = 2$ y $k = 4$ lo que sucede es que las diferencias que notamos para $k = 1$ tanto entre las imágenes con zoom como entre alguna de ellas y la original aumentan bastante. En el caso particular de $k = 2$ ahora quizás es más fácil identificar diferencias entre la imagen aumentada con un bloque de 171 y la procesada con bloques de 30 sobre todo en la parte de las ruedas del tanque. Sin embargo, lo más relevante es que ahora la parte del cañón ya se comienza a confundir con el terreno. Y si pasamos a $k = 4$, para ambas imágenes, el cañón ya se perdió por completo.
+\par En resumen, pareciera que las diferencias entre las imágenes procesadas con bloques relativamente chicos en relación al tamaño de las imágenes y las que se procesan con un bloque del tamaño de la imagen, van aumentando de a poco a medida que aumentamos el $k$. Si bien procesarlas de una u otra manera no evita (al menos en este caso) los problemas más relevantes (como el despixelado o que se confunda totalmente una parte de la imagen con el resto de los píxeles la rodean), existen algunas pequeñas diferencias como por ejemplo en las ruedas del tanque. Dado que estas diferencias no son visualmente muy relevantes, no podemos estar seguros de si contribuyen a una reconstrucción mejor o peor de la imagen ya que son diferencias muy pequeñas. Para resolver esto vamos a cuantificar un poco las cosas, a continuación mostramos el PSNR de cada imagen junto con el tiempo de cómputo que llevó procesarla:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/tanqueTabla.jpg}
+}
+
+Podemos ver como el análisis cualitativo que habíamos hecho sobre las imágenes, concuerda bastante con los números presentados en la tabla. Para empezar, vemos como efectivamente a medida que aumentamos el $k$ el PSNR decrece y eso significa que el error entre la imagen esperada y la resultante es mayor. También es cierto que las diferencias entre las imágenes procesadas con un bloque y las que procesamos con varios bloques aumentan a medida que aumenta el $k$ ya que para $k = 1$ la diferencia es de 0.0026, para $k = 2$ de 0.01 y para $k = 4$ de 0.0189. Lo interesante de esto es que dado que estas diferencias son muy chicas, no eramos capaces de decidir si estaban ayudando a reconstruir mejor o peor la imagen porque visualmente era muy dificil. Ahora podemos ver que, en los tres casos el PSNR es mayor cuando trabajamos la imagen con bloques del tamaño de la mitad del tanque.
+\par En cuanto al tiempo de cómputo, se observa que si bien todos los tiempos medidos son bastante chicos, al trabajar con las imágenes reducidas de mayor tamaño ($k$ chico), el tiempo es mayor. Si bien trabajar con cualquier valor de $k$ va a resultar en una imagen expandida del mismo tamaño, lo que sucede al trabajar con $k$ pequeños es que los splines que se van a ir generando van a tener más información, con lo cual van a demandar un costo computacional más grande. Esto se puede ver también por la diferencia de tiempos que existe, para un mismo $k$, cuando se trabaja con bloques de tamaño chico y cuando se trabaja con un bloque grande. La tabla muestra que, en el primer caso, los tiempos son menores, lo que significa que concuerda con lo que dijimos recién, ya que al trabajar con bloques pequeños, si bien vamos a generar más splines, van a tener menos información. Por lo tanto una posible hipótesis en cuanto al tiempo de cómputo es que generar cierta cantidad de splines con muchos puntos es más costoso que generar quizás, una mayor cantidad pero con menos puntos cada uno.
+
+
+Pasemos ahora a analizar la imagen Grises y veamos si sucede algo parecido a lo que pasó con la anterior. Para esta imagen, al igual que la anterior, vamos a trabajar con bloques de un tamaño cercano al tamaño de los rectángulos (además del caso de trabajar con un solo bloque que siempre lo usamos). En este caso vuelve a pasar que las diferencias entre las imágenes que trabajan con muchos bloques y las que trabajan con un solo bloque aumentan a medida que aumenta el $k$. Comenzando por $k = 1$, podemos ver que el tercer y cuarto rectángulos de la primera columna (en los otros es dificil de ver esto) difieren levemente entre la imagen 256 y 38: en el primer caso pareciera estar cubierto por líneas horizontales y en el extremo derecho también por líneas verticales, mientras que en el segundo caso pasa algo parecido pero en la parte de arriba de esos rectángulos no existen esas líneas. En principio es dificil tratar de pensar un posible motivo por el cual sucede esto ya que solo es apreciable en algunas partes de la imagen y no en todas. En cuanto a las diferencias con la imagen original, podemos observar que existe una leve variación entre el tamaño de los rectángulos: en la original los rectángulos de la columna izquierda y derecha parecieran ser un tanto más chicos que los de las imágenes resultantes y el del medio un poco más grande. Para $k = 2$ la diferencia en los tamaños de los rectángulos entre las imágenes resultantes y la imagen original es significativamente más notoria al igual que el cuadriculado que observamos antes en algunos rectángulos, que ahora se puede observar en otros como los que se encuentran más cercanos al centro de la imagen. Finalmente para $k = 4$ podemos ver que los dos defectos que nombramos antes se potenciaron bastante al igual que las diferencias entre las imágenes procesadas. A grandes rasgos se puede notar que la mayor parte de los rectángulos de la imagen 103 posee una especie de cuadriculado mientras que los de la imagen 38 solo líneas, en los extremos de ambos casos varía levemente este patrón. Vemos que al igual que nos pasó con la imagen Tanque, si bien existen diferencias entre la imagen procesada con un bloque solo y la que procesada con varios bloques, ambas comparten un defecto mayor que es el cambio en el tamaño de los rectángulos que es lo más apreciable a la vista. 
+\noindent A continuación presentamos la tabla con los resultados sobre el tiempo de cómputo y el PSNR:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/grisesTabla.jpg}
+}
+
+Si bien el procesamiento por bloques sigue siendo superior al procesamiento con un solo bloque en términos de PSNR, al igual que con la imagen Tanque, aca la diferencia entre el PSNR de una y de otra va disminuyendo a medida que aumenta el $k$, a diferencia del caso anterior. Visualmente esto tiene algún sentido ya que, tanto en un caso o en otro a medida que el $k$ aumentaba el rayado y el cuadrículado se hacían cada vez más visibles.
+\par Con respecto al tiempo de cómputo, no tiene mucho sentido analizarlo mucho ya que era bastante esperable que nos de muy parecido al que tomamos con Tanque, porque estamos trabajando con una imagen de las mismas dimensiones y varios de los tamaños de los bloques son los mismos y otros son muy parecidos.
+
+Ahora vamos a presentar el análisis correspondiente a la última imagen de 511, Cuadrícula, que representa un caso bastante patológico. Decimos esto porque al aumentar el $k$ de 1 a 2 la cantidad de información que se pierde es muy grande, lo cual es bastante lógico porque la imagen está compuesta básicamente por líneas y estas líneas contienen una cantidad de píxeles bastante reducida. Sin embargo, nos pareció una instancia interesante debido a que como el algoritmo trabaja con bloques necesariamente cuadrados y salvo por algunos pocos sectores, esta imagen es practicamente un cuadriculado, ahora ya no es necesario tomar el tamaño del bloque como la mitad de algún sector (como sucedía en las imágenes anteriores). Para $k = 1$ lo que podemos observar si miramos la imagen que fue procesada tomando bloques del tamaño del cuadrado y la que fue procesada con un solo bloque del tamaño total de la imagen, es que esta última remarca las líneas. Si miramos en detalle, además de las líneas también remarca algunas partes de los números (se puede ver fácilmente en la parte inferior de los números 2). Si bien ambas variantes reconstruyen la parte de las líneas correctamente (con sus diferencias, pero podemos decir que es visualmente aceptable), el mayor problema viene con los números. Los números del eje vertical se entienden bastante pero los del eje horizontal parecen haber perdido una cantidad de píxeles importante. Probando con otros tamaños de bloque más grandes (por ejemplo cercanos al tamaño de uno de estos números del eje horizontal o tomar bloques más chicos que uno de los cuadrados de la imagen) se puede ver que la calidad de estos números no mejora, con lo cual empezamos a pensar que no es un problema de la elección del tamaño del bloque, si no de la cantidad de información perdida a la hora de reducir la imagen.
+\par Para los casos con $k = 2$ y $k = 4$, las imágenes resultantes difieren mucho de la original porque la cantidad de información que se pierde al reducirlas es muy significativa, por el tipo de imagen que representan, esto se puede observar fácilmente al reducir la imagen original con esos valores de $k$ y ver que queda algo realmente muy distinto a lo que uno esperaría, lo cual no pasa con $k = 1$ y es por eso que el método funciona mejor. Entonces podemos concluir que la diferencia que existe entre la imagen original y las procesadas con $k = 2$ y $k = 4$ no es una consecuencia del método utilizado si no del tipo de imagen, muy sensible a reducciones.
+\newline A continuación, presentamos la tabla correspondiente a esta imagen:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/cuadriculaTabla.jpg}
+}
+
+Vemos como impacta el hecho de usar bloques del tamaño de los cuadrados para $k = 1$ (que, por lo que explicamos anteriormente sobre las reducciones, es el caso que más vale la pena analizar). Si bien visualmente la única diferencia significativa que existe entre estas imágenes es que una remarca más las líneas que la otra, éste fue el caso en el cual se pudo apreciar la mayor diferencia entre procesar por bloques y hacerlo solo con un bloque. Concluimos que esto sucedió justamente porque la imagen está dividida en cuadrados y los bloques con los que trabaja nuestro algoritmo deben ser cuadrados también.
+\par En este caso, los tiempos medidos nos pueden estar diciendo algo más ya que vemos que el tiempo para $k = 1$ y un tamaño de bloque de 9 píxeles, es levemente mayor que el tiempo para un bloque de 256 y el mismo $k$. Esto contradice lo que veníamos pensando por los datos tomados de las imágenes anteriores, sin embargo, como se tratan de tiempos muy cortos y la diferencia no es demasiado grande, puede que sea un caso particular que no debe ser tenido en cuenta. Seguiremos analizando este aspecto en las próximas imágenes y probablemente nos digan algo más ya que al ser de dimensiones más grandes, los tiempos van a ser mayores.
+
+Ahora pasaremos a analizar las imágenes más grandes, empezando por Lago. Dado que en esta imagen podemos identificar tres sectores que son el lago, el cielo y el terreno y son sectores relativamente grandes los tres (junto con la imagen en general, que también es grande), vamos a trabajar con tamaños de bloques bastante variables y no tan chicos como los de las imágenes anteriores. Además, para cambiar un poco, vamos a dejarlos fijos cuando varíe el $k$. Estos bloques van a ser de 50, 100 y 200. 
+\par Visualmente lo primero que podemos decir es que esta vez sí son realmente imperceptibles las diferencias entre las imágenes procesadas con un tramaño de bloque u otro, incluso para los $k$ más grandes. Más aún, lo que sucede es que si bien las diferencias entre las imagenes resultantes y la imagen original existen y son apreciables, de alguna manera no afectan la calidad de la imagen para los primeros valores de $k$. Esto último se debe a lo que dijimos inicialmente: estamos trabajando con una imagen donde existen tres secciones bastante grandes y que además, los bordes no están bien definidos (es decir, no hay una linea bien definida que divida una sección de la otra) entonces si existe alguna diferencia en los bordes, visualmente no va a ser muy perceptible a menos que sea muy grande. porque en la imagen inicial el borde ya es irregular. A medida que se aumenta el $k$ lo que notamos es que estas diferencias en los arboles se hacen más significativas y ya en $k = 5$ y $k = 7$   el cambio es bastante grande, incluso en el terreno se nota que la calidad es mala.
+\newline \noindent Dado que probamos el método con varios valores de $k$ y varios tamaños de bloque, para presentar mejor la información usaremos una tabla por cada valor de $k$: 
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/lagok1Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/lagok2Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/lagok3Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/lagok5Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/lagok7Tabla.jpg}
+}
+En todas las tablas se cumple que el tiempo de cómputo correspondiente a procesar la imagen con un solo bloque grande, es mayor que utilizando bloques de tamaños más pequeños. Esta diferencia se acentúa cuando la imagen de la cual partimos es más grande y, a medida que vamos tomando $k$ mayores la diferencia se va haciendo más chica. En conclusión, la diferencia es notoria, lo que sucede es que cuando trabajamos con imágenes chicas el tiempo de cómputo ya de por sí es chico y es por eso que tanto trabajar con un bloque grande como trabajar con bloques chicos va a demandar un costo computacional bajo. También podemos ver que esta diferencia es relevante cuando la diferencia del tamaño de bloque es necesariamente grande ya que para los tamaños 50, 100 y 200 que utilizamos, en $k = 1, 3$ y $7$ nos dió un tiempo de cómputo mayor para 50 que para 100 y mayor para 100 que para 200.
+\par En cuanto a los PSNR observados, no se puede concluir nada sobre si es mejor utilizar un tamaño de bloque u otro ya que son todos muy similares y, por ejemplo si miramos para $k = 1$, se registra un aumento a medida que aumenta el tamaño de bloque pero para $k = 3, 5, 7$ pasa exactamente lo contrario. $k = 2$ es el caso que nos incita a pensar que, para este tipo de imágenes, poco influye en el PSNR un tamaño de bloque u otro, ya que a diferencia de los demás $k$, no hay un crecimiento o decrecimiento estricto del PSNR según el tamaño del bloque.
+
+
+Pasemos ahora a analizar la imagen Piano. Este es otro ejemplo para el cuál visualmente el método funciona muy bien. Las diferencias entre imágenes procesadas con distintos tamaños de bloque son, al igual que en el caso anterior, imperceptibles. Además de que, la única diferencia realmente notoria entre la imagen original y las resultantes, es el borde de las teclas negras (sobre todo de la tercera), el cual se despixelea un poco. Esta diferencia aumenta con el $k$. Una posible razón por la cual sucede esto es por la iluminación que tiene la imagen, el borde de la tercera tecla negra esta bien definido en la imagen original pero al ser blanco por el reflejo de la luz y tener de un lado negro y del otro gris, como el spline va a tener en cuenta toda esta información se va a terminar mezclando de alguna manera y al estar bien definido va a resultar notorio. Es por eso que no pasa tanto con las otras teclas donde el borde es más difuso. La tabla para esta imagen es la siguiente:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/pianoTabla.jpg}
+}
+
+
+Como podemos ver, no queda claro aca tampoco cuál es el tamaño de bloque a utilizar ya que, dependiendo el $k$ a veces tomar un tamaño de bloque relativamente mediano (en comparación al tamaño de la imagen) da mejor que procesar la imagen como un solo bloque mientras otras veces pasa lo contrario. En relación al tiempo de cómputo, se mantiene nuestra teoría de que procesando la imagen con un solo bloque grande es más costoso que con muchos de tamaño menor por la cantidad de información necesaria para construir cada spline.
+
+
+Analicemos ahora la imagen Rosa. Vamos a estar trabajando con un tamaño de bloque bastante chico en relación al tamaño de la imagen, debido a que ésta contiene numerosos detalles y por lo tanto de un bloque a otro puede cambiar significativamente. Los $k$ van a ser 1, 2 y 5. En este caso nuevamente las diferencias entre imágenes procesadas con un tamaño de bloque u otro no son relevantes. En cuanto a las diferencia con la imagen original, éstas son realmente apreciables recién para $k = 5$, entre ellas podemos encontrar la forma de algunas gotas y, en mayor medida, los bordes. El despixelado que se produce en los bordes es notable por el mismo motivo que en la imagen Piano, al tener gotas que tienen una tonalidad más clara que los borde, sombras que son mucho más oscuras o mismo el reflejo de la luz, se mezclan los tonos y, cuando el borde está bien definido se genera el despixelado. Si observamos la parte inferior izquierda, en los bordes no se produce despixelado o por lo menos no se puede ver, porque ya vienen difusos. La tabla para esta imagen es la siguiente:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/rosaTabla.jpg}
+}
+
+Al parecer nuestra hipótesis de que el método podía funcionar mejor tomando la imagen de a pequeños bloques por tener muchos detalles, no era cierta. Esto se ve en los números dado que para los tres valores de $k$ utilizados, obtenemos un PSNR mayor cuando procesamos la imagen con un solo bloque del tamaño de la misma. También se probó con valores de tamaño de bloque mucho más reducidos como 5x5 y aún así seguía dando mayor PSNR procesando la imagen con un solo bloque, aunque al igual que sucede con estos resultados, las diferencias de PSNR no fueron demasiado grandes.
+
+
+Finalmente analizamos nuestra última imagen para Splines: Auto. Dado que el tamaño de esta imagen es el más grande, vamos a trabajar con más valores de $k$, que serán los siguientes: 2, 4, 6, 8 y 12. Dado que esta imagen tiene muchísimos detalles y, considerando los resultados obtenidos con la imagen Rosa, esta vez decidimos tomar un tamaño de bloque más. De esta manera apuntamos a tener un tamaño chico, otro mediano-grande y el que siempre usamos del tamaño de la imagen, para poder ver si vuelve a suceder que gana el tamaño del bloque mayor o fue un resultado particular de la imagen anterior.	 Los tamaños de los bloques los vamos a mostrar explicitamente cuando veamos la tabla ya que varían según el $k$.
+\par Una vez más, sucede que las diferencias entre las imágenes procesadas tanto con bloques chicos como medianos y un único bloque se llegan a apreciar bien recién para $k = 12$. Las diferencias con la imagen original hasta $k = 6$ se podría decir que son aceptables ya que se observan más que nada en las partes donde la imagen refleja la luz y esto genera un efecto de como si se hubiera movido de alguna manera este reflejo. Para $k = 8$ y $k = 12$ ya podemos ver que los bordes se empiezan a despixelar bastante, es fácilmente apreciable en los del parabrisas, sobre todo en el que está sobre el reflejo de la luz y hace que se mezcle la parte clara con la oscura.
+\noindent \newline Para poder ver si efectivamente sucede lo mismo que con la imagen Rosa, con respecto a los bloques y el PSNR, a continuación mostramos las tablas correspondientes a esta imagen:
+\newline
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/autok2Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/autok4Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/autok6Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/autok8Tabla.jpg}
+}
+\vspace{1cm}
+
+\centerline{
+\includegraphics[scale=0.5]{imagenes/autok12Tabla.jpg}
+}
+
+Al igual que sucedió con la imagen Rosa, fueron pocos los casos en donde tomar bloques de tamaño pequeño significó una mejor en el PSNR, exactamente sucedió en $k = 2, 6$. Las diferencias entre el tiempo de cómputo procesando la imagen con un bloque grande y procesándola con muchos de tamaño menor sigue siendo significativa y creciente cuando disminuye el $k$.
+\par Como conclusión de toda esta extensa experimentación, podemos decir que cuando tenemos una imagen que podemos dividir en bloques cuadrados de igual tamaño (como lo fue Cuadrícula), conviene utilizar bloques precisamente de ese tamaño. Ahora bien si nuestra imagen es grande y sabemos poco sobre ella, a nivel PSNR da lo mismo si utilizamos muchos bloques o un bloque grande para procesarla, sin embargo es preferible utilizar bloques relativamente chicos porque, según lo observado en la experimentación, el tiempo de cómputo va a ser menor. En resumen, utilizar bloques de tamaño chico parece ser la mejor alternativa.
 
 
 \subsection{Tiempo de computo}
