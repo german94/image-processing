@@ -714,28 +714,342 @@ Pero entonces al utilizar spline cúbicos para interpolar por ejemplo desde $P_{
 
 Para este caso el tamaño de los bloques a tomar esta ligado a que valor de $a$ utilizar, notemos que si usamos valores muy chicos, es decir permitimos una diferencia mínima, posiblemente terminemos aplicando el método de vecino mas cercano en casi toda la imagen y perdamos la aplicación de spline. Mientas que por el contrario, si permitimos diferencias muy grandes entonces caeríamos en la implementación anterior (solo splines). Para comprobar si esto sucede experimentaremos con varios valores y veremos si existe algún valor o rango de valores óptimos el cual hace reducir el ECM y si estas variaciones influyen o no en el tiempo de computo.
 \subsection{Interpolación Bilineal}
+La interpolaci\'on bilineal intuye que el valor correcto de cada pixel es un promedio de sus valores m\'as cercanos, a priori, este m\'etodo tendr\'ia que ser un poco m\'as completo que \texttt{vecino mas cercano}\\
+En primera instacia, dentro del contexto del presente trabajo, a la interpolac\'ion bilineal la consideramos como una t\'ecnica que consiste en rellenar los p\'ixeles utilizando interpolaciones lineales entre p\'ixeles consecutivos de la imagen original, primero completando aquellas posiciones correspondientes a filas, es decir, completando de a k filas y luego sobre la matriz resultante, completando aquellas posiciones correspondientes a columnas.\\
+Por ejemplo tomando un fracci\'on de 2x2 de una imagen, obtenemos lo siquiente:\\
 
-\section{Experimentación}
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
 
-\subsection{Calidad cuantificable}
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{-1}{-1}{$P_{03}$}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {$P_{30}$}{-1}{-1}{$P_{33}$}
+	\end{tikzpicture}
+}
 
-Explicar las metricas, y que nosotros para experimentar reducimos la imagen, y como lo hicimos con matlab.
+\caption{Fracci\'on de imagen expandida con los valores de los píxeles originales. Indexamos desde 0.}
+\label{bloqueImagen}
+\end{figure}
+Luego interpolamos linealmente por filas, de a k filas,obteniendo:\\
 
-\subsection{Vecino mas cerano}
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
 
-Los graficos y discusion de los resultados para este metodo particular
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{$P_{01}$}{$P_{02}$}{$P_{03}$}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {$P_{30}$}{$P_{31}$}{$P_{32}$}{$P_{33}$}
+	\end{tikzpicture}
+}
 
-\subsection{Splines}
+\caption{Fracci\'on de imagen expandida luego de interpolar por filas, de a k filas.}
+\label{bloqueImagen}
+\end{figure}
+Finalmente, a la matriz resultante la interpolamos linealmente por columnas, todas las columnas, obteniendo:
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
 
-Los graficos y discusion de los resultados para este metodo particular
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$P_{00}$}{$P_{01}$}{$P_{02}$}{$P_{03}$}
+		\setrowauxx {$P_{10}$}{$P_{11}$}{$P_{12}$}{$P_{31}$}
+		\setrowauxx {$P_{20}$}{$P_{21}$}{$P_{22}$}{$P_{32}$}
+		\setrowauxx {$P_{30}$}{$P_{31}$}{$P_{32}$}{$P_{33}$}
+	\end{tikzpicture}
+}
+
+\caption{Fracci\'on de imagen expandida luego de interpolar por columnas, todas las columnas.}
+\label{bloqueImagen}
+\end{figure}
+El polinomio de grado 1 para interpolar linealmente, lo definimos de la siguiente manera, suponiendo $X_1$ y $X_2$ pixeles originales, y X un pixel a rellenar:
+\begin{equation}
+\texttt{}f(X) = f(X_1) + \frac{f(X_2) - f(X_1)}{(X_2 - X_1)}(X - X_1)
+\end{equation}
+Luego, ideamos distintas variantes de este m\'etodo.\\
+En primer lugar, pensamos que pasar\'ia si en vez de interpolar con p\'ixeles originales consecutivos, interpolemos ignorando un pixel, es decir, sin utilizar toda la informaci\'on original de la imagen. Este razonamiento se produjo al pensar que pasar\'ia en las imagenes donde no haya tanta variaci\'on de colores(en este caso, variaciones de tonos de grises).\\
+Como la interpretaci\'on del  m\'etodo de interpolaci\'on bilineal es la denominaci\'on de cada pixel como un promedio de sus valores m\'as cercanos, tambi\'en pensamos que ser\'ia interesante interpolar por diagonales, en los sectores de la imagen que lo permitiera. Estos sectores quedan limitados en el centro de la imagen ya que en las esquinas no hay la cantidad minima de pixeles para interpolar(2 o mas pixeles). Ante esto, procedemos a usar el metodo bilineal original, para completar la imagen.\\
+Por \'ultimo tambi\'en verificaremos que suceder\'ia al interpolar bilinealmente de a bloques, es decir tomando fracciones de la imagen, en donde en las puntas estan los p\'ixeles originales, y los dem\'as ser\'an calculados en base a estos 4 pixeles, siguiendo la siguiente ecuaci\'on:\\
+Sean $Q_{11}=(X_1,Y_1)$, $Q_{12}=(X_1,Y_2)$, $Q_{21}=(X_2,Y_1)$, $Q_{22}=(X_2,Y_2)$, $R_1=(X,Y_1)$, $R_2=(X,Y_2)$ y $P=(X,Y)$, donde $Q_{11}$, $Q_{12}$, $Q_{21}$ y $Q_{22}$ son los 4 p\'ixeles originales, $P$ el pixel a rellenar y $R_1$, $R_2$ las proyecciones ortogonales de P a las rectas $Y_1$ y $Y_2$ respectivamente:\\
+
+\begin{equation}
+\texttt{}f(R_1) = \frac{x_2-x}{x_2-x_1} f(Q_{11}) + \frac{x-x_1}{x_2-x_1} f(Q_{21})
+\end{equation}
+
+\begin{equation}
+\texttt{}f(R_2) = \frac{x_2-x}{x_2-x_1} f(Q_{12}) + \frac{x-x_1}{x_2-x_1} f(Q_{22})
+\end{equation}
+
+\begin{equation}
+\texttt{}f(P) = \frac{y_2-y}{y_2-y_1} f(R_1) + \frac{y-y_1}{y_2-y_1} f(R_2)
+\end{equation}
+
+\begin{figure}[H]
+\centering
+\subfloat[Bloque]{
+
+	\begin{tikzpicture}
+    	\fill[gray!20](0,0) rectangle (1,1); 
+    	\fill[white!20](0,1) rectangle (1,2); 
+    	\fill[white!20](0,2) rectangle (1,3); 
+    	\fill[gray!20](0,3) rectangle (1,4); 
+    	\fill[gray!20](3,0) rectangle (4,1); 
+    	\fill[white!20](3,1) rectangle (4,2); 
+    	\fill[white!20](3,2) rectangle (4,3); 
+    	\fill[gray!20](3,3) rectangle (4,4); 
+	  	\draw (0,0) grid (4,4);
+		\setcounter{row}{1}
+		\setrowauxx {$Q_{11}$}{$R_{1}$}{-1}{$Q_{21}$}
+		\setrowauxx {-1}{$P$}{-1}{-1}
+		\setrowauxx {-1}{-1}{-1}{-1}
+		\setrowauxx {$Q_{12}$}{$R_{2}$}{-1}{$Q_{22}$}
+	\end{tikzpicture}
+}
+
+\caption{Fracci\'on de imagen expandida donde se muestra el ejemplo de interpolacion bilineal por bloques.}
+\label{bloqueImagen}
+\end{figure}
+Ante las distintas variantes del m\'etodo en estudio, promovemos que en cuanto a la variante de ignorar un pixel en el m\'etodo de interpolaci\'on bilineal, si lo usamos para im\'agenes donde no haya grandes cambios de colores seguidos, el mismo debe devolvernos similares resultados (Objetivos y subjetivos) que las otras 3 variantes del metodo. Y para imagenes donde haya gran cantidad de cambios de color la variante deber\'ia dar peor que las otras 3.\\
+En cuanto a las variantes de interpolar por diagonales y por bloques, deben dar similares resultados (Objetivos y subjetivos) que el m\'etodo original, sin importa que imagen usamos, debido a que en la implementaci\'on se utilizan cuentas similares. Aunque, ya que en la variante original se realizan menos casteos de las variables, esperamos que el resultado sea levemente mejor en calidad objetiva que el de la variante por bloques.
+
+
+Se dispondr\'a de una serie de experimentaciones sobre el siguiente conjunto de 10 imagenes:\\
+\begin{itemize}
+	\item Las im\'agenes \texttt{imagen1.tiff}, \texttt{imagen2.tiff} y \texttt{imagen3.tiff} fueron elegidas por ser medianas y no poseer tanto cambio de colores muy marcados.
+	\item Las im\'agenes \texttt{imagen4.tiff} y \texttt{imagen7.tiff} fueron elegidas por ser medianas y por tener personas en las mismas.
+	\item Las im\'agenes \texttt{imagen5.tiff} y \texttt{imagen6.tiff} fueron elegidas por ser medianas y por tener muchas variaciones de colores.
+	\item La imagen \texttt{imagen8.tiff} fue elegida por ser grande y por tener personas en la misma.
+	\item La imagen \texttt{imagen9.tiff} fue elegida por ser grande y por tener muchas variaciones de colores.
+	\item La imagen \texttt{imagen9.tiff} fue elegida por ser grande y no poseer tanto cambio de colores muy marcados.
+\end{itemize}
+Las im\'agenes utilizadas para este experimento se pueden encontrar en...\\
+Las mismas fueron reducidas con el script de MATLab \texttt{reducirImagen.m}, para luego comparar lo que devuelve el m\'etodo con la imagen original.\\
+La experimentaci\'on empezar\'a aplicando zoom con k = 2 a todas las im\'agenes, y luego empezaremos a variar el k para las \'ultimas 3 im\'agenes, ya que al ser grande, hay mayor cantidad de k v\'alidos. Sin perdida de generalidad, usaremos im\'agenes cuadradas y valores de k,  talque $(anchoDeImagen + k) / (k + 1)$ de como resultado un n\'umero entero. Esto se asume para no trabajar con casos bordes de acuerdo a la esquematizaci\'on del zoom dada por la catedra.
+
+\section{Resultados}
 
 \subsection{Bilineal}
+\subsubsection{Resultados Objetivos}
+Los siguentes resultados fueron obtenidos mediante la experimentaci\'on de las variantes del m\'etodo de interpolaci\'on bilineal, sobre el conjunto de 10 im\'agenes detallado en la secci\'on correspondiente de Desarrollo.\\
 
-Los graficos y discusion de los resultados para este metodo particular
+Con k=2, obtuvimos los siguiente resultados de PSNR:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{Imagenes} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+1 & 32.6180 & 30.0720 & 31.7492 & 32.6217 \\ \hline
+2 & 32.0807 &  31.3422 & 31.8774 & 32.0938 \\ \hline
+3 & 34.4520 &  32.9934 & 34.4501 &  34.4509 \\ \hline
+4 & 27.7731 & 23.6071 & 26.8081 & 27.7777 \\ \hline
+5 & 21.9590 &  19.7860 & 21.7686 & 21.9598 \\ \hline
+6 & 20.9380 & 19.7715 & 20.7258 &  20.9392 \\ \hline
+7 & 29.9870 & 26.6496 & 29.3290 & 29.9945 \\ \hline
+8 & 37.0023 & 31.9828 & 36.2431 & 37.0397 \\ \hline
+9 & 24.0090 & 21.4330 & 23.6539 & 24.0111 \\ \hline
+10 & 34.9894 & 31.8309 & 34.9878 & 34.9894 \\ \hline
+\end{tabular}
+\caption{Tabla de PSNR de las 10 im\'agenes ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal}
+\label{}
+\end{table}
+Con k=2, obtuvimos los siguiente resultados de tiempo(en segundos):\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{Imagenes} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+1 & 5.60 & 4.96 & 4.92 & 5.08 \\ \hline
+2 & 5.90 &  5.93 & 5.91 & 5.96 \\ \hline
+3 & 4.96 &  4.92 & 4.93 &  4.94 \\ \hline
+4 & 6.44 & 6.00 & 5.95 & 6.00 \\ \hline
+5 & 5.91 &  5.92 & 5.90 & 5.92 \\ \hline
+6 & 4.93 & 4.98 & 4.93 &  4.95 \\ \hline
+7 & 4.92 & 4.93 & 4.91 & 4.94 \\ \hline
+8 & 18.21 & 18.52 & 17.75 & 18.90 \\ \hline
+9 & 24.35 & 24.44 & 23.82 & 24.55 \\ \hline
+10 & 27.07 & 27.11 & 26.52 & 27.43 \\ \hline
+\end{tabular}
+\caption{Tabla de tiempos de las 10 im\'agenes ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal}
+\label{}
+\end{table}
+Variando el k, con las im\'agenes \texttt{imagen8.tiff}, \texttt{imagen9.tiff} y \texttt{imagen10.tiff} se obtuvieron los siguientes resultados:\\
+Con la imagen \texttt{imagen8.tiff}:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+3 & 34.1484 & 29.3108 & 33.3469 & 34.1729 \\ \hline
+5 & 30.6667 &  26.8999 & 30.1220 & 30.6836 \\ \hline
+7 & 28.3968 &  25.3233 & 27.9253 &  28.4112 \\ \hline
+\end{tabular}
+\caption{Tabla de PSNR de la imagen8 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 3, 5 y 7.}
+\label{}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+3 & 17.73 & 17.27 & 16.60 & 17.47 \\ \hline
+5 & 16.37 &  16.25 & 15.67 & 16.78 \\ \hline
+7 & 15.92 &  16.06 & 15.70 &  16.65 \\ \hline
+\end{tabular}
+\caption{Tabla de tiempos de la imagen8 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 3, 5 y 7.}
+\label{}
+\end{table}
+Con la imagen \texttt{imagen9.tiff}:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+3 & 22.4157 & 19.8676 & 22.1082 & 22.4174 \\ \hline
+5 & 20.4671 & 18.0751 & 20.1985 &  20.4688 \\ \hline
+8 &  18.7939 &  16.5599 & 18.5421 & 18.7957 \\ \hline
+\end{tabular}
+\caption{Tabla de PSNR de la imagen9 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 3, 5 y 8.}
+\label{}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+3 &  22.93 &  23.26 &  22.55 & 23.81 \\ \hline
+5 & 22.04 & 21.95 & 21.58 &  22.14 \\ \hline
+8 &  21.83 &  21.15 & 19.93 & 21.55 \\ \hline
+\end{tabular}
+\caption{Tabla de tiempos de la imagen9 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 3, 5 y 8.}
+\label{}
+\end{table}
 
-\subsection{Comparación métodos}
+Con la imagen \texttt{imagen10.tiff}:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+1 & 38.2838 & 34.9337 &  38.2821 &  38.2838 \\ \hline
+5 & 30.9075 & 27.6721 & 30.9051 &  30.9075\\ \hline
+8 &  27.4966 &   25.3160 & 27.4906 &  27.4967 \\ \hline
+\end{tabular}
+\caption{Tabla de PSNR de la imagen10 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 1, 5 y 8.}
+\label{}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
+1 & 33.77 &  33.33 & 32.35 & 33.02 \\ \hline
+5 & 23.48 &  23.47 & 22.77 & 24.43 \\ \hline
+8 & 23.42 &  23.55 & 21.65 &  23.75 \\ \hline
+\end{tabular}
+\caption{Tabla de tiempos de la imagen10 ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal, variando el k en 1, 5 y 8.}
+\label{}
+\end{table}
 
-Comparacion entre los distintos metodos, cual tarda mas tiempo, cual tiene mayor calidad
+
+
+
+\subsubsection{Resultados Subjetivos}
+Con k=2, en las variantes del m\'etodo original, por diagonales y por bloques se pudo observar un cierto efecto de desenfoque de la imagen en donde los contornos de los objetos no estaban bien definidos. Esto se ve en todas las imagenes excepto en la imagen5, que se nota muy despixelada, seguramente debido a la cantidad de colores y letras que presenta la misma.
+La siguiente comparaci\'on muestra lo recientemente enunciado.\\
+
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen4informe.png}
+    \caption{Fracci\'on Imagen 4 - Bilineal por bloques}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen4informeOriginal.png}
+    \caption{Fracci\'on Imagen 4 - Orginal}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen5informe.png}
+    \caption{Fracci\'on Imagen 5 - Bilineal por bloques}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen5informeOriginal.png}
+    \caption{Fracci\'on Imagen 5 - Orginal}
+    \end{figure}
+
+Tambien es notable que el m\'etodo con la variante de ignorar un pixel, en las imagenes que varia el color seguido, deja m\'as detalles especiales de lo que esperabamos, como una imagen despixelada, o con franjas blancas. En cambio en las que no var\'ia el color seguido, deja imagenes aceptables. En la siguiente comparaci\'on se observa lo recientemente detallado.\\
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen4informe2.png}
+    \caption{Fracci\'on Imagen 4 - Bilineal ignorando un pixel}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen4informe2Original.png}
+    \caption{Fracci\'on Imagen 4 - Orginal}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen2informe.png}
+    \caption{Fracci\'on Imagen 2 - Bilineal por bloques}
+    \end{figure}
+
+     \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{imagenes/imagen2informeOriginal.png}
+    \caption{Fracci\'on Imagen 2 - Orginal}
+    \end{figure}
+Comparando las variantes original, por diagonal y por bloques sobre cada una de las imagen, no se noto diferencias visibles al sentido humano comparando cada una de ellas, es decir comparando la misma foto pero con diferentes variantes.
+\section{Discusion}
+\subsection{Metodo Bilineal}
+ Con las im\'agenes donde no hab\'ia cambios tan seguidos de colores, se pudo verificar que la variante de ignorar un pixel, retorno un valor similar de PSNR, con diferencias de 1 0 2 puntos en relaci\'on a las otras variantes. Nunca se obtuvo mejor valor de PSNR.
+ En cuanto con las im\'agenes que si tenian cambios seguidos de color, el valor de PSNR dio muy por debajo de lo que dieron las otras variantes, llegando a diferencias de entre 4 y 6 puntos. Ademas se encontraron artifacts muy notorios en las im\'agenes como los expuestos en la secci\'on de resultados.\\
+ Tambien los resultados mostraron que la variante original y la de por bloques, casi devolvieron similares valores de PSNR, con minimas diferencias, siempre obteniendo mayor valor la variante por bloques. Suponiamos que iban a dar similares pero que la variante original iba a dar siempre mejor que por bloques debido a que en la implementaci\'on se realizan menos casteos de variables y eso podria haber arrastrado errores de precisi\'on.\\
+ En cuanto a los valores de PSNR de la variante de diagonales, siempre obtuvimos valores con diferencias de a lo sumo 1 punto, lo que marcar\'ia que las im\'agenes elegidas posiblemente no tengan una continuidad diagonal de color en todos los sectores.\\
+ Para destacar es que los resultados arrojaron que a medida que el k aumenta, si la imagen posee bastantes cambios abruptos de colores, se obtendr\'an imagenes con menos calidad objetiva y subjetiva.\\
+ Para finalizar con el estudio de este metodo, concluimos que la mejor variante en cuanto tiempo, calidad objetiva y calidad subjetiva es la variante por bloques.
+
 
 
 \section{Conclusiones}
