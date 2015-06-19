@@ -391,7 +391,7 @@ Luego se aplicaran distintos métodos para rellenar la imagen.
 
 Se llevaron a cabo tres versiones de este método. La original consiste en recorrer la matriz expandida sustituyendo en cada posición los $ -1 $ por el valor de la matriz original mas cercano. Se utiliza una función auxiliar que para cada posición nos devuelve el vecino mas cercano. Hay que notar que se puede dar el caso de que halla dos vecinos mas cercanos, en este caso el algoritmo implementado tomara alguno de ellos.
 
-Una segunda versión considera no solo los valores originales como los mas cercanos, sino que en cada paso considera también los valores que ya fueron completados. Para esto es importante el orden en que es completada la matriz, para este trabajo es completada por filas de izquierda a derecha, de arriba hacia abajo.
+Una segunda versión considera no solo los valores originales como los mas cercanos, sino que en cada paso considera también los valores que ya fueron completados, es decir es una versión dinámica del anterior método. Para esto es importante el orden en que es completada la matriz, para este trabajo es completada por filas de izquierda a derecha, de arriba hacia abajo.
  
  En este caso el vecino mas cercano resulta ser el elemento de la izquierda o el de arriba, es por esto que el algoritmo se simplifica bastante. Para evitar el aglomeramiento de un número particular, es decir que un mismo número se repita en toda una fila, y en las siguientes de abajo, se decidió que en las columnas múltiplos de $ k +1 $ se tome como mas cercano al elemento de arriba, y en los demás casos al de la izquierda.
  
@@ -859,33 +859,58 @@ Para poder tener una idea de como se comportan las distintas implementaciones, h
 Las imagenes con las que se realizaron los experimentos fueron reducidas con el script de MATLab \texttt{reducirImagen.m}, para luego comparar lo que devuelve el m\'etodo con la imagen original.\\
  Sin perdida de generalidad, usaremos im\'agenes cuadradas y valores de k,  talque $(anchoDeImagen + k) / (k + 1)$ de como resultado un n\'umero entero. Esto se asume para no trabajar con casos bordes de acuerdo a la esquematizaci\'on del zoom dada por la catedra.
 
+
 \subsection{Vecino Mas Cercano}
 
-Siguiendo los pasos explicados en el desarrollo se aplicaron los métodos de vecino mas cercano para un conjunto de 10 imágenes y un k fijo de 3, y se obtuvieron los siguientes resultados para la metrica PSNR:
+Siguiendo los pasos explicados en el desarrollo se aplicaron los métodos de vecino mas cercano en distintas experiencias, utilizando las imágenes que se describen a continuación:
+
+Confites: Es una imagen de 257x257, tiene la particularidad de que contiene pequeños confites, para los cuales si se aplicara un método de baja calidad podrían no distinguirse visualmente.
+
+MonaLisa: Es una imagen de 257x257, el clásico cuadro pintado por Leonardo Da Vinci. Con la misma podemos ver el efecto de los métodos sobre una pintura de una figura humana.
+
+Palabras: Es una imagen de 641x361 que contiene palabras de distintos tamaños, color, y escritas en diferentes direcciones.
+
+Globo: Es la imagen de un globo aerostático de 1425x1425, el mismo esta pintado con pequeños rectangulitos de distintos colores. Podemos estudiar si los mismos se ven bien luego de aplicar los métodos.
+
+Leopardo: Es una imagen de 2821x1861 de un leopardo. El mismo contiene manchas, y podemos estudiar la calidad de las mismas al aplicarle las distintas versiones del método.
+
+Venus: Es una imagen de 4097x4097 del planeta venus. Se considera que es de alta calidad.
+
+Las siguientes imágenes fueron utilizadas solo para un k de 3:
+
+Hombre Colores: Es una imagen de 961x541 de la sombra negra de un hombre que mira una pantalla de colores que representan el ADN.
+
+Lena: Es una imagen de 513x513 de la clásica Lena.
+
+Pez: Es una imagen de 2049x2049 de un pez en un océano.
+
+Fantasma: Es una imagen de 201x201 del dibujo de un fantasma.
+
+Para las diez imágenes anteriormente descriptas y un k fijo de 3, y se obtuvieron los siguientes resultados para la metrica PSNR:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|r|r|r|r|r|r|}
+\begin{tabular}{|r|r|r|r|r|}
 \hline
-\multicolumn{1}{|c|}{Imagen} & \multicolumn{1}{|c|}{Pixeles} &  \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Ignorando} & \multicolumn{1}{c|}{Diagonal} & \multicolumn{1}{c|}{Bloques} \\ \hline
-1 & 100x100 & 32.6180 & 30.0720 & 31.7492 & 32.6217 \\ \hline
-2 & q & 32.0807 &  31.3422 & 31.8774 & 32.0938 \\ \hline
-3 & e & 34.4520 &  32.9934 & 34.4501 &  34.4509 \\ \hline
-4 & e & 27.7731 & 23.6071 & 26.8081 & 27.7777 \\ \hline
-5 & f & 21.9590 &  19.7860 & 21.7686 & 21.9598 \\ \hline
-6 &e & 20.9380 & 19.7715 & 20.7258 &  20.9392 \\ \hline
-7 &d & 29.9870 & 26.6496 & 29.3290 & 29.9945 \\ \hline
-8 & r& 37.0023 & 31.9828 & 36.2431 & 37.0397 \\ \hline
-9 & x& 24.0090 & 21.4330 & 23.6539 & 24.0111 \\ \hline
-10 &x & 34.9894 & 31.8309 & 34.9878 & 34.9894 \\ \hline
+\multicolumn{1}{|c|}{Imagen} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+Fantasma & 32.6180 & 30.0720 & 31.7492\\ \hline
+Confites & 24.90 &  22.02 & 21.32 \\ \hline
+MonaLisa &27.24 &  22.02 & 21.32  \\ \hline
+Lena & 00 & 00 & 0 0 \\ \hline
+Palabras & 16.83 &  15.16 & 16.43 \\ \hline
+Hombre Colores & 20.9380 & 19.7715 & 20.7258  \\ \hline
+Globo & 31.92 &  29.61 & 28.55 \\ \hline
+Leopardo & 26.20 &  24.22 & 24.18 \\ \hline
+Pez & 37.0023 & 31.9828 & 36.2431  \\ \hline
+Venus  & 29.98 &  28.15 & 28.42 \\ \hline
 \end{tabular}
-\caption{Tabla de PSNR de las 10 im\'agenes ejecutadas en las 4 variantes del m\'etodo de interpolaci\'on bilineal}
+\caption{Tabla de PSNR de las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino mas cercano}
 \label{}
 \end{table}
 
 Para estudiar la diferencia entre aplicar los métodos a dos imágenes distintas, pero de igual cantidad de pixeles, se hicieron pruebas para distintos valores de k sobre dos ejemplares. 
 
-Con la imagen monaLisa.tiff y confites.tiff, ambas de 257x257 pixeles, se obtuvieron los siguientes resultados:
+Con la imagen de mona Lisa y confites, ambas de 257x257 pixeles, se obtuvieron los siguientes resultados:
 
 \begin{table}[H]
 \centering
@@ -896,7 +921,7 @@ Con la imagen monaLisa.tiff y confites.tiff, ambas de 257x257 pixeles, se obtuvi
 3 & 24.90 &   22.02 & 21.32 \\ \hline
 7 & 20.86 &  18.22 &  17.19 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen confites.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen confites ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
@@ -909,14 +934,23 @@ Con la imagen monaLisa.tiff y confites.tiff, ambas de 257x257 pixeles, se obtuvi
 3 & 27.24 &  25.18 & 24.05 \\ \hline
 7 & 23.94&  21.37 &  18.64 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen monaLisa.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen mona Lisa ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
 
-También para imágenes de distintas dimensiones en pixeles, se hicienron estudios de la métrica de PSNR.
+En ambos casos para todas las versiones del método, para un k 1 la perdida de calidad de la imagen es apreciable a simple vista. Al aumentar el k, en todos los casos se obtiene un PSNR menor, con lo que el error cuadrático medio es mayor. A simple vista se distingue claramente la perdida de calidad al aumentar k.
 
-Para la imágen de palabras.tiff de 641x361 pixeles se obtuvieron los siguientes resultados de PSNR para los distintos valores de k:
+Para ambas imágenes el PSNR da mayor para el método original, seguido del dinámico y el promedio. No obstante para k 1 el método de promedio da un PSNR mayor a los otros dos.
+
+Este ultimo método genera un efecto apreciable de desenfoque. Sin embargo para ambas imágenes, para k 3 y 7, visualmente la imagen obtenida presenta claras diferencias con la original. Esto no se refleja en la métrica de PSNR, que a pesar de ser menor, debería haber una diferencia mas significativa.
+
+Podemos ver que en todos los casos el PSNR da mayor para la imagen de mona lisa, con lo que podemos concluir que para el método de reconstrucción de la imagen, es importante el contenido específico de la misma. 
+
+
+También para imágenes de distintas dimensiones en pixeles, se hicieron estudios de la métrica de PSNR.
+
+Para la imagen de palabras se obtuvieron los siguientes resultados de PSNR para los distintos valores de k:
 
 \begin{table}[H]
 \centering
@@ -929,20 +963,47 @@ Para la imágen de palabras.tiff de 641x361 pixeles se obtuvieron los siguientes
 7 & 14.47 &  12.96 & 14.54 \\ \hline
 9 &13.83 &  12.65 & 14.10 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen palabras.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen palabras ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
+Nuevamente en todos los casos a partir de k=1 se puede observar la perdida de calidad en la imagen, y siempre disminuye la calidad al aumentar k, tanto cualitativamente observando la imagen como cuantitativamente utilizando la métrica. 
+
+En este caso particular podríamos decir que al estar formada la imagen por palabras separadas, el vacío blanco que hay entre las mismas hace que el método sea ineficiente, a tal punto que el método de promedio que en la anterior experiencia, y en posteriores da de una calidad menor, en este caso no. Esto puede apreciarse a simple vista en las imágenes. También se puede apreciar el efecto de desenfoque del método de promedio.
+
+%Estudiando cualitativamente a las imágenes puede notarse a simple vista la diferencia de calidad de las imágenes a las que se le aplica el método.
+
+En las siguientes figuras podemos ver como se pasa de una imagen legible a una ilegible variando el k.
 
 
+\begin{figure}[H]
+\begin{center}
+\subfloat[k=1]{
 
-Estudiando cualitativamente a las imágenes puede notarse a simple vista la diferencia de calidad de las imágenes a las que se le aplica el método. En las siguientes figuras podemos ver como se pasa de una imagen legible a una ilegible variando el k.
+\includegraphics[scale=0.25]{imagenes/palabrask1.png}
+
+}
+\subfloat[k=3]{
+
+	\includegraphics[scale=0.25]{imagenes/palabrask3.png}
+
+}
+\subfloat[k=4]{
+
+	\includegraphics[scale=0.25]{imagenes/palabrask4.png}
+
+}
+
+\end{center}
+\caption{Perdida de calidad en la imagen en el método del vecino mas cercano version Original,  al aumentar k }
+\label{calidadPalabras}
+\end{figure}
 
 
+En la figura~\ref{calidadPalabras} podemos apreciar como disminuye a calidad del método al ir aumentando k. Para k=1 las palabras son legibles, para k=3 solo las palabras grandes resultan legibles. Para k=4 se pierde mas calidad aun, y por ejemplo la palabra ''amigos", que resulta legible para k=3, deja de serlo.
 
 
-
-Para la imagen de globo.tiff de 1425x1425, se obtuvieron los siguientes resultados para PSNR:
+Para la imagen de globo, se obtuvieron los siguientes resultados para PSNR:
 
 
 \begin{table}[H]
@@ -955,15 +1016,25 @@ Para la imagen de globo.tiff de 1425x1425, se obtuvieron los siguientes resultad
 7 & 28.32 &  25.87 & 22.22 \\ \hline
 15 &25.42&  22.90 & 15.74 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen globo.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen globo ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
+Cualitativamente hasta para k 3 la es indistinguible al ojo la perdida de calidad de las imágenes, y a partir de k 7, ya comienza a ser mas apreciable.
 
-Podemos ver que la de k15 de promedios...
-Cualitativamente hasta para k 3 la es indistinguible al ojo la calidad de las imágenes, y a partir de k 7, ya comienza a ser mas apreciable.
+Nuevamente la métrica indica que el método mas eficiente es el Original, seguido del Dinámico y del Promedio. Para k=1 se obtiene que el método de promedio es mas eficiente. Para este ultimo puede observarse el desenfoque del mismo, que para k chico es aceptable, pero para k grande el efecto es tal que la imagen pierde su forma.
 
-Para la imagen de tigre.tiff de 2821x1861 se obtuvieron los siguientes resultados para PSNR:
+En base a los resultados obtenidos, podemos decir que el método de promedio solo es útil para k chico. En la figura~\ref{globoProm} podemos ver el efecto que causa el promedio sobre la imagen para k=15.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.15]{imagenes/globok15.png}
+\caption{Imagen obtenida para por el método de promedios para k=15}
+\label{globoProm}
+\end{figure}
+
+
+Para la imagen de leopardo se obtuvieron los siguientes resultados para PSNR:
 
 
 \begin{table}[H]
@@ -980,11 +1051,18 @@ Para la imagen de tigre.tiff de 2821x1861 se obtuvieron los siguientes resultado
 14 & 21.04 &  19.08 &  14.82 \\ \hline
 59 &16.92&  15.62 & 10.84 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen tigre.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen tigre ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
-Para la imagen de venus.tiff de 4096x4096 se obtuvieron los siguientes resultados para PSNR:
+Nuevamente obtenemos el mismo orden para la calidad indicada por la métrica, que tiene una excepción para k=1 y 2 , donde el promedio obtiene mayor calidad.  Se puede ver también la disminución de la calidad al aumentar k. Este efecto se puede apreciar cualitativamente. Las manchas del leopardo son visibles hasta para k=14, sin embargo es notoria la diferencia entre este ultimo valor de k y los primeros cuatro. Estos ultimos, tienen una calidad que puede considerarse muy buena.
+
+Hasta para k=1 puede observarse el desenfoque del promedio. No obstante para k=14 el efecto distorciona a la imagen demasiado.
+
+Se hizo una  prueba para un k grande de 59, y se obtuvo como resultado que ni siquieraera era observable el leopardo, para ninguna de las versiones.
+
+
+Para la imagen de venus se obtuvieron los siguientes resultados para PSNR:
 
 
 \begin{table}[H]
@@ -1001,9 +1079,14 @@ Para la imagen de venus.tiff de 4096x4096 se obtuvieron los siguientes resultado
 127 & 19.66 &  17.71 &  8.51 \\ \hline
 255 &17.27&  15.78 & 8.50 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen venus.tiff ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen venus ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
+
+
+Nuevamente obtenemos que según la métrica el método de mayor calidad es el Original, seguido del Dinamico, y el Promedio. También para los primeros k probados el método de promedio tiene mayor calidad. A partir de k=31 la imagen obtenida por este ultimo método es demasiado oscura y casi ni se ve, cuando para los otros dos métodos la imagen tiene una calidad aceptable. Este ultimo hecho se lo podriamos atribuir a que la imagen tiene bordes negros alrededor del planeta venus, que se promedian con la imagen. En los demas promedios puede verse el efecto de desenfoque del promedio.
+
+Al ser una imagen de alta calidad, para los primeros k considerados y los métodos Original y Dinámico , el resultado obtenido es indistinguible a los ojos de la imagen original.
 
 
 

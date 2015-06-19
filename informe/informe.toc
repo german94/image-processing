@@ -2,17 +2,15 @@
 \contentsline {section}{\numberline {1}Intoducci\IeC {\'o}n}{2}{section.1}
 \contentsline {section}{\numberline {2}Desarollo}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Vecino mas cercano}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Splines}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Splines 2:}{8}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Interpolaci\IeC {\'o}n Bilineal}{9}{subsection.2.4}
-\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{12}{section.3}
+\contentsline {subsection}{\numberline {2.2}Interpolaci\IeC {\'o}n Bilineal}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Splines}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Splines 2:}{10}{subsection.2.4}
+\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{11}{section.3}
 \contentsline {subsection}{\numberline {3.1}Vecino Mas Cercano}{12}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Bilineal}{14}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Resultados Objetivos}{14}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Resultados Subjetivos}{16}{subsubsection.3.2.2}
-\contentsline {subsection}{\numberline {3.3}Splines}{21}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Tiempo de computo}{30}{subsection.3.4}
-\contentsline {section}{\numberline {4}Discusion}{30}{section.4}
-\contentsline {subsection}{\numberline {4.1}Vecino Mas Cercano}{30}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Metodo Bilineal}{30}{subsection.4.2}
-\contentsline {section}{\numberline {5}Conclusiones}{31}{section.5}
+\contentsline {subsection}{\numberline {3.2}Bilineal}{16}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Splines}{23}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Tiempo de computo}{32}{subsection.3.4}
+\contentsline {section}{\numberline {4}Discusion}{32}{section.4}
+\contentsline {subsection}{\numberline {4.1}Vecino Mas Cercano}{32}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Metodo Bilineal}{32}{subsection.4.2}
+\contentsline {section}{\numberline {5}Conclusiones}{33}{section.5}
