@@ -58,7 +58,7 @@ void origin(vector<vector<int> > &expandida, int k)
 }
 
 
-void porFil(vector<vector<int> > &expandida, int k)
+void dinamico(vector<vector<int> > &expandida, int k)
 {
     for(int i = 0; i <  expandida.size(); i++)
     {
@@ -74,50 +74,67 @@ void porFil(vector<vector<int> > &expandida, int k)
     }
 }
 
-void prom(vector<vector<int> > &expandida)
-{
-    for(int i = 0; i <  expandida.size(); i++)
-    {
-    	for(int j = 0; j < expandida[i].size() ; j++)
-    	{
-    		if(expandida[i][j] == -1)
-    		 {
-    		 	int cantidad = 0;
-    		 	int valor = 0;
-    		 	if(j!=0 && j!= expandida[i].size() -1 && i!= 0 && i != expandida.size() -1)
-    		 	{
-    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
-    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
-    		 		if(expandida[i][j-1] != -1)	{cantidad++; valor+= expandida[i][j-1];}
-    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
-    		 	}
-    		 	if(j == 0)
-    		 	{
-    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
-    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
-    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
-    		 	}
-    		 	if(j== expandida[i].size() -1)
-    		 	{
-    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
-    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
-    		 		if(expandida[i][j-1] != -1)	{cantidad++; valor+= expandida[i][j-1];}
-    		 	}
-    		 	if(i == 0)
-    		 	{
-    		 		if(expandida[i][j-1] != -1) {cantidad++; valor+= expandida[i][j-1];}
-    		 		if(expandida[i+1][j] != -1) {cantidad++; valor+= expandida[i+1][j];}
-    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
-    		 	}
-    		 	if(i== expandida.size() -1)
-    		 	{
-    		 		if(expandida[i][j-1] != -1) {cantidad++; valor+= expandida[i][j-1];}
-    		 		if(expandida[i-1][j] != -1) {cantidad++; valor+= expandida[i-1][j];}
-    		 		if(expandida[i][j+1] != -1)	{cantidad++; valor+= expandida[i][j+1];}
-    		 	}
-				expandida[i][j] = double(valor/cantidad);
-    		 }
+void vecinoProm(vector<vector<int> > &expandida){
 
-    	}
+    for(int i=0;i<expandida.size();i++){
+
+        for(int j=0;j<expandida[i].size();j++){
+
+
+            if(expandida[i][j]==-1){
+            int cantidad=0;
+            double valor=0;
+
+                if(i==0){
+
+                    valor+=expandida[0][j-1];
+                    cantidad++;
+                    if(expandida[0][j+1]!=-1) {valor+=expandida[0][j+1];cantidad++;}
+                }
+                else if(i==expandida.size() -1){
+
+                    valor+=expandida[i][j-1];
+                    cantidad++;
+
+                    if(expandida[i-1][j]!=-1) {valor+=expandida[i-1][j];cantidad++;}
+
+                    if(expandida[i][j+1]!=-1) {valor+=expandida[i][j+1];cantidad++;}
+
+                }else if(j==0){
+
+
+                    valor+=expandida[i-1][0];
+                    cantidad++;
+                    if(expandida[i+1][j]!=-1) {valor+=expandida[i+1][j];cantidad++;}
+
+
+                }else if(j==expandida.size() -1){
+
+                    valor+=expandida[i-1][j];
+                    cantidad++;
+                    valor+=expandida[i][j-1];
+                    cantidad++;
+
+                    if(expandida[i+1][j]!=-1) {valor+=expandida[i+1][j];cantidad++;}
+
+                }else{
+
+                    if(expandida[i][j+1]!=-1) {valor+=expandida[i][j+1];cantidad++;}
+                    if(expandida[i-1][j]!=-1) {valor+=expandida[i-1][j];cantidad++;}
+                    if(expandida[i+1][j]!=-1) {valor+=expandida[i+1][j];cantidad++;}
+                    if(expandida[i][j-1]!=-1) {valor+=expandida[i][j-1];cantidad++;}
+
+
+                }
+
+                expandida[i][j]= valor/cantidad;
+                     //       if(expandida[i][j]>255) expandida[i][j]=255;
+
+
+            }
+
+
+        }
+
     }
 }

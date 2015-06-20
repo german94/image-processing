@@ -52,13 +52,13 @@ int main(int argc, char *argv[])
 				case CALCULADOSF:
 				{
 					cout<<"Fila\n";
-					porFil(expandida,k);
+					dinamico(expandida,k);
 					break;
 				}
 				case PROM:
 				{
 					cout<<"Promedio\n";
-					prom(expandida);
+					vecinoProm(expandida);
 					break;
 				}
 			}
