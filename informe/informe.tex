@@ -863,28 +863,18 @@ Las imagenes con las que se realizaron los experimentos fueron reducidas con el 
 \subsection{Vecino Mas Cercano}
 
 Siguiendo los pasos explicados en el desarrollo se aplicaron los métodos de vecino mas cercano en distintas experiencias, utilizando las imágenes que se describen a continuación:
-
-Confites: Es una imagen de 257x257, tiene la particularidad de que contiene pequeños confites, para los cuales si se aplicara un método de baja calidad podrían no distinguirse visualmente.
-
-MonaLisa: Es una imagen de 257x257, el clásico cuadro pintado por Leonardo Da Vinci. Con la misma podemos ver el efecto de los métodos sobre una pintura de una figura humana.
-
-Palabras: Es una imagen de 641x361 que contiene palabras de distintos tamaños, color, y escritas en diferentes direcciones.
-
-Globo: Es la imagen de un globo aerostático de 1425x1425, el mismo esta pintado con pequeños rectangulitos de distintos colores. Podemos estudiar si los mismos se ven bien luego de aplicar los métodos.
-
-Leopardo: Es una imagen de 2821x1861 de un leopardo. El mismo contiene manchas, y podemos estudiar la calidad de las mismas al aplicarle las distintas versiones del método.
-
-Venus: Es una imagen de 4097x4097 del planeta venus. Se considera que es de alta calidad.
+\newline \newline Confites: Es una imagen de 257x257, tiene la particularidad de que contiene pequeños confites, para los cuales si se aplicara un método de baja calidad podrían no distinguirse visualmente.
+\newline \newline MonaLisa: Es una imagen de 257x257, el clásico cuadro pintado por Leonardo Da Vinci. Con la misma podemos ver el efecto de los métodos sobre una pintura de una figura humana.
+\newline \newline Palabras: Es una imagen de 641x361 que contiene palabras de distintos tamaños, color, y escritas en diferentes direcciones.
+\newline \newline Globo: Es la imagen de un globo aerostático de 1425x1425, el mismo esta pintado con pequeños rectangulitos de distintos colores. Podemos estudiar si los mismos se ven bien luego de aplicar los métodos.
+\newline \newline Leopardo: Es una imagen de 2821x1861 de un leopardo. El mismo contiene manchas, y podemos estudiar la calidad de las mismas al aplicarle las distintas versiones del método.
+\newline \newline Venus: Es una imagen de 4097x4097 del planeta venus. Se considera que es de alta calidad.
 
 Las siguientes imágenes fueron utilizadas solo para un k de 3:
-
-Hombre Colores: Es una imagen de 961x541 de la sombra negra de un hombre que mira una pantalla de colores que representan el ADN.
-
-Lena: Es una imagen de 513x513 de la clásica Lena.
-
-Pez: Es una imagen de 2049x2049 de un pez en un océano.
-
-Fantasma: Es una imagen de 201x201 del dibujo de un fantasma.
+\newline \newline Hombre Colores: Es una imagen de 961x541 de la sombra negra de un hombre que mira una pantalla de colores que representan el ADN.
+\newline \newline Lena: Es una imagen de 513x513 de la clásica Lena.
+\newline \newline Pez: Es una imagen de 2049x2049 de un pez en un océano.
+\newline \newline Fantasma: Es una imagen de 201x201 del dibujo de un fantasma.
 
 Para las diez imágenes anteriormente descriptas y un k fijo de 3, y se obtuvieron los siguientes resultados para la metrica PSNR:
 
@@ -893,20 +883,44 @@ Para las diez imágenes anteriormente descriptas y un k fijo de 3, y se obtuvier
 \begin{tabular}{|r|r|r|r|r|}
 \hline
 \multicolumn{1}{|c|}{Imagen} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
-Fantasma & 32.6180 & 30.0720 & 31.7492\\ \hline
+Fantasma & 23.04 & 20.71 & 19.72\\ \hline
 Confites & 24.90 &  22.02 & 21.32 \\ \hline
 MonaLisa &27.24 &  22.02 & 21.32  \\ \hline
-Lena & 00 & 00 & 0 0 \\ \hline
+Lena & 22.96 &22.96 & 22.14\\ \hline
 Palabras & 16.83 &  15.16 & 16.43 \\ \hline
-Hombre Colores & 20.9380 & 19.7715 & 20.7258  \\ \hline
+Hombre Colores & 15.80 & 16.01 & 15.80  \\ \hline
 Globo & 31.92 &  29.61 & 28.55 \\ \hline
 Leopardo & 26.20 &  24.22 & 24.18 \\ \hline
-Pez & 37.0023 & 31.9828 & 36.2431  \\ \hline
+Pez & 29.92 &  31.69 & 29.92  \\ \hline
 Venus  & 29.98 &  28.15 & 28.42 \\ \hline
 \end{tabular}
-\caption{Tabla de PSNR de las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino mas cercano}
+\caption{Resultados de PSNR obtenidos para las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino mas cercano}
 \label{}
 \end{table}
+
+
+Y los siguiente resultados para el tiempo(en segundos):\\
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{Imagen} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+Fantasma & 0.010947 & 0.010397 & 0.01063\\ \hline
+Confites & 0.014678 &  0.018079 & 0.018615 \\ \hline
+MonaLisa &0.019127 &  0.010217 & 0.015209  \\ \hline
+Lena & 0.033704 & 0.028173 & 0.042221 \\ \hline
+Palabras & 0.026632 &  0.025306 & 0.030714 \\ \hline
+Hombre Colores & 0.057624& 0.051142 & 0.067947 \\ \hline
+Globo & 0.21042 &  0.182193 & 0.247481 \\ \hline
+Leopardo & 0.542769 &  0.486599 & 0.643381\\ \hline
+Pez & 0.451839 & 0.378842 & 0.530081  \\ \hline
+Venus  & 1.69007 &  1.44239 & 2.03498 \\ \hline
+\end{tabular}
+\caption{Tiempos de ejecución para las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino mas cercano}
+\label{tiemposk3}
+\end{table}
+
+En la tabla~\ref{tiemposk3} las imágenes se encuentran ordenadas por cantidad de pixeles en forma ascendente. Se puede ver como el tiempo de computo aumenta con la misma. También se puede apreciar que para una misma imagen que el método que toma mas tiempo es el de promedios, seguido por el original y por ultimo el dinámico.
 
 Para estudiar la diferencia entre aplicar los métodos a dos imágenes distintas, pero de igual cantidad de pixeles, se hicieron pruebas para distintos valores de k sobre dos ejemplares. 
 
@@ -938,6 +952,32 @@ Con la imagen de mona Lisa y confites, ambas de 257x257 pixeles, se obtuvieron l
 \label{}
 \end{table}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 & 0.021428 & 0.021667 & 0.029415 \\ \hline
+3 & 0.020178 &  0.009146 & 0.016885 \\ \hline
+7 & 0.007989 &  0.00505 &  0.015385\\ \hline
+\end{tabular}
+\caption{Resultados de tiempo de computo de la imagen confites ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 & 0.021445 & 0.027944 & 0.030327 \\ \hline
+3 & 0.007708 &  0.014268 & 0.023579 \\ \hline
+7 & 0.015515 &  0.01302 &  0.018491 \\ \hline
+\end{tabular}
+\caption{Resultados de tiempos de computo de la imagen mona Lisa ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
 
 En ambos casos para todas las versiones del método, para un k 1 la perdida de calidad de la imagen es apreciable a simple vista. Al aumentar el k, en todos los casos se obtiene un PSNR menor, con lo que el error cuadrático medio es mayor. A simple vista se distingue claramente la perdida de calidad al aumentar k.
 
@@ -950,7 +990,7 @@ Podemos ver que en todos los casos el PSNR da mayor para la imagen de mona lisa,
 
 También para imágenes de distintas dimensiones en pixeles, se hicieron estudios de la métrica de PSNR.
 
-Para la imagen de palabras se obtuvieron los siguientes resultados de PSNR para los distintos valores de k:
+Para la imagen de palabras se obtuvieron los siguientes resultados para los distintos valores de k:
 
 \begin{table}[H]
 \centering
@@ -964,6 +1004,22 @@ Para la imagen de palabras se obtuvieron los siguientes resultados de PSNR para 
 9 &13.83 &  12.65 & 14.10 \\ \hline
 \end{tabular}
 \caption{Resultados de PSNR de la imagen palabras ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 &0.025911 & 0.02098 & 0.036611 \\ \hline
+3 & 0.062486 & 0.064187 & 0.07201 \\ \hline
+4 & 0.027722 &  0.024487 & 0.034728 \\ \hline
+7 & 0.02872&  0.022452 & 0.034051 \\ \hline
+9 &0.019196& 0.017627 & 0.022647 \\ \hline
+\end{tabular}
+\caption{Resultados de tiempo de la imagen palabras ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
@@ -1003,7 +1059,7 @@ En las siguientes figuras podemos ver como se pasa de una imagen legible a una i
 En la figura~\ref{calidadPalabras} podemos apreciar como disminuye a calidad del método al ir aumentando k. Para k=1 las palabras son legibles, para k=3 solo las palabras grandes resultan legibles. Para k=4 se pierde mas calidad aun, y por ejemplo la palabra ''amigos", que resulta legible para k=3, deja de serlo.
 
 
-Para la imagen de globo, se obtuvieron los siguientes resultados para PSNR:
+Para la imagen de globo, se obtuvieron los siguientes resultados:
 
 
 \begin{table}[H]
@@ -1019,6 +1075,22 @@ Para la imagen de globo, se obtuvieron los siguientes resultados para PSNR:
 \caption{Resultados de PSNR de la imagen globo ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 & 0.433569 & 0.419082& 0.475161 \\ \hline
+3 & 0.202544 &  0.189253 & 0.251413 \\ \hline
+7 &  0.15614 &  0.126274 & 0.192875 \\ \hline
+15 &0.144155&  0.110308 & 0.180333 \\ \hline
+\end{tabular}
+\caption{Resultados de tiempo de la imagen globo ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
+
 
 Cualitativamente hasta para k 3 la es indistinguible al ojo la perdida de calidad de las imágenes, y a partir de k 7, ya comienza a ser mas apreciable.
 
@@ -1051,7 +1123,26 @@ Para la imagen de leopardo se obtuvieron los siguientes resultados para PSNR:
 14 & 21.04 &  19.08 &  14.82 \\ \hline
 59 &16.92&  15.62 & 10.84 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR de la imagen tigre ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\caption{Resultados de PSNR de la imagen leopardo ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 & 1.0866 & 1.0504& 1.22644 \\ \hline
+2 & 0.657721 &  0.61781 & 0.78355 \\ \hline
+3 & 0.524817 &  0.454536& 0.638131 \\ \hline
+4 &0.484191&  0.379946 &  0.559047 \\ \hline
+9 & 0.37489& 0.295424& 0.46353 \\ \hline
+11 & 0.368663 &   0.280538 & 0.45557 \\ \hline
+14 & 0.360687 &   0.276276 &  0.441304 \\ \hline
+59 &0.3529086&  0.260347 & 0.432781\\ \hline
+\end{tabular}
+\caption{Resultados de tiempo de la imagen leopardo ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
 \label{}
 \end{table}
 
@@ -1083,12 +1174,29 @@ Para la imagen de venus se obtuvieron los siguientes resultados para PSNR:
 \label{}
 \end{table}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|r|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{k} & \multicolumn{1}{c|}{Original} & \multicolumn{1}{c|}{Dinámico} & \multicolumn{1}{c|}{Promedio} \\ \hline
+1 & 3.45692 & 3.34598& 3.8553 \\ \hline
+3 & 1.68882 &  1.48089 & 2.03063 \\ \hline
+7 & 1.26326 & 1.02672 &  1.55511 \\ \hline
+15 &1.17502&  0.885899&  1.4469 \\ \hline
+31 & 1.1376 & 0.873169&  1.42114 \\ \hline
+63 & 1.13693 &   0.838262& 1.40754 \\ \hline
+127 & 1.12636 &  0.828674 &  1.39681 \\ \hline
+255 &1.13641&  0.831078 & 1.43211 \\ \hline
+\end{tabular}
+\caption{Resultados de tiempo de la imagen venus ejecutadas en las variantes del m\'etodo de vecino mas cercano.}
+\label{}
+\end{table}
+
+
 
 Nuevamente obtenemos que según la métrica el método de mayor calidad es el Original, seguido del Dinamico, y el Promedio. También para los primeros k probados el método de promedio tiene mayor calidad. A partir de k=31 la imagen obtenida por este ultimo método es demasiado oscura y casi ni se ve, cuando para los otros dos métodos la imagen tiene una calidad aceptable. Este ultimo hecho se lo podriamos atribuir a que la imagen tiene bordes negros alrededor del planeta venus, que se promedian con la imagen. En los demas promedios puede verse el efecto de desenfoque del promedio.
 
 Al ser una imagen de alta calidad, para los primeros k considerados y los métodos Original y Dinámico , el resultado obtenido es indistinguible a los ojos de la imagen original.
-
-
 
 \subsection{Bilineal}
 La experimentaci\'on empezar\'a aplicando zoom con k = 2 a todas las im\'agenes, y luego empezaremos a variar el k para las \'ultimas 3 im\'agenes, ya que al ser grande, hay mayor cantidad de k v\'alidos.
