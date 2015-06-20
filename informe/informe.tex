@@ -1288,6 +1288,8 @@ De pudo apreciar, que para las imagenes grandes a medida que aumentamos el k ayu
  Para finalizar con el estudio de este metodo, concluimos que la mejor variante en cuanto calidad objetiva y calidad subjetiva es la variante por bloques.
 
 \subsection{Splines}
+\label{Splines}
+
 Como mencionamos anteriormente en el desarrollo, implementamos dos variantes distintas de este método y por lo tanto experimentamos con ambas variantes. Las imágenes seleccionadas se encuentran en la carpeta Experimentación/Splines y a continuación explicaremos qué particularidad tiene cada imagen junto con los k que vamos a trabajar.
 \newline
 \newline Tanque: esta imagen fue elegida para ver como afecta en los resultados el hecho de tener todo un terreno relativamente uniforme junto con un objeto más o menos mediano (en este caso el tanque), de tonalidad similar. Al igual que Cuadrícula y Grises, las dimensiones de esta imagen son 511x511 y trabajaremos con $k = 1, 2$ y $4$.
@@ -1861,7 +1863,8 @@ A partir de las experimentaciones realizadas para el método de splines tomando 
 	\label{autoe}
     \end{figure}
 
-Lo que podemos observar de las comparaciones anteriores
+Lo que podemos observar de las comparaciones anteriores es que el método de Splines con bloques fijos obtuvo los mayores valores de PSNR, y por lo tanto las imágenes obtenidas menos diferencias respecto de la original. Este resultado comenzaba a deducirse a lo largo  de la experimentación de Spline 2, cuando observábamos que cuando el valor de $\alpha$ aumentaba obteníamos un PSNR mayor (y como bien mencionamos a medida que el valor de alpha aumenta la variación del método se asemeja al método de spline con bloques de tamaño igual a la imagen). Las causas de este resultado podríamos atribuirlas a la decisión de la variante mas importante introducida, que fue el aplicar la idea de vecino mas cercano entre último punto de un spline y el comienzo del otro. La idea era tratar de mantener los bordes bastantes delimitados, sin embargo esto trajo consecuencias en el resto de la imagen y solo era mas eficaz cuando las diferencias fueron mayor a 200. Una forma de probar obtener mejores resultados (si es que es posible) seria aplicar otro método en vez del de vecino, ya que el mismo es uno de los métodos mas simple (aunque creíamos que esta combinacion podría generar mejores resultados) y podría estar mas susceptible a errores.
+En conclusión con los resultados presentes podemos atribuir que para obtener mejores resultados cualitativos el método de spline con bloques de tamaño fijo es superior al de tamaño variable. Sin embargo una dificultad que se nos presenta en el primero método es ¿que tamaño de bloque utilizar? ya que como se puede ver en ~\ref{Splines} los mejores resultados no siempre se obtuvieron para bloques de tamaños similares, en algunos casos el tamaño elegido fue muy bajo y en otro casi el tamaño de la imagen total. Como en algunas imágenes la diferencia es muy notable (por ejemplo para $Cuadricula$), aun tener que buscar entre distintos tamaño del bloque seria mucho mas eficaz (en cuanto a calidad) que aplicando el segundo método evaluando en tan solo $\alpha$ = 200 o algún valor superior (que a partir de los resultados obtenidos creemos que es el mejor valor a tomar). Sin embargo si queremos ponderar el tiempo de computo quizás sea preferible optar por el segundo método donde los tiempos de cómputos en general fueron menores, bastando con una sola ejecución y en general, salvo excepciones, los PSNR no variaron en un amplio rango.   
 
 \subsection{Comparando los 3 metodos}
 

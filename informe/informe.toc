@@ -9,10 +9,8 @@
 \contentsline {subsection}{\numberline {3.1}Vecino Mas Cercano}{12}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Bilineal}{16}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Splines}{23}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Tiempo de computo}{32}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Spline 2:}{32}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Comparaciones:}{41}{subsection.3.6}
-\contentsline {section}{\numberline {4}Discusion}{42}{section.4}
-\contentsline {subsection}{\numberline {4.1}Vecino Mas Cercano}{42}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Metodo Bilineal}{42}{subsection.4.2}
-\contentsline {section}{\numberline {5}Conclusiones}{43}{section.5}
+\contentsline {subsection}{\numberline {3.4}Tiempo de computo}{34}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Spline 2:}{35}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Comparaciones:}{43}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Comparando los 3 metodos}{45}{subsection.3.7}
+\contentsline {section}{\numberline {4}Conclusiones}{46}{section.4}
