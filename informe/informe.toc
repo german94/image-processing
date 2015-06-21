@@ -1,17 +1,19 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Intoducci\IeC {\'o}n}{2}{section.1}
-\contentsline {section}{\numberline {2}Desarollo}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Vecino mas cercano}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Interpolaci\IeC {\'o}n Bilineal}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Splines}{7}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Splines 2:}{10}{subsection.2.4}
-\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{11}{section.3}
-\contentsline {subsection}{\numberline {3.1}Vecino Mas Cercano}{12}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Bilineal}{17}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Splines}{24}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Spline 2:}{35}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Tiempo de c\IeC {\'o}mputo:}{47}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Comparaciones:}{48}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Comparando los 3 metodos}{50}{subsection.3.7}
-\contentsline {section}{\numberline {4}Conclusiones}{52}{section.4}
-\contentsline {section}{\numberline {5}Ap\IeC {\'e}ndices}{53}{section.5}
+\contentsline {section}{\numberline {1}Intoducci\IeC {\'o}n}{1}{section.1}
+\contentsline {section}{\numberline {2}Desarollo}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Vecino mas cercano}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Interpolaci\IeC {\'o}n Bilineal}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Splines}{6}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Bloques fijos}{6}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Bloques variables}{9}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Experimentaci\IeC {\'o}n}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Vecino Mas Cercano}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Bilineal}{16}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Splines}{23}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Bloques fijos}{23}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Bloques variables}{34}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Tiempo de c\IeC {\'o}mputo}{46}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Comparaci\IeC {\'o}n de variantes}{47}{subsubsection.3.3.4}
+\contentsline {subsection}{\numberline {3.4}Comparando los 3 metodos}{49}{subsection.3.4}
+\contentsline {section}{\numberline {4}Conclusiones}{51}{section.4}
+\contentsline {section}{\numberline {5}Ap\IeC {\'e}ndices}{52}{section.5}

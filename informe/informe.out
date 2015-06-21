@@ -3,14 +3,16 @@
 \BOOKMARK [2][-]{subsection.2.1}{Vecino mas cercano}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Interpolaci\363n Bilineal}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Splines}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Splines 2:}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{Experimentaci\363n}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{Vecino Mas Cercano}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Bilineal}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Splines}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.4}{Spline 2:}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.5}{Tiempo de c\363mputo:}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.6}{Comparaciones:}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.7}{Comparando los 3 metodos}{section.3}% 14
-\BOOKMARK [1][-]{section.4}{Conclusiones}{}% 15
-\BOOKMARK [1][-]{section.5}{Ap\351ndices}{}% 16
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Bloques fijos}{subsection.2.3}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Bloques variables}{subsection.2.3}% 7
+\BOOKMARK [1][-]{section.3}{Experimentaci\363n}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Vecino Mas Cercano}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Bilineal}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Splines}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Bloques fijos}{subsection.3.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Bloques variables}{subsection.3.3}% 13
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Tiempo de c\363mputo}{subsection.3.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Comparaci\363n de variantes}{subsection.3.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Comparando los 3 metodos}{section.3}% 16
+\BOOKMARK [1][-]{section.4}{Conclusiones}{}% 17
+\BOOKMARK [1][-]{section.5}{Ap\351ndices}{}% 18

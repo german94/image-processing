@@ -2419,7 +2419,223 @@ Para verificar que los algoritmos implementados operen como esperamos,además de
 
 Para el caso de splines también se verifico la correctitud de la función dame_Spline imprimiendo en pantalla los coeficientes obtenidos para casos conocidos de antemano.
 
+Metodo Vecino Mas cercano: Tomando como vecindad para un P_ij los 4 vecinos mas cercano respecto de la imagen original 
 
+
+\begin{verbatim}
+void origin(vector<vector<int> > &expandida, int k)
+{
+    int dato_f, dato_c;
+    for(int i = 0; i < expandida.size(); i++)
+    {
+    	    dato_c = 0;
+    	    for(int j = 0; j < expandida[i].size() ; j++)
+    	    {
+    		    if(expandida[i][j] != -1) {dato_f = i; dato_c = j;}
+    		    else
+    		    {
+    			         if(j == dato_c + k + 1) {dato_c = j;}
+    			         expandida[i][j] = mas_cercano(k, dato_c, dato_f, i, j, expandida); 
+    	        }
+        }
+    }
+}
+\end{verbatim} 
+
+\begin{verbatim}
+int mas_cercano(int k, int dato_c, int dato_f, int i, int j, vector<vector <int> > &expandida)
+{
+    int datoSig_c = dato_c + k +1;
+    int datoSig_f = dato_f + k + 1;
+    if(dato_f == i)
+    {
+        if(abs(j - dato_c) < abs(j - datoSig_c)) {return expandida[dato_f][dato_c];}
+        else {return expandida[dato_f][datoSig_c];}
+    }
+    if(dato_c == j)
+    {
+        if(abs(i - dato_f) < abs(i - datoSig_f)) {return expandida[dato_f][dato_c];}
+        else {return expandida[datoSig_f][dato_c];}
+    }
+    else
+    {
+        int a = (dato_c - j)*(dato_c - j) + (dato_f - i)*(dato_f - i);
+        int b = (datoSig_c - j)*(datoSig_c - j) + (dato_f - i)*(dato_f - i);
+        int c = (datoSig_f - i)*(datoSig_f - i) + (dato_c - j)*(dato_c - j);
+        int d = (datoSig_f - i)*(datoSig_f - i) + (datoSig_c - j)*(datoSig_c - j);
+        int cercano = min(min(a, b), min(c, d));
+
+        if(cercano == a) {return expandida[dato_f][dato_c];}
+        else
+        {
+            if (cercano == b) {return expandida[dato_f][datoSig_c];}
+            else
+            {
+                if(cercano == c) {return expandida[datoSig_f][dato_c];}
+                else
+                {
+                    return expandida[datoSig_f][datoSig_c];
+                }
+            }
+        }
+    }
+}
+\end{verbatim}
+Método Bilineal original:
+\begin{verbatim}
+void originBilineal(vector<vector<int> > &expandida, int k)
+{
+    //Primero interpolo por filas, de a k filas
+    int dato_c;
+    for(int i = 0; i < expandida.size(); i = i+k+1)
+    {
+        dato_c = 0;
+        for(int j = 0; j < expandida[i].size() ; j++)
+        {
+            if(expandida[i][j] != -1 && i != expandida.size() - 1) {dato_c = j;}
+            else
+            {
+            		   if(j == dato_c + k + 1 && j != expandida[i].size() -1) {dato_c = j;}
+                expandida[i][j] = calculo_bilineal_por_filas(k, dato_c, i, j, expandida);
+            }
+         }
+     }
+
+	//Ahora interpolo por columnas, de a una fila
+    int dato_f;
+    for(int j = 0; j < expandida[0].size(); j++)
+    {
+        dato_f = 0;
+        for(int i = 0; i < expandida.size() ; i++)
+        {
+            if(expandida[i][j] != -1 && j != expandida[0].size() - 1) {dato_f = i;}
+            else
+            {
+                if(i == dato_f + k + 1 && i != expandida.size() -1) {dato_f = i;}
+                expandida[i][j] = calculo_bilineal_por_columnas(k, dato_f, i, j, expandida);
+            }
+        }
+    }
+}
+
+int calculo_bilineal_por_filas(int k, int dato_c, int i, int j, vector<vector <int> > &expandida)
+{
+    int limite_c = expandida[0].size() - 1;
+    int datoSig_c;
+
+    if(dato_c + k + 1 <= limite_c) {datoSig_c = dato_c + k +1;}
+    else {datoSig_c = limite_c;}
+
+    int res = (int)((double)expandida[i][dato_c] + (((double)expandida[i][datoSig_c] -
+    (double)expandida[i][dato_c])/(double)(k+1))*((double)j-(double)dato_c));
+
+    if(res < 255) {return res;}
+    else {return 255;} //no estoy seguro de esto
+}
+\end{verbatim}
+
+Metodo Spline con tamaños fijos.
+
+\begin{verbatim}
+void MetodoSpline(Bloque b, vector<vector<int> >& imagen, int k)
+{
+	vector<Spline> splinesPorFila, splinesPorColumna;
+
+	//me armo un spline por cada fila que contiene pixeles originales 
+    for(int i = b.desdei; i < b.desdei + b.tam; i += k + 1)
+    {
+    	vector<int> x;
+    	vector<double> a;
+
+    	for(int j = b.desdej; j < b.desdej + b.tam; j += k + 1)
+    	{
+    	    x.push_back(j);
+    	    a.push_back(imagen[i][j]);
+    	}
+ 
+    	splinesPorFila.push_back(dame_Spline(x, a, k));
+    }
+
+    for(int i = b.desdei; i < b.desdei + b.tam; i += k + 1)		//salto de a k + 1
+     //filas para no tocar las que tienen todos -1
+    {
+    int p = 0;			//p va a ser el punto "anterior" al punto que quiero calcular usando interpolacion
+
+    	for(int j = b.desdej + 1; j < b.desdej + b.tam; j += k + 1, p++)	//salto de a k + 1 columnas 
+    	//para no tocar los pixeles originales, con el proximo for voy rellenando los pixeles nuevos 
+    	//entre cada par de pixeles originales
+    	{
+    		//como voy saltando d a k + 1 filas y para calcular los splines por fila hicimos lo mismo,
+    		// divido por k + 1 para obtener el spline correspondiente a la fila con la que estoy trabajando
+        double a_j = splinesPorFila[(i - b.desdei) / (k + 1)].a[p];
+        double b_j = splinesPorFila[(i - b.desdei) / (k + 1)].b[p];
+        double c_j = splinesPorFila[(i - b.desdei) / (k + 1)].c[p];
+        double d_j = splinesPorFila[(i - b.desdei) / (k + 1)].d[p];
+
+    		for(int t = 0; t < k; t++)
+    		{
+    		    int interpolacion = a_j + b_j * (t + 1) + c_j * (t + 1) * (t + 1) 
+    		    + d_j * (t + 1) * (t + 1) * (t + 1);
+
+	    	    if(interpolacion > 255)
+	    		        interpolacion = 255;
+	    	    if(interpolacion < 0)
+	  		        interpolacion = 0;
+
+	    	    imagen[i][j + t] = interpolacion;
+    		}
+    	}
+    }
+
+    //Ahora es simetrico, como por cada fila donde habia pixeles originales ahora estan calculados 
+    //todos los pixeles nuevos entre cada par de pixeles originales, faltan calcular
+    //los pixeles de las filas que estan entre cada par de filas de pixeles 	                	
+    //originales. O sea las filas que tienen todos -1.
+    //Para eso me armo un spline por columna y despues el recorrido y demas es todo simetrico 
+    //al paso anterior.
+}   
+   
+    
+Spline dame_Spline(vector<int>& x, vector<double>& a, unsigned int k)
+{
+    unsigned int n = x.size() - 1;
+    double h_i = k + 1;
+    vector<double> alpha(n + 1, 0);
+
+    for(int i = 1; i < n; i++)
+         alpha[i] = ((double)3 / h_i)*(a[i + 1] - 2 * a[i] + a[i - 1]);
+
+    vector<double> l(n + 1, 0), u(n + 1, 0), z(n + 1, 0);
+    l[0] = 1;
+
+    for(int i = 1; i < n; i++)
+    {
+        l[i] = h_i * ((double)4 - u[i - 1]);
+        u[i] = h_i / l[i];
+        z[i] = (alpha[i] - h_i*z[i - 1]) / l[i];//antes era a[i]
+    }
+
+    vector<double> c(n + 1, 0), b(n, 0), d(n, 0);
+
+    l[n] = 1;
+    z[n] = 0;
+    c[n] = 0;
+
+    for(int j = n - 1; j >= 0; j--)
+    {
+        c[j] = z[j] - u[j]*c[j + 1];
+        b[j] = (a[j + 1] - a[j]) / h_i - h_i * (c[j + 1] + (double)2 * c[j]) / (double)3;
+        d[j] = (c[j + 1] - c[j]) / ((double)3 * h_i);
+     }
+
+    a.pop_back();
+
+    Spline s(a, b, c, d);
+
+    return s;
+}
+
+\end{verbatim}   
 
 \end{document}
 
