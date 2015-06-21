@@ -124,10 +124,11 @@ int main(int argc, char *argv[])
 		case SPLINEVARIABLE:
     	{
 
-            if(argc != 4) {
+            if(argc != 5) {
                 usage();
                 return 0;
                 }
+            int alpha = string_to_type<int>(argv[4]);
 
     		//me armo un spline por cada fila que contiene pixeles originales (es decir las filas que tienen todos -1 no las uso)
 		    for(int i = 0; i < expandida.size(); i = i + k + 1)//i recorre las filar de la imagen expandida
@@ -146,7 +147,7 @@ int main(int argc, char *argv[])
 		    		a[particion].push_back(expandida[i][j]);
 		    		x[particion].push_back(j); //ahora por cada fila voy a formar distintos splines, es como aplicar varias veces para una misma
 		    		// fila la funcion dame_splines
-		    		if (abs (expandida[i][j] - expandida[i][j + k + 1]) >= 102) //con 102 quiere decir si la diferencia es de mas o menos un 40%;se podria cambiar por otros valores  tmb
+		    		if (abs (expandida[i][j] - expandida[i][j + k + 1]) >= alpha) 
 		    		{
 		    			vector<double> nueva_sub_a;
 		    			a.push_back(nueva_sub_a);
@@ -213,7 +214,7 @@ int main(int argc, char *argv[])
 		    		a[particion].push_back(expandida[j][i]);
 		    		x[particion].push_back(j); //ahora por cada fila voy a formar distintos splines, es como aplicar varias veces para una misma
 		    		// fila la funcion dame_splines
-		    		if (abs (expandida[j][i] - expandida[j + k + 1][i]) >= 102) //con 102 quiere decir si la diferencia es de mas o menos un 40%;se podria cambiar por otros valores  tmb
+		    		if (abs (expandida[j][i] - expandida[j + k + 1][i]) >= alpha)
 		    		{
 		    			vector<double> nueva_sub_a;
 		    			a.push_back(nueva_sub_a);
