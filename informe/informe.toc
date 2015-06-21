@@ -10,7 +10,8 @@
 \contentsline {subsection}{\numberline {3.2}Bilineal}{17}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Splines}{24}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Spline 2:}{35}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Comparaciones:}{44}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Comparando los 3 metodos}{46}{subsection.3.6}
-\contentsline {section}{\numberline {4}Conclusiones}{48}{section.4}
-\contentsline {section}{\numberline {5}Ap\IeC {\'e}ndices}{49}{section.5}
+\contentsline {subsection}{\numberline {3.5}Tiempo de c\IeC {\'o}mputo:}{47}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Comparaciones:}{48}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Comparando los 3 metodos}{50}{subsection.3.7}
+\contentsline {section}{\numberline {4}Conclusiones}{52}{section.4}
+\contentsline {section}{\numberline {5}Ap\IeC {\'e}ndices}{53}{section.5}

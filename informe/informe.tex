@@ -1730,10 +1730,36 @@ Una hipótesis que podemos elaborar es que a mayor k la imagen resultante difier
 	\label{tanquee}
     \end{figure}    
     
-La elección de la imagen $Tanque$ estaba ligada a que presenta una uniformidad de color, se puede observar un paisaje con solo un objeto, el tanque, y a la vista la tonalidad del mismo no difiere mucho del fondo. Por lo que la particularidad de este método solo se aplicaría a valores de $\alpha$ bajos, mientras que para los otros la cantidad y los puntos que conforman cada spline serían los mismos. Y esto es lo que se puede observar en la figura \ref{tanquee}, solo el valor $\alpha$ = 40 es el que presenta mayor diferencia entre los distintos alphas. Sin embargo, al utilizar este valor de alpha se obtiene un mayor error, esto se puede deber a que como se trabaja con una diferencia muy baja no es muy restrictiva, por lo que estaría tomando como objetos y/o bordes distintos a partes de las imagen que no lo son y por lo tanto esta replicando valores erróneos. Esto tiene como consecuencia que se presenten una gran cantidad de irregularidades en la misma, algunas de ellas conocidas como artifacts, no solo se perciben en la mayor parte de la imagen si no que se acentúan sobre todo en el tanque, en su contorno, observandose un mayor pixelado en esta sección. 
-Otro análisis que se puede hacer a partir de estos valores es que, para k mayores el error aumenta. Esto se debe a que cuando se usan k de mayor valor el tamaño de la imagen a la que se quiere hacer zoom es más pequeña y por lo tanto se tiene menos información. Como consecuencia de estos dos últimos análisis, a simple vista, podemos concluir que para cualquiera de los $\alpha$ se distingue que mientras agrandamos el k la imagen se pixela a un más. Aunque si observamos las imágenes con k = 1 entre sí, no difieren de mucho lo mismo para k = 2, sin embargo para k = 3 recién con los últimos tres valores de $\alpha$ se logra una mejor resolución respecto de ese valor de k. 
-        
-    
+La elección de la imagen $Tanque$ estaba ligada a que presenta una uniformidad de color, se puede observar un paisaje con solo un objeto, el tanque, y a la vista la tonalidad del mismo no difiere mucho del fondo. Por lo que la particularidad de este método solo se aplicaría a valores de $\alpha$ bajos. Esto es lo que se puede observar en la figura \ref{tanquee}, solo el valor $\alpha$ = 40 es el que presenta mayor diferencia entre los distintos alphas. Sin embargo, al utilizar este valor de alpha se obtiene un mayor error, esto se puede deber a que como se trabaja con una diferencia muy baja no es muy restrictiva, por lo que estaría tomando como objetos y/o bordes distintos a partes de las imagen que no lo son y por lo tanto esta replicando valores erróneos. Como consecuencia se presentan una gran cantidad de irregularidades en la misma, algunas de ellas conocidas como artifacts, no solo se perciben en la mayor parte de la imagen si no que se acentúan sobre todo en el tanque, en su contorno, observandose un mayor pixelado en esta sección. 
+Otro análisis que se puede hacer a partir de estos valores es que, para k mayores el error aumenta. Esto se debe a que cuando se usan k de mayor valor el tamaño de la imagen a la que se quiere hacer zoom es más pequeña y por lo tanto se tiene menos información. Como consecuencia de estos dos últimos análisis, a simple vista, podemos concluir que para cualquiera de los $\alpha$ se distingue que mientras agrandamos el k la imagen se pixela aun más (como se observa en las siguientes imágenes). También se puede ver que las imágenes con k = 1, entre sí, no difieren de mucho lo mismo para k = 2, sin embargo para k = 4 recién con los últimos tres valores de $\alpha$ se logra una mejor resolución respecto de ese valor de k. 
+
+ A continuación se presentan algunos de los casos descriptos anteriormente:       
+\begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[scale=0.6]{imagenes/splinevariable/tanque/orig.png}
+\label{a}
+}
+\subfloat[k = 1, $\alpha$ = 40]{
+\includegraphics[scale=0.6]{imagenes/splinevariable/tanque/1a40.png}
+\label{b}
+}
+\subfloat[k = 1, , $\alpha$ = 200]{
+\includegraphics[scale=0.6]{imagenes/splinevariable/tanque/1a200.png}
+\label{c}
+}
+\end{figure}
+\begin{figure}[H]
+\subfloat[k = 4, $\alpha$ = 40]{
+\includegraphics[scale=0.6]{imagenes/splinevariable/tanque/4a40.png}
+\label{d}
+}
+\subfloat[k = 4, $\alpha$ = 200]{
+\includegraphics[scale=0.6]{imagenes/splinevariable/tanque/4a200.png}
+\label{e}
+}
+\caption{Comparación entre la imagen original y la procesada con algunos valores de $k$ y $\alpha$}
+\end{figure}  
     
     \begin{figure}[H]
     \centering
@@ -1758,7 +1784,7 @@ Otro análisis que se puede hacer a partir de estos valores es que, para k mayor
     
     
 Al igual que para la imagen anterior corroboramos que el ECM aumenta a medida que lo hace el k, sin embargo en esta caso no aumenta tanto comparados como por ejemplo para las figuras anteriores. Esto podría deberse al tipo de imagen con que ahora trabajamos, la cual son bloques de distintas tonalidades de gris donde no hay muchos detalles que se puedan perder. Algo que a partir de la figura se vuelve a repetir es que para valores de $\alpha$ mayores el ECM disminuye y por lo tanto el PSNR aumenta, originalmente la idea es que la particularidad de este método (hasta donde tomar el spline y que hacer entre el final de un spline y el comienzo del siguiente) debe ser aplicado cuando hay grandes cambios ahora podemos empezar a deducir el valor de esta diferencia. Aún más, empezamos a notar que esta variación tiene graves consecuencias cuando se impone una condición menos restrictiva  obteniendo un mayor error cuadrático. En cuanto a lo que se puede analizar al observar las imágenes resultantes estas no poseen una gran diferencia cuando se las observa, para k= 4 se pueden observar imágenes más ruidosas respecto de los otros k, pero en cuanto a comparar con los $\alpha$ las diferencias entre estos son casi imperceptibles.              
-    
+     
 
 \begin{figure}[H]
     \centering
@@ -1782,9 +1808,33 @@ Al igual que para la imagen anterior corroboramos que el ECM aumenta a medida qu
     \end{figure}
     
 La imagen $Cuadricula$ posee un nivel de detalle mayor que las imágenes anteriores, en esta se observan una gran cantidad de líneas de color negro en un fondo blanco, y en algunas partes estas están muy próximas.
- Si reducimos mucho la imagen los detalles se podrían perder más fácilmente, aumentando el ECM. Cuando observamos los valores arrojados por la figuras \ref{cuade1}, \ref{cuade1}, \ref{cuade1} vemos que esto sucede, es más el error se incrementa en un rango no despreciable mientras que para los distintos valores de  $\alpha$ obtenemos los mismos resultados. Al analizar esto, junto con lo que observamos en las imágenes obtenidas, podemos estableces que como solo interviene dos colores, el blanco y el negro, con valores 0 y 255 respectivamente, siempre vamos a caer en el caso de que un mismo spline no se utilice para toda una fila sino hasta cierto punto, sin importar el valor de $\alpha$.
- En esta imagen es en las que más se puede apreciar como actúa la variación respecto al método original. En las imágenes obtenidas con  k = 1, se notan que las líneas tienen más grosor, esto es acción de la replicación de los valores que establece la idea de vecino más cercano. Para las imágenes obtenidas con los restantes k también se observa esto pero la imagen resultante difiere y por mucho de la original (la mayoría de las trazas de color negro se perdieron y fueron irrecuperables por el método). A su vez trabajar con esta figura nos plantea un nuevo posible experimento a analizar, dado que es evidente la parte en la que actúa vecino más cercano e incluso llega a alterar la imagen, se podrían optar por aplicar otros métodos entre un spline o el otro.
-
+ Si reducimos mucho la imagen los detalles se podrían perder más fácilmente, aumentando el ECM. Cuando observamos los valores arrojados por la figuras \ref{cuade1}, \ref{cuade2}, \ref{cuade3} vemos que esto sucede, es más el error se incrementa en un rango no despreciable mientras que para los distintos valores de  $\alpha$ obtenemos los mismos resultados. Al analizar esto, junto con lo que observamos en las imágenes obtenidas, podemos estableces que como solo interviene dos colores, el blanco y el negro, con valores 0 y 255 respectivamente, siempre vamos a caer en el caso de que un mismo spline no se utilice para toda una fila sino hasta cierto punto, sin importar el valor de $\alpha$.
+ En esta imagen es en las que más se puede apreciar como actúa la variación respecto al método original. En las imágenes obtenidas con  k = 1 (figura ~\ref{c2}), se notan que las líneas tienen más grosor, esto es acción de la replicación de los valores que establece la idea de vecino más cercano. Para las imágenes obtenidas con los restantes k también se observa esto pero la imagen resultante difiere, y por mucho, de la original (la mayoría de las trazas de color negro se perdieron y fueron irrecuperables por el método) figuras ~\ref{c3} y  ~\ref{c4}. A su vez trabajar con esta figura nos plantea un nuevo posible experimento a analizar, dado que es evidente la parte en la que actúa vecino más cercano e incluso llega a alterar la imagen, se podrían optar por aplicar otros métodos entre un spline o el otro.
+ 
+ 
+\begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[scale=0.5]{imagenes/splinevariable/cuad/orig.png}
+\label{c1}
+}
+\subfloat[k = 1]{
+\includegraphics[scale=0.5]{imagenes/splinevariable/cuad/1.png}
+\label{c2}
+}
+\subfloat[k = 2]{
+\includegraphics[scale=0.5]{imagenes/splinevariable/cuad/2.png}
+\label{c3}
+}
+\end{figure}
+\begin{figure}[H]
+\centering
+\subfloat[k = 4]{
+\label{c4}
+\includegraphics[scale=0.5]{imagenes/splinevariable/cuad/4.png}
+}
+\caption{Comparación entre la imagen original y la procesada con algunos valores de $k$}
+\end{figure}   
         
     \begin{figure}[H]
     \centering
@@ -1810,7 +1860,28 @@ La imagen $Cuadricula$ posee un nivel de detalle mayor que las imágenes anterio
     
 Una de las particularidades de $Piano$ era observar cómo se comporta nuestro método frente a imágenes que tenían algún tipo de efecto, en este caso reflejos y sobre todo uno tan sutil. Como el reflejo de esta imagen es muy claro, al aumentar el k creeríamos que los puntos a interpolar podrían quedar más claros eliminando dicho efecto. Además deseábamos que se siga manteniendo una clara distinción entre las secciones oscuras que conforman cada tecla respecto de las más claras.
  Si analizamos en cuanto a los valores de las figuras \ref{piano1}, \ref{piano2} y \ref{piano3} observamos que al variar el k, el PSNR disminuye, pero levemente, en este caso como estamos trabajando con una imagen de mayor tamaño pudimos trabajar con varios k sin que se altere demasiado la imagen. Al Fijar un k e ir variando los $\alpha$ las imágenes son muy similares visualmente entre si y respecto de la imagen original. El efecto de reflejo sigue existiendo y visualmente casi sin modificaciones, lo que nos lleva a pensar que el método de spline es útil aun para imágenes con estos detalles. En lo que respecta a las diferencias entre las secciones de las teclas, estas siguen manteniendo sus bordes bien delimitados. 
-En este tipo de imágenes donde la cantidad de valores distintos no se limita a una sola franja como en $Cuadricula$, sino que se encuentran en mayor cantidad, el método parece funcionar sin alteraciones visibles. En cambio sí fijamos un valor de alpha y variamos el k entonces se pueden observar algunos artifacts en los bordes de cada tecla, aunque en menor cantidad respecto de las anteriores imágenes.  
+En este tipo de imágenes donde la cantidad de valores distintos no se limita a una sola franja como en $Cuadricula$, sino que se encuentran en mayor cantidad, el método parece funcionar sin alteraciones visibles. En cambio sí fijamos un valor de alpha y variamos el k entonces se pueden observar algunos artifacts en los bordes de cada tecla, aunque en menor cantidad respecto de las anteriores imágenes. 
+
+A continuación se presenta una de las zonas en las que se presentaron las mayores diferencias con respecto a la imagen original. Como puede observare las irregularidad no alteran demasiado a la imagen en este caso. 
+ \begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/piano/orig.png}
+}
+\subfloat[k = 3, $\alpha$ = 40]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/piano/3a40.png}
+}
+\subfloat[k = 3, , $\alpha$ = 120]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/piano/3a120.png}
+}
+\end{figure}
+\begin{figure}[H]
+\centering
+\subfloat[k = 3, $\alpha$ = 200]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/piano/3a200.png}
+}
+\caption{Comparación entre la imagen original y la procesada con $k$  = 3 y $\alpha$ variable}
+\end{figure}
     
     \begin{figure}[H]
     \centering
@@ -1838,10 +1909,36 @@ La imagen $Rosa$ presenta tonalidades de grises similares, por lo que creíamos 
 Para esta imagen pudimos ver que tomas valores de alpha muy grandes  muy pequeños tienen consecuencias notables a la vista.
 
 Como ocurrió en los casos anteriores al aumentar el valor de k la imagen fue perdiendo calidad y casi siempre es evidente entre los bordes de los distintos objetos que componen a una imagen, en este caso entre los pétalos de la rosa donde se evidencia un notable pixelado.\newline  \newline \newline \newline \newline
-
+A continuación alguno de las diferencias mencionadas anteriormente:
+ \begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/orig.png}
+}
+\subfloat[k = 1, , $\alpha$ = 120]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/1a120.png}
+}
+\subfloat[k = 1, $\alpha$ = 200]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/1a200.png}
+}
+\end{figure}
+\begin{figure}[H]
+\centering
+\subfloat[k = 5, $\alpha$ = 40]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/5a40.png}
+}
+\subfloat[k = 5, $\alpha$ = 120]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/5a120.png}
+}
+\subfloat[k = 5, $\alpha$ = 200]{
+\includegraphics[width=5cm, height=5cm]{imagenes/splinevariable/rosa/5a200.png}
+}
+\caption{Comparación entre la imagen original y la procesada con distintos k y $\alpha$}
+\end{figure}
+    
 Las siguientes  dos imágenes fueron utilizadas primordialmente para comparar el tiempo de computo respecto de las anteriores, ya que estas son de mayor dimensión. Además estas nos van a  permite trabajar con una mayor cantidad de k.
 
-    
+
            \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{imagenes/lago1.jpg}
@@ -1880,9 +1977,35 @@ Las siguientes  dos imágenes fueron utilizadas primordialmente para comparar el
     \end{figure}
     
     
-Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que al aumentar el valor del mismo, el ECM aumenta y por lo tanto el PSNR disminuye. También observamos que no siempre se incrementa en la misma magnitud, las imágenes en las que existen secciones de tonalidades similares, se siguen manteniendo. En esta imagen aun aumentando el valor de k, las zonas del cielo y del agua permanecían, visiblemente, similares entre si y también con respecto a la imagen origina; no sucedía lo mismo para el sector del terreno donde si empezaron a aparecer artifacts, al igual que en la mayoría de los casos cuando se producían grandes cambios de tonalidad, en este caso entre las distintas superficies del terreno. Los artifacts presentes en esta imagen fueron en los bordes, apareciendo un notable pixelado, mientras que en las secciones mas oscura la imagen fue mucho mas ruidosa. Aún cuando se aumentaba el valor de alpha siendo que en otras imagenes esto a veces perimitia algun tipo de corrección.   
+Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que al aumentar el valor del mismo, el ECM aumenta y por lo tanto el PSNR disminuye. También observamos que no siempre se incrementa en la misma magnitud, las imágenes en las que existen secciones de tonalidades similares, se siguen manteniendo. En esta imagen aun aumentando el valor de k, las zonas del cielo y del agua permanecían, visiblemente, similares entre si y también con respecto a la imagen original; no sucedía lo mismo para el sector del terreno donde si empezaron a aparecer artifacts, al igual que en la mayoría de los casos cuando se producían grandes cambios de tonalidad, en este caso entre las distintas superficies del terreno. Los artifacts presentes en esta imagen fueron en los bordes, apareciendo un notable pixelado, ejemplo ~\ref{l4}, mientras que en las secciones mas oscura la imagen fue mucho mas ruidosa, ~\ref{l5}. Aún cuando se aumentaba el valor de alpha siendo que en otras imagenes esto a veces perimitia algun tipo de corrección.   
     
-    
+ \begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[width=6cm, height=6cm]{imagenes/splinevariable/lago/orig.png}
+\label{l1}
+}
+\subfloat[k = 1, $\alpha$ = 40]{
+\includegraphics[width=6cm, height=6cm]{imagenes/splinevariable/lago/1a40.png}
+\label{l2}
+}
+\subfloat[k = 1, , $\alpha$ = 200]{
+\includegraphics[width=6cm, height=6cm]{imagenes/splinevariable/lago/1a200.png}
+\label{l3}
+}
+\end{figure}
+\begin{figure}[H]
+\centering
+\subfloat[k = 7, $\alpha$ = 40]{
+\includegraphics[width=6cm, height=6cm]{imagenes/splinevariable/lago/7a40.png}
+\label{l4}
+}
+\subfloat[k = 7, $\alpha$ = 200]{
+\includegraphics[width=6cm, height=6cm]{imagenes/splinevariable/lago/7a200.png}
+\label{l5}
+}
+\caption{Comparación entre la imagen original y la procesada con variando $k$ y $\alpha$}
+\end{figure}    
     
     \begin{figure}[H]
     \centering
@@ -1923,6 +2046,42 @@ Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que 
     
  
 Luego de todas las imágenes empleadas podemos deducir que la variación que establecimos, en general, resulta mas eficaz cuando la restricción es menor es decir a valores mayores de alphas. Si alpha es muy chico empieza a distinguir sectores que no son deseados, aunque el tipo de imagen con la que se trabaja influye notablemente. En $auto$ los reflejos y las calcomanías sobre el automóvil comienzan a exagerarse a tal punto de obtener un gran pixelado. Esto último podría deberse a que como en las mayorías de las imágenes al aumentar el valor de k, se pierde mucha información, ya que trabajamos con imágenes mas pequeñas. Sin embargo, en este caso aun para los valores de k mas bajos las imágenes obtenidas varían visualmente mucho respecto de la original y lo hace para los distintos valores alpha similarmente con lo ocurrido para la imagen $Rosa$. Las causas de estas alteración podrían deberse nuevamente a los detalles presentes en la imagen, como ya mencionamos para valores de $\alpha$ muy pequeños comienza comienza a distinguir mas fuertemente distintos sectores de la imagen pero para alpha mayores, en este caso donde los detalles se contraponen fuertemente con el fondo, comienzan a verse influidos por los puntos mas oscuros. 
+
+A continuación se observa alguno de los casos mencionados anteriormente, por ejemplo como aún para valores bajos de k, alguno de los bordes de color blanco comienzan a tener una forma cuadriculada en vez de su forma original y como este pixelado se va haciendo mas notable.  
+ \begin{figure}[H]
+\centering
+\subfloat[Original]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/orig.png}
+}
+\end{figure}
+ \begin{figure}[H]
+\centering
+\subfloat[k = 2, $\alpha$ = 40]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/2a40.png}
+}
+\subfloat[k = 2, $\alpha$ = 200]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/2a200.png}
+}
+\subfloat[k = 4, , $\alpha$ = 40]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/4a40.png}
+}
+\end{figure}
+\begin{figure}[H]
+\centering
+\subfloat[k = 4, $\alpha$ = 200]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/4a200.png}
+}
+\subfloat[k = 12, $\alpha$ = 40]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/12a40.png}
+}
+\subfloat[k = 12, $\alpha$ = 200]{
+\includegraphics[width=4cm, height=4cm]{imagenes/splinevariable/auto/12a200.png}
+}
+\caption{Comparación entre la imagen original y la procesada con distintos y $\alpha$}
+\end{figure}
+
+\subsection{Tiempo de cómputo:}
+A partir de lo resultados obtenidos podemos deducir que el tiempo de computo para este método no depende del tamaño de la imagen con la que se este trabajando ya que a veces la recontruccion de una imagen cuyo tamaño original es menor tarda más que una de mayor dimension. Pero, si se observa que en general el tiempo aumenta para valores de $\alpha$ menor, lo que posiblemente se deba a que en estos casos se realiza una mayor variación en la forma de conseguir el valor de un pixel, y dichas fluctuaciones repercuten notablemente en el tiempo de cómputo. 
 
 \subsection{Comparaciones:}
 A partir de las experimentaciones realizadas para el método de splines tomando tanto un tamaño fijo del bloque o siendo este variable. Dado que siempre observamos que a mayor PSNR obtenemos visualmente una imagen con mejor calidad y/o similar a la original, procedimos a realizar una tabla comparativa entre los distintos valores de PSNR obtenidos.  
