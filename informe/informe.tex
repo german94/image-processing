@@ -224,7 +224,7 @@ end
 
 En el presente trabajo se nos plantea como objetivo el re-escalamiento de imágenes, específicamente ampliarlas.
 
-Se trabajar\'a con imágenes en escala de grises por lo que dada una imagen de $mxn$, contendrá $mxn$ pixels cada uno con un valor entre 0-255.
+Se trabajar\'a con imágenes en escala de grises por lo que dada una imagen de $m$ x $n$, contendrá $m$ x $n$ pixels cada uno con un valor entre 0-255.
 
 Para ampliar las imágenes, a partir de un valor $k \in \mathbb{N}_{>0}$ insertaremos entre la fila i y la fila i +1, k filas con i = 1, ....., m -1, y de manera análoga para las columnas. De esta forma obtendremos una nueva imagen con $(m -1)*k + m$ filas y $(n -1)*k + n$ columnas.
 
@@ -2413,13 +2413,13 @@ El formato de archivos, la modalidad de ejecuci\'on y el esquema de experimentac
 \vskip 0.2 cm
 
 
-\subsection*{Apéndice B: Validación de la implementación}
+\subsection*{Apéndice B: Validación de la implementación y código fuente relevante}
 
 Para verificar que los algoritmos implementados operen como esperamos,además de la misma observación de la imagen, lo cual muchas veces resulto útil, se utiliz\'o una carpeta aparte llamada ''validacion_tp3'' con una versión del trabajo práctico que nos permitía correr matrices pequeñas. Podemos encontrar en la misma una instancia de prueba llamada ''matrizEntrada.txt'' con sus respectivas salidas para cada método. Se utilizaron otras instancias, pero no estan documentadas, ya que se fueron eliminando en el proceso. Para verificar de manera m\'as efectiva la correctitud de los métodos, esta versión toma como entrada matrices de tipo unsigned int, y como salida matrices tipo double. El proceso de constatar que la salida cumple con nuestras expectativas se hace a mano, y en ocasiones solo sobre una parte del resultado.
 
 Para el caso de splines también se verifico la correctitud de la función dame_Spline imprimiendo en pantalla los coeficientes obtenidos para casos conocidos de antemano.
 
-Metodo Vecino Mas cercano: Tomando como vecindad para un P_ij los 4 vecinos mas cercano respecto de la imagen original 
+Metodo Vecino Mas cercano: Tomando como vecindad para un $P_ij$ los 4 vecinos mas cercano respecto de la imagen original 
 
 
 \begin{verbatim}
