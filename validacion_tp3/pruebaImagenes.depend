@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1433043285 source:/home/jporto/Escritorio/pruebaImagenes/main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"bmp.h"
+
+1430331449 /home/jporto/Escritorio/pruebaImagenes/bmp.h
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	<string.h>
+	<stdint.h>
+
+1433043233 source:/home/jporto/Escritorio/pruebaImagenes/bmp.cpp
+	"bmp.h"
+
+1433043233 source:/home/jporto/Escritorio/tp3Calculo/metodos/src/bmp.cpp
+	"bmp.h"
+
+1430331449 /home/jporto/Escritorio/tp3Calculo/metodos/src/bmp.h
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	<string.h>
+	<stdint.h>
+
+1433055888 source:/home/jporto/Escritorio/tp3Calculo/metodos/src/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	"bmp.h"
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<sys/time.h>
+	"util.h"
+	"Matriz.h"
+	<math.h>
+	<cstring>
+
+1431631331 /home/jporto/Escritorio/tp3Calculo/metodos/src/util.h
+	<cstdlib>
+	<sstream>
+	<stdexcept>
+	<iomanip>
+	<vector>
+
+1431631331 /home/jporto/Escritorio/tp3Calculo/metodos/src/Matriz.h
+	<vector>
+
+1434847142 source:/home/jporto/Escritorio/ValidacionTp3/metodos/src/main.cpp
+	"splines.h"
+	"bilineal.h"
+	"vecino.h"
+	"aux.h"
+
+1434845999 /home/jporto/Escritorio/ValidacionTp3/metodos/src/splines.h
+	"util.h"
+
+1434825871 /home/jporto/Escritorio/ValidacionTp3/metodos/src/util.h
+	<cstdlib>
+	<sstream>
+	<stdexcept>
+	<iomanip>
+	<vector>
+
+1434838533 /home/jporto/Escritorio/ValidacionTp3/metodos/src/bilineal.h
+	"util.h"
+
+1434837137 /home/jporto/Escritorio/ValidacionTp3/metodos/src/vecino.h
+	"util.h"
+
+1434845784 /home/jporto/Escritorio/ValidacionTp3/metodos/src/aux.h
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<sys/time.h>
+	<math.h>
+	<algorithm>
+
