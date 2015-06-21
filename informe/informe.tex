@@ -229,13 +229,13 @@ En este trabajo se utilizaran distintas técnicas para obtener un re-escalamient
 
 En el presente trabajo se nos plantea como objetivo el re-escalamiento de imágenes, específicamente ampliarlas.
 
-Se trabajara con imágenes en escala de grises por lo que dada una imagen de mxn, contendrá mxn pixels cada uno con un valor entre 0-255.
+Se trabajar\'a con imágenes en escala de grises por lo que dada una imagen de $mxn$, contendrá $mxn$ pixels cada uno con un valor entre 0-255.
 
 Para ampliar las imágenes, a partir de un valor $k \in \mathbb{N}_{>0}$ insertaremos entre la fila i y la fila i +1, k filas con i = 1, ....., m -1, y de manera análoga para las columnas. De esta forma obtendremos una nueva imagen con $(m -1)*k + m$ filas y $(n -1)*k + n$ columnas.
 
 El problema que ahora se genera es ¿que valores asignar a los pixels de las columnas y filas agregadas?. Para esto, emplearemos distintos criterios de asignación de valor a partir de ciertos métodos.
 
-En primera instancia consideraremos el método de vecino mas cercano, para esto el valor de un píxel nuevo sera igual a aquel cuya distancia a otro píxel, en una vecindad definida, sea la mínima. En particular la vencidad tomada será de aquellos cuatro valores más cercano con respecto a los pixels originales (pixels de la imagen sin ampliar, $imagen$ $original$). 
+En primera instancia consideraremos el método de vecino m\'as cercano, para esto el valor de un píxel nuevo sera igual a aquel cuya distancia a otro píxel, en una vecindad definida, sea la mínima. En particular la vencidad tomada será de aquellos cuatro valores más cercano con respecto a los pixels originales (pixels de la imagen sin ampliar, $imagen$ $original$). 
 
 Otro método empleado fue mediante la interpolación de polinomios, esta consiste en que dada una terna de puntos ($ x_{0} $, $ y_{0} $), ($ x_{1} $, $ y_{1} $), $ \ldots $ ($ x_{n} $, $ y_{n} $) se busca obtener un polinomio $P$ que los interpole es decir, que verifique $ p(x_{0}) =  y_{0} $, $ p(x_{1}) =  y_{1} $, $ \ldots $ $ p(x_{n}) =  y_{n} $. En general, la interpolación de una serie de puntos es usada para aproximar una función continua en un cierto intervalo. 
 Dado que siempre existe un polinomio interpolador para $n+1$ puntos, de grado a lo sumo n que los interpole$^{1}$ %Burden 7 edicion teorema 3.2 pag 109
@@ -256,7 +256,7 @@ Por lo que el segundo método empleado consiste en usar interpolación bilineal 
 P(x)= L_{1,0}(x)y_{0} + L_{1,1}(x)y_{1} = \frac{x -x_{1}}{x_{0}-x_{1}}y_0 + \frac{x-x_{0}}{x_{1}-x_{0}} y_{1}
 \label{bilinealInter}
 \end{equation}
-o equivalentemente obtenemos una formula mas clara para el mismo, donde además podemos distinguir la pendiente y la ordenada al origen.
+o equivalentemente obtenemos una f\'ormula mas clara para el mismo, donde además podemos distinguir la pendiente y la ordenada al origen.
 \begin{equation}
 P(x)= \frac{y_{1}-y_{0}}{x_{1}-x_{0}}(x - x_{0}) + y_{0}
 \label{bilineal}
@@ -310,7 +310,7 @@ c_n\\
 $$
 con $h_j=x_{j+1}-x_j$.
 
-donde $ A $ es una matriz estrictamente diagonal dominante. Esto último implica que la matriz es invertible y por lo tanto el sistema tiene solución única. Una vez determinado c, se pueden obtener los $ a_{j}$,$ b_{j} $ y $d_{j}$.
+donde $ A $ es una matriz estrictamente diagonal dominante. Esto último implica que la matriz es inversible y por lo tanto el sistema tiene solución única. Una vez determinado c, se pueden obtener los $ a_{j}$,$ b_{j} $ y $d_{j}$.
 
 A partir de los resultados obtenidos en cada método buscaremos introducir alguna modificación en los mismos con el fin de obtener alguna mejora temporal y/o cualitativa. La forma en que se medirá la cálidad de la imagen obtenida será a través de el \emph{Error Cuadr\'atico Medio} (ECM) y \emph{Peak to Signal Noise Ratio} (PSNR) los mismos se definen como:
 \begin{equation}
@@ -327,9 +327,9 @@ Con $I$ e $\bar{I}$ la imagen original y la ampliada respectivamente, de dimensi
 
 \section{Desarollo}
 
-En este trabajo practico se aplicaran distintos métodos para re-escalar una imagen, es decir obtener una imagen "igual", pero con una cantidad de pixeles mayor. Para esto en todos los casos, se ejecutara desde el programa en \verb-C++- un script de matlab que dada una imagen en cualquier formato, obtenga un archivo''.csv'' con la matriz que representa esa imagen convertida a escala de grises. Luego se utilizara el mismo para aplicarle los métodos para re-escalarla, obteniendo un archivo ".csv'' con la imagen final, y nuevamente se llamara a un script de matlab para obtener una imagen en formato TIFF en blanco y negro.
+En este trabajo pr\'actico se aplicar\'an distintos métodos para re-escalar una imagen, es decir obtener una imagen igual, pero con una cantidad de pixeles mayor. Para esto en todos los casos, se ejecutar\'a desde el programa en \verb-C++- un script de matlab que dada una imagen en cualquier formato, obtenga un archivo''.csv'' con la matriz que representa esa imagen convertida a escala de grises. Luego se utilizar\'a el mismo para aplicarle los métodos para re-escalarla, obteniendo un archivo ".csv'' con la imagen final, y nuevamente se llamara a un script de matlab para obtener una imagen en formato TIFF en blanco y negro.
 
-Lo primero que se aplicara a la matriz de la imagen de entrada en escala de grises es aumentar su tamaño según un parámetro $k \in \mathbb{N}_{>0}$ que indica la cantidad de filas y columnas que seran insertadas entre cada par de puntos consecutivos, tal como se puede ver en la figura~\ref{expansionImagen}. Estas nuevas filas y columnas seran rellenadas provisoriamente con $ -1 $.
+Lo primero que se aplicar\'a a la matriz de la imagen de entrada en escala de grises es aumentar su tamaño según un parámetro $k \in \mathbb{N}_{>0}$ que indica la cantidad de filas y columnas que ser\'an insertadas entre cada par de puntos consecutivos, tal como se puede ver en la figura~\ref{expansionImagen}. Estas nuevas filas y columnas seran rellenadas provisoriamente con $ -1 $.
 
  \begin{figure}[H]
 \centering
@@ -391,15 +391,15 @@ Lo primero que se aplicara a la matriz de la imagen de entrada en escala de gris
 \label{expansionImagen}
 \end{figure}
 
-Luego se aplicaran distintos métodos para rellenar la imagen.
+Luego se aplicar\'an distintos métodos para rellenar la imagen.
 
 \subsection{Vecino mas cercano}
 
-Se llevaron a cabo tres versiones de este método. La original consiste en recorrer la matriz expandida sustituyendo en cada posición los $ -1 $ por el valor de la matriz original mas cercano. Se utiliza una función auxiliar que para cada posición nos devuelve el vecino mas cercano. Hay que notar que se puede dar el caso de que halla dos vecinos mas cercanos, en este caso el algoritmo implementado tomara alguno de ellos.
+Se llevaron a cabo tres versiones de este método. La original consiste en recorrer la matriz expandida sustituyendo en cada posición los $ -1 $ por el valor de la matriz original m\'as cercano. Se utiliza una función auxiliar que para cada posición nos devuelve el vecino mas cercano. Hay que notar que se puede dar el caso de que halla dos vecinos m\'as cercanos, en este caso el algoritmo implementado tomar\'a alguno de ellos.
 
 Una segunda versión considera no solo los valores originales como los mas cercanos, sino que en cada paso considera también los valores que ya fueron completados, es decir es una versión dinámica del anterior método. Para esto es importante el orden en que es completada la matriz, para este trabajo es completada por filas de izquierda a derecha, de arriba hacia abajo.
  
- En este caso el vecino mas cercano resulta ser el elemento de la izquierda o el de arriba, es por esto que el algoritmo se simplifica bastante. Para evitar el aglomeramiento de un número particular, es decir que un mismo número se repita en toda una fila, y en las siguientes de abajo, se decidió que en las columnas múltiplos de $ k +1 $ se tome como mas cercano al elemento de arriba, y en los demás casos al de la izquierda.
+ En este caso el vecino m\'as cercano resulta ser el elemento de la izquierda o el de arriba, es por esto que el algoritmo se simplifica bastante. Para evitar el aglomeramiento de un número particular, es decir que un mismo número se repita en toda una fila, y en las siguientes de abajo, se decidió que en las columnas múltiplos de $ k +1 $ se tome como m\'as cercano al elemento de arriba, y en los demás casos al de la izquierda.
  
  
  En el siguiente fragmento podemos encontrar el seudo-código del algoritmo efectivamente implementado.
@@ -422,10 +422,10 @@ Una segunda versión considera no solo los valores originales como los mas cerca
 \end{algorithmic}
 \end{algorithm}
 
-También se implemento una tercera versión como una variación de la anterior, es decir completando la matriz de izquierda a derecha de arriba hacia abajo, y considerar como posibles mas cercanos no solo a los originales, sino también a los elementos completados hasta el momento, pero que en lugar de decidir con algún criterio cual elemento tomar como mas cercano, tomamos un promedio de todos ellos.
+También se implement\'o una tercera versión como una variación de la anterior, es decir completando la matriz de izquierda a derecha de arriba hacia abajo, y considerar como posibles m\'as cercanos no solo a los originales, sino también a los elementos completados hasta el momento, pero que en lugar de decidir con algún criterio cual elemento tomar como m\'as cercano, tomamos un promedio de todos ellos.
 
 \subsection{Interpolación Bilineal}
-La interpolaci\'on bilineal intuye que el valor correcto de cada pixel es un promedio de sus valores m\'as cercanos, a priori, este m\'etodo tendr\'ia que ser un poco m\'as completo que \texttt{vecino mas cercano}\\
+La interpolaci\'on bilineal intuye que el valor correcto de cada pixel es un promedio de sus valores m\'as cercanos, a priori, este m\'etodo tendr\'ia que ser un poco m\'as completo que \texttt{vecino m\'as cercano}\\
 En primera instacia, dentro del contexto del presente trabajo, a la interpolac\'ion bilineal la consideramos como una t\'ecnica que consiste en rellenar los p\'ixeles utilizando interpolaciones lineales entre p\'ixeles consecutivos de la imagen original, primero completando aquellas posiciones correspondientes a filas, es decir, completando de a k filas y luego sobre la matriz resultante, completando aquellas posiciones correspondientes a columnas.\\
 Por ejemplo tomando un fracci\'on de 2x2 de una imagen, obtenemos lo siquiente:\\
 
@@ -554,7 +554,7 @@ Sean $Q_{11}=(X_1,Y_1)$, $Q_{12}=(X_1,Y_2)$, $Q_{21}=(X_2,Y_1)$, $Q_{22}=(X_2,Y_
 \caption{Fracci\'on de imagen expandida donde se muestra el ejemplo de interpolacion bilineal por bloques.}
 \label{bloqueImagen}
 \end{figure}
-Ante las distintas variantes del m\'etodo en estudio, promovemos que en cuanto a la variante de ignorar un pixel en el m\'etodo de interpolaci\'on bilineal, si lo usamos para im\'agenes donde no haya grandes cambios de colores seguidos, el mismo debe devolvernos similares resultados (Objetivos y subjetivos) que las otras 3 variantes del metodo. Y para imagenes donde haya gran cantidad de cambios de color la variante deber\'ia dar peor que las otras 3.\\
+Ante las distintas variantes del m\'etodo en estudio, promovemos que en cuanto a la variante de ignorar un pixel en el m\'etodo de interpolaci\'on bilineal, si lo usamos para im\'agenes donde no haya grandes cambios de colores seguidos, el mismo debe devolvernos similares resultados (Objetivos y subjetivos) que las otras 3 variantes del m\'etodo. Y para imagenes donde haya gran cantidad de cambios de color la variante deber\'ia dar peor que las otras 3.\\
 En cuanto a las variantes de interpolar por diagonales y por bloques, deben dar similares resultados (Objetivos y subjetivos) que el m\'etodo original, sin importa que imagen usamos, debido a que en la implementaci\'on se utilizan cuentas similares. Aunque, ya que en la variante original se realizan menos casteos de las variables, esperamos que el resultado sea levemente mejor en calidad objetiva que el de la variante por bloques.
 
 
@@ -882,7 +882,7 @@ Las siguientes imágenes fueron utilizadas solo para un k de 3:
 \newline \newline Pez: Es una imagen de 2049x2049 de un pez en un océano.
 \newline \newline Fantasma: Es una imagen de 201x201 del dibujo de un fantasma.
 
-Para las diez imágenes anteriormente descriptas y un k fijo de 3, y se obtuvieron los siguientes resultados para la metrica PSNR:
+Para las diez imágenes anteriormente descriptas y un k fijo de 3, y se obtuvieron los siguientes resultados para la m\'etrica PSNR:
 
 \begin{table}[H]
 \centering
@@ -900,7 +900,7 @@ Leopardo & 26.20 &  24.22 & 24.18 \\ \hline
 Pez & 29.92 &  31.69 & 29.92  \\ \hline
 Venus  & 29.98 &  28.15 & 28.42 \\ \hline
 \end{tabular}
-\caption{Resultados de PSNR obtenidos para las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino mas cercano}
+\caption{Resultados de PSNR obtenidos para las 10 im\'agenes ejecutadas en las variantes del m\'etodo de vecino m\'as cercano}
 \label{}
 \end{table}
 
@@ -926,7 +926,7 @@ Venus  & 1.69007 &  1.44239 & 2.03498 \\ \hline
 \label{tiemposk3}
 \end{table}
 
-En la tabla~\ref{tiemposk3} las imágenes se encuentran ordenadas por cantidad de pixeles en forma ascendente. Se puede ver como el tiempo de computo aumenta con la misma. También se puede apreciar que para una misma imagen que el método que toma mas tiempo es el de promedios, seguido por el original y por ultimo el dinámico.
+En la tabla~\ref{tiemposk3} las imágenes se encuentran ordenadas por cantidad de pixeles en forma ascendente. Se puede ver como el tiempo de computo aumenta con la misma. También se puede apreciar que para una misma imagen que el método que toma mas tiempo es el de promedios, seguido por el original y por \'ultimo el dinámico.
 
 Para estudiar la diferencia entre aplicar los métodos a dos imágenes distintas, pero de igual cantidad de pixeles, se hicieron pruebas para distintos valores de k sobre dos ejemplares. 
 
@@ -1062,7 +1062,7 @@ En las siguientes figuras podemos ver como se pasa de una imagen legible a una i
 \end{figure}
 
 
-En la figura~\ref{calidadPalabras} podemos apreciar como disminuye a calidad del método al ir aumentando k. Para k=1 las palabras son legibles, para k=3 solo las palabras grandes resultan legibles. Para k=4 se pierde mas calidad aun, y por ejemplo la palabra ''amigos", que resulta legible para k=3, deja de serlo.
+En la figura~\ref{calidadPalabras} podemos apreciar como disminuye a calidad del método al ir aumentando k. Para k=1 las palabras son legibles, para k=3 solo las palabras grandes resultan legibles. Para k=4 se pierde m\'as calidad aun, y por ejemplo la palabra ''amigos", que resulta legible para k=3, deja de serlo.
 
 
 Para la imagen de globo, se obtuvieron los siguientes resultados:
@@ -1098,7 +1098,7 @@ Para la imagen de globo, se obtuvieron los siguientes resultados:
 
 
 
-Cualitativamente hasta para k 3 la es indistinguible al ojo la perdida de calidad de las imágenes, y a partir de k 7, ya comienza a ser mas apreciable.
+Cualitativamente hasta para k 3 la es indistinguible al ojo la p\'erdida de calidad de las imágenes, y a partir de k 7, ya comienza a ser mas apreciable.
 
 Nuevamente la métrica indica que el método mas eficiente es el Original, seguido del Dinámico y del Promedio. Para k=1 se obtiene que el método de promedio es mas eficiente. Para este ultimo puede observarse el desenfoque del mismo, que para k chico es aceptable, pero para k grande el efecto es tal que la imagen pierde su forma.
 
@@ -1152,7 +1152,7 @@ Para la imagen de leopardo se obtuvieron los siguientes resultados para PSNR:
 \label{}
 \end{table}
 
-Nuevamente obtenemos el mismo orden para la calidad indicada por la métrica, que tiene una excepción para k=1 y 2 , donde el promedio obtiene mayor calidad.  Se puede ver también la disminución de la calidad al aumentar k. Este efecto se puede apreciar cualitativamente. Las manchas del leopardo son visibles hasta para k=14, sin embargo es notoria la diferencia entre este ultimo valor de k y los primeros cuatro. Estos ultimos, tienen una calidad que puede considerarse muy buena.
+Nuevamente obtenemos el mismo orden para la calidad indicada por la métrica, que tiene una excepción para k=1 y 2 , donde el promedio obtiene mayor calidad.  Se puede ver también la disminución de la calidad al aumentar k. Este efecto se puede apreciar cualitativamente. Las manchas del leopardo son visibles hasta para k=14, sin embargo es notoria la diferencia entre este \'ultimo valor de k y los primeros cuatro. Estos \'ultimos, tienen una calidad que puede considerarse muy buena.
 
 Hasta para k=1 puede observarse el desenfoque del promedio. No obstante para k=14 el efecto distorciona a la imagen demasiado.
 
@@ -1200,7 +1200,7 @@ Para la imagen de venus se obtuvieron los siguientes resultados para PSNR:
 
 
 
-Nuevamente obtenemos que según la métrica el método de mayor calidad es el Original, seguido del Dinamico, y el Promedio. También para los primeros k probados el método de promedio tiene mayor calidad. A partir de k=31 la imagen obtenida por este ultimo método es demasiado oscura y casi ni se ve, cuando para los otros dos métodos la imagen tiene una calidad aceptable. Este ultimo hecho se lo podriamos atribuir a que la imagen tiene bordes negros alrededor del planeta venus, que se promedian con la imagen. En los demas promedios puede verse el efecto de desenfoque del promedio.
+Nuevamente obtenemos que según la métrica el método de mayor calidad es el Original, seguido del Dinamico, y el Promedio. También para los primeros k probados el método de promedio tiene mayor calidad. A partir de k=31 la imagen obtenida por este \'ultimo método es demasiado oscura y casi ni se ve, cuando para los otros dos métodos la imagen tiene una calidad aceptable. Este \'ultimo hecho se lo podriamos atribuir a que la imagen tiene bordes negros alrededor del planeta venus, que se promedian con la imagen. En los dem\'as promedios puede verse el efecto de desenfoque del promedio.
 
 Al ser una imagen de alta calidad, para los primeros k considerados y los métodos Original y Dinámico , el resultado obtenido es indistinguible a los ojos de la imagen original.
 
@@ -1218,7 +1218,7 @@ Se dispuso de una serie de experimentaciones sobre el siguiente conjunto de 10 i
 	\item La imagen \texttt{imagen9.tiff} de 3997x3997 fue elegida por ser grande y por tener muchas variaciones de colores.
 	\item La imagen \texttt{imagen9.tiff} de 4202x4303 fue elegida por ser grande y no poseer tanto cambio de colores muy marcados.
 \end{itemize}
-Las im\'agenes utilizadas para este experimento se pueden encontrar en...\\
+
 
 Con k=2, obtuvimos los siguiente resultados de PSNR:\\
 \begin{table}[H]
@@ -1338,7 +1338,7 @@ Con la imagen \texttt{imagen10.tiff}:\\
 \label{}
 \end{table}
 
-Es importante destacar que el tiempo de computo no se vio afectado por las variantes del m\'etodo, sino solamente, como era de esperar, por el tamaño de cada imagen.\\
+Es importante destacar que el tiempo de c\'omputo no se vio afectado por las variantes del m\'etodo, sino solamente, como era de esperar, por el tamaño de cada imagen.\\
 Luego de analizar los resultados objetivos, procederemos a analizar subjetivamente las imagenes.\\
 Con k=2, en las variantes del m\'etodo original, por diagonales y por bloques se pudo observar un cierto efecto de desenfoque de la imagen en donde los contornos de los objetos no estaban bien definidos. Esto se ve en todas las imagenes excepto en la imagen5, que se nota muy despixelada, seguramente debido a la cantidad de colores y letras que presenta la misma.
 La siguiente comparaci\'on muestra lo recientemente enunciado.\\
@@ -1397,12 +1397,12 @@ De pudo apreciar, que para las imagenes grandes a medida que aumentamos el k ayu
 
 
  Con las im\'agenes donde no hab\'ia cambios tan seguidos de colores, se pudo verificar que la variante de ignorar un pixel, retorno un valor similar de PSNR, con diferencias de 1 0 2 puntos en relaci\'on a las otras variantes. Nunca se obtuvo mejor valor de PSNR.
- En cuanto con las im\'agenes que si tenian cambios seguidos de color, el valor de PSNR dio muy por debajo de lo que dieron las otras variantes, llegando a diferencias de entre 4 y 6 puntos. Ademas se encontraron artifacts muy notorios en las im\'agenes como los expuestos en la secci\'on de resultados.\\
+ En cuanto con las im\'agenes que si tenian cambios seguidos de color, el valor de PSNR dio muy por debajo de lo que dieron las otras variantes, llegando a diferencias de entre 4 y 6 puntos. Adem\'as se encontraron artifacts muy notorios en las im\'agenes como los expuestos en la secci\'on de resultados.\\
  Tambien mostramos que la variante original y la de por bloques, casi devolvieron similares valores de PSNR, con minimas diferencias, siempre obteniendo mayor valor la variante por bloques. Suponiamos que iban a dar similares pero que la variante original iba a dar siempre mejor que por bloques debido a que en la implementaci\'on se realizan menos casteos de variables y eso podria haber arrastrado errores de precisi\'on.\\
  En cuanto a los valores de PSNR de la variante de diagonales, siempre obtuvimos valores con diferencias de a lo sumo 1 punto, lo que marcar\'ia que las im\'agenes elegidas posiblemente no tengan una continuidad diagonal de color en todos los sectores.\\
  Para destacar es que los resultados arrojaron que a medida que el k aumenta, si la imagen posee bastantes cambios abruptos de colores, se obtendr\'an imagenes con menos calidad objetiva y subjetiva.\\
- Tambien observamos que el tiempo de computo no se vio alterado al cambiar de variante, por lo que podemos asegurar que solo el tamaño de cada imagen influye en el mismo.\\
- Para finalizar con el estudio de este metodo, concluimos que la mejor variante en cuanto calidad objetiva y calidad subjetiva es la variante por bloques.
+ Tambien observamos que el tiempo de c\'omputo no se vio alterado al cambiar de variante, por lo que podemos asegurar que solo el tamaño de cada imagen influye en el mismo.\\
+ Para finalizar con el estudio de este m\'etodo, concluimos que la mejor variante en cuanto calidad objetiva y calidad subjetiva es la variante por bloques.
 
 \subsection{Splines}
 \label{Splines}
@@ -1977,7 +1977,7 @@ Las siguientes  dos imágenes fueron utilizadas primordialmente para comparar el
     \end{figure}
     
     
-Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que al aumentar el valor del mismo, el ECM aumenta y por lo tanto el PSNR disminuye. También observamos que no siempre se incrementa en la misma magnitud, las imágenes en las que existen secciones de tonalidades similares, se siguen manteniendo. En esta imagen aun aumentando el valor de k, las zonas del cielo y del agua permanecían, visiblemente, similares entre si y también con respecto a la imagen original; no sucedía lo mismo para el sector del terreno donde si empezaron a aparecer artifacts, al igual que en la mayoría de los casos cuando se producían grandes cambios de tonalidad, en este caso entre las distintas superficies del terreno. Los artifacts presentes en esta imagen fueron en los bordes, apareciendo un notable pixelado, ejemplo ~\ref{l4}, mientras que en las secciones mas oscura la imagen fue mucho mas ruidosa, ~\ref{l5}. Aún cuando se aumentaba el valor de alpha siendo que en otras imagenes esto a veces perimitia algun tipo de corrección.   
+Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que al aumentar el valor del mismo, el ECM aumenta y por lo tanto el PSNR disminuye. También observamos que no siempre se incrementa en la misma magnitud, las imágenes en las que existen secciones de tonalidades similares, se siguen manteniendo. En esta imagen aun aumentando el valor de k, las zonas del cielo y del agua permanecían, visiblemente, similares entre si y también con respecto a la imagen original; no sucedía lo mismo para el sector del terreno donde si empezaron a aparecer artifacts, al igual que en la mayoría de los casos cuando se producían grandes cambios de tonalidad, en este caso entre las distintas superficies del terreno. Los artifacts presentes en esta imagen fueron en los bordes, apareciendo un notable pixelado, ejemplo ~\ref{l4}, mientras que en las secciones m\'as oscura la imagen fue mucho mas ruidosa, ~\ref{l5}. Aún cuando se aumentaba el valor de alpha siendo que en otras imagenes esto a veces perimit\'ia algun tipo de corrección.   
     
  \begin{figure}[H]
 \centering
@@ -2045,9 +2045,9 @@ Trabajando con mas valores de k, pudimos corroborar que se sigue cumpliendo que 
     \end{figure}
     
  
-Luego de todas las imágenes empleadas podemos deducir que la variación que establecimos, en general, resulta mas eficaz cuando la restricción es menor es decir a valores mayores de alphas. Si alpha es muy chico empieza a distinguir sectores que no son deseados, aunque el tipo de imagen con la que se trabaja influye notablemente. En $auto$ los reflejos y las calcomanías sobre el automóvil comienzan a exagerarse a tal punto de obtener un gran pixelado. Esto último podría deberse a que como en las mayorías de las imágenes al aumentar el valor de k, se pierde mucha información, ya que trabajamos con imágenes mas pequeñas. Sin embargo, en este caso aun para los valores de k mas bajos las imágenes obtenidas varían visualmente mucho respecto de la original y lo hace para los distintos valores alpha similarmente con lo ocurrido para la imagen $Rosa$. Las causas de estas alteración podrían deberse nuevamente a los detalles presentes en la imagen, como ya mencionamos para valores de $\alpha$ muy pequeños comienza comienza a distinguir mas fuertemente distintos sectores de la imagen pero para alpha mayores, en este caso donde los detalles se contraponen fuertemente con el fondo, comienzan a verse influidos por los puntos mas oscuros. 
+Luego de todas las imágenes empleadas podemos deducir que la variación que establecimos, en general, resulta mas eficaz cuando la restricción es menor es decir a valores mayores de alphas. Si alpha es muy chico empieza a distinguir sectores que no son deseados, aunque el tipo de imagen con la que se trabaja influye notablemente. En $auto$ los reflejos y las calcomanías sobre el automóvil comienzan a exagerarse a tal punto de obtener un gran pixelado. Esto último podría deberse a que como en las mayorías de las imágenes al aumentar el valor de k, se pierde mucha información, ya que trabajamos con imágenes mas pequeñas. Sin embargo, en este caso a\'un para los valores de k mas bajos las imágenes obtenidas varían visualmente mucho respecto de la original y lo hace para los distintos valores alpha similarmente con lo ocurrido para la imagen $Rosa$. Las causas de estas alteración podrían deberse nuevamente a los detalles presentes en la imagen, como ya mencionamos para valores de $\alpha$ muy pequeños comienza comienza a distinguir mas fuertemente distintos sectores de la imagen pero para alpha mayores, en este caso donde los detalles se contraponen fuertemente con el fondo, comienzan a verse influidos por los puntos m\'as oscuros. 
 
-A continuación se observa alguno de los casos mencionados anteriormente, por ejemplo como aún para valores bajos de k, alguno de los bordes de color blanco comienzan a tener una forma cuadriculada en vez de su forma original y como este pixelado se va haciendo mas notable.  
+A continuación se observa alguno de los casos mencionados anteriormente, por ejemplo como aún para valores bajos de k, alguno de los bordes de color blanco comienzan a tener una forma cuadriculada en vez de su forma original y como este pixelado se va haciendo m\'as notable.  
  \begin{figure}[H]
 \centering
 \subfloat[Original]{
@@ -2081,7 +2081,7 @@ A continuación se observa alguno de los casos mencionados anteriormente, por ej
 \end{figure}
 
 \subsection{Tiempo de cómputo:}
-A partir de lo resultados obtenidos podemos deducir que el tiempo de computo para este método no depende del tamaño de la imagen con la que se este trabajando ya que a veces la recontruccion de una imagen cuyo tamaño original es menor tarda más que una de mayor dimension. Pero, si se observa que en general el tiempo aumenta para valores de $\alpha$ menor, lo que posiblemente se deba a que en estos casos se realiza una mayor variación en la forma de conseguir el valor de un pixel, y dichas fluctuaciones repercuten notablemente en el tiempo de cómputo. 
+A partir de lo resultados obtenidos podemos deducir que el tiempo de computo para este método no depende del tamaño de la imagen con la que se este trabajando ya que a veces la recontruccion de una imagen cuyo tamaño original es menor tarda más que una de mayor dimensi\'on. Pero, si se observa que en general el tiempo aumenta para valores de $\alpha$ menor, lo que posiblemente se deba a que en estos casos se realiza una mayor variación en la forma de conseguir el valor de un pixel, y dichas fluctuaciones repercuten notablemente en el tiempo de cómputo. 
 
 \subsection{Comparaciones:}
 A partir de las experimentaciones realizadas para el método de splines tomando tanto un tamaño fijo del bloque o siendo este variable. Dado que siempre observamos que a mayor PSNR obtenemos visualmente una imagen con mejor calidad y/o similar a la original, procedimos a realizar una tabla comparativa entre los distintos valores de PSNR obtenidos.  
@@ -2131,7 +2131,7 @@ A partir de las experimentaciones realizadas para el método de splines tomando 
 	\label{autoe}
     \end{figure}
 
-Lo que podemos observar de las comparaciones anteriores es que el método de Splines con bloques fijos obtuvo los mayores valores de PSNR, y por lo tanto las imágenes obtenidas menos diferencias respecto de la original. Este resultado comenzaba a deducirse a lo largo  de la experimentación de Spline 2, cuando observábamos que cuando el valor de $\alpha$ aumentaba obteníamos un PSNR mayor (y como bien mencionamos a medida que el valor de alpha aumenta la variación del método se asemeja al método de spline con bloques de tamaño igual a la imagen). Las causas de este resultado podríamos atribuirlas a la decisión de la variante mas importante introducida, que fue el aplicar la idea de vecino mas cercano entre último punto de un spline y el comienzo del otro. La idea era tratar de mantener los bordes bastantes delimitados, sin embargo esto trajo consecuencias en el resto de la imagen y solo era mas eficaz cuando las diferencias fueron mayor a 200. Una forma de probar obtener mejores resultados (si es que es posible) seria aplicar otro método en vez del de vecino, ya que el mismo es uno de los métodos mas simple (aunque creíamos que esta combinacion podría generar mejores resultados) y podría estar mas susceptible a errores.
+Lo que podemos observar de las comparaciones anteriores es que el método de Splines con bloques fijos obtuvo los mayores valores de PSNR, y por lo tanto las imágenes obtenidas menos diferencias respecto de la original. Este resultado comenzaba a deducirse a lo largo  de la experimentación de Spline 2, cuando observábamos que cuando el valor de $\alpha$ aumentaba obteníamos un PSNR mayor (y como bien mencionamos a medida que el valor de alpha aumenta la variación del método se asemeja al método de spline con bloques de tamaño igual a la imagen). Las causas de este resultado podríamos atribuirlas a la decisión de la variante m\'as importante introducida, que fue el aplicar la idea de vecino mas cercano entre último punto de un spline y el comienzo del otro. La idea era tratar de mantener los bordes bastantes delimitados, sin embargo esto trajo consecuencias en el resto de la imagen y solo era mas eficaz cuando las diferencias fueron mayor a 200. Una forma de probar obtener mejores resultados (si es que es posible) ser\'ia aplicar otro método en vez del de vecino, ya que el mismo es uno de los métodos mas simple (aunque creíamos que esta combinacion podría generar mejores resultados) y podría estar m\'as susceptible a errores.
 En conclusión con los resultados presentes podemos atribuir que para obtener mejores resultados cualitativos el método de spline con bloques de tamaño fijo es superior al de tamaño variable. Sin embargo una dificultad que se nos presenta en el primero método es ¿que tamaño de bloque utilizar? ya que como se puede ver en ~\ref{Splines} los mejores resultados no siempre se obtuvieron para bloques de tamaños similares, en algunos casos el tamaño elegido fue muy bajo y en otro casi el tamaño de la imagen total. Como en algunas imágenes la diferencia es muy notable (por ejemplo para $Cuadricula$), aun tener que buscar entre distintos tamaño del bloque seria mucho mas eficaz (en cuanto a calidad) que aplicando el segundo método evaluando en tan solo $\alpha$ = 200 o algún valor superior (que a partir de los resultados obtenidos creemos que es el mejor valor a tomar). Sin embargo si queremos ponderar el tiempo de computo quizás sea preferible optar por el segundo método donde los tiempos de cómputos en general fueron menores, bastando con una sola ejecución y en general, salvo excepciones, los PSNR no variaron en un amplio rango.
 Para la experimentación final elegiremos trabajar con el método Spline con bloques fijos ya que es el que mejor resultados cualitativos obtuvo y además es lo que ponderaremos en dicha experimentación.   
 
@@ -2240,16 +2240,17 @@ Ahora presentaremos las tablas correspondientes a la comparación entre las mejo
 A partir de los resultados obtenidos al comparar distintos métodos, nos encontramos con el hecho de que, para las imágenes con las que trabajamos, el método bilineal fue el que obtuvo en la mayoría de los casos mayor PSNR, y como consecuencia un menor ECM, cuando esto no sucedió entonces el método de Splines se sobrepuso. 
 
 Pese a que creíamos que el método mas eficaz iba a ser el de Spline, esto no ocurrió. 
-Primero analicemos lo sucedido con el método de vecino mas cercano, en este caso se cumplió lo que intuiamos, que no iba a ser mejor que los otros dos métodos para una imagen. Esto se puede deber a que es el método mas simple, el mismo no tiene un análisis fuerte a la hora de asignar el valor de un pixel desconocido. Funciona de manera golosa, donde el valor de un pixel tan solo va a ser igual al valor del pixel mas cercano, establecida por una vecindad $v$ de 4 pixel. Lo cual evidencia un notable error, que es creer que para cada píxel $p$ del conjunto de píxeles a determinar utilizando $v$, va a existir en $v$ otro píxel $p'$ (el más cercano a $p$) con un valor igual o muy parecido al que realmente debería tener $p$. Sobre todo por el tamaño del a vecindad ya que en realidad cada píxel puede tomar 256 valores distintos. Por esto es que los métodos de Spline o Bilineal van a dar mejores resultados, ya que construyen funciones continuas en base a los píxeles conocidos y esto genera un rango mayor de valores posibles. Sin embargo una particularidad que se puede observar en la tabla \ref{tabla25} es que para k=1 el metodo de vecino mas cercano obtiene un PSNR mayor que el de Spline. Esto se puede principalmente a dos factores primero, como se esta trabajando con k = 1 no hay mucha perdida de información ya que al reducir la imagen si estamos trabajando con la $fila_i$ cuyos pixels son $P_{ij}$, con 1$<=$j<$=n$ (n cantidad de columnas) entonces solo se retiraron los $P_{ij}$ tal que j es numero par, quedando disponible pixels que no están muy alejados entre si. El  segundo hecho influyente se debe a que como para este caso se emplea la variación de vecino mas cercano que toma el promedio de los valores de la vecindad definida, si existe una cierta distribución de las tonalidades (como ocurre en este caso en la imagen $Mono$) entonces tiene sentido que aquellos $P_{ij}$ retirados tengan una tonalidad similar que a la de sus vecinos, pudiendo ser muy similar al promedio de estos. 
-\par Con respecto a la comparación entre el Método bilineal y el de Splines, fue aca cuando obtuvimos resultados contrarios a lo esperado. A la hora de analizar las causas de este hecho un posible factor influyente es que el método de Spline, es el que mayor cálculos realiza para asignar el valor a cada pixel, dado que se trabaja con aritmética finita cada calculo es susceptible a tener un determinado margen de error y, si además cada resultado obtenido se utiliza en otros cálculos entonces el error se propaga y aumenta.  
-Por lo que, con respecto a los métodos la implementación de Spline posee esta gran desventaja. En algunos casos este error puede ser despreciable comparado con los resultados obtenidos con otro método que utiliza menos cálculos pero, donde el valor que se elige para cada píxel está más alejado del que realmente debería usar; lo que sucede por ejemplo con Spline y Vecino mas cercano, salvo la excepción de la tabla \ref{tabla25}, ahora que profundizamos sobre una de las desventajas que posee el meteodo de Spline podemos complementar esa excepción ocurrida al decir que en este caso el error cometido no fue despreciable.
+Primero analicemos lo sucedido con el método de vecino mas cercano, en este caso se cumplió lo que intuiamos, que no iba a ser mejor que los otros dos métodos para una imagen. Esto se puede deber a que es el método mas simple, el mismo no tiene un análisis fuerte a la hora de asignar el valor de un pixel desconocido. Funciona de manera golosa, donde el valor de un pixel tan solo va a ser igual al valor del pixel mas cercano, establecida por una vecindad $v$ de 4 pixel. Lo cual evidencia un notable error, que es creer que para cada píxel $p$ del conjunto de píxeles a determinar utilizando $v$, va a existir en $v$ otro píxel $p'$ (el más cercano a $p$) con un valor igual o muy parecido al que realmente debería tener $p$. Sobre todo por el tamaño del a vecindad ya que en realidad cada píxel puede tomar 256 valores distintos. Por esto es que los métodos de Spline o Bilineal van a dar mejores resultados, ya que construyen funciones continuas en base a los píxeles conocidos y esto genera un rango mayor de valores posibles. Sin embargo una particularidad que se puede observar en la tabla \ref{tabla25} es que para k=1 el m\'etodo de vecino m\'as cercano obtiene un PSNR mayor que el de Spline. Esto se puede principalmente a dos factores primero, como se esta trabajando con k = 1 no hay mucha perdida de información ya que al reducir la imagen si estamos trabajando con la $fila_i$ cuyos pixels son $P_{ij}$, con 1$<=$j<$=n$ (n cantidad de columnas) entonces solo se retiraron los $P_{ij}$ tal que j es numero par, quedando disponible pixels que no están muy alejados entre si. El  segundo hecho influyente se debe a que como para este caso se emplea la variación de vecino m\'as cercano que toma el promedio de los valores de la vecindad definida, si existe una cierta distribución de las tonalidades (como ocurre en este caso en la imagen $Mono$) entonces tiene sentido que aquellos $P_{ij}$ retirados tengan una tonalidad similar que a la de sus vecinos, pudiendo ser muy similar al promedio de estos. 
+\par Con respecto a la comparación entre el Método bilineal y el de Splines, fue aca cuando obtuvimos resultados contrarios a lo esperado. A la hora de analizar las causas de este hecho un posible factor influyente es que el método de Spline, es el que mayor cálculos realiza para asignar el valor a cada pixel, dado que se trabaja con aritmética finita cada c\'alculo es susceptible a tener un determinado margen de error y, si además cada resultado obtenido se utiliza en otros cálculos entonces el error se propaga y aumenta.  
+Por lo que, con respecto a los métodos la implementación de Spline posee esta gran desventaja. En algunos casos este error puede ser despreciable comparado con los resultados obtenidos con otro método que utiliza menos cálculos pero, donde el valor que se elige para cada píxel está más alejado del que realmente debería usar; lo que sucede por ejemplo con Spline y Vecino m\'as cercano, salvo la excepción de la tabla \ref{tabla25}, ahora que profundizamos sobre una de las desventajas que posee el meteodo de Spline podemos complementar esa excepción ocurrida al decir que en este caso el error cometido no fue despreciable.
 Otro factor influyente es el tipo de imagen con la que se trabaje, los cambios de tonalidad en la misma también pueden influir notablemente. La idea básica de ambos métodos, se basa en que si se tienen dos puntos conocidos $P_i$ y $P_k$ y se quieren calcular los valores $P_t$ con $i < t < k$, el método bilineal trazará una recta entre $P_i$ y $P_k$ donde los valores de los $P_t$ serán definidos por los puntos generados por la pendiente de la misma. Mientras que en Splines los puntos serán definidos por un polinomio cúbico, el cual permite que los valores se tomen de manera menos estricta, considerando un mayor distribución de los mismos.
-\par En imágenes que posean una distribución de tonos similar, los resultados obtenidos por los métodos de Splines y Bilineal no deberían variar en demasía pero, dado el problema aritmético que se presenta en Splines, esto hace que interfiera de manera no despreciable causando el error observable. En cambio, si en la imágenes se presentan facciones de tonos muy variado entonces, según esta idea el método de Splines debería ser mejor y vimos que esto sucedió en la imagen $Lago$ donde para todos los k utilizados el método de Spline fue superior. El mayor problema pudo estar en los bordes entre las secciones del cielo, la tierra y el lago (siendo la segunda de una tonalidad totalmente opuesta a las restantes). En el método Bilineal si se quiere calcular el valor de un pixel muy cercano a los bordes, se verá fuertemente influenciado por un valor muy bajo y otro muy alto, alterando el valor del pixel respecto al que debería tener. En cambio en Splines este valor depende de mas puntos y como tiene una traza mas suave nos va a permitir tener una mejor aproximación. 
-Las imagenes con las que trabajamos nos permitieron plantear estas teorías luego de observar los resultados obtenidos, una posible experimentación adicional sería trabajar con mas imágenes que presenten similares características a la de imagen $Lago$ y ver si esto sigue sucediendo.
+\par En imágenes que posean una distribución de tonos similar, los resultados obtenidos por los métodos de Splines y Bilineal no deberían variar en demasía pero, dado el problema aritmético que se presenta en Splines, esto hace que interfiera de manera no despreciable causando el error observable. En cambio, si en la imágenes se presentan facciones de tonos muy variado entonces, según esta idea el método de Splines debería ser mejor y vimos que esto sucedió en la imagen $Lago$ donde para todos los k utilizados el método de Spline fue superior. El mayor problema pudo estar en los bordes entre las secciones del cielo, la tierra y el lago (siendo la segunda de una tonalidad totalmente opuesta a las restantes). En el método Bilineal si se quiere calcular el valor de un pixel muy cercano a los bordes, se verá fuertemente influenciado por un valor muy bajo y otro muy alto, alterando el valor del pixel respecto al que debería tener. En cambio en Splines este valor depende de m\'as puntos y como tiene una traza mas suave nos va a permitir tener una mejor aproximación. 
+Las im\'agenes con las que trabajamos nos permitieron plantear estas teorías luego de observar los resultados obtenidos, una posible experimentación adicional sería trabajar con mas imágenes que presenten similares características a la de imagen $Lago$ y ver si esto sigue sucediendo.
 
 \section{Conclusiones}
 En el presente trabajo pudimos aplicar los conceptos de interpolación numérica para hacer zoom en imágenes. Aprendimos las diferencias fundamentales de los distintos métodos de interpolación a nivel teórico y observamos su comportamiento realizando una experimentación exhaustiva sobre conjuntos de distintos tipos de imágenes. El hecho de trabajar específicamente con imágenes nos permitió implementar ciertas variaciones de los métodos conocidos y mediante la experimentación realizada efectuamos comparaciones entre estas variantes para elegir la que mejores resultados dió en cada conjunto.  La experimentación también hizo que nos diéramos cuenta que, en ocasiones, un método tan simple como vecino más cercano o interpolación bilineal puede dar mejores resultados a nivel calidad que un método mucho más sofisticado como splines. Esto es un claro ejemplo del valor que tiene la experimentación ya que de alguna manera nos salva de cometer la equivocación de elegir un método porque posee una base teórica más compleja cuando en realidad existen otros más simples que se adecúan mejor a nuestras necesidades. Además de que los métodos que son conceptualmente más sofisticados muchas veces están acompañados por un costo computacional mayor, como es el caso de splines.
 \par El análisis cualitativo de las imágenes procesadas hizo que podamos saber cómo se comportan las distintas variantes implementadas de cada método en la práctica. Luego, el análisis cuantitativo del tiempo de cómputo y el PSNR nos permitió tanto complementar como relacionar las observaciones visuales realizadas en una primera instancia. Esto último fue muy importante cuando las diferencias entre distintos resultados eran imperceptibles a la vista. Además fue importante a la hora de elegir configuraciones, en las implementaciones que requerían ciertos parámetros adicionales, de acuerdo al PSNR y tiempo de cómputo.
+En un futuro nos gustar\'ia implementar los m\'etodos de este trabajo pr\'actico en videos tambien y observar sus resultados.
 \begin{thebibliography}{abbrvnat}
 \bibitem{burden} Burden R. L., Faires J.D.- Numerical Analysis
 \end{thebibliography}
@@ -2417,7 +2418,7 @@ El formato de archivos, la modalidad de ejecuci\'on y el esquema de experimentac
 
 \subsection*{Apéndice B: Validación de la implementación}
 
-Para verificar que los algoritmos implementados operen como esperamos,además de la misma observación de la imagen, lo cual muchas veces resulto útil, se utilizo una carpeta aparte llamada ''validacion_tp3'' con una versión del trabajo práctico que nos permitía correr matrices pequeñas. Podemos encontrar en la misma una instancia de prueba llamada ''matrizEntrada.txt'' con sus respectivas salidas para cada método. Se utilizaron otras instancias, pero no estan documentadas, ya que se fueron eliminando en el proceso. Para verificar de manera mas efectiva la correctitud de los métodos, esta versión toma como entrada matrices de tipo unsigned int, y como salida matrices tipo double. El proceso de constatar que la salida cumple con nuestras expectativas se hace a mano, y en ocasiones solo sobre una parte del resultado.
+Para verificar que los algoritmos implementados operen como esperamos,además de la misma observación de la imagen, lo cual muchas veces resulto útil, se utiliz\'o una carpeta aparte llamada ''validacion_tp3'' con una versión del trabajo práctico que nos permitía correr matrices pequeñas. Podemos encontrar en la misma una instancia de prueba llamada ''matrizEntrada.txt'' con sus respectivas salidas para cada método. Se utilizaron otras instancias, pero no estan documentadas, ya que se fueron eliminando en el proceso. Para verificar de manera m\'as efectiva la correctitud de los métodos, esta versión toma como entrada matrices de tipo unsigned int, y como salida matrices tipo double. El proceso de constatar que la salida cumple con nuestras expectativas se hace a mano, y en ocasiones solo sobre una parte del resultado.
 
 Para el caso de splines también se verifico la correctitud de la función dame_Spline imprimiendo en pantalla los coeficientes obtenidos para casos conocidos de antemano.
 
