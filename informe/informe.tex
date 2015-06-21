@@ -131,13 +131,19 @@
 \submateria{Primer Cuatrimestre - 2015}
 \titulo{Trabajo Práctico III}
 \subtitulo{Marche un telebeam Don Niembraaaaaa...}
-\integrante{}{}{}
-\integrante{}{}{}
-\integrante{}{}{}
-\integrante{}{}{}
+\integrante{Germán Pinzón}{475/13}{pinzon.german.94@gmail.com}
+\integrante{Angel More}{931/12}{angel_21_fer@hotmail.com}
+\integrante{Julián Armagno}{377/12}{julian.armagno@gmail.com}
+\integrante{Jorge Porto}{376/11}{cuanto.p.p@gmail.com}
 
 \maketitle
-\newpage
+\begin{abstract}
+
+En este trabajo se utilizarán distintas técnicas para obtener re-escalamiento de imágenes. Implementaremos vecino más cercano, interpolación bilineal, splines cúbicos, y distintas variantes de los métodos anteriormente mencionados. Se llevará a cabo una experimentación con su respectivo análisis tanto cuantitativo como cualitativo. Para el análisis cuantitativo utilizaremos las métricas de Error Cuadrático Medio (ECM) y Peak to Signal Noise Ratio (PSNR) para estudiar el impacto del as diferencias entre las imágenes originales y las resultantes. El análisis cualitativo será realizado observando las diferencias más notables entre las imágenes resultantes y originales y también entre las imágenes que devuelven distintas variantes de un mismo método. 
+
+\textbf{Palabras Clave}: zoom, imagen, interpolación, Lagrange, ECM, PSNR
+
+\end{abstract}
 
 
 \vspace{3cm}
@@ -214,17 +220,6 @@ end
 \setcounter{page}{1}
 \renewcommand{\tablename}{Tabla} 
 
-
-\begin{abstract}
-
-En este trabajo se utilizaran distintas técnicas para obtener un re-escalamiento de imágenes. Se utilizara vecino más cercano, interpolación de polinomios bilineal, splines cúbicos, y distintas variantes de los métodos anteriormente mencionados. Se implementaran algoritmos para los mismos, dando la posibilidad de re-escalar las imágenes en distintos tamaños(siempre mayor al original). Se llevara a cabo una experimentación con su respectivo análisis. Como las imágenes obtenidas, no contienen integramente información original, se utilizaran las métricas de Error Cuadrático Medio (ECM) y Peak to Signal Noise Ratio (PSNR) para estudiar en forma cuantitativa la calidad de las mismas. También se considerara la calidad subjetiva, y el tiempo de computo. 
-
-\textbf{Palabras Clave}: re-escalamiento imágenes, interpolación, ECM, PSNR
-
-\end{abstract}
-
-\newpage
-
 \section{Intoducción}
 
 En el presente trabajo se nos plantea como objetivo el re-escalamiento de imágenes, específicamente ampliarlas.
@@ -235,9 +230,9 @@ Para ampliar las imágenes, a partir de un valor $k \in \mathbb{N}_{>0}$ inserta
 
 El problema que ahora se genera es ¿que valores asignar a los pixels de las columnas y filas agregadas?. Para esto, emplearemos distintos criterios de asignación de valor a partir de ciertos métodos.
 
-En primera instancia consideraremos el método de vecino m\'as cercano, para esto el valor de un píxel nuevo sera igual a aquel cuya distancia a otro píxel, en una vecindad definida, sea la mínima. En particular la vencidad tomada será de aquellos cuatro valores más cercano con respecto a los pixels originales (pixels de la imagen sin ampliar, $imagen$ $original$). 
+En primera instancia consideraremos el método de vecino m\'as cercano, para esto el valor de un píxel nuevo será igual a aquel cuya distancia a otro píxel, en una vecindad definida, sea la mínima. En particular la vencidad tomada será de aquellos cuatro valores más cercano con respecto a los pixels originales (pixels de la imagen sin ampliar, $imagen$ $original$). 
 
-Otro método empleado fue mediante la interpolación de polinomios, esta consiste en que dada una terna de puntos ($ x_{0} $, $ y_{0} $), ($ x_{1} $, $ y_{1} $), $ \ldots $ ($ x_{n} $, $ y_{n} $) se busca obtener un polinomio $P$ que los interpole es decir, que verifique $ p(x_{0}) =  y_{0} $, $ p(x_{1}) =  y_{1} $, $ \ldots $ $ p(x_{n}) =  y_{n} $. En general, la interpolación de una serie de puntos es usada para aproximar una función continua en un cierto intervalo. 
+Otro método empleado fue mediante la interpolación de polinomios, esta consiste en que dada un conjunto de puntos ($ x_{0} $, $ y_{0} $), ($ x_{1} $, $ y_{1} $), $ \ldots $ ($ x_{n} $, $ y_{n} $) se busca obtener un polinomio $P$ que los interpole es decir, que verifique $ p(x_{0}) =  y_{0} $, $ p(x_{1}) =  y_{1} $, $ \ldots $ $ p(x_{n}) =  y_{n} $. En general, la interpolación de una serie de puntos es usada para aproximar una función continua en un cierto intervalo. 
 Dado que siempre existe un polinomio interpolador para $n+1$ puntos, de grado a lo sumo n que los interpole$^{1}$ %Burden 7 edicion teorema 3.2 pag 109
 , una de la forma de obtenerlo es mediante el método de interpolación de Lagrange, el cual se basa en construir primero los polinomios $ L_{n,k} $ definidos como se indica en la ecuación~\ref{Ls}.
 
@@ -251,7 +246,7 @@ El polinomio de grado a lo sumo $ n $ que interpola los $ n +1 $ puntos se const
 P(x)= \sum_{k=0}^{n}y_{k}L_{n,k}(x)
 \label{lagrange}
 \end{equation}
-Por lo que el segundo método empleado consiste en usar interpolación bilineal entre dos puntos ($ x_{0} $, $ y_{0} $) y ($ x_{1} $, $ y_{1} $), en nuestro caso entre dos pixels, por lo que el polinomio interpolador de Lagrange sera de grado a lo sumo uno es decir, será una recta que pasa por dos puntos. En la ecuación~\ref{bilinealInter}
+Por lo que el segundo método empleado consiste en usar interpolación bilineal entre dos puntos ($ x_{0} $, $ y_{0} $) y ($ x_{1} $, $ y_{1} $), en nuestro caso entre dos pixels, por lo que el polinomio interpolador de Lagrange será de grado a lo sumo uno es decir, será una recta que pasa por dos puntos. En la ecuación~\ref{bilinealInter}
 \begin{equation}
 P(x)= L_{1,0}(x)y_{0} + L_{1,1}(x)y_{1} = \frac{x -x_{1}}{x_{0}-x_{1}}y_0 + \frac{x-x_{0}}{x_{1}-x_{0}} y_{1}
 \label{bilinealInter}
@@ -329,7 +324,7 @@ Con $I$ e $\bar{I}$ la imagen original y la ampliada respectivamente, de dimensi
 
 En este trabajo pr\'actico se aplicar\'an distintos métodos para re-escalar una imagen, es decir obtener una imagen igual, pero con una cantidad de pixeles mayor. Para esto en todos los casos, se ejecutar\'a desde el programa en \verb-C++- un script de matlab que dada una imagen en cualquier formato, obtenga un archivo''.csv'' con la matriz que representa esa imagen convertida a escala de grises. Luego se utilizar\'a el mismo para aplicarle los métodos para re-escalarla, obteniendo un archivo ".csv'' con la imagen final, y nuevamente se llamara a un script de matlab para obtener una imagen en formato TIFF en blanco y negro.
 
-Lo primero que se aplicar\'a a la matriz de la imagen de entrada en escala de grises es aumentar su tamaño según un parámetro $k \in \mathbb{N}_{>0}$ que indica la cantidad de filas y columnas que ser\'an insertadas entre cada par de puntos consecutivos, tal como se puede ver en la figura~\ref{expansionImagen}. Estas nuevas filas y columnas seran rellenadas provisoriamente con $ -1 $.
+Lo primero que se aplicar\'a a la matriz de la imagen de entrada en escala de grises es aumentar su tamaño según un parámetro $k \in \mathbb{N}_{>0}$ que indica la cantidad de filas y columnas que ser\'an insertadas entre cada par de puntos consecutivos, tal como se puede ver en la figura~\ref{expansionImagen}. Estas nuevas filas y columnas serán rellenadas provisoriamente con $ -1 $.
 
  \begin{figure}[H]
 \centering
@@ -559,6 +554,7 @@ En cuanto a las variantes de interpolar por diagonales y por bloques, deben dar 
 
 
 \subsection{Splines}
+\subsubsection{Bloques fijos}
 Implementamos dos variantes distintas del método de interpolación por medio de splines: la primera es procesar la imagen de a bloques de un tamaño fijo, la segunda es ir variando el tamaño del bloque de acuerdo a ciertos criterios. En los dos casos vamos a trabajar con bloques de píxeles de la imagen expandida (inicialmente con valores -1 en los píxeles nuevos), calculando los splines correspondientes y pudiendo así hallar los valores de los píxeles nuevos. Empezaremos explicando la primera implementación.
 \par Una vez definido el bloque de la imagen con el que se va a trabajar, la idea va a ser recorrer las \textit{filas} del bloque que poseen píxeles de la imagen original (es decir aquellas filas que no todos sus píxeles tienen el valor -1). Supongamos que trabajamos con el siguiente bloque:
 
@@ -846,7 +842,7 @@ Un algoritmo equivalente podría ser primero trabajar con las columnas $0$, $k +
 Al observar las imágenes, nos puede llamar la atención el hecho de que cuando dos bloques están uno seguido del otro, la primera columna del segundo es la última del primero, al igual que cuando dos bloques están uno debajo del otro, la primera fila del que está abajo es la última del que está arriba. Uno esperaría que los bloques sean disjuntos, sin embargo, si así fuera entonces no podríamos definir correctamente los polinomios cúbicos al construir los splines porque por ejemplo el segundo bloque de la Figura 5 comenzaría con una columna de píxeles donde todos valen -1, con lo cual el extremo izquierdo correspondiente a este intervalo no estaría definido. Esto nos sugiere que además, es necesario que la última columna de cada bloque tenga valores de los píxeles originales, es decir sea un múltiplo de $k + 1$.
 \par Una dificultad con la que nos podemos encontrar es que, al ir moviendonos en bloques del tamaño fijado sobre la imagen expandida, suceda que nos pasemos de las dimensiones de dicha imagen. Cuando eso suceda lo que va a hacer el algoritmo es simplemente ``retroceder'' cierta cantidad de píxeles para formar un bloque del tamaño esperado. Más especificamente cuando hablamos de retroceder píxeles nos referimos a que si estamos queriendo procesar un bloque que supera la cantidad de columnas de la imagen expandida, entonces nos movemos horizontalmente en la imagen tantos píxeles como la diferencia entre la última columna del bloque y el ancho de la imagen. Si nos estamos pasando en la cantidad de filas de la imagen entonces nos movemos verticalmente tantos píxeles como la diferencia entre la última fila del bloque y el alto de la imagen.
 
-\subsection{Splines 2:}
+\subsubsection{Bloques variables}
 
 Para el caso anterior el tamaño de los bloques era fijo, si teníamos dos puntos conocidos $P_{i,j}$ y  $P_{i,j+1} $, dentro del bloque con el que trabajamos, los valores intermedios serian calculados creando un spline por fila para estos puntos. Pero, ¿Que sucede si el valor de ambos difieren de manera considerable? Esto podría implicar que uno es muy claro y el otro no luego, al momento de ampliar la imagen aquellos nuevos pixels que se encuentren entre los $ P_{i,j} $ y  $P_{i,j+1}$ se verán afectados por estos dos, pudiendo tener un valor intermedio a estos.  
  
@@ -1405,6 +1401,7 @@ De pudo apreciar, que para las imagenes grandes a medida que aumentamos el k ayu
  Para finalizar con el estudio de este m\'etodo, concluimos que la mejor variante en cuanto calidad objetiva y calidad subjetiva es la variante por bloques.
 
 \subsection{Splines}
+\subsubsection{Bloques fijos}
 \label{Splines}
 
 Como mencionamos anteriormente en el desarrollo, implementamos dos variantes distintas de este método y por lo tanto experimentamos con ambas variantes. Las imágenes seleccionadas se encuentran en la carpeta Experimentación/Splines y a continuación explicaremos qué particularidad tiene cada imagen junto con los k que vamos a trabajar.
@@ -1701,9 +1698,9 @@ Al igual que sucedió con la imagen Rosa, fueron pocos los casos en donde tomar 
 \par Como conclusión de toda esta extensa experimentación, podemos decir que cuando tenemos una imagen que podemos dividir en bloques cuadrados de igual tamaño (como lo fue Cuadrícula), conviene utilizar bloques precisamente de ese tamaño. Ahora bien si nuestra imagen es grande y sabemos poco sobre ella, a nivel PSNR da lo mismo si utilizamos muchos bloques o un bloque grande para procesarla, sin embargo es preferible utilizar bloques relativamente chicos porque, según lo observado en la experimentación, el tiempo de cómputo va a ser menor. En resumen, utilizar bloques de tamaño chico parece ser la mejor alternativa.
 
 
-\subsection{Spline 2:}
+\subsubsection{Bloques variables}
 
-Para comparar la performance cualitativa así como el tiempo de computo, de aplicar esta variante al método anterior, se trabajaran con las mismas imágenes que utilizo el mismo. Como la cantidad de puntos que se van a utilizar para conformar un spline, tamaño del bloque, ahora está ligado a la tolerancia de diferencia con que se trabaje, $\alpha$. Experimentaremos con distintos valores para cada imagen, empezaremos con una diferencia mínima de 40, aproximadamente una tolerancia del 16\%, e iremos incrementando este valor en 40 hasta una diferencia máxima de 200, 78\%, no optaremos por valores más bajo ya que se asemejaría a aplicar vecino más cercano, ni valores mayores ya que sería similar a utilizar el método anterior tomando como bloque toda la imagen. Además trabajaremos con distintos valores de k por imagen para ver cómo repercute (si es que lo hace).   
+Para comparar la performance cualitativa así como el tiempo de computo, de aplicar esta variante al método anterior, se trabajarán con las mismas imágenes que utilizo el mismo. Como la cantidad de puntos que se van a utilizar para conformar un spline, tamaño del bloque, ahora está ligado a la tolerancia de diferencia con que se trabaje, $\alpha$. Experimentaremos con distintos valores para cada imagen, empezaremos con una diferencia mínima de 40, aproximadamente una tolerancia del 16\%, e iremos incrementando este valor en 40 hasta una diferencia máxima de 200, 78\%, no optaremos por valores más bajo ya que se asemejaría a aplicar vecino más cercano, ni valores mayores ya que sería similar a utilizar el método anterior tomando como bloque toda la imagen. Además trabajaremos con distintos valores de k por imagen para ver cómo repercute (si es que lo hace).   
 
 Una hipótesis que podemos elaborar es que a mayor k la imagen resultante difiere más de la original, ya que se pierden más datos.    
 
@@ -2080,10 +2077,10 @@ A continuación se observa alguno de los casos mencionados anteriormente, por ej
 \caption{Comparación entre la imagen original y la procesada con distintos y $\alpha$}
 \end{figure}
 
-\subsection{Tiempo de cómputo:}
+\subsubsection{Tiempo de cómputo}
 A partir de lo resultados obtenidos podemos deducir que el tiempo de computo para este método no depende del tamaño de la imagen con la que se este trabajando ya que a veces la recontruccion de una imagen cuyo tamaño original es menor tarda más que una de mayor dimensi\'on. Pero, si se observa que en general el tiempo aumenta para valores de $\alpha$ menor, lo que posiblemente se deba a que en estos casos se realiza una mayor variación en la forma de conseguir el valor de un pixel, y dichas fluctuaciones repercuten notablemente en el tiempo de cómputo. 
 
-\subsection{Comparaciones:}
+\subsubsection{Comparación de variantes}
 A partir de las experimentaciones realizadas para el método de splines tomando tanto un tamaño fijo del bloque o siendo este variable. Dado que siempre observamos que a mayor PSNR obtenemos visualmente una imagen con mejor calidad y/o similar a la original, procedimos a realizar una tabla comparativa entre los distintos valores de PSNR obtenidos.  
 
  \begin{figure}[H]
@@ -2240,7 +2237,7 @@ Ahora presentaremos las tablas correspondientes a la comparación entre las mejo
 A partir de los resultados obtenidos al comparar distintos métodos, nos encontramos con el hecho de que, para las imágenes con las que trabajamos, el método bilineal fue el que obtuvo en la mayoría de los casos mayor PSNR, y como consecuencia un menor ECM, cuando esto no sucedió entonces el método de Splines se sobrepuso. 
 
 Pese a que creíamos que el método mas eficaz iba a ser el de Spline, esto no ocurrió. 
-Primero analicemos lo sucedido con el método de vecino mas cercano, en este caso se cumplió lo que intuiamos, que no iba a ser mejor que los otros dos métodos para una imagen. Esto se puede deber a que es el método mas simple, el mismo no tiene un análisis fuerte a la hora de asignar el valor de un pixel desconocido. Funciona de manera golosa, donde el valor de un pixel tan solo va a ser igual al valor del pixel mas cercano, establecida por una vecindad $v$ de 4 pixel. Lo cual evidencia un notable error, que es creer que para cada píxel $p$ del conjunto de píxeles a determinar utilizando $v$, va a existir en $v$ otro píxel $p'$ (el más cercano a $p$) con un valor igual o muy parecido al que realmente debería tener $p$. Sobre todo por el tamaño del a vecindad ya que en realidad cada píxel puede tomar 256 valores distintos. Por esto es que los métodos de Spline o Bilineal van a dar mejores resultados, ya que construyen funciones continuas en base a los píxeles conocidos y esto genera un rango mayor de valores posibles. Sin embargo una particularidad que se puede observar en la tabla \ref{tabla25} es que para k=1 el m\'etodo de vecino m\'as cercano obtiene un PSNR mayor que el de Spline. Esto se puede principalmente a dos factores primero, como se esta trabajando con k = 1 no hay mucha perdida de información ya que al reducir la imagen si estamos trabajando con la $fila_i$ cuyos pixels son $P_{ij}$, con 1$<=$j<$=n$ (n cantidad de columnas) entonces solo se retiraron los $P_{ij}$ tal que j es numero par, quedando disponible pixels que no están muy alejados entre si. El  segundo hecho influyente se debe a que como para este caso se emplea la variación de vecino m\'as cercano que toma el promedio de los valores de la vecindad definida, si existe una cierta distribución de las tonalidades (como ocurre en este caso en la imagen $Mono$) entonces tiene sentido que aquellos $P_{ij}$ retirados tengan una tonalidad similar que a la de sus vecinos, pudiendo ser muy similar al promedio de estos. 
+Primero analicemos lo sucedido con el método de vecino mas cercano, en este caso se cumplió lo que intuiamos, que no iba a ser mejor que los otros dos métodos para una imagen. Esto se puede deber a que es el método mas simple, el mismo no tiene un análisis fuerte a la hora de asignar el valor de un pixel desconocido. Funciona de manera golosa, donde el valor de un pixel tan solo va a ser igual al valor del pixel mas cercano, establecida por una vecindad $v$ de 4 pixel. Lo cual evidencia un notable error, que es creer que para cada píxel $p$ del conjunto de píxeles a determinar utilizando $v$, va a existir en $v$ otro píxel $p'$ (el más cercano a $p$) con un valor igual o muy parecido al que realmente debería tener $p$. Sobre todo por el tamaño del a vecindad ya que en realidad cada píxel puede tomar 256 valores distintos. Por esto es que los métodos de Spline o Bilineal van a dar mejores resultados, ya que construyen funciones continuas en base a los píxeles conocidos y esto genera un rango mayor de valores posibles. Sin embargo una particularidad que se puede observar en la tabla Tabla 25 es que para k=1 el m\'etodo de vecino m\'as cercano obtiene un PSNR mayor que el de Spline. Esto se puede principalmente a dos factores primero, como se esta trabajando con k = 1 no hay mucha pérdida de información ya que al reducir la imagen si estamos trabajando con la $fila_i$ cuyos pixels son $P_{ij}$, con $1 \leq j \leq n$ (n cantidad de columnas) entonces solo se retiraron los $P_{ij}$ tal que j es numero par, quedando disponible pixels que no están muy alejados entre si. El  segundo hecho influyente se debe a que como para este caso se emplea la variación de vecino m\'as cercano que toma el promedio de los valores de la vecindad definida, si existe una cierta distribución de las tonalidades (como ocurre en este caso en la imagen $Mono$) entonces tiene sentido que aquellos $P_{ij}$ retirados tengan una tonalidad similar que a la de sus vecinos, pudiendo ser muy similar al promedio de estos. 
 \par Con respecto a la comparación entre el Método bilineal y el de Splines, fue aca cuando obtuvimos resultados contrarios a lo esperado. A la hora de analizar las causas de este hecho un posible factor influyente es que el método de Spline, es el que mayor cálculos realiza para asignar el valor a cada pixel, dado que se trabaja con aritmética finita cada c\'alculo es susceptible a tener un determinado margen de error y, si además cada resultado obtenido se utiliza en otros cálculos entonces el error se propaga y aumenta.  
 Por lo que, con respecto a los métodos la implementación de Spline posee esta gran desventaja. En algunos casos este error puede ser despreciable comparado con los resultados obtenidos con otro método que utiliza menos cálculos pero, donde el valor que se elige para cada píxel está más alejado del que realmente debería usar; lo que sucede por ejemplo con Spline y Vecino m\'as cercano, salvo la excepción de la tabla \ref{tabla25}, ahora que profundizamos sobre una de las desventajas que posee el meteodo de Spline podemos complementar esa excepción ocurrida al decir que en este caso el error cometido no fue despreciable.
 Otro factor influyente es el tipo de imagen con la que se trabaje, los cambios de tonalidad en la misma también pueden influir notablemente. La idea básica de ambos métodos, se basa en que si se tienen dos puntos conocidos $P_i$ y $P_k$ y se quieren calcular los valores $P_t$ con $i < t < k$, el método bilineal trazará una recta entre $P_i$ y $P_k$ donde los valores de los $P_t$ serán definidos por los puntos generados por la pendiente de la misma. Mientras que en Splines los puntos serán definidos por un polinomio cúbico, el cual permite que los valores se tomen de manera menos estricta, considerando un mayor distribución de los mismos.
