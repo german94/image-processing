@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
 	        break;
 		}
 
-		case BILINEAL:
+		case BILINEALPORBLOQUES:
     	{
 		     if(argc != 4) {
                 usage();
@@ -329,11 +329,9 @@ int main(int argc, char *argv[])
 					porDiagBilineal(expandida, k);
 					break;
 				}
-				case PORBLOQUES:
-				{
-
-					break;
-				}
+				default:
+            throw runtime_error("No existe ese submetodo");
+				
 			}
 
 		    grabarImagen(argv[1], expandida);

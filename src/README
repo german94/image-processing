@@ -1,0 +1,29 @@
+IMPORTANTE:
+-El programa solo acepta imagenes de entrada en color.
+-El programa devolvera la imagen con el zoom con el nombre de "input_filenameOutput.tiff"
+-Las imagenes se cargarán y guardarán a través de Matlab, por lo que es necesario poder ejecutar matlab desde la terminal, en cualquier ubicación.
+-Se uso el comando nohup por un bug de matlab de que al ejecutar matlab desde una llamada de system de c++, cuando el programa finaliza, la terminal queda inutilizable.
+
+
+Para ejecutar el programa:
+
+Metodo Vecino más cercano:
+./tp <input_filename> <K> 0 <submetodo>
+donde submetodo puede ser: 0 para la version original, 1 para la variante de calculo dinámico y 2 para la variante del promedio.
+
+Metodo Bilineal:
+./tp <input_filename> <K> 2 <submetodo>
+donde submetodo puede ser: 0 para la version original, 1 para la variante de ignorar un pixel y 2 para la variante bilineal por diagonales.
+
+Para la variante de bilineal por columnas se debera ejecutar con:
+./tp <input_filename> <K> 1
+
+
+Metodo Spline:
+./tp <input_filename> <K> 3 <tamañoDeBloques>
+Ejecuta el metodo de Spline original interpolando por bloques
+
+./tp <input_filename> <K> 4 <alpha>
+Ejecuta la variante del metodo de Spline que interpola por bloques, cuyo tamaño esta determinado por el cambio brusco de color de los pixeles, el alpha marca la distancia entre dos pixeles para que se denomine "cambio brusco de color"
+
+
