@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  21 JUN 2015 19:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.7)  21 JUN 2015 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1816,21 +1816,21 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1031.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1031.
- [13] <imagenes/palabrask1.png, id=239, 643.40375pt x 362.35374pt>
+ [13] <imagenes/palabrask1.png, id=238, 643.40375pt x 362.35374pt>
 File: imagenes/palabrask1.png Graphic file (type png)
 
 <use imagenes/palabrask1.png>
 Package pdftex.def Info: imagenes/palabrask1.png used on input line 1043.
 (pdftex.def)             Requested size: 160.85054pt x 90.58821pt.
 
-<imagenes/palabrask3.png, id=241, 643.40375pt x 362.35374pt>
+<imagenes/palabrask3.png, id=240, 643.40375pt x 362.35374pt>
 File: imagenes/palabrask3.png Graphic file (type png)
 
 <use imagenes/palabrask3.png>
 Package pdftex.def Info: imagenes/palabrask3.png used on input line 1048.
 (pdftex.def)             Requested size: 160.85054pt x 90.58821pt.
 
-<imagenes/palabrask4.png, id=242, 643.40375pt x 362.35374pt>
+<imagenes/palabrask4.png, id=241, 643.40375pt x 362.35374pt>
 File: imagenes/palabrask4.png Graphic file (type png)
 
 <use imagenes/palabrask4.png>
@@ -1841,7 +1841,7 @@ Overfull \hbox (43.98753pt too wide) in paragraph at lines 1043--1054
  [][][][][] 
  []
 
-<imagenes/globok15.png, id=245, 1430.34375pt x 1430.34375pt>
+<imagenes/globok15.png, id=244, 1430.34375pt x 1430.34375pt>
 File: imagenes/globok15.png Graphic file (type png)
 
 <use imagenes/globok15.png>
@@ -2034,14 +2034,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1337--1341
 
  []
 
-<imagenes/imagen4informe.png, id=290, 400.49625pt x 401.5pt>
+<imagenes/imagen4informe.png, id=289, 400.49625pt x 401.5pt>
 File: imagenes/imagen4informe.png Graphic file (type png)
 
 <use imagenes/imagen4informe.png>
 Package pdftex.def Info: imagenes/imagen4informe.png used on input line 1345.
 (pdftex.def)             Requested size: 200.24763pt x 200.7495pt.
 
-<imagenes/imagen4informeOriginal.png, id=291, 400.49625pt x 401.5pt>
+<imagenes/imagen4informeOriginal.png, id=290, 400.49625pt x 401.5pt>
 File: imagenes/imagen4informeOriginal.png Graphic file (type png)
 
 <use imagenes/imagen4informeOriginal.png>
@@ -2049,7 +2049,7 @@ Package pdftex.def Info: imagenes/imagen4informeOriginal.png used on input line
  1351.
 (pdftex.def)             Requested size: 200.24763pt x 200.7495pt.
 
-<imagenes/imagen5informe.png, id=292, 400.49625pt x 401.5pt>
+<imagenes/imagen5informe.png, id=291, 400.49625pt x 401.5pt>
 File: imagenes/imagen5informe.png Graphic file (type png)
 
 <use imagenes/imagen5informe.png>
@@ -2083,7 +2083,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1360.
  [19 <./imagenes/imagen4informe.png (PNG copy)> <./imagenes/imagen4informeOrigi
 nal.png (PNG copy)>]
-<imagenes/imagen5informeOriginal.png, id=300, 400.49625pt x 401.5pt>
+<imagenes/imagen5informeOriginal.png, id=299, 400.49625pt x 401.5pt>
 File: imagenes/imagen5informeOriginal.png Graphic file (type png)
 
 <use imagenes/imagen5informeOriginal.png>
@@ -2091,7 +2091,7 @@ Package pdftex.def Info: imagenes/imagen5informeOriginal.png used on input line
  1363.
 (pdftex.def)             Requested size: 200.24763pt x 200.7495pt.
 
-<imagenes/imagen4informe2.png, id=301, 603.25375pt x 603.25375pt>
+<imagenes/imagen4informe2.png, id=300, 603.25375pt x 603.25375pt>
 File: imagenes/imagen4informe2.png Graphic file (type png)
 
 <use imagenes/imagen4informe2.png>
@@ -2130,7 +2130,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1373.
 [20 <./imagenes/imagen5informe.png (PNG copy)> <./imagenes/imagen5informeOrigin
 al.png (PNG copy)>]
-<imagenes/imagen4informe2Original.png, id=308, 603.25375pt x 603.25375pt>
+<imagenes/imagen4informe2Original.png, id=307, 603.25375pt x 603.25375pt>
 File: imagenes/imagen4informe2Original.png Graphic file (type png)
 
 <use imagenes/imagen4informe2Original.png>
@@ -2138,7 +2138,7 @@ Package pdftex.def Info: imagenes/imagen4informe2Original.png used on input lin
 e 1376.
 (pdftex.def)             Requested size: 301.62613pt x 301.62613pt.
 
-<imagenes/imagen2informe.png, id=309, 603.25375pt x 603.25375pt>
+<imagenes/imagen2informe.png, id=308, 603.25375pt x 603.25375pt>
 File: imagenes/imagen2informe.png Graphic file (type png)
 
 <use imagenes/imagen2informe.png>
@@ -2172,7 +2172,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1385.
  [21 <./imagenes/imagen4informe2.png (PNG copy)> <./imagenes/imagen4informe2Ori
 ginal.png (PNG copy)>]
-<imagenes/imagen2informeOriginal.png, id=316, 603.25375pt x 603.25375pt>
+<imagenes/imagen2informeOriginal.png, id=315, 603.25375pt x 603.25375pt>
 File: imagenes/imagen2informeOriginal.png Graphic file (type png)
 
 <use imagenes/imagen2informeOriginal.png>
@@ -2293,7 +2293,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1415.
 [23]
-<imagenes/ImgsSplinesBloquesFijos/tanqueorig.jpg, id=328, 202.50656pt x 86.5734
+<imagenes/ImgsSplinesBloquesFijos/tanqueorig.jpg, id=327, 202.50656pt x 86.5734
 4pt>
 File: imagenes/ImgsSplinesBloquesFijos/tanqueorig.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanqueorig.jpg>
@@ -2301,7 +2301,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanqueorig.jpg used o
 n input line 1425.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque50.jpg, id=329, 202.50656pt x 86.57344p
+<imagenes/ImgsSplinesBloquesFijos/tanque50.jpg, id=328, 202.50656pt x 86.57344p
 t>
 File: imagenes/ImgsSplinesBloquesFijos/tanque50.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque50.jpg>
@@ -2309,7 +2309,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanque50.jpg used on
 input line 1428.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque30.jpg, id=330, 202.50656pt x 86.57344p
+<imagenes/ImgsSplinesBloquesFijos/tanque30.jpg, id=329, 202.50656pt x 86.57344p
 t>
 File: imagenes/ImgsSplinesBloquesFijos/tanque30.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque30.jpg>
@@ -2317,7 +2317,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanque30.jpg used on
 input line 1431.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque20.jpg, id=331, 202.50656pt x 86.57344p
+<imagenes/ImgsSplinesBloquesFijos/tanque20.jpg, id=330, 202.50656pt x 86.57344p
 t>
 File: imagenes/ImgsSplinesBloquesFijos/tanque20.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque20.jpg>
@@ -2358,7 +2358,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanque50.jpg used on
 input line 1442.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque256.jpg, id=336, 202.50656pt x 86.57344
+<imagenes/ImgsSplinesBloquesFijos/tanque256.jpg, id=335, 202.50656pt x 86.57344
 pt>
 File: imagenes/ImgsSplinesBloquesFijos/tanque256.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque256.jpg>
@@ -2372,7 +2372,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanque30.jpg used on
 input line 1453.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque171.jpg, id=337, 202.50656pt x 86.57344
+<imagenes/ImgsSplinesBloquesFijos/tanque171.jpg, id=336, 202.50656pt x 86.57344
 pt>
 File: imagenes/ImgsSplinesBloquesFijos/tanque171.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque171.jpg>
@@ -2386,7 +2386,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/tanque20.jpg used on
 input line 1464.
 (pdftex.def)             Requested size: 101.25302pt x 43.2866pt.
 
-<imagenes/ImgsSplinesBloquesFijos/tanque103.jpg, id=338, 202.50656pt x 86.57344
+<imagenes/ImgsSplinesBloquesFijos/tanque103.jpg, id=337, 202.50656pt x 86.57344
 pt>
 File: imagenes/ImgsSplinesBloquesFijos/tanque103.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/tanque103.jpg>
@@ -2398,7 +2398,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1471--1473
 
  []
 
-<imagenes/tanqueTabla.jpg, id=339, 486.81876pt x 302.12875pt>
+<imagenes/tanqueTabla.jpg, id=338, 486.81876pt x 302.12875pt>
 File: imagenes/tanqueTabla.jpg Graphic file (type jpg)
 
 <use imagenes/tanqueTabla.jpg>
@@ -2466,14 +2466,14 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1485.
 [26 <./imagenes/tanqueTabla.jpg>]
-<imagenes/grisesTabla.jpg, id=362, 486.81876pt x 302.12875pt>
+<imagenes/grisesTabla.jpg, id=361, 486.81876pt x 302.12875pt>
 File: imagenes/grisesTabla.jpg Graphic file (type jpg)
 
 <use imagenes/grisesTabla.jpg>
 Package pdftex.def Info: imagenes/grisesTabla.jpg used on input line 1488.
 (pdftex.def)             Requested size: 243.40878pt x 151.064pt.
 
-<imagenes/ImgsSplinesBloquesFijos/cuadriculaoriginal.jpg, id=363, 123.46124pt x
+<imagenes/ImgsSplinesBloquesFijos/cuadriculaoriginal.jpg, id=362, 123.46124pt x
  121.95563pt>
 File: imagenes/ImgsSplinesBloquesFijos/cuadriculaoriginal.jpg Graphic file (typ
 e jpg)
@@ -2482,7 +2482,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/cuadriculaoriginal.jp
 g used on input line 1499.
 (pdftex.def)             Requested size: 61.73045pt x 60.97765pt.
 
-<imagenes/ImgsSplinesBloquesFijos/cuadriculak19.jpg, id=364, 123.46124pt x 121.
+<imagenes/ImgsSplinesBloquesFijos/cuadriculak19.jpg, id=363, 123.46124pt x 121.
 95563pt>
 File: imagenes/ImgsSplinesBloquesFijos/cuadriculak19.jpg Graphic file (type jpg
 )
@@ -2491,7 +2491,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/cuadriculak19.jpg use
 d on input line 1502.
 (pdftex.def)             Requested size: 61.73045pt x 60.97765pt.
 
-<imagenes/ImgsSplinesBloquesFijos/cuadriculak217.jpg, id=365, 123.46124pt x 121
+<imagenes/ImgsSplinesBloquesFijos/cuadriculak217.jpg, id=364, 123.46124pt x 121
 .95563pt>
 File: imagenes/ImgsSplinesBloquesFijos/cuadriculak217.jpg Graphic file (type jp
 g)
@@ -2500,7 +2500,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/cuadriculak217.jpg us
 ed on input line 1505.
 (pdftex.def)             Requested size: 61.73045pt x 60.97765pt.
 
-<imagenes/ImgsSplinesBloquesFijos/cuadriculak417.jpg, id=366, 123.46124pt x 121
+<imagenes/ImgsSplinesBloquesFijos/cuadriculak417.jpg, id=365, 123.46124pt x 121
 .95563pt>
 File: imagenes/ImgsSplinesBloquesFijos/cuadriculak417.jpg Graphic file (type jp
 g)
@@ -2543,7 +2543,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/cuadriculak19.jpg use
 d on input line 1516.
 (pdftex.def)             Requested size: 61.73045pt x 60.97765pt.
 
-<imagenes/ImgsSplinesBloquesFijos/cuadriculak1256.jpg, id=371, 123.46124pt x 12
+<imagenes/ImgsSplinesBloquesFijos/cuadriculak1256.jpg, id=370, 123.46124pt x 12
 1.95563pt>
 File: imagenes/ImgsSplinesBloquesFijos/cuadriculak1256.jpg Graphic file (type j
 pg)
@@ -2556,7 +2556,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1523--1526
 
  []
 
-<imagenes/cuadriculaTabla.jpg, id=372, 486.81876pt x 302.12875pt>
+<imagenes/cuadriculaTabla.jpg, id=371, 486.81876pt x 302.12875pt>
 File: imagenes/cuadriculaTabla.jpg Graphic file (type jpg)
 
 <use imagenes/cuadriculaTabla.jpg>
@@ -2593,7 +2593,7 @@ gsSplinesBloquesFijos/cuadriculak19.jpg> <./imagenes/ImgsSplinesBloquesFijos/cu
 adriculak217.jpg> <./imagenes/ImgsSplinesBloquesFijos/cuadriculak417.jpg> <./im
 agenes/ImgsSplinesBloquesFijos/cuadriculak1256.jpg> <./imagenes/cuadriculaTabla
 .jpg>]
-<imagenes/ImgsSplinesBloquesFijos/lagooriginal1.jpg, id=385, 155.07938pt x 113.
+<imagenes/ImgsSplinesBloquesFijos/lagooriginal1.jpg, id=384, 155.07938pt x 113.
 67468pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagooriginal1.jpg Graphic file (type jpg
 )
@@ -2602,7 +2602,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/lagooriginal1.jpg use
 d on input line 1540.
 (pdftex.def)             Requested size: 77.53949pt x 56.83719pt.
 
-<imagenes/ImgsSplinesBloquesFijos/lagok1525.jpg, id=386, 155.07938pt x 113.6746
+<imagenes/ImgsSplinesBloquesFijos/lagok1525.jpg, id=385, 155.07938pt x 113.6746
 8pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagok1525.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/lagok1525.jpg>
@@ -2610,7 +2610,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/lagok1525.jpg used on
  input line 1543.
 (pdftex.def)             Requested size: 77.53949pt x 56.83719pt.
 
-<imagenes/ImgsSplinesBloquesFijos/lagok2200.jpg, id=387, 155.07938pt x 113.6746
+<imagenes/ImgsSplinesBloquesFijos/lagok2200.jpg, id=386, 155.07938pt x 113.6746
 8pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagok2200.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/lagok2200.jpg>
@@ -2618,7 +2618,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/lagok2200.jpg used on
  input line 1546.
 (pdftex.def)             Requested size: 77.53949pt x 56.83719pt.
 
-<imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg, id=388, 155.07938pt x 113.6746
+<imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg, id=387, 155.07938pt x 113.6746
 8pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg>
@@ -2626,7 +2626,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg used on
  input line 1549.
 (pdftex.def)             Requested size: 77.53949pt x 56.83719pt.
 
-<imagenes/ImgsSplinesBloquesFijos/lagok550.jpg, id=389, 155.07938pt x 113.67468
+<imagenes/ImgsSplinesBloquesFijos/lagok550.jpg, id=388, 155.07938pt x 113.67468
 pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagok550.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/lagok550.jpg>
@@ -2634,7 +2634,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/lagok550.jpg used on
 input line 1552.
 (pdftex.def)             Requested size: 77.53949pt x 56.83719pt.
 
-<imagenes/ImgsSplinesBloquesFijos/lagok7382.jpg, id=390, 155.07938pt x 113.6746
+<imagenes/ImgsSplinesBloquesFijos/lagok7382.jpg, id=389, 155.07938pt x 113.6746
 8pt>
 File: imagenes/ImgsSplinesBloquesFijos/lagok7382.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/lagok7382.jpg>
@@ -2651,14 +2651,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1558--1560
 
  []
 
-<imagenes/lagok1Tabla.jpg, id=391, 607.26875pt x 241.90375pt>
+<imagenes/lagok1Tabla.jpg, id=390, 607.26875pt x 241.90375pt>
 File: imagenes/lagok1Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/lagok1Tabla.jpg>
 Package pdftex.def Info: imagenes/lagok1Tabla.jpg used on input line 1563.
 (pdftex.def)             Requested size: 303.63364pt x 120.95157pt.
 
-<imagenes/lagok2Tabla.jpg, id=392, 607.26875pt x 241.90375pt>
+<imagenes/lagok2Tabla.jpg, id=391, 607.26875pt x 241.90375pt>
 File: imagenes/lagok2Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/lagok2Tabla.jpg>
@@ -2695,21 +2695,21 @@ inesBloquesFijos/lagok1525.jpg> <./imagenes/ImgsSplinesBloquesFijos/lagok2200.j
 pg> <./imagenes/ImgsSplinesBloquesFijos/lagok3100.jpg> <./imagenes/ImgsSplinesB
 loquesFijos/lagok550.jpg> <./imagenes/ImgsSplinesBloquesFijos/lagok7382.jpg> <.
 /imagenes/lagok1Tabla.jpg>]
-<imagenes/lagok3Tabla.jpg, id=405, 607.26875pt x 241.90375pt>
+<imagenes/lagok3Tabla.jpg, id=404, 607.26875pt x 241.90375pt>
 File: imagenes/lagok3Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/lagok3Tabla.jpg>
 Package pdftex.def Info: imagenes/lagok3Tabla.jpg used on input line 1573.
 (pdftex.def)             Requested size: 303.63364pt x 120.95157pt.
 
-<imagenes/lagok5Tabla.jpg, id=406, 607.26875pt x 241.90375pt>
+<imagenes/lagok5Tabla.jpg, id=405, 607.26875pt x 241.90375pt>
 File: imagenes/lagok5Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/lagok5Tabla.jpg>
 Package pdftex.def Info: imagenes/lagok5Tabla.jpg used on input line 1578.
 (pdftex.def)             Requested size: 303.63364pt x 120.95157pt.
 
-<imagenes/lagok7Tabla.jpg, id=407, 607.26875pt x 241.90375pt>
+<imagenes/lagok7Tabla.jpg, id=406, 607.26875pt x 241.90375pt>
 File: imagenes/lagok7Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/lagok7Tabla.jpg>
@@ -2743,7 +2743,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1586.
  [30 <./imagenes/lagok2Tabla.jpg> <./imagenes/lagok3Tabla.jpg> <./imagenes/lago
 k5Tabla.jpg> <./imagenes/lagok7Tabla.jpg>]
-<imagenes/ImgsSplinesBloquesFijos/pianooriginal.jpg, id=412, 216.05719pt x 234.
+<imagenes/ImgsSplinesBloquesFijos/pianooriginal.jpg, id=411, 216.05719pt x 234.
 8775pt>
 File: imagenes/ImgsSplinesBloquesFijos/pianooriginal.jpg Graphic file (type jpg
 )
@@ -2752,7 +2752,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/pianooriginal.jpg use
 d on input line 1594.
 (pdftex.def)             Requested size: 108.02832pt x 117.43846pt.
 
-<imagenes/ImgsSplinesBloquesFijos/pianok1775.jpg, id=413, 216.05719pt x 234.877
+<imagenes/ImgsSplinesBloquesFijos/pianok1775.jpg, id=412, 216.05719pt x 234.877
 5pt>
 File: imagenes/ImgsSplinesBloquesFijos/pianok1775.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/pianok1775.jpg>
@@ -2760,7 +2760,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/pianok1775.jpg used o
 n input line 1597.
 (pdftex.def)             Requested size: 108.02832pt x 117.43846pt.
 
-<imagenes/ImgsSplinesBloquesFijos/pianok2100.jpg, id=414, 216.05719pt x 234.877
+<imagenes/ImgsSplinesBloquesFijos/pianok2100.jpg, id=413, 216.05719pt x 234.877
 5pt>
 File: imagenes/ImgsSplinesBloquesFijos/pianok2100.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/pianok2100.jpg>
@@ -2768,7 +2768,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/pianok2100.jpg used o
 n input line 1600.
 (pdftex.def)             Requested size: 108.02832pt x 117.43846pt.
 
-<imagenes/ImgsSplinesBloquesFijos/pianok3388.jpg, id=415, 216.05719pt x 234.877
+<imagenes/ImgsSplinesBloquesFijos/pianok3388.jpg, id=414, 216.05719pt x 234.877
 5pt>
 File: imagenes/ImgsSplinesBloquesFijos/pianok3388.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/pianok3388.jpg>
@@ -2780,7 +2780,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1607--1609
 
  []
 
-<imagenes/pianoTabla.jpg, id=416, 553.06625pt x 375.4025pt>
+<imagenes/pianoTabla.jpg, id=415, 553.06625pt x 375.4025pt>
 File: imagenes/pianoTabla.jpg Graphic file (type jpg)
 
 <use imagenes/pianoTabla.jpg>
@@ -2816,7 +2816,7 @@ Package babel Info: Redefining spanish shorthand "?
 inesBloquesFijos/pianok1775.jpg> <./imagenes/ImgsSplinesBloquesFijos/pianok2100
 .jpg> <./imagenes/ImgsSplinesBloquesFijos/pianok3388.jpg> <./imagenes/pianoTabl
 a.jpg>]
-<imagenes/ImgsSplinesBloquesFijos/rosaoriginal.jpg, id=426, 207.02344pt x 231.8
+<imagenes/ImgsSplinesBloquesFijos/rosaoriginal.jpg, id=425, 207.02344pt x 231.8
 6626pt>
 File: imagenes/ImgsSplinesBloquesFijos/rosaoriginal.jpg Graphic file (type jpg)
 
@@ -2825,7 +2825,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/rosaoriginal.jpg used
  on input line 1624.
 (pdftex.def)             Requested size: 103.51146pt x 115.93283pt.
 
-<imagenes/ImgsSplinesBloquesFijos/rosak11024.jpg, id=427, 207.02344pt x 231.866
+<imagenes/ImgsSplinesBloquesFijos/rosak11024.jpg, id=426, 207.02344pt x 231.866
 26pt>
 File: imagenes/ImgsSplinesBloquesFijos/rosak11024.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/rosak11024.jpg>
@@ -2833,7 +2833,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/rosak11024.jpg used o
 n input line 1627.
 (pdftex.def)             Requested size: 103.51146pt x 115.93283pt.
 
-<imagenes/ImgsSplinesBloquesFijos/rosak2683.jpg, id=428, 207.02344pt x 231.8662
+<imagenes/ImgsSplinesBloquesFijos/rosak2683.jpg, id=427, 207.02344pt x 231.8662
 6pt>
 File: imagenes/ImgsSplinesBloquesFijos/rosak2683.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/rosak2683.jpg>
@@ -2841,7 +2841,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/rosak2683.jpg used on
  input line 1630.
 (pdftex.def)             Requested size: 103.51146pt x 115.93283pt.
 
-<imagenes/ImgsSplinesBloquesFijos/rosak5342.jpg, id=429, 207.02344pt x 231.8662
+<imagenes/ImgsSplinesBloquesFijos/rosak5342.jpg, id=428, 207.02344pt x 231.8662
 6pt>
 File: imagenes/ImgsSplinesBloquesFijos/rosak5342.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/rosak5342.jpg>
@@ -2853,7 +2853,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1637--1639
 
  []
 
-<imagenes/rosaTabla.jpg, id=430, 553.06625pt x 375.4025pt>
+<imagenes/rosaTabla.jpg, id=429, 553.06625pt x 375.4025pt>
 File: imagenes/rosaTabla.jpg Graphic file (type jpg)
 
 <use imagenes/rosaTabla.jpg>
@@ -2889,7 +2889,7 @@ Package babel Info: Redefining spanish shorthand "?
 nesBloquesFijos/rosak11024.jpg> <./imagenes/ImgsSplinesBloquesFijos/rosak2683.j
 pg> <./imagenes/ImgsSplinesBloquesFijos/rosak5342.jpg> <./imagenes/rosaTabla.jp
 g>]
-<imagenes/ImgsSplinesBloquesFijos/autooriginal.jpg, id=440, 195.73125pt x 236.3
+<imagenes/ImgsSplinesBloquesFijos/autooriginal.jpg, id=439, 195.73125pt x 236.3
 8312pt>
 File: imagenes/ImgsSplinesBloquesFijos/autooriginal.jpg Graphic file (type jpg)
 
@@ -2898,7 +2898,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/autooriginal.jpg used
  on input line 1653.
 (pdftex.def)             Requested size: 97.86537pt x 118.19127pt.
 
-<imagenes/ImgsSplinesBloquesFijos/autok4820.jpg, id=441, 195.73125pt x 236.3831
+<imagenes/ImgsSplinesBloquesFijos/autok4820.jpg, id=440, 195.73125pt x 236.3831
 2pt>
 File: imagenes/ImgsSplinesBloquesFijos/autok4820.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/autok4820.jpg>
@@ -2906,7 +2906,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/autok4820.jpg used on
  input line 1656.
 (pdftex.def)             Requested size: 97.86537pt x 118.19127pt.
 
-<imagenes/ImgsSplinesBloquesFijos/autok630.jpg, id=442, 195.73125pt x 236.38312
+<imagenes/ImgsSplinesBloquesFijos/autok630.jpg, id=441, 195.73125pt x 236.38312
 pt>
 File: imagenes/ImgsSplinesBloquesFijos/autok630.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/autok630.jpg>
@@ -2914,7 +2914,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/autok630.jpg used on
 input line 1659.
 (pdftex.def)             Requested size: 97.86537pt x 118.19127pt.
 
-<imagenes/ImgsSplinesBloquesFijos/autok8456.jpg, id=443, 195.73125pt x 236.3831
+<imagenes/ImgsSplinesBloquesFijos/autok8456.jpg, id=442, 195.73125pt x 236.3831
 2pt>
 File: imagenes/ImgsSplinesBloquesFijos/autok8456.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/autok8456.jpg>
@@ -2922,7 +2922,7 @@ Package pdftex.def Info: imagenes/ImgsSplinesBloquesFijos/autok8456.jpg used on
  input line 1662.
 (pdftex.def)             Requested size: 97.86537pt x 118.19127pt.
 
-<imagenes/ImgsSplinesBloquesFijos/autok1210.jpg, id=444, 195.73125pt x 236.3831
+<imagenes/ImgsSplinesBloquesFijos/autok1210.jpg, id=443, 195.73125pt x 236.3831
 2pt>
 File: imagenes/ImgsSplinesBloquesFijos/autok1210.jpg Graphic file (type jpg)
  <use imagenes/ImgsSplinesBloquesFijos/autok1210.jpg>
@@ -2939,21 +2939,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 1669--1672
 
  []
 
-<imagenes/autok2Tabla.jpg, id=445, 514.92375pt x 238.8925pt>
+<imagenes/autok2Tabla.jpg, id=444, 514.92375pt x 238.8925pt>
 File: imagenes/autok2Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/autok2Tabla.jpg>
 Package pdftex.def Info: imagenes/autok2Tabla.jpg used on input line 1675.
 (pdftex.def)             Requested size: 257.46124pt x 119.44595pt.
 
-<imagenes/autok4Tabla.jpg, id=446, 514.92375pt x 238.8925pt>
+<imagenes/autok4Tabla.jpg, id=445, 514.92375pt x 238.8925pt>
 File: imagenes/autok4Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/autok4Tabla.jpg>
 Package pdftex.def Info: imagenes/autok4Tabla.jpg used on input line 1680.
 (pdftex.def)             Requested size: 257.46124pt x 119.44595pt.
 
-<imagenes/autok6Tabla.jpg, id=447, 514.92375pt x 238.8925pt>
+<imagenes/autok6Tabla.jpg, id=446, 514.92375pt x 238.8925pt>
 File: imagenes/autok6Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/autok6Tabla.jpg>
@@ -2990,14 +2990,14 @@ nesBloquesFijos/autok4820.jpg> <./imagenes/ImgsSplinesBloquesFijos/autok630.jpg
 > <./imagenes/ImgsSplinesBloquesFijos/autok8456.jpg> <./imagenes/ImgsSplinesBlo
 quesFijos/autok1210.jpg> <./imagenes/autok2Tabla.jpg> <./imagenes/autok4Tabla.j
 pg>]
-<imagenes/autok8Tabla.jpg, id=459, 514.92375pt x 238.8925pt>
+<imagenes/autok8Tabla.jpg, id=458, 514.92375pt x 238.8925pt>
 File: imagenes/autok8Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/autok8Tabla.jpg>
 Package pdftex.def Info: imagenes/autok8Tabla.jpg used on input line 1690.
 (pdftex.def)             Requested size: 257.46124pt x 119.44595pt.
 
-<imagenes/autok12Tabla.jpg, id=460, 514.92375pt x 238.8925pt>
+<imagenes/autok12Tabla.jpg, id=459, 514.92375pt x 238.8925pt>
 File: imagenes/autok12Tabla.jpg Graphic file (type jpg)
 
 <use imagenes/autok12Tabla.jpg>
@@ -3043,21 +3043,21 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1704.
  [34 <./imagenes/autok6Tabla.jpg> <./imagenes/autok8Tabla.jpg> <./imagenes/auto
 k12Tabla.jpg>]
-<imagenes/tanque1.jpg, id=465, 600.2425pt x 286.06876pt>
+<imagenes/tanque1.jpg, id=464, 600.2425pt x 286.06876pt>
 File: imagenes/tanque1.jpg Graphic file (type jpg)
 
 <use imagenes/tanque1.jpg>
 Package pdftex.def Info: imagenes/tanque1.jpg used on input line 1711.
 (pdftex.def)             Requested size: 240.09274pt x 114.42546pt.
 
-<imagenes/tanque2.jpg, id=466, 388.45125pt x 286.06876pt>
+<imagenes/tanque2.jpg, id=465, 388.45125pt x 286.06876pt>
 File: imagenes/tanque2.jpg Graphic file (type jpg)
 
 <use imagenes/tanque2.jpg>
 Package pdftex.def Info: imagenes/tanque2.jpg used on input line 1718.
 (pdftex.def)             Requested size: 155.37773pt x 114.42546pt.
 
-<imagenes/tanque4.jpg, id=467, 523.9575pt x 286.06876pt>
+<imagenes/tanque4.jpg, id=466, 523.9575pt x 286.06876pt>
 File: imagenes/tanque4.jpg Graphic file (type jpg)
 
 <use imagenes/tanque4.jpg>
@@ -3091,7 +3091,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1732.
  [35 <./imagenes/tanque1.jpg> <./imagenes/tanque2.jpg> <./imagenes/tanque4.jpg>
 ]
-<imagenes/splinevariable/tanque/orig.png, id=479, 295.1025pt x 151.56625pt>
+<imagenes/splinevariable/tanque/orig.png, id=478, 295.1025pt x 151.56625pt>
 File: imagenes/splinevariable/tanque/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/tanque/orig.png>
@@ -3099,7 +3099,7 @@ Package pdftex.def Info: imagenes/splinevariable/tanque/orig.png used on input
 line 1739.
 (pdftex.def)             Requested size: 177.06285pt x 90.94044pt.
 
-<imagenes/splinevariable/tanque/1a40.png, id=480, 295.1025pt x 151.56625pt>
+<imagenes/splinevariable/tanque/1a40.png, id=479, 295.1025pt x 151.56625pt>
 File: imagenes/splinevariable/tanque/1a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/tanque/1a40.png>
@@ -3107,7 +3107,7 @@ Package pdftex.def Info: imagenes/splinevariable/tanque/1a40.png used on input
 line 1743.
 (pdftex.def)             Requested size: 177.06285pt x 90.94044pt.
 
-<imagenes/splinevariable/tanque/1a200.png, id=481, 307.1475pt x 136.51pt>
+<imagenes/splinevariable/tanque/1a200.png, id=480, 307.1475pt x 136.51pt>
 File: imagenes/splinevariable/tanque/1a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/tanque/1a200.png>
@@ -3119,7 +3119,7 @@ Overfull \hbox (99.85153pt too wide) in paragraph at lines 1739--1748
  [][][][][][][][][] 
  []
 
-<imagenes/splinevariable/tanque/4a40.png, id=482, 347.2975pt x 149.55875pt>
+<imagenes/splinevariable/tanque/4a40.png, id=481, 347.2975pt x 149.55875pt>
 File: imagenes/splinevariable/tanque/4a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/tanque/4a40.png>
@@ -3127,7 +3127,7 @@ Package pdftex.def Info: imagenes/splinevariable/tanque/4a40.png used on input
 line 1753.
 (pdftex.def)             Requested size: 208.3801pt x 89.73593pt.
 
-<imagenes/splinevariable/tanque/4a200.png, id=483, 322.20375pt x 155.58125pt>
+<imagenes/splinevariable/tanque/4a200.png, id=482, 322.20375pt x 155.58125pt>
 File: imagenes/splinevariable/tanque/4a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/tanque/4a200.png>
@@ -3135,14 +3135,14 @@ Package pdftex.def Info: imagenes/splinevariable/tanque/4a200.png used on input
  line 1757.
 (pdftex.def)             Requested size: 193.32373pt x 93.34946pt.
 
-<imagenes/grises1.jpg, id=484, 367.3725pt x 286.06876pt>
+<imagenes/grises1.jpg, id=483, 367.3725pt x 286.06876pt>
 File: imagenes/grises1.jpg Graphic file (type jpg)
 
 <use imagenes/grises1.jpg>
 Package pdftex.def Info: imagenes/grises1.jpg used on input line 1763.
 (pdftex.def)             Requested size: 146.94638pt x 114.42546pt.
 
-<imagenes/grises2.jpg, id=485, 401.5pt x 286.06876pt>
+<imagenes/grises2.jpg, id=484, 401.5pt x 286.06876pt>
 File: imagenes/grises2.jpg Graphic file (type jpg)
 
 <use imagenes/grises2.jpg>
@@ -3178,20 +3178,20 @@ Package babel Info: Redefining spanish shorthand "?
 que/1a40.png> <./imagenes/splinevariable/tanque/1a200.png> <./imagenes/splineva
 riable/tanque/4a40.png> <./imagenes/splinevariable/tanque/4a200.png> <./imagene
 s/grises1.jpg>]
-<imagenes/grises4.jpg, id=503, 472.76625pt x 286.06876pt>
+<imagenes/grises4.jpg, id=502, 472.76625pt x 286.06876pt>
 File: imagenes/grises4.jpg Graphic file (type jpg)
 
 <use imagenes/grises4.jpg>
 Package pdftex.def Info: imagenes/grises4.jpg used on input line 1777.
 (pdftex.def)             Requested size: 189.10315pt x 114.42546pt.
 
-<imagenes/cua1.jpg, id=504, 472.76625pt x 286.06876pt>
+<imagenes/cua1.jpg, id=503, 472.76625pt x 286.06876pt>
 File: imagenes/cua1.jpg Graphic file (type jpg)
  <use imagenes/cua1.jpg>
 Package pdftex.def Info: imagenes/cua1.jpg used on input line 1788.
 (pdftex.def)             Requested size: 189.10315pt x 114.42546pt.
 
-<imagenes/cua2.jpg, id=505, 426.59375pt x 286.06876pt>
+<imagenes/cua2.jpg, id=504, 426.59375pt x 286.06876pt>
 File: imagenes/cua2.jpg Graphic file (type jpg)
  <use imagenes/cua2.jpg>
 Package pdftex.def Info: imagenes/cua2.jpg used on input line 1795.
@@ -3224,13 +3224,13 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1799.
 
 [37 <./imagenes/grises2.jpg> <./imagenes/grises4.jpg> <./imagenes/cua1.jpg>]
-<imagenes/cua4.jpg, id=513, 451.6875pt x 286.06876pt>
+<imagenes/cua4.jpg, id=512, 451.6875pt x 286.06876pt>
 File: imagenes/cua4.jpg Graphic file (type jpg)
  <use imagenes/cua4.jpg>
 Package pdftex.def Info: imagenes/cua4.jpg used on input line 1802.
 (pdftex.def)             Requested size: 180.67178pt x 114.42546pt.
 
-<imagenes/splinevariable/cuad/orig.png, id=520, 241.90375pt x 179.67125pt>
+<imagenes/splinevariable/cuad/orig.png, id=519, 241.90375pt x 179.67125pt>
 File: imagenes/splinevariable/cuad/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/cuad/orig.png>
@@ -3238,7 +3238,7 @@ Package pdftex.def Info: imagenes/splinevariable/cuad/orig.png used on input li
 ne 1817.
 (pdftex.def)             Requested size: 120.95157pt x 89.83539pt.
 
-<imagenes/splinevariable/cuad/1.png, id=521, 242.9075pt x 171.64125pt>
+<imagenes/splinevariable/cuad/1.png, id=520, 242.9075pt x 171.64125pt>
 File: imagenes/splinevariable/cuad/1.png Graphic file (type png)
 
 <use imagenes/splinevariable/cuad/1.png>
@@ -3246,7 +3246,7 @@ Package pdftex.def Info: imagenes/splinevariable/cuad/1.png used on input line
 1821.
 (pdftex.def)             Requested size: 121.45345pt x 85.8204pt.
 
-<imagenes/splinevariable/cuad/2.png, id=522, 237.88875pt x 188.705pt>
+<imagenes/splinevariable/cuad/2.png, id=521, 237.88875pt x 188.705pt>
 File: imagenes/splinevariable/cuad/2.png Graphic file (type png)
 
 <use imagenes/splinevariable/cuad/2.png>
@@ -3254,7 +3254,7 @@ Package pdftex.def Info: imagenes/splinevariable/cuad/2.png used on input line
 1825.
 (pdftex.def)             Requested size: 118.94408pt x 94.35226pt.
 
-<imagenes/splinevariable/cuad/4.png, id=523, 256.96pt x 170.6375pt>
+<imagenes/splinevariable/cuad/4.png, id=522, 256.96pt x 170.6375pt>
 File: imagenes/splinevariable/cuad/4.png Graphic file (type png)
 
 <use imagenes/splinevariable/cuad/4.png>
@@ -3290,21 +3290,21 @@ Package babel Info: Redefining spanish shorthand "?
  [38 <./imagenes/cua2.jpg> <./imagenes/cua4.jpg> <./imagenes/splinevariable/cua
 d/orig.png> <./imagenes/splinevariable/cuad/1.png> <./imagenes/splinevariable/c
 uad/2.png>]
-<imagenes/piano1.jpg, id=538, 515.9275pt x 286.06876pt>
+<imagenes/piano1.jpg, id=537, 515.9275pt x 286.06876pt>
 File: imagenes/piano1.jpg Graphic file (type jpg)
 
 <use imagenes/piano1.jpg>
 Package pdftex.def Info: imagenes/piano1.jpg used on input line 1838.
 (pdftex.def)             Requested size: 206.36734pt x 114.42546pt.
 
-<imagenes/piano2.jpg, id=539, 617.30624pt x 286.06876pt>
+<imagenes/piano2.jpg, id=538, 617.30624pt x 286.06876pt>
 File: imagenes/piano2.jpg Graphic file (type jpg)
 
 <use imagenes/piano2.jpg>
 Package pdftex.def Info: imagenes/piano2.jpg used on input line 1846.
 (pdftex.def)             Requested size: 246.91812pt x 114.42546pt.
 
-<imagenes/piano3.jpg, id=540, 596.2275pt x 286.06876pt>
+<imagenes/piano3.jpg, id=539, 596.2275pt x 286.06876pt>
 File: imagenes/piano3.jpg Graphic file (type jpg)
 
 <use imagenes/piano3.jpg>
@@ -3338,7 +3338,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1861.
  [39 <./imagenes/splinevariable/cuad/4.png> <./imagenes/piano1.jpg> <./imagenes
 /piano2.jpg> <./imagenes/piano3.jpg>]
-<imagenes/splinevariable/piano/orig.png, id=553, 485.815pt x 402.50375pt>
+<imagenes/splinevariable/piano/orig.png, id=552, 485.815pt x 402.50375pt>
 File: imagenes/splinevariable/piano/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/piano/orig.png>
@@ -3346,7 +3346,7 @@ Package pdftex.def Info: imagenes/splinevariable/piano/orig.png used on input l
 ine 1867.
 (pdftex.def)             Requested size: 113.81071pt x 113.80579pt.
 
-<imagenes/splinevariable/piano/3a40.png, id=554, 397.485pt x 405.515pt>
+<imagenes/splinevariable/piano/3a40.png, id=553, 397.485pt x 405.515pt>
 File: imagenes/splinevariable/piano/3a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/piano/3a40.png>
@@ -3354,7 +3354,7 @@ Package pdftex.def Info: imagenes/splinevariable/piano/3a40.png used on input l
 ine 1870.
 (pdftex.def)             Requested size: 113.81206pt x 113.80948pt.
 
-<imagenes/splinevariable/piano/3a120.png, id=555, 538.01pt x 454.69875pt>
+<imagenes/splinevariable/piano/3a120.png, id=554, 538.01pt x 454.69875pt>
 File: imagenes/splinevariable/piano/3a120.png Graphic file (type png)
 
 <use imagenes/splinevariable/piano/3a120.png>
@@ -3362,7 +3362,7 @@ Package pdftex.def Info: imagenes/splinevariable/piano/3a120.png used on input
 line 1873.
 (pdftex.def)             Requested size: 113.80637pt x 113.80623pt.
 
-<imagenes/splinevariable/piano/3a200.png, id=556, 486.81876pt x 420.57124pt>
+<imagenes/splinevariable/piano/3a200.png, id=555, 486.81876pt x 420.57124pt>
 File: imagenes/splinevariable/piano/3a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/piano/3a200.png>
@@ -3370,13 +3370,13 @@ Package pdftex.def Info: imagenes/splinevariable/piano/3a200.png used on input
 line 1879.
 (pdftex.def)             Requested size: 113.80815pt x 113.81244pt.
 
-<imagenes/rosa1.jpg, id=557, 512.91624pt x 286.06876pt>
+<imagenes/rosa1.jpg, id=556, 512.91624pt x 286.06876pt>
 File: imagenes/rosa1.jpg Graphic file (type jpg)
 
 <use imagenes/rosa1.jpg>
 Package pdftex.def Info: imagenes/rosa1.jpg used on input line 1885.
 (pdftex.def)             Requested size: 205.16286pt x 114.42546pt.
- <imagenes/rosa2.jpg, id=558, 550.055pt x 286.06876pt>
+ <imagenes/rosa2.jpg, id=557, 550.055pt x 286.06876pt>
 File: imagenes/rosa2.jpg Graphic file (type jpg)
 
 <use imagenes/rosa2.jpg>
@@ -3411,13 +3411,13 @@ Package babel Info: Redefining spanish shorthand "?
  [40 <./imagenes/splinevariable/piano/orig.png> <./imagenes/splinevariable/pian
 o/3a40.png> <./imagenes/splinevariable/piano/3a120.png> <./imagenes/splinevaria
 ble/piano/3a200.png> <./imagenes/rosa1.jpg>]
-<imagenes/rosa5.jpg, id=574, 525.965pt x 286.06876pt>
+<imagenes/rosa5.jpg, id=573, 525.965pt x 286.06876pt>
 File: imagenes/rosa5.jpg Graphic file (type jpg)
  <use imagenes/rosa5.jpg>
 Package pdftex.def Info: imagenes/rosa5.jpg used on input line 1899.
 (pdftex.def)             Requested size: 210.38226pt x 114.42546pt.
 
-<imagenes/splinevariable/rosa/orig.png, id=578, 382.42876pt x 382.42876pt>
+<imagenes/splinevariable/rosa/orig.png, id=577, 382.42876pt x 382.42876pt>
 File: imagenes/splinevariable/rosa/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/orig.png>
@@ -3425,7 +3425,7 @@ Package pdftex.def Info: imagenes/splinevariable/rosa/orig.png used on input li
 ne 1914.
 (pdftex.def)             Requested size: 142.26085pt x 142.26085pt.
 
-<imagenes/splinevariable/rosa/1a120.png, id=579, 400.49625pt x 400.49625pt>
+<imagenes/splinevariable/rosa/1a120.png, id=578, 400.49625pt x 400.49625pt>
 File: imagenes/splinevariable/rosa/1a120.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/1a120.png>
@@ -3433,7 +3433,7 @@ Package pdftex.def Info: imagenes/splinevariable/rosa/1a120.png used on input l
 ine 1917.
 (pdftex.def)             Requested size: 142.26576pt x 142.26576pt.
 
-<imagenes/splinevariable/rosa/1a200.png, id=580, 362.35374pt x 362.35374pt>
+<imagenes/splinevariable/rosa/1a200.png, id=579, 362.35374pt x 362.35374pt>
 File: imagenes/splinevariable/rosa/1a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/1a200.png>
@@ -3460,7 +3460,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1908--1921
 
  []
 
-<imagenes/splinevariable/rosa/5a40.png, id=581, 418.56375pt x 418.56375pt>
+<imagenes/splinevariable/rosa/5a40.png, id=580, 418.56375pt x 418.56375pt>
 File: imagenes/splinevariable/rosa/5a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/5a40.png>
@@ -3468,7 +3468,7 @@ Package pdftex.def Info: imagenes/splinevariable/rosa/5a40.png used on input li
 ne 1926.
 (pdftex.def)             Requested size: 142.25868pt x 142.25868pt.
 
-<imagenes/splinevariable/rosa/5a120.png, id=582, 386.44376pt x 386.44376pt>
+<imagenes/splinevariable/rosa/5a120.png, id=581, 386.44376pt x 386.44376pt>
 File: imagenes/splinevariable/rosa/5a120.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/5a120.png>
@@ -3476,7 +3476,7 @@ Package pdftex.def Info: imagenes/splinevariable/rosa/5a120.png used on input l
 ine 1929.
 (pdftex.def)             Requested size: 142.26256pt x 142.26256pt.
 
-<imagenes/splinevariable/rosa/5a200.png, id=583, 382.42876pt x 382.42876pt>
+<imagenes/splinevariable/rosa/5a200.png, id=582, 382.42876pt x 382.42876pt>
 File: imagenes/splinevariable/rosa/5a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/rosa/5a200.png>
@@ -3509,7 +3509,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 1934.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1934.
- [41 <./imagenes/rosa2.jpg> <./imagenes/rosa5.jpg>] <imagenes/lago1.jpg, id=591
+ [41 <./imagenes/rosa2.jpg> <./imagenes/rosa5.jpg>] <imagenes/lago1.jpg, id=590
 , 512.91624pt x 286.06876pt>
 File: imagenes/lago1.jpg Graphic file (type jpg)
 
@@ -3517,7 +3517,7 @@ File: imagenes/lago1.jpg Graphic file (type jpg)
 Package pdftex.def Info: imagenes/lago1.jpg used on input line 1941.
 (pdftex.def)             Requested size: 205.16286pt x 114.42546pt.
 
-<imagenes/lago2.jpg, id=592, 567.11874pt x 286.06876pt>
+<imagenes/lago2.jpg, id=591, 567.11874pt x 286.06876pt>
 File: imagenes/lago2.jpg Graphic file (type jpg)
 
 <use imagenes/lago2.jpg>
@@ -3553,20 +3553,20 @@ Package babel Info: Redefining spanish shorthand "?
 1a120.png> <./imagenes/splinevariable/rosa/1a200.png> <./imagenes/splinevariabl
 e/rosa/5a40.png> <./imagenes/splinevariable/rosa/5a120.png> <./imagenes/splinev
 ariable/rosa/5a200.png> <./imagenes/lago1.jpg>]
-<imagenes/lago3.jpg, id=612, 538.01pt x 286.06876pt>
+<imagenes/lago3.jpg, id=611, 538.01pt x 286.06876pt>
 File: imagenes/lago3.jpg Graphic file (type jpg)
  <use imagenes/lago3.jpg>
 Package pdftex.def Info: imagenes/lago3.jpg used on input line 1955.
 (pdftex.def)             Requested size: 215.20018pt x 114.42546pt.
 
-<imagenes/lago5.jpg, id=613, 585.18625pt x 286.06876pt>
+<imagenes/lago5.jpg, id=612, 585.18625pt x 286.06876pt>
 File: imagenes/lago5.jpg Graphic file (type jpg)
 
 <use imagenes/lago5.jpg>
 Package pdftex.def Info: imagenes/lago5.jpg used on input line 1963.
 (pdftex.def)             Requested size: 234.07034pt x 114.42546pt.
 
-<imagenes/lago7.jpg, id=614, 581.17125pt x 286.06876pt>
+<imagenes/lago7.jpg, id=613, 581.17125pt x 286.06876pt>
 File: imagenes/lago7.jpg Graphic file (type jpg)
 
 <use imagenes/lago7.jpg>
@@ -3600,7 +3600,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 1978.
  [43 <./imagenes/lago2.jpg> <./imagenes/lago3.jpg> <./imagenes/lago5.jpg> <./im
 agenes/lago7.jpg>]
-<imagenes/splinevariable/lago/orig.png, id=625, 291.0875pt x 291.0875pt>
+<imagenes/splinevariable/lago/orig.png, id=624, 291.0875pt x 291.0875pt>
 File: imagenes/splinevariable/lago/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/lago/orig.png>
@@ -3608,7 +3608,7 @@ Package pdftex.def Info: imagenes/splinevariable/lago/orig.png used on input li
 ne 1984.
 (pdftex.def)             Requested size: 170.71855pt x 170.71855pt.
 
-<imagenes/splinevariable/lago/1a40.png, id=626, 303.1325pt x 302.12875pt>
+<imagenes/splinevariable/lago/1a40.png, id=625, 303.1325pt x 302.12875pt>
 File: imagenes/splinevariable/lago/1a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/lago/1a40.png>
@@ -3616,7 +3616,7 @@ Package pdftex.def Info: imagenes/splinevariable/lago/1a40.png used on input li
 ne 1988.
 (pdftex.def)             Requested size: 170.71976pt x 170.71689pt.
 
-<imagenes/splinevariable/lago/1a200.png, id=627, 292.09125pt x 293.095pt>
+<imagenes/splinevariable/lago/1a200.png, id=626, 292.09125pt x 293.095pt>
 File: imagenes/splinevariable/lago/1a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/lago/1a200.png>
@@ -3628,7 +3628,7 @@ Overfull \hbox (73.5976pt too wide) in paragraph at lines 1984--1993
  [][][][][][][][][] 
  []
 
-<imagenes/splinevariable/lago/7a40.png, id=628, 292.09125pt x 292.09125pt>
+<imagenes/splinevariable/lago/7a40.png, id=627, 292.09125pt x 292.09125pt>
 File: imagenes/splinevariable/lago/7a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/lago/7a40.png>
@@ -3636,7 +3636,7 @@ Package pdftex.def Info: imagenes/splinevariable/lago/7a40.png used on input li
 ne 1999.
 (pdftex.def)             Requested size: 170.72337pt x 170.72337pt.
 
-<imagenes/splinevariable/lago/7a200.png, id=629, 291.0875pt x 292.09125pt>
+<imagenes/splinevariable/lago/7a200.png, id=628, 291.0875pt x 292.09125pt>
 File: imagenes/splinevariable/lago/7a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/lago/7a200.png>
@@ -3644,14 +3644,14 @@ Package pdftex.def Info: imagenes/splinevariable/lago/7a200.png used on input l
 ine 2003.
 (pdftex.def)             Requested size: 170.71855pt x 170.72337pt.
 
-<imagenes/auto2.jpg, id=630, 595.22375pt x 286.06876pt>
+<imagenes/auto2.jpg, id=629, 595.22375pt x 286.06876pt>
 File: imagenes/auto2.jpg Graphic file (type jpg)
 
 <use imagenes/auto2.jpg>
 Package pdftex.def Info: imagenes/auto2.jpg used on input line 2009.
 (pdftex.def)             Requested size: 238.08528pt x 114.42546pt.
 
-<imagenes/auto4.jpg, id=631, 541.02126pt x 286.06876pt>
+<imagenes/auto4.jpg, id=630, 541.02126pt x 286.06876pt>
 File: imagenes/auto4.jpg Graphic file (type jpg)
 
 <use imagenes/auto4.jpg>
@@ -3687,21 +3687,21 @@ Package babel Info: Redefining spanish shorthand "?
 1a40.png> <./imagenes/splinevariable/lago/1a200.png> <./imagenes/splinevariable
 /lago/7a40.png> <./imagenes/splinevariable/lago/7a200.png> <./imagenes/auto2.jp
 g>]
-<imagenes/auto6.jpg, id=650, 575.14874pt x 286.06876pt>
+<imagenes/auto6.jpg, id=649, 575.14874pt x 286.06876pt>
 File: imagenes/auto6.jpg Graphic file (type jpg)
 
 <use imagenes/auto6.jpg>
 Package pdftex.def Info: imagenes/auto6.jpg used on input line 2023.
 (pdftex.def)             Requested size: 230.05542pt x 114.42546pt.
 
-<imagenes/auto8.jpg, id=651, 537.00626pt x 286.06876pt>
+<imagenes/auto8.jpg, id=650, 537.00626pt x 286.06876pt>
 File: imagenes/auto8.jpg Graphic file (type jpg)
 
 <use imagenes/auto8.jpg>
 Package pdftex.def Info: imagenes/auto8.jpg used on input line 2031.
 (pdftex.def)             Requested size: 214.79869pt x 114.42546pt.
 
-<imagenes/auto12.jpg, id=652, 572.1375pt x 286.06876pt>
+<imagenes/auto12.jpg, id=651, 572.1375pt x 286.06876pt>
 File: imagenes/auto12.jpg Graphic file (type jpg)
 
 <use imagenes/auto12.jpg>
@@ -3735,7 +3735,7 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 2046.
  [45 <./imagenes/auto4.jpg> <./imagenes/auto6.jpg> <./imagenes/auto8.jpg> <./im
 agenes/auto12.jpg>]
-<imagenes/splinevariable/auto/orig.png, id=661, 908.39375pt x 617.30624pt>
+<imagenes/splinevariable/auto/orig.png, id=660, 908.39375pt x 617.30624pt>
 File: imagenes/splinevariable/auto/orig.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/orig.png>
@@ -3743,7 +3743,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/orig.png used on input li
 ne 2052.
 (pdftex.def)             Requested size: 113.79843pt x 113.80424pt.
 
-<imagenes/splinevariable/auto/2a40.png, id=662, 1246.6575pt x 851.18pt>
+<imagenes/splinevariable/auto/2a40.png, id=661, 1246.6575pt x 851.18pt>
 File: imagenes/splinevariable/auto/2a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/2a40.png>
@@ -3751,7 +3751,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/2a40.png used on input li
 ne 2058.
 (pdftex.def)             Requested size: 113.81123pt x 113.80035pt.
 
-<imagenes/splinevariable/auto/2a200.png, id=663, 876.27374pt x 636.3775pt>
+<imagenes/splinevariable/auto/2a200.png, id=662, 876.27374pt x 636.3775pt>
 File: imagenes/splinevariable/auto/2a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/2a200.png>
@@ -3759,7 +3759,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/2a200.png used on input l
 ine 2061.
 (pdftex.def)             Requested size: 113.79924pt x 113.80502pt.
 
-<imagenes/splinevariable/auto/4a40.png, id=664, 973.6375pt x 662.475pt>
+<imagenes/splinevariable/auto/4a40.png, id=663, 973.6375pt x 662.475pt>
 File: imagenes/splinevariable/auto/4a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/4a40.png>
@@ -3767,7 +3767,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/4a40.png used on input li
 ne 2064.
 (pdftex.def)             Requested size: 113.80072pt x 113.80196pt.
 
-<imagenes/splinevariable/auto/4a200.png, id=665, 890.32625pt x 552.0625pt>
+<imagenes/splinevariable/auto/4a200.png, id=664, 890.32625pt x 552.0625pt>
 File: imagenes/splinevariable/auto/4a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/4a200.png>
@@ -3775,7 +3775,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/4a200.png used on input l
 ine 2070.
 (pdftex.def)             Requested size: 113.80377pt x 113.80533pt.
 
-<imagenes/splinevariable/auto/12a40.png, id=666, 1000.73875pt x 604.2575pt>
+<imagenes/splinevariable/auto/12a40.png, id=665, 1000.73875pt x 604.2575pt>
 File: imagenes/splinevariable/auto/12a40.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/12a40.png>
@@ -3783,7 +3783,7 @@ Package pdftex.def Info: imagenes/splinevariable/auto/12a40.png used on input l
 ine 2073.
 (pdftex.def)             Requested size: 113.80748pt x 113.80511pt.
 
-<imagenes/splinevariable/auto/12a200.png, id=667, 960.58875pt x 662.475pt>
+<imagenes/splinevariable/auto/12a200.png, id=666, 960.58875pt x 662.475pt>
 File: imagenes/splinevariable/auto/12a200.png Graphic file (type png)
 
 <use imagenes/splinevariable/auto/12a200.png>
@@ -3845,7 +3845,7 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 2083.
 
-<imagenes/tanqueMetodosDif.jpg, id=689, 507.8975pt x 240.9pt>
+<imagenes/tanqueMetodosDif.jpg, id=688, 507.8975pt x 240.9pt>
 File: imagenes/tanqueMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/tanqueMetodosDif.jpg>
@@ -3853,7 +3853,7 @@ Package pdftex.def Info: imagenes/tanqueMetodosDif.jpg used on input line 2088.
 
 (pdftex.def)             Requested size: 203.1554pt x 96.35828pt.
 
-<imagenes/grisesMetodosDif.jpg, id=690, 507.8975pt x 240.9pt>
+<imagenes/grisesMetodosDif.jpg, id=689, 507.8975pt x 240.9pt>
 File: imagenes/grisesMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/grisesMetodosDif.jpg>
@@ -3861,7 +3861,7 @@ Package pdftex.def Info: imagenes/grisesMetodosDif.jpg used on input line 2094.
 
 (pdftex.def)             Requested size: 203.1554pt x 96.35828pt.
 
-<imagenes/cuadriculaMetodosDif.jpg, id=691, 507.8975pt x 240.9pt>
+<imagenes/cuadriculaMetodosDif.jpg, id=690, 507.8975pt x 240.9pt>
 File: imagenes/cuadriculaMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/cuadriculaMetodosDif.jpg>
@@ -3869,14 +3869,14 @@ Package pdftex.def Info: imagenes/cuadriculaMetodosDif.jpg used on input line 2
 101.
 (pdftex.def)             Requested size: 203.1554pt x 96.35828pt.
 
-<imagenes/pianoMetodosDif.jpg, id=692, 507.8975pt x 240.9pt>
+<imagenes/pianoMetodosDif.jpg, id=691, 507.8975pt x 240.9pt>
 File: imagenes/pianoMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/pianoMetodosDif.jpg>
 Package pdftex.def Info: imagenes/pianoMetodosDif.jpg used on input line 2107.
 (pdftex.def)             Requested size: 203.1554pt x 96.35828pt.
 
-<imagenes/rosaMetodosDif.jpg, id=693, 507.8975pt x 240.9pt>
+<imagenes/rosaMetodosDif.jpg, id=692, 507.8975pt x 240.9pt>
 File: imagenes/rosaMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/rosaMetodosDif.jpg>
@@ -3910,14 +3910,14 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 2117.
  [47 <./imagenes/tanqueMetodosDif.jpg> <./imagenes/grisesMetodosDif.jpg> <./ima
 genes/cuadriculaMetodosDif.jpg> <./imagenes/pianoMetodosDif.jpg>]
-<imagenes/lagoMetodosDif.jpg, id=703, 517.935pt x 311.1625pt>
+<imagenes/lagoMetodosDif.jpg, id=702, 517.935pt x 311.1625pt>
 File: imagenes/lagoMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/lagoMetodosDif.jpg>
 Package pdftex.def Info: imagenes/lagoMetodosDif.jpg used on input line 2120.
 (pdftex.def)             Requested size: 207.17032pt x 124.46278pt.
 
-<imagenes/autoMetodosDif.jpg, id=704, 604.2575pt x 286.06876pt>
+<imagenes/autoMetodosDif.jpg, id=703, 604.2575pt x 286.06876pt>
 File: imagenes/autoMetodosDif.jpg Graphic file (type jpg)
 
 <use imagenes/autoMetodosDif.jpg>
@@ -4075,13 +4075,13 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 2256.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 2256.
- <logodpt.jpg, id=732, 138.5175pt x 160.6pt>
+ <logodpt.jpg, id=731, 138.5175pt x 160.6pt>
 File: logodpt.jpg Graphic file (type jpg)
  <use logodpt.jpg>
 Package pdftex.def Info: logodpt.jpg used on input line 2289.
 (pdftex.def)             Requested size: 45.52458pt x 52.7825pt.
 
-<niembra.jpg, id=733, 602.25pt x 361.35pt>
+<niembra.jpg, id=732, 602.25pt x 361.35pt>
 File: niembra.jpg Graphic file (type jpg)
  <use niembra.jpg>
 Package pdftex.def Info: niembra.jpg used on input line 2300.
@@ -4438,12 +4438,11 @@ type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
-ols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb>
-Output written on informe.pdf (61 pages, 6574144 bytes).
+ols/msbm10.pfb>
+Output written on informe.pdf (61 pages, 6566586 bytes).
 PDF statistics:
- 917 PDF objects out of 1000 (max. 8388607)
- 667 compressed objects within 7 object streams
+ 913 PDF objects out of 1000 (max. 8388607)
+ 664 compressed objects within 7 object streams
  296 named destinations out of 1000 (max. 500000)
  782 words of extra memory for PDF output out of 10000 (max. 10000000)
 
